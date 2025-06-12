@@ -589,8 +589,7 @@ body[data-theme='dark'] .fixed.inset-0 .bg-gray-800 {
 
 body[data-theme='dark'] .case-study-card .px-6.py-4,
 body[data-theme='dark'] .fixed.inset-0 .bg-gray-800 .px-6.py-4 {
-  background-color: #1e293b;
-    !important;
+  background-color: #1e293b !important;
 }
 
 body[data-theme='dark'] .fixed.inset-0 .bg-gray-800 {
