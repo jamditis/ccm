@@ -285,12 +285,15 @@ const App = () => {
         );
     };
 
-    // Calculate progress
-    const estimatedTotalSteps = 4;
-    const progressPercentage = Math.min(
-        100,
-        Math.round((history.length / estimatedTotalSteps) * 100),
-    );
+    // Calculate progress dynamically
+    // Average depth of decision tree is approximately 3 steps
+    const estimatedTotalSteps = 3;
+    const progressPercentage = showRecommendation
+        ? 100
+        : Math.min(
+              100,
+              Math.round((history.length / estimatedTotalSteps) * 100),
+          );
 
     // Get color class for current step
     const colorClass = getStepColor(currentStep);
