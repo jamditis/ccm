@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCM Sponsorship Package Generator v2.5 (Stable)</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- html2canvas for PNG export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- jsPDF for high-fidelity PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        /* Custom Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 3px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.3); }
+
+        .dark-scrollbar .custom-scrollbar::-webkit-scrollbar-track { background: #2a2a2a; }
+        .dark-scrollbar .custom-scrollbar::-webkit-scrollbar-thumb { background: #4a4a4a; }
+
+        /* --- ROBUST PRINT STYLES --- */
+        @media print {
+            @page {
+                margin: 0.5in;
+                size: letter;
+            }
+
+            /* Force colors and backgrounds to print */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
+            /* 1. Reset base elements */
+            html, body {
+                height: auto !important;
+                min-height: 0 !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: visible !important;
+                background: white !important;
+                font-size: 12pt !important;
+            }
+
+            /* 2. Hide all UI elements */
+            nav, header, .sidebar, .settings-panel, button, .no-print, .texture-overlay,
+            .custom-scrollbar, [class*="md:w-[400px]"] {
+                display: none !important;
+                visibility: hidden !important;
+            }
+
+            /* 3. Reset layout containers */
+            #root,
+            #root > div,
+            .flex,
+            .flex-col,
+            .flex-row,
+            .print-container {
+                display: block !important;
+                position: static !important;
+                height: auto !important;
+                width: 100% !important;
+                overflow: visible !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                background: transparent !important;
+            }
+
+            /* 4. The printable document */
+            #printable-area {
+                display: block !important;
+                position: relative !important;
+                width: 100% !important;
+                max-width: none !important;
+                min-height: 0 !important;
+                height: auto !important;
+                margin: 0 !important;
+                padding: 0.25in !important;
+                background-color: #fcfbf9 !important;
+                box-shadow: none !important;
+                border: none !important;
+            }
+
+            /* 5. Preserve the decorative CMYK border */
+            #printable-area > div:first-child {
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                height: 4px !important;
+                display: flex !important;
+            }
+
+            /* 6. Typography fixes */
+            h1, h2, h3, h4, h5, h6 {
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            /* 7. Grid layout for overview mode */
+            .grid-cols-2,
+            .grid.grid-cols-2 {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 1.5rem !important;
+            }
+
+            /* 8. Prevent awkward page breaks */
+            .break-inside-avoid,
+            .border-t {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+            }
+
+            /* 9. Ensure all text and elements are visible */
+            #printable-area,
+            #printable-area * {
+                visibility: visible !important;
+                color-adjust: exact !important;
+            }
+
+            /* 10. Fix flexbox children in printable area */
+            #printable-area .flex {
+                display: flex !important;
+            }
+
+            #printable-area .grid {
+                display: grid !important;
+            }
+
+            /* 11. Ensure borders print */
+            .border-b, .border-t, .border-l, .border-r, .border {
+                border-color: currentColor !important;
+            }
+
+            /* 12. Background colors for key elements */
+            .bg-gray-100 {
+                background-color: #f3f4f6 !important;
+            }
+
+            .bg-black {
+                background-color: #000 !important;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-900">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+
+        // --- ICONS ---
+        const IconWrapper = ({ children, size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>{children}</svg>
+        );
+
+        const Icons = {
+            Printer: (p) => <IconWrapper {...p}><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></IconWrapper>,
+            CheckCircle: (p) => <IconWrapper {...p}><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></IconWrapper>,
+            Mic: (p) => <IconWrapper {...p}><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></IconWrapper>,
+            Heart: (p) => <IconWrapper {...p}><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></IconWrapper>,
+            Users: (p) => <IconWrapper {...p}><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></IconWrapper>,
+            Coffee: (p) => <IconWrapper {...p}><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></IconWrapper>,
+            Sparkles: (p) => <IconWrapper {...p}><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></IconWrapper>,
+            Edit3: (p) => <IconWrapper {...p}><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></IconWrapper>,
+            Trash2: (p) => <IconWrapper {...p}><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></IconWrapper>,
+            Plus: (p) => <IconWrapper {...p}><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></IconWrapper>,
+            Settings: (p) => <IconWrapper {...p}><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></IconWrapper>,
+            Award: (p) => <IconWrapper {...p}><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></IconWrapper>,
+            Globe: (p) => <IconWrapper {...p}><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></IconWrapper>,
+            Zap: (p) => <IconWrapper {...p}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></IconWrapper>,
+            Lightbulb: (p) => <IconWrapper {...p}><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-1 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path></IconWrapper>,
+            Wifi: (p) => <IconWrapper {...p}><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></IconWrapper>,
+            Feather: (p) => <IconWrapper {...p}><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></IconWrapper>,
+            Anchor: (p) => <IconWrapper {...p}><circle cx="12" cy="5" r="3"></circle><line x1="12" y1="22" x2="12" y2="8"></line><path d="M5 12H2a10 10 0 0 0 20 0h-3"></path></IconWrapper>,
+            TrendingUp: (p) => <IconWrapper {...p}><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></IconWrapper>,
+            Layers: (p) => <IconWrapper {...p}><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></IconWrapper>,
+            FileText: (p) => <IconWrapper {...p}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></IconWrapper>,
+            ChevronDown: (p) => <IconWrapper {...p}><polyline points="6 9 12 15 18 9"></polyline></IconWrapper>,
+            ChevronUp: (p) => <IconWrapper {...p}><polyline points="18 15 12 9 6 15"></polyline></IconWrapper>,
+            Image: (p) => <IconWrapper {...p}><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></IconWrapper>
+        };
+
+        const FONTS = {
+            heading: "'Playfair Display', serif",
+            body: "'Space Grotesk', sans-serif",
+            mono: "'JetBrains Mono', monospace",
+        };
+
+        const DEFAULT_GLOBALS = {
+            eventName: '2026 Community Media Luncheon',
+            eventDate: 'February 19, 2026',
+            orgName: 'Center for Cooperative Media',
+            tagline: 'Building a sustainable future for local journalism at Montclair State University.',
+            contactName: 'Stefanie Murray',
+            contactLocation: 'Montclair, NJ'
+        };
+
+        const DEFAULT_PACKAGES = [
+            {
+                id: 'registration',
+                title: 'Registration Sponsor',
+                cost: '$500',
+                type: 'cash',
+                iconName: 'Edit3',
+                description: 'High-touch brand visibility. Your organization provides or sponsors the essential items every attendee receives.',
+                benefits: [
+                    'Exclusive branding on attendee name tags',
+                    'Opportunity to provide branded pens at check-in',
+                    'Logo on registration welcome signage',
+                    'Recognition in printed program'
+                ]
+            },
+            {
+                id: 'advertising',
+                title: 'Advertising Sponsor',
+                cost: '$1,000',
+                type: 'cash',
+                iconName: 'Zap',
+                description: 'Maximum visual impact. Own the physical space with prominent branding throughout the venue.',
+                benefits: [
+                    'Logo featured on all table menu cards',
+                    'Branding on interior directional signage',
+                    'Logo on exterior welcome signage',
+                    'Quarter-page ad in event program'
+                ]
+            },
+            {
+                id: 'sweet_endings',
+                title: 'Sweet Endings Sponsor',
+                cost: '$2,000',
+                type: 'cash',
+                iconName: 'Coffee',
+                description: 'Host the most anticipated part of the meal. Sponsor the coffee, tea, and dessert service.',
+                benefits: [
+                    'Prominent signage at dessert & coffee stations',
+                    'Opportunity for branded napkins or coffee sleeves',
+                    'Verbal recognition by host before dessert service',
+                    'Logo on event website'
+                ]
+            },
+            {
+                id: 'session',
+                title: 'Session Sponsor',
+                cost: '$2,500',
+                type: 'cash',
+                iconName: 'Mic',
+                description: 'Position your organization as a thought leader with direct address to the full attendee list.',
+                benefits: [
+                    '3-minute speaking opportunity during program',
+                    'Logo displayed on main stage screen',
+                    'VIP reserved seating for 2 guests',
+                    'Feature in post-event newsletter'
+                ]
+            },
+            {
+                id: 'presenting',
+                title: 'Presenting Sponsor',
+                cost: '$5,000',
+                type: 'cash',
+                iconName: 'Award',
+                description: 'The premier partnership tier. Cover the plated luncheon or venue costs for top-tier billing.',
+                benefits: [
+                    'Exclusive "Presented By" title billing',
+                    'Introduction of Keynote Speaker',
+                    'Reserved VIP table for 8 guests',
+                    'Premium full-page ad in program',
+                    'Logo on all marketing materials'
+                ]
+            },
+            {
+                id: 'inkind_custom',
+                title: 'In-Kind / Custom Partner',
+                cost: 'Service Exchange',
+                type: 'trade',
+                iconName: 'Sparkles',
+                description: 'Flexible partnership for organizations providing critical services or venue support.',
+                benefits: [
+                    'Benefit customized to trade value',
+                    'Logo placement on relevant materials',
+                    'Recognition in event recap'
+                ]
+            }
+        ];
+
+        const AVAILABLE_ICONS = Object.keys(Icons).filter(k => !['ChevronDown', 'ChevronUp', 'Printer'].includes(k));
+
+        const TextureOverlay = () => (
+            <div className="pointer-events-none fixed inset-0 z-50 opacity-[0.03] mix-blend-multiply texture-overlay"
+                style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
+            />
+        );
+
+        const SectionHeader = ({ children }) => (
+            <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3 font-mono border-b border-gray-200 pb-2 mt-4">
+                {children}
+            </h3>
+        );
+
+        const InputField = ({ label, value, onChange, placeholder, area = false, type = "text" }) => (
+            <div className="mb-4 group">
+                <label className="block text-xs font-medium text-gray-600 mb-1 uppercase tracking-wide group-focus-within:text-red-600 transition-colors">
+                    {label}
+                </label>
+                {area ? (
+                    <textarea
+                        className="w-full bg-transparent border-b border-gray-300 py-2 text-sm focus:outline-none focus:border-red-600 focus:bg-white/50 transition-all font-medium min-h-[80px] resize-none"
+                        value={value}
+                        onChange={(e) => onChange(e.target.value)}
+                        placeholder={placeholder}
+                    />
+                ) : (
+                    <input
+                        type={type}
+                        className="w-full bg-transparent border-b border-gray-300 py-2 text-sm focus:outline-none focus:border-red-600 focus:bg-white/50 transition-all font-medium"
+                        value={value}
+                        onChange={(e) => onChange(e.target.value)}
+                        placeholder={placeholder}
+                    />
+                )}
+            </div>
+        );
+
+        // --- COMPONENTS DEFINED BEFORE USE TO PREVENT HOISTING ERRORS ---
+
+        function GeneratorMode({ packages, globalSettings, setGlobalSettings }) {
+            const [viewMode, setViewMode] = useState('single'); 
+            const [activePackageId, setActivePackageId] = useState(packages[0]?.id || '');
+            const [recipientName, setRecipientName] = useState('Latino Spirit Media');
+            const [customData, setCustomData] = useState({});
+            const [showGlobalSettings, setShowGlobalSettings] = useState(false);
+
+            useEffect(() => {
+                const pkg = packages.find(p => p.id === activePackageId) || packages[0];
+                if (pkg) {
+                    if (pkg.id !== activePackageId) setActivePackageId(pkg.id);
+                    setCustomData({
+                        title: pkg.title,
+                        cost: pkg.cost,
+                        description: pkg.description,
+                        benefits: [...pkg.benefits],
+                        tradeDetails: pkg.type === 'trade' ? 'In-language promotion & securing elected official attendance' : '',
+                        sponsorshipItem: pkg.type === 'trade' ? 'Dessert Station & Coffee Bar' : '',
+                        iconName: pkg.iconName,
+                        type: pkg.type
+                    });
+                }
+            }, [activePackageId, packages]);
+
+            const activePkgDef = packages.find(p => p.id === activePackageId) || packages[0];
+            const Icon = Icons[activePkgDef?.iconName] || Icons.Sparkles;
+
+            const handleBenefitChange = (index, val) => {
+                const newBenefits = [...customData.benefits];
+                newBenefits[index] = val;
+                setCustomData({ ...customData, benefits: newBenefits });
+            };
+
+            const handleGlobalUpdate = (field, val) => {
+                setGlobalSettings({...globalSettings, [field]: val});
+            };
+
+            return (
+                <div className="flex flex-col md:flex-row h-full">
+                    {/* Left Sidebar */}
+                    <div className="w-full md:w-[400px] bg-white border-r border-gray-200 flex flex-col h-full z-20 shadow-xl no-print overflow-hidden sidebar">
+                        <div className="flex-1 overflow-y-auto p-6 custom-scrollbar">
+                            
+                            {/* GLOBAL SETTINGS PANEL */}
+                            <div className="mb-6 border border-gray-200 rounded-lg overflow-hidden bg-gray-50 settings-panel">
+                                <button 
+                                    onClick={() => setShowGlobalSettings(!showGlobalSettings)}
+                                    className="w-full p-3 flex justify-between items-center text-xs font-bold uppercase tracking-widest text-gray-600 bg-gray-100 hover:bg-gray-200 transition-colors"
+                                >
+                                    <span className="flex items-center gap-2"><Icons.Settings size={14}/> Event & Contact Info</span>
+                                    {showGlobalSettings ? <Icons.ChevronUp size={14}/> : <Icons.ChevronDown size={14}/>}
+                                </button>
+                                {showGlobalSettings && (
+                                    <div className="p-4 space-y-3 bg-white">
+                                        <InputField label="Event Title" value={globalSettings.eventName} onChange={(v) => handleGlobalUpdate('eventName', v)} placeholder="e.g. 2026 Annual Luncheon" />
+                                        <InputField label="Date String" value={globalSettings.eventDate} onChange={(v) => handleGlobalUpdate('eventDate', v)} placeholder="e.g. February 19, 2026" />
+                                        <InputField label="Organization Name" value={globalSettings.orgName} onChange={(v) => handleGlobalUpdate('orgName', v)} />
+                                        <InputField label="Tagline" value={globalSettings.tagline} onChange={(v) => handleGlobalUpdate('tagline', v)} area />
+                                        <div className="grid grid-cols-2 gap-2">
+                                            <InputField label="Contact Name" value={globalSettings.contactName} onChange={(v) => handleGlobalUpdate('contactName', v)} />
+                                            <InputField label="Location" value={globalSettings.contactLocation} onChange={(v) => handleGlobalUpdate('contactLocation', v)} />
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="bg-gray-100 p-1 rounded-lg flex mb-8 border border-gray-200">
+                                <button 
+                                    onClick={() => setViewMode('single')}
+                                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-wider rounded-md transition-all flex items-center justify-center gap-2 ${viewMode === 'single' ? 'bg-white text-black shadow-sm' : 'text-gray-400 hover:text-gray-600'}`}
+                                >
+                                    <Icons.FileText size={14}/> Specific Proposal
+                                </button>
+                                <button 
+                                    onClick={() => setViewMode('overview')}
+                                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-wider rounded-md transition-all flex items-center justify-center gap-2 ${viewMode === 'overview' ? 'bg-white text-black shadow-sm' : 'text-gray-400 hover:text-gray-600'}`}
+                                >
+                                    <Icons.Layers size={14}/> Full Overview
+                                </button>
+                            </div>
+
+                            {viewMode === 'single' ? (
+                                <>
+                                    <SectionHeader>1. Select Tier</SectionHeader>
+                                    <div className="grid grid-cols-1 gap-2 mb-8">
+                                        {packages.map((pkg) => {
+                                            const PkgIcon = Icons[pkg.iconName] || Icons.Sparkles;
+                                            return (
+                                                <button
+                                                    key={pkg.id}
+                                                    onClick={() => setActivePackageId(pkg.id)}
+                                                    className={`text-left p-3 rounded-lg border transition-all flex items-center gap-3 group ${
+                                                        activePackageId === pkg.id
+                                                            ? 'border-red-600 bg-red-50 shadow-sm ring-1 ring-red-200'
+                                                            : 'border-gray-200 hover:border-gray-400 hover:bg-gray-50'
+                                                    }`}
+                                                >
+                                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
+                                                        activePackageId === pkg.id ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-500 group-hover:bg-gray-300'
+                                                    }`}>
+                                                        <PkgIcon size={14} />
+                                                    </div>
+                                                    <div>
+                                                        <div className="text-sm font-bold leading-none mb-1">{pkg.title}</div>
+                                                        <div className="text-xs opacity-70 font-mono">{pkg.cost}</div>
+                                                    </div>
+                                                    {activePackageId === pkg.id && <Icons.CheckCircle size={16} className="ml-auto text-red-600" />}
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
+
+                                    <SectionHeader>2. Recipient Details</SectionHeader>
+                                    <InputField label="Prepared For (Org Name)" value={recipientName} onChange={setRecipientName} placeholder="e.g. Latino Spirit Media" />
+
+                                    <SectionHeader>3. Customize Offer</SectionHeader>
+                                    {customData.type === 'trade' ? (
+                                        <div className="p-4 bg-amber-50 border border-amber-200 rounded-md mb-6">
+                                            <div className="flex items-center gap-2 text-amber-800 text-xs font-bold uppercase mb-2">
+                                                <Icons.Edit3 size={12} />
+                                                In-Kind Logic
+                                            </div>
+                                            <InputField 
+                                                label="They Provide (The Trade)"
+                                                value={customData.tradeDetails}
+                                                onChange={(v) => setCustomData({...customData, tradeDetails: v})}
+                                                area
+                                                placeholder="What are they doing for us?"
+                                            />
+                                            <InputField 
+                                                label="We Provide (Specific Item)"
+                                                value={customData.sponsorshipItem}
+                                                onChange={(v) => setCustomData({...customData, sponsorshipItem: v})}
+                                                placeholder="e.g. Dessert Station"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <InputField label="Sponsorship Cost" value={customData.cost} onChange={(v) => setCustomData({...customData, cost: v})} />
+                                    )}
+
+                                    <div className="space-y-2">
+                                        <label className="block text-xs font-medium text-gray-600 mb-1 uppercase tracking-wide">Deliverables / Benefits</label>
+                                        {customData.benefits?.map((benefit, idx) => (
+                                            <div key={idx} className="flex gap-2">
+                                                <input
+                                                    className="flex-1 bg-white border border-gray-200 py-2 px-3 text-xs rounded focus:border-red-500 focus:outline-none"
+                                                    value={benefit}
+                                                    onChange={(e) => handleBenefitChange(idx, e.target.value)}
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </>
+                            ) : (
+                                <div className="text-sm text-gray-500 italic p-4 bg-gray-50 rounded border border-gray-200">
+                                    <p>This mode generates a single sheet listing all available tiers. It uses the titles, costs, and descriptions currently saved in the Builder. You can edit global details above.</p>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Right Preview */}
+                    <div className="flex-1 overflow-auto bg-[#5e5e5e] p-4 md:p-12 flex justify-center items-start relative print-container">
+                        
+                        <div id="printable-area" className="w-full max-w-[8.5in] min-h-[11in] bg-[#fcfbf9] shadow-2xl p-12 relative flex flex-col justify-between text-[#1a1a1a]">
+                            
+                            {/* Decorative Top Border */}
+                            <div className="absolute top-0 left-0 w-full h-4 border-b-4 border-black flex">
+                                <div className="w-1/4 h-full bg-cyan-400 opacity-80"></div>
+                                <div className="w-1/4 h-full bg-magenta-400 opacity-80 mix-blend-multiply" style={{ backgroundColor: '#e91e63' }}></div>
+                                <div className="w-1/4 h-full bg-yellow-400 opacity-80 mix-blend-multiply"></div>
+                                <div className="w-1/4 h-full bg-black"></div>
+                            </div>
+
+                            {viewMode === 'single' ? (
+                                <>
+                                    <div>
+                                        <div className="flex justify-between items-end border-b-2 border-black pb-6 mb-12">
+                                            <div>
+                                                <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-2 text-gray-500">PROPOSAL FOR:</h2>
+                                                <h1 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: FONTS.heading }}>{recipientName || '[Organization Name]'}</h1>
+                                            </div>
+                                            <div className="text-right">
+                                                <div className="text-xs font-bold uppercase tracking-[0.2em] mb-1 text-gray-500">EVENT DATE</div>
+                                                <div className="font-mono text-lg">{globalSettings.eventDate}</div>
+                                            </div>
+                                        </div>
+
+                                        <div className="mb-16">
+                                            <div className="inline-block bg-black text-white px-3 py-1 text-xs font-bold uppercase tracking-widest mb-4">Official Sponsorship Offer</div>
+                                            <h1 className="text-5xl md:text-6xl font-bold leading-[0.9] mb-6" style={{ fontFamily: FONTS.heading }}>
+                                                {customData.type === 'trade' && customData.sponsorshipItem ? customData.sponsorshipItem : customData.title}
+                                            </h1>
+                                            <div className="text-xl md:text-2xl text-gray-600 font-light max-w-2xl leading-relaxed" style={{ fontFamily: FONTS.heading }}>
+                                                {customData.description}
+                                            </div>
+                                        </div>
+
+                                        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
+                                            <div className="md:col-span-5">
+                                                <div className="bg-gray-100 p-8 border-l-4 border-red-600 h-full flex flex-col justify-center relative overflow-hidden">
+                                                    <div className="absolute -right-4 -top-4 text-gray-200 opacity-50"><Icon size={120} strokeWidth={1} /></div>
+                                                    <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2 relative z-10">
+                                                        {customData.type === 'trade' ? 'Contribution Required' : 'Sponsorship Investment'}
+                                                    </h3>
+                                                    {customData.type === 'trade' ? (
+                                                        <div className="relative z-10">
+                                                            <div className="text-lg font-bold leading-tight mb-2" style={{ fontFamily: FONTS.heading }}>In-Kind Service Exchange</div>
+                                                            <p className="text-sm text-gray-600 italic">{customData.tradeDetails || 'Services as agreed upon'}</p>
+                                                        </div>
+                                                    ) : (
+                                                        <div className="text-5xl font-bold relative z-10 tracking-tighter text-[#1a1a1a]">{customData.cost}</div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <div className="md:col-span-7">
+                                                <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6 flex items-center gap-2">
+                                                    <span className="w-2 h-2 bg-black rounded-full"></span>
+                                                    Sponsorship Benefits
+                                                </h3>
+                                                <ul className="space-y-6">
+                                                    {customData.benefits?.map((benefit, i) => (
+                                                        <li key={i} className="flex items-start gap-4 group">
+                                                            <div className="mt-1.5 min-w-[1.25rem] h-[1px] bg-gray-300 group-hover:bg-red-500 transition-colors"></div>
+                                                            <span className="text-lg leading-snug">{benefit}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </>
+                            ) : (
+                                <div className="flex flex-col h-full">
+                                    <div className="flex justify-between items-end border-b-2 border-black pb-4 mb-6">
+                                        <div className="max-w-2xl">
+                                            <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-2 text-gray-500">SPONSORSHIP OPPORTUNITIES</h2>
+                                            <h1 className="text-4xl font-bold leading-tight mb-2" style={{ fontFamily: FONTS.heading }}>{globalSettings.eventName}</h1>
+                                            <div className="text-sm text-gray-500 italic">{globalSettings.tagline}</div>
+                                        </div>
+                                        <div className="text-right">
+                                            <div className="text-xs font-bold uppercase tracking-[0.2em] mb-1 text-gray-500">EVENT DATE</div>
+                                            <div className="font-mono text-lg">{globalSettings.eventDate}</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-2 gap-x-6 gap-y-6 print-grid">
+                                        {packages.map((pkg) => {
+                                            const PkgIcon = Icons[pkg.iconName] || Icons.Sparkles;
+                                            return (
+                                                <div key={pkg.id} className="border-t border-gray-200 pt-3 break-inside-avoid">
+                                                    <div className="flex justify-between items-start mb-2">
+                                                        <div className="flex items-center gap-2">
+                                                            <div className="p-1 bg-gray-100 rounded text-gray-600"><PkgIcon size={16}/></div>
+                                                            <h3 className="font-bold text-lg leading-tight" style={{ fontFamily: FONTS.heading }}>{pkg.title}</h3>
+                                                        </div>
+                                                        <span className="font-mono font-bold bg-black text-white text-xs px-2 py-1">{pkg.cost}</span>
+                                                    </div>
+                                                    <div className="text-xs text-gray-500 mb-2 leading-relaxed">{pkg.description}</div>
+                                                    <ul className="space-y-1">
+                                                        {pkg.benefits.slice(0,3).map((b, i) => (
+                                                            <li key={i} className="text-xs flex gap-2">
+                                                                <span className="text-red-500">›</span> {b}
+                                                            </li>
+                                                        ))}
+                                                        {pkg.benefits.length > 3 && <li className="text-[10px] text-gray-400 pl-3 italic">...and {pkg.benefits.length - 3} more benefits</li>}
+                                                    </ul>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            )}
+
+                            <div className="mt-auto pt-8 border-t border-gray-200">
+                                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                                    <div>
+                                        <h4 className="font-bold text-lg mb-1" style={{ fontFamily: FONTS.heading }}>{globalSettings.orgName}</h4>
+                                        <div className="text-sm text-gray-500 max-w-md">
+                                            {globalSettings.tagline}
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-8 text-xs font-mono text-gray-400">
+                                        <div className="flex flex-col">
+                                            <span className="uppercase tracking-widest mb-1">Contact</span>
+                                            <span className="text-black">{globalSettings.contactName}</span>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <span className="uppercase tracking-widest mb-1">Office</span>
+                                            <span className="text-black">{globalSettings.contactLocation}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        function BuilderMode({ packages, setPackages, onReset }) {
+            const [editingId, setEditingId] = useState(null);
+            
+            const handleAdd = () => {
+                const newPkg = {
+                    id: Date.now().toString(),
+                    title: 'New Sponsorship Tier',
+                    cost: '$1,000',
+                    type: 'cash',
+                    iconName: 'Sparkles',
+                    description: 'Description of the sponsorship value proposition.',
+                    benefits: ['Benefit #1', 'Benefit #2']
+                };
+                setPackages([...packages, newPkg]);
+                setEditingId(newPkg.id);
+            };
+
+            const handleUpdate = (id, field, value) => {
+                setPackages(packages.map(p => p.id === id ? { ...p, [field]: value } : p));
+            };
+
+            const handleDelete = (id) => {
+                if(confirm('Delete this package tier?')) {
+                    setPackages(packages.filter(p => p.id !== id));
+                    if (editingId === id) setEditingId(null);
+                }
+            };
+
+            const handleBenefitUpdate = (pkgId, index, val) => {
+                const pkg = packages.find(p => p.id === pkgId);
+                const newBenefits = [...pkg.benefits];
+                newBenefits[index] = val;
+                handleUpdate(pkgId, 'benefits', newBenefits);
+            };
+
+            const handleAddBenefit = (pkgId) => {
+                const pkg = packages.find(p => p.id === pkgId);
+                handleUpdate(pkgId, 'benefits', [...pkg.benefits, 'New Benefit']);
+            };
+
+             const handleRemoveBenefit = (pkgId, index) => {
+                const pkg = packages.find(p => p.id === pkgId);
+                const newBenefits = pkg.benefits.filter((_, i) => i !== index);
+                handleUpdate(pkgId, 'benefits', newBenefits);
+            };
+
+            return (
+                <div className="flex h-full bg-[#1a1a1a] text-gray-300 relative dark-scrollbar">
+                    <div className="w-full md:w-1/3 border-r border-gray-800 flex flex-col">
+                         <div className="p-6 border-b border-gray-800 bg-black/20">
+                             <div className="flex justify-between items-center mb-4">
+                                <h2 className="text-sm font-bold uppercase tracking-widest text-white">Existing Tiers</h2>
+                                <button onClick={handleAdd} className="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded text-xs font-bold flex items-center gap-2">
+                                    <Icons.Plus size={12}/> Add New
+                                </button>
+                             </div>
+                         </div>
+                         <div className="flex-1 overflow-y-auto p-4 space-y-2 custom-scrollbar">
+                             {packages.map(pkg => (
+                                 <div 
+                                    key={pkg.id}
+                                    onClick={() => setEditingId(pkg.id)}
+                                    className={`p-4 rounded border cursor-pointer transition-all ${editingId === pkg.id ? 'bg-gray-800 border-red-500' : 'bg-black/20 border-gray-800 hover:border-gray-600'}`}
+                                 >
+                                     <div className="flex justify-between items-start mb-1">
+                                         <h3 className="font-bold text-white">{pkg.title}</h3>
+                                         <button onClick={(e) => {e.stopPropagation(); handleDelete(pkg.id)}} className="text-gray-600 hover:text-red-500"><Icons.Trash2 size={14}/></button>
+                                     </div>
+                                     <div className="text-xs font-mono text-gray-500">{pkg.cost} • {pkg.type}</div>
+                                 </div>
+                             ))}
+                         </div>
+                         <div className="p-4 border-t border-gray-800 bg-black/40">
+                             <button onClick={onReset} className="text-xs text-gray-500 hover:text-white underline w-full text-center">Reset to Default Packages</button>
+                         </div>
+                    </div>
+
+                    <div className="flex-1 bg-[#1a1a1a] p-8 overflow-y-auto custom-scrollbar">
+                        {editingId ? (
+                            <div className="max-w-2xl mx-auto">
+                                <h2 className="text-xl font-bold text-white mb-6 border-b border-gray-800 pb-4">Edit Package</h2>
+                                
+                                <div className="grid grid-cols-2 gap-6 mb-6">
+                                    <div>
+                                        <label className="block text-xs font-bold uppercase text-gray-500 mb-2">Package Title</label>
+                                        <input className="w-full bg-gray-800 border border-gray-700 rounded p-2 text-white focus:border-red-500 focus:outline-none" 
+                                            value={packages.find(p => p.id === editingId).title}
+                                            onChange={(e) => handleUpdate(editingId, 'title', e.target.value)}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-bold uppercase text-gray-500 mb-2">Cost String</label>
+                                        <input className="w-full bg-gray-800 border border-gray-700 rounded p-2 text-white focus:border-red-500 focus:outline-none" 
+                                            value={packages.find(p => p.id === editingId).cost}
+                                            onChange={(e) => handleUpdate(editingId, 'cost', e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-6 mb-6">
+                                    <div>
+                                        <label className="block text-xs font-bold uppercase text-gray-500 mb-2">Type</label>
+                                        <select className="w-full bg-gray-800 border border-gray-700 rounded p-2 text-white focus:border-red-500 focus:outline-none"
+                                            value={packages.find(p => p.id === editingId).type}
+                                            onChange={(e) => handleUpdate(editingId, 'type', e.target.value)}
+                                        >
+                                            <option value="cash">Cash Sponsorship</option>
+                                            <option value="trade">In-Kind / Trade</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-bold uppercase text-gray-500 mb-2">Icon</label>
+                                        <div className="flex flex-wrap gap-2">
+                                            {AVAILABLE_ICONS.map(iconName => {
+                                                const Ico = Icons[iconName];
+                                                const isSelected = packages.find(p => p.id === editingId).iconName === iconName;
+                                                return (
+                                                    <button 
+                                                        key={iconName}
+                                                        onClick={() => handleUpdate(editingId, 'iconName', iconName)}
+                                                        className={`p-2 rounded border ${isSelected ? 'bg-red-600 border-red-600 text-white' : 'bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700'}`}
+                                                    >
+                                                        <Ico size={16} />
+                                                    </button>
+                                                )
+                                            })}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="mb-6">
+                                    <label className="block text-xs font-bold uppercase text-gray-500 mb-2">Description</label>
+                                    <textarea className="w-full bg-gray-800 border border-gray-700 rounded p-2 text-white focus:border-red-500 focus:outline-none h-24" 
+                                        value={packages.find(p => p.id === editingId).description}
+                                        onChange={(e) => handleUpdate(editingId, 'description', e.target.value)}
+                                    />
+                                </div>
+
+                                <div className="mb-6">
+                                    <div className="flex justify-between items-end mb-2">
+                                        <label className="block text-xs font-bold uppercase text-gray-500">Benefits List</label>
+                                        <button onClick={() => handleAddBenefit(editingId)} className="text-xs text-red-400 hover:text-red-300 flex items-center gap-1"><Icons.Plus size={10}/> Add Benefit</button>
+                                    </div>
+                                    <div className="space-y-2">
+                                        {packages.find(p => p.id === editingId).benefits.map((benefit, idx) => (
+                                            <div key={idx} className="flex gap-2">
+                                                <input className="flex-1 bg-gray-800 border border-gray-700 rounded p-2 text-sm text-white focus:border-red-500 focus:outline-none"
+                                                    value={benefit}
+                                                    onChange={(e) => handleBenefitUpdate(editingId, idx, e.target.value)}
+                                                />
+                                                <button onClick={() => handleRemoveBenefit(editingId, idx)} className="text-gray-600 hover:text-red-500 px-2"><Icons.Trash2 size={14}/></button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="h-full flex flex-col items-center justify-center text-gray-600">
+                                <Icons.Edit3 size={48} className="mb-4 opacity-20"/>
+                                <p>Select a package on the left to edit</p>
+                                <p className="text-sm opacity-50">or click "Add New" to create one</p>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        }
+
+        // --- MAIN APPLICATION ---
+        function SponsorshipApp() {
+            const [mode, setMode] = useState('generate'); // 'generate' or 'build'
+            const [packages, setPackages] = useState(DEFAULT_PACKAGES);
+            const [globalSettings, setGlobalSettings] = useState(DEFAULT_GLOBALS);
+
+            useEffect(() => {
+                const savedPkgs = localStorage.getItem('ccm_sponsorship_packages');
+                const savedGlobals = localStorage.getItem('ccm_sponsorship_globals');
+                if (savedPkgs) try { setPackages(JSON.parse(savedPkgs)); } catch (e) {}
+                if (savedGlobals) try { setGlobalSettings(JSON.parse(savedGlobals)); } catch (e) {}
+            }, []);
+
+            useEffect(() => {
+                localStorage.setItem('ccm_sponsorship_packages', JSON.stringify(packages));
+                localStorage.setItem('ccm_sponsorship_globals', JSON.stringify(globalSettings));
+            }, [packages, globalSettings]);
+
+            const resetDefaults = () => {
+                if(confirm('Are you sure? This will delete any custom packages you created.')) {
+                    setPackages(DEFAULT_PACKAGES);
+                    setGlobalSettings(DEFAULT_GLOBALS);
+                }
+            };
+
+            const handlePrint = async () => {
+                const element = document.getElementById('printable-area');
+                if (!element) return;
+
+                try {
+                    // Find elements that shouldn't be split (package cards, sections)
+                    const avoidBreakElements = element.querySelectorAll('.break-inside-avoid, .border-t.pt-3');
+
+                    // Get their positions relative to the printable area
+                    const elementRect = element.getBoundingClientRect();
+                    const breakPoints = [];
+
+                    avoidBreakElements.forEach(el => {
+                        const rect = el.getBoundingClientRect();
+                        breakPoints.push({
+                            top: rect.top - elementRect.top,
+                            bottom: rect.bottom - elementRect.top
+                        });
+                    });
+
+                    const canvas = await html2canvas(element, {
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: true,
+                        backgroundColor: '#fcfbf9',
+                        logging: false
+                    });
+
+                    const { jsPDF } = window.jspdf;
+
+                    // Letter size in inches
+                    const pageWidth = 8.5;
+                    const pageHeight = 11;
+                    const imgWidth = pageWidth;
+
+                    // Calculate scale factor between DOM and canvas
+                    const scale = canvas.width / element.offsetWidth;
+                    const pageHeightInPx = (canvas.width * pageHeight) / pageWidth;
+
+                    // Scale break points to canvas coordinates
+                    const scaledBreakPoints = breakPoints.map(bp => ({
+                        top: bp.top * scale,
+                        bottom: bp.bottom * scale
+                    }));
+
+                    // Calculate optimal page breaks that don't split elements
+                    const pageBreaks = [0];
+                    let currentBreak = pageHeightInPx;
+
+                    while (currentBreak < canvas.height) {
+                        let adjustedBreak = currentBreak;
+
+                        // Check if this break would split any element
+                        for (const bp of scaledBreakPoints) {
+                            if (currentBreak > bp.top && currentBreak < bp.bottom) {
+                                // Move break to before this element (with small padding)
+                                adjustedBreak = Math.min(adjustedBreak, bp.top - 10);
+                            }
+                        }
+
+                        // Ensure pages aren't too short (at least 40% of page height)
+                        const minPageHeight = pageHeightInPx * 0.4;
+                        if (adjustedBreak - pageBreaks[pageBreaks.length - 1] < minPageHeight) {
+                            adjustedBreak = currentBreak;
+                        }
+
+                        pageBreaks.push(adjustedBreak);
+                        currentBreak = adjustedBreak + pageHeightInPx;
+                    }
+
+                    pageBreaks.push(canvas.height);
+
+                    const pdf = new jsPDF({
+                        orientation: 'portrait',
+                        unit: 'in',
+                        format: 'letter'
+                    });
+
+                    for (let i = 0; i < pageBreaks.length - 1; i++) {
+                        if (i > 0) {
+                            pdf.addPage();
+                        }
+
+                        const startY = pageBreaks[i];
+                        const endY = pageBreaks[i + 1];
+                        const sliceHeight = endY - startY;
+
+                        const pageCanvas = document.createElement('canvas');
+                        pageCanvas.width = canvas.width;
+                        pageCanvas.height = sliceHeight;
+
+                        const ctx = pageCanvas.getContext('2d');
+                        ctx.drawImage(
+                            canvas,
+                            0, startY,
+                            canvas.width, sliceHeight,
+                            0, 0,
+                            pageCanvas.width, sliceHeight
+                        );
+
+                        const pageImgData = pageCanvas.toDataURL('image/png');
+                        const pageImgHeight = (sliceHeight * pageWidth) / pageCanvas.width;
+
+                        pdf.addImage(pageImgData, 'PNG', 0, 0, imgWidth, pageImgHeight);
+                    }
+
+                    pdf.save(`sponsorship-package-${Date.now()}.pdf`);
+                } catch (err) {
+                    console.error('PDF export failed:', err);
+                    alert('Failed to export PDF. Please try again.');
+                }
+            };
+
+            const handleExportPng = async () => {
+                const element = document.getElementById('printable-area');
+                if (!element) return;
+
+                try {
+                    const canvas = await html2canvas(element, {
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: true,
+                        backgroundColor: '#fcfbf9',
+                        logging: false
+                    });
+
+                    const link = document.createElement('a');
+                    link.download = `sponsorship-package-${Date.now()}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                } catch (err) {
+                    console.error('Export failed:', err);
+                    alert('Failed to export PNG. Please try again.');
+                }
+            };
+
+            return (
+                <div className={`min-h-screen w-full ${mode === 'build' ? 'bg-[#1a1a1a]' : 'bg-[#f0f0f0]'} text-[#1a1a1a] relative overflow-hidden flex flex-col`} style={{ fontFamily: FONTS.body }}>
+                    <TextureOverlay />
+
+                    {/* Navbar */}
+                    <header className="h-14 bg-[#1a1a1a] text-white flex items-center justify-between px-6 shadow-md z-30 no-print border-b border-gray-800">
+                        <div className="flex items-center gap-3 font-mono text-sm">
+                            <div className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center font-bold text-[10px]">CM</div>
+                            <span className="hidden sm:inline opacity-80">Sponsorship Generator v2.5 (Stable)</span>
+                        </div>
+                        <div className="flex gap-3">
+                            {mode === 'generate' && (
+                                <>
+                                    <button
+                                        onClick={handleExportPng}
+                                        className="px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded bg-teal-600 hover:bg-teal-500 text-white flex items-center gap-2 transition-all shadow-sm"
+                                    >
+                                        <Icons.Image size={14} />
+                                        Export PNG
+                                    </button>
+                                    <button
+                                        onClick={handlePrint}
+                                        className="px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded bg-red-600 hover:bg-red-500 text-white flex items-center gap-2 transition-all shadow-sm"
+                                    >
+                                        <Icons.Printer size={14} />
+                                        Print PDF
+                                    </button>
+                                </>
+                            )}
+                            <div className="flex bg-gray-800 rounded p-1 gap-1">
+                                <button
+                                    onClick={() => setMode('generate')}
+                                    className={`px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded transition-all ${mode === 'generate' ? 'bg-white text-black shadow-sm' : 'text-gray-400 hover:text-white'}`}
+                                >
+                                    Generator
+                                </button>
+                                <button
+                                    onClick={() => setMode('build')}
+                                    className={`px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded transition-all flex items-center gap-2 ${mode === 'build' ? 'bg-white text-black shadow-sm' : 'text-gray-400 hover:text-white'}`}
+                                >
+                                    <Icons.Settings size={12} />
+                                    Builder
+                                </button>
+                            </div>
+                        </div>
+                    </header>
+
+                    <div className="flex-1 relative overflow-hidden">
+                        {mode === 'generate' ? (
+                            <GeneratorMode
+                                packages={packages}
+                                globalSettings={globalSettings}
+                                setGlobalSettings={setGlobalSettings}
+                            />
+                        ) : (
+                            <BuilderMode
+                                packages={packages}
+                                setPackages={setPackages}
+                                onReset={resetDefaults}
+                            />
+                        )}
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<SponsorshipApp />);
+    </script>
+</body>
+</html>
