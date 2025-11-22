@@ -1,4 +1,4 @@
-# Free tools from the Center for Cooperative Media
+# ⚙️ Free tools from the Center for Cooperative Media
 
 A collection of internal and external tools created by the [Center for Cooperative Media](https://centerforcooperativemedia.org/) at Montclair State University. These tools are designed to support local journalism operations, streamline administrative tasks, and help newsrooms leverage modern technology effectively.
 
