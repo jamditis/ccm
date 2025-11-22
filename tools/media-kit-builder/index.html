@@ -13,49 +13,66 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <!-- PDF Lib -->
+    <!-- PDF & Canvas Libs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
-    <!-- Typography -->
+    <!-- Distinctive Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        'sans': ['DM Sans', 'sans-serif'],
-                        'serif': ['DM Serif Display', 'serif'],
-                        'mono': ['Space Mono', 'monospace'],
+                        'display': ['Fraunces', 'serif'],
+                        'body': ['Outfit', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        primary: {
-                            50: '#faf5ff',
-                            100: '#f3e8ff',
-                            200: '#e9d5ff',
-                            300: '#d8b4fe',
-                            400: '#c084fc',
-                            500: '#a855f7',
-                            600: '#9333ea',
-                            700: '#7e22ce',
-                            800: '#6b21a8',
-                            900: '#581c87',
+                        ink: {
+                            950: '#0a0a0a',
+                            900: '#141414',
+                            800: '#1f1f1f',
+                            700: '#2e2e2e',
+                            600: '#3d3d3d',
+                            500: '#525252',
+                            400: '#737373',
+                            300: '#a3a3a3',
+                            200: '#d4d4d4',
+                            100: '#e8e8e8',
+                            50: '#f5f5f5',
+                        },
+                        paper: {
+                            warm: '#faf8f5',
+                            cream: '#f5f1eb',
+                            ivory: '#fffef9',
+                        },
+                        accent: {
+                            terracotta: '#c45d3e',
+                            rust: '#a14028',
+                            gold: '#b8860b',
                         }
                     },
                     animation: {
-                        'fade-in': 'fadeIn 0.4s ease-out forwards',
-                        'slide-in': 'slideIn 0.3s ease-out forwards',
+                        'fade-up': 'fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+                        'slide-in': 'slideIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+                        'scale-in': 'scaleIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards',
                     },
                     keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(16px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
                         },
                         slideIn: {
-                            '0%': { opacity: '0', transform: 'translateX(-10px)' },
+                            '0%': { opacity: '0', transform: 'translateX(-12px)' },
                             '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.95)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
                         }
                     }
                 }
@@ -64,51 +81,156 @@
     </script>
 
     <style>
-        body {
-            background: #f8fafc;
-            font-family: 'DM Sans', sans-serif;
+        :root {
+            --ink-950: #0a0a0a;
+            --ink-900: #141414;
+            --paper-warm: #faf8f5;
+            --paper-cream: #f5f1eb;
+            --accent-terracotta: #c45d3e;
+            --accent-gold: #b8860b;
         }
+
+        body {
+            background: var(--paper-cream);
+            font-family: 'Outfit', sans-serif;
+            color: var(--ink-900);
+        }
+
+        /* Subtle paper texture */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        #root { position: relative; z-index: 1; }
 
         .input-field {
-            @apply w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-sm transition-all;
+            width: 100%;
+            padding: 0.625rem 0.875rem;
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.2s ease;
         }
         .input-field:focus {
-            @apply outline-none border-primary-500 ring-2 ring-primary-500/20;
+            outline: none;
+            border-color: var(--accent-terracotta);
+            box-shadow: 0 0 0 3px rgba(196, 93, 62, 0.1);
         }
-
-        .section-card {
-            @apply bg-white rounded-xl border border-gray-100 overflow-hidden;
-        }
-
-        .section-header {
-            @apply px-4 py-3 bg-gray-50 border-b border-gray-100 flex items-center justify-between cursor-pointer hover:bg-gray-100 transition-colors;
+        .input-field::placeholder {
+            color: #a3a3a3;
         }
 
         .btn {
-            @apply px-4 py-2 rounded-lg font-medium text-sm transition-all;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            font-family: 'Outfit', sans-serif;
         }
         .btn-primary {
-            @apply bg-primary-600 text-white hover:bg-primary-700;
+            background: var(--ink-900);
+            color: white;
+        }
+        .btn-primary:hover {
+            background: var(--ink-950);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
         .btn-secondary {
-            @apply bg-gray-100 text-gray-700 hover:bg-gray-200;
+            background: white;
+            color: var(--ink-900);
+            border: 1px solid #e5e5e5;
+        }
+        .btn-secondary:hover {
+            background: #fafafa;
+            border-color: #d4d4d4;
+        }
+        .btn-danger {
+            background: #fef2f2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+        }
+        .btn-danger:hover {
+            background: #fee2e2;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e8e8e8;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .section-header {
+            padding: 0.875rem 1rem;
+            background: #fafafa;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+        .section-header:hover {
+            background: #f5f5f5;
         }
 
         /* Custom scrollbar */
         .custom-scroll::-webkit-scrollbar { width: 6px; }
         .custom-scroll::-webkit-scrollbar-track { background: transparent; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 3px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #d4d4d4; border-radius: 3px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #a3a3a3; }
 
-        /* Print styles */
-        @media print {
-            body { background: white; }
-            .no-print { display: none !important; }
-            .print-container { box-shadow: none !important; }
+        /* Validation states */
+        .validation-warning {
+            color: #b45309;
+            background: #fffbeb;
+            border: 1px solid #fef3c7;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
         }
 
-        /* Mobile */
+        /* Print */
+        @media print {
+            body { background: white; }
+            body::before { display: none; }
+            .no-print { display: none !important; }
+        }
+
+        /* Mobile inputs */
         @media screen and (max-width: 768px) {
             input, select, textarea { font-size: 16px !important; }
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--ink-900);
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .toast.visible {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
         }
     </style>
 </head>
@@ -117,7 +239,7 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect } = React;
+        const { useState, useEffect, useMemo, useCallback } = React;
 
         // --- ICONS ---
         const IconFileText = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>;
@@ -128,11 +250,23 @@
         const IconSave = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>;
         const IconEye = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>;
         const IconEdit = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>;
+        const IconImage = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>;
+        const IconUpload = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>;
+        const IconExport = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>;
+        const IconImport = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 18 12 22 8 18"/><line x1="12" y1="22" x2="12" y2="9"/></svg>;
+        const IconCheck = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>;
+        const IconAlertCircle = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>;
+
+        // --- CONSTANTS ---
+        const MAX_LOGO_SIZE = 2 * 1024 * 1024; // 2MB
+        const AUTO_SAVE_INTERVAL = 30000; // 30 seconds
 
         const MediaKitBuilder = () => {
             // --- STATE ---
             const [activeTab, setActiveTab] = useState('editor');
             const [expandedSections, setExpandedSections] = useState(['organization', 'audience', 'platforms']);
+            const [toast, setToast] = useState({ visible: false, message: '' });
+            const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
             const [organization, setOrganization] = useState({
                 name: '',
@@ -141,7 +275,7 @@
                 mission: '',
                 foundedYear: new Date().getFullYear(),
                 website: '',
-                contact: { name: '', email: '', phone: '' }
+                contact: { name: '', email: '', phone: '', title: '' }
             });
 
             const [audience, setAudience] = useState({
@@ -154,6 +288,17 @@
                         { range: '45-54', percentage: 18 },
                         { range: '55+', percentage: 12 },
                     ],
+                    gender: [
+                        { type: 'Female', percentage: 52 },
+                        { type: 'Male', percentage: 45 },
+                        { type: 'Other', percentage: 3 },
+                    ],
+                    income: [
+                        { range: 'Under $50K', percentage: 25 },
+                        { range: '$50K-$100K', percentage: 40 },
+                        { range: '$100K-$150K', percentage: 25 },
+                        { range: '$150K+', percentage: 10 },
+                    ],
                     locations: [
                         { area: '', percentage: 0 }
                     ],
@@ -165,11 +310,12 @@
                 {
                     id: 1,
                     name: 'Website',
+                    icon: '🌐',
                     enabled: true,
                     metrics: [
                         { label: 'Monthly Visitors', value: '' },
                         { label: 'Page Views', value: '' },
-                        { label: 'Avg. Time on Site', value: '' }
+                        { label: 'Avg. Session', value: '' }
                     ],
                     adOptions: [
                         { name: 'Leaderboard (728x90)', description: 'Top of page banner', rate: '', specs: 'JPG/PNG/GIF, max 150KB' }
@@ -178,6 +324,7 @@
                 {
                     id: 2,
                     name: 'Newsletter',
+                    icon: '📧',
                     enabled: true,
                     metrics: [
                         { label: 'Subscribers', value: '' },
@@ -191,10 +338,12 @@
                 {
                     id: 3,
                     name: 'Social Media',
+                    icon: '📱',
                     enabled: false,
                     metrics: [
                         { label: 'Total Followers', value: '' },
-                        { label: 'Engagement Rate', value: '' }
+                        { label: 'Engagement Rate', value: '' },
+                        { label: 'Avg. Impressions', value: '' }
                     ],
                     adOptions: [
                         { name: 'Sponsored Post', description: 'Native social content', rate: '', specs: 'Platform-specific' }
@@ -203,35 +352,108 @@
                 {
                     id: 4,
                     name: 'Podcast',
+                    icon: '🎙️',
                     enabled: false,
                     metrics: [
                         { label: 'Downloads/Episode', value: '' },
-                        { label: 'Total Episodes', value: '' }
+                        { label: 'Total Episodes', value: '' },
+                        { label: 'Avg. Listen Time', value: '' }
                     ],
                     adOptions: [
                         { name: 'Pre-roll (30s)', description: 'Beginning of episode', rate: '', specs: 'Host-read or produced' },
                         { name: 'Mid-roll (60s)', description: 'Middle of episode', rate: '', specs: 'Host-read or produced' }
                     ]
+                },
+                {
+                    id: 5,
+                    name: 'Print',
+                    icon: '📰',
+                    enabled: false,
+                    metrics: [
+                        { label: 'Circulation', value: '' },
+                        { label: 'Readership', value: '' },
+                        { label: 'Frequency', value: '' }
+                    ],
+                    adOptions: [
+                        { name: 'Full Page', description: 'Full page advertisement', rate: '', specs: '8.5" x 11", 300dpi, CMYK' },
+                        { name: 'Half Page', description: 'Half page advertisement', rate: '', specs: '8.5" x 5.5", 300dpi, CMYK' }
+                    ]
+                },
+                {
+                    id: 6,
+                    name: 'Events',
+                    icon: '🎪',
+                    enabled: false,
+                    metrics: [
+                        { label: 'Events/Year', value: '' },
+                        { label: 'Avg. Attendance', value: '' },
+                        { label: 'Total Reach', value: '' }
+                    ],
+                    adOptions: [
+                        { name: 'Title Sponsor', description: 'Premier event sponsorship', rate: '', specs: 'Logo placement, speaking slot, booth' },
+                        { name: 'Supporting Sponsor', description: 'Secondary sponsorship', rate: '', specs: 'Logo placement, materials' }
+                    ]
                 }
             ]);
 
+            const [packages, setPackages] = useState([
+                {
+                    id: 1,
+                    name: 'Starter Package',
+                    description: 'Perfect for small businesses testing the waters',
+                    items: ['1 Newsletter ad', '1 Social post'],
+                    price: '',
+                    savings: ''
+                }
+            ]);
+
+            const [caseStudies, setCaseStudies] = useState([]);
             const [testimonials, setTestimonials] = useState([]);
 
             const [theme, setTheme] = useState({
-                primaryColor: '#9333ea',
-                accentColor: '#f59e0b',
-                fontStyle: 'modern'
+                primaryColor: '#1a1a1a',
+                accentColor: '#c45d3e'
             });
 
             const [profiles, setProfiles] = useState([]);
             const [isGenerating, setIsGenerating] = useState(false);
 
+            // --- VALIDATION ---
+            const agePercentageSum = useMemo(() =>
+                audience.demographics.ageRanges.reduce((sum, r) => sum + r.percentage, 0),
+                [audience.demographics.ageRanges]
+            );
+
+            const genderPercentageSum = useMemo(() =>
+                audience.demographics.gender.reduce((sum, g) => sum + g.percentage, 0),
+                [audience.demographics.gender]
+            );
+
+            const incomePercentageSum = useMemo(() =>
+                audience.demographics.income.reduce((sum, i) => sum + i.percentage, 0),
+                [audience.demographics.income]
+            );
+
             // --- EFFECTS ---
             useEffect(() => {
+                // Load profiles
                 const saved = localStorage.getItem('media_kit_profiles');
                 if (saved) setProfiles(JSON.parse(saved));
 
-                // Handle responsive tab switching
+                // Load auto-saved draft
+                const draft = localStorage.getItem('media_kit_draft');
+                if (draft) {
+                    const data = JSON.parse(draft);
+                    if (data.organization) setOrganization(data.organization);
+                    if (data.audience) setAudience(data.audience);
+                    if (data.platforms) setPlatforms(data.platforms);
+                    if (data.packages) setPackages(data.packages);
+                    if (data.caseStudies) setCaseStudies(data.caseStudies);
+                    if (data.testimonials) setTestimonials(data.testimonials);
+                    if (data.theme) setTheme(data.theme);
+                }
+
+                // Responsive handling
                 const handleResize = () => {
                     if (window.innerWidth >= 1024) {
                         setActiveTab('split');
@@ -241,8 +463,47 @@
                 };
                 window.addEventListener('resize', handleResize);
                 handleResize();
-                return () => window.removeEventListener('resize', handleResize);
-            }, []);
+
+                // Warn on unsaved changes
+                const handleBeforeUnload = (e) => {
+                    if (hasUnsavedChanges) {
+                        e.preventDefault();
+                        e.returnValue = '';
+                    }
+                };
+                window.addEventListener('beforeunload', handleBeforeUnload);
+
+                return () => {
+                    window.removeEventListener('resize', handleResize);
+                    window.removeEventListener('beforeunload', handleBeforeUnload);
+                };
+            }, [hasUnsavedChanges]);
+
+            // Auto-save
+            useEffect(() => {
+                const interval = setInterval(() => {
+                    if (hasUnsavedChanges) {
+                        localStorage.setItem('media_kit_draft', JSON.stringify({
+                            organization, audience, platforms, packages, caseStudies, testimonials, theme
+                        }));
+                        showToast('Draft auto-saved');
+                        setHasUnsavedChanges(false);
+                    }
+                }, AUTO_SAVE_INTERVAL);
+
+                return () => clearInterval(interval);
+            }, [hasUnsavedChanges, organization, audience, platforms, packages, caseStudies, testimonials, theme]);
+
+            // Mark changes
+            useEffect(() => {
+                setHasUnsavedChanges(true);
+            }, [organization, audience, platforms, packages, caseStudies, testimonials, theme]);
+
+            // --- TOAST ---
+            const showToast = (message) => {
+                setToast({ visible: true, message });
+                setTimeout(() => setToast({ visible: false, message: '' }), 3000);
+            };
 
             // --- HANDLERS ---
             const toggleSection = (section) => {
@@ -255,28 +516,36 @@
 
             const handleLogoUpload = (e) => {
                 const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onloadend = () => setOrganization(prev => ({ ...prev, logo: reader.result }));
-                    reader.readAsDataURL(file);
+                if (!file) return;
+
+                if (file.size > MAX_LOGO_SIZE) {
+                    showToast('Logo must be under 2MB');
+                    return;
                 }
+
+                if (!file.type.startsWith('image/')) {
+                    showToast('Please upload an image file');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    setOrganization(prev => ({ ...prev, logo: reader.result }));
+                    showToast('Logo uploaded');
+                };
+                reader.onerror = () => showToast('Failed to read file');
+                reader.readAsDataURL(file);
             };
 
-            const updateAgeRange = (index, field, value) => {
-                const updated = [...audience.demographics.ageRanges];
-                updated[index] = { ...updated[index], [field]: field === 'percentage' ? parseInt(value) || 0 : value };
+            const updateDemographic = (type, index, field, value) => {
+                const updated = [...audience.demographics[type]];
+                updated[index] = {
+                    ...updated[index],
+                    [field]: field === 'percentage' ? Math.max(0, Math.min(100, parseInt(value) || 0)) : value
+                };
                 setAudience(prev => ({
                     ...prev,
-                    demographics: { ...prev.demographics, ageRanges: updated }
-                }));
-            };
-
-            const updateLocation = (index, field, value) => {
-                const updated = [...audience.demographics.locations];
-                updated[index] = { ...updated[index], [field]: field === 'percentage' ? parseInt(value) || 0 : value };
-                setAudience(prev => ({
-                    ...prev,
-                    demographics: { ...prev.demographics, locations: updated }
+                    demographics: { ...prev.demographics, [type]: updated }
                 }));
             };
 
@@ -342,7 +611,7 @@
 
             const removeAdOption = (platformId, optionIndex) => {
                 setPlatforms(prev => prev.map(p => {
-                    if (p.id === platformId) {
+                    if (p.id === platformId && p.adOptions.length > 1) {
                         return {
                             ...p,
                             adOptions: p.adOptions.filter((_, i) => i !== optionIndex)
@@ -352,8 +621,72 @@
                 }));
             };
 
+            // Package handlers
+            const addPackage = () => {
+                setPackages([...packages, {
+                    id: Date.now(),
+                    name: '',
+                    description: '',
+                    items: [''],
+                    price: '',
+                    savings: ''
+                }]);
+            };
+
+            const updatePackage = (id, field, value) => {
+                setPackages(packages.map(p =>
+                    p.id === id ? { ...p, [field]: value } : p
+                ));
+            };
+
+            const updatePackageItem = (packageId, itemIndex, value) => {
+                setPackages(packages.map(p => {
+                    if (p.id === packageId) {
+                        const items = [...p.items];
+                        items[itemIndex] = value;
+                        return { ...p, items };
+                    }
+                    return p;
+                }));
+            };
+
+            const addPackageItem = (packageId) => {
+                setPackages(packages.map(p => {
+                    if (p.id === packageId) {
+                        return { ...p, items: [...p.items, ''] };
+                    }
+                    return p;
+                }));
+            };
+
+            const removePackage = (id) => {
+                setPackages(packages.filter(p => p.id !== id));
+            };
+
+            // Case study handlers
+            const addCaseStudy = () => {
+                setCaseStudies([...caseStudies, {
+                    id: Date.now(),
+                    client: '',
+                    challenge: '',
+                    solution: '',
+                    results: ''
+                }]);
+            };
+
+            const updateCaseStudy = (id, field, value) => {
+                setCaseStudies(caseStudies.map(cs =>
+                    cs.id === id ? { ...cs, [field]: value } : cs
+                ));
+            };
+
+            const removeCaseStudy = (id) => {
+                setCaseStudies(caseStudies.filter(cs => cs.id !== id));
+            };
+
+            // Testimonial handlers
             const addTestimonial = () => {
-                setTestimonials([...testimonials, { id: Date.now(), quote: '', source: '' }]);
+                setTestimonials([...testimonials, { id: Date.now(), quote: '', source: '', company: '' }]);
             };
 
             const updateTestimonial = (id, field, value) => {
@@ -366,17 +699,19 @@
                 setTestimonials(prev => prev.filter(t => t.id !== id));
             };
 
+            // Profile management
             const saveProfile = () => {
                 const name = prompt("Profile name:");
                 if (!name) return;
                 const profile = {
                     id: Date.now(),
                     name,
-                    data: { organization, audience, platforms, testimonials, theme }
+                    data: { organization, audience, platforms, packages, caseStudies, testimonials, theme }
                 };
                 const updated = [...profiles, profile];
                 setProfiles(updated);
                 localStorage.setItem('media_kit_profiles', JSON.stringify(updated));
+                showToast(`Saved "${name}"`);
             };
 
             const loadProfile = (profileId) => {
@@ -385,72 +720,161 @@
                     setOrganization(profile.data.organization);
                     setAudience(profile.data.audience);
                     setPlatforms(profile.data.platforms);
+                    if (profile.data.packages) setPackages(profile.data.packages);
+                    if (profile.data.caseStudies) setCaseStudies(profile.data.caseStudies);
                     setTestimonials(profile.data.testimonials || []);
                     if (profile.data.theme) setTheme(profile.data.theme);
+                    showToast(`Loaded "${profile.name}"`);
                 }
             };
 
-            const handleDownload = () => {
+            const deleteProfile = (profileId) => {
+                const profile = profiles.find(p => p.id === Number(profileId));
+                if (profile && confirm(`Delete "${profile.name}"?`)) {
+                    const updated = profiles.filter(p => p.id !== Number(profileId));
+                    setProfiles(updated);
+                    localStorage.setItem('media_kit_profiles', JSON.stringify(updated));
+                    showToast('Profile deleted');
+                }
+            };
+
+            const exportData = () => {
+                const data = { organization, audience, platforms, packages, caseStudies, testimonials, theme };
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${organization.name || 'media-kit'}-data.json`;
+                a.click();
+                URL.revokeObjectURL(url);
+                showToast('Data exported');
+            };
+
+            const importData = (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    try {
+                        const data = JSON.parse(event.target.result);
+                        if (data.organization) setOrganization(data.organization);
+                        if (data.audience) setAudience(data.audience);
+                        if (data.platforms) setPlatforms(data.platforms);
+                        if (data.packages) setPackages(data.packages);
+                        if (data.caseStudies) setCaseStudies(data.caseStudies);
+                        if (data.testimonials) setTestimonials(data.testimonials);
+                        if (data.theme) setTheme(data.theme);
+                        showToast('Data imported');
+                    } catch (err) {
+                        showToast('Invalid file format');
+                    }
+                };
+                reader.readAsText(file);
+            };
+
+            // Export handlers
+            const handleDownloadPDF = () => {
                 setIsGenerating(true);
                 const element = document.getElementById('media-kit-preview');
                 const opt = {
                     margin: 0.5,
                     filename: `${organization.name || 'Media'}_Kit.pdf`,
                     image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2, useCORS: true },
+                    html2canvas: { scale: 2, useCORS: true, logging: false },
                     jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
                 };
-                html2pdf().set(opt).from(element).save().then(() => setIsGenerating(false));
+                html2pdf().set(opt).from(element).save().then(() => {
+                    setIsGenerating(false);
+                    showToast('PDF downloaded');
+                });
+            };
+
+            const handleDownloadPNG = () => {
+                setIsGenerating(true);
+                const element = document.getElementById('media-kit-preview');
+                html2canvas(element, { scale: 2, useCORS: true }).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = `${organization.name || 'Media'}_Kit.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                    setIsGenerating(false);
+                    showToast('PNG downloaded');
+                });
             };
 
             // Collapsible Section Component
-            const CollapsibleSection = ({ id, title, children }) => {
+            const CollapsibleSection = ({ id, title, badge, children }) => {
                 const isExpanded = expandedSections.includes(id);
                 return (
-                    <div className="section-card mb-4">
+                    <div className="section-card mb-4 animate-fade-up" style={{ animationDelay: `${expandedSections.indexOf(id) * 0.05}s` }}>
                         <div className="section-header" onClick={() => toggleSection(id)}>
-                            <h3 className="font-semibold text-sm text-gray-700">{title}</h3>
-                            <IconChevronDown className={`text-gray-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                            <div className="flex items-center gap-2">
+                                <h3 className="font-semibold text-sm text-ink-800">{title}</h3>
+                                {badge && <span className="text-xs bg-accent-terracotta/10 text-accent-terracotta px-2 py-0.5 rounded-full">{badge}</span>}
+                            </div>
+                            <IconChevronDown className={`text-ink-400 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />
                         </div>
                         {isExpanded && <div className="p-4">{children}</div>}
                     </div>
                 );
             };
 
-            // Get enabled platforms
             const enabledPlatforms = platforms.filter(p => p.enabled);
 
             return (
                 <div className="flex h-screen flex-col lg:flex-row">
 
                     {/* === EDITOR PANEL === */}
-                    <div className={`w-full lg:w-[420px] xl:w-[480px] bg-white border-r border-gray-200 flex flex-col h-[calc(100%-56px)] lg:h-full ${activeTab === 'preview' ? 'hidden lg:flex' : 'flex'}`}>
+                    <div className={`w-full lg:w-[440px] xl:w-[500px] bg-white border-r border-ink-100 flex flex-col h-[calc(100%-56px)] lg:h-full ${activeTab === 'preview' ? 'hidden lg:flex' : 'flex'}`}>
 
                         {/* Header */}
-                        <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-white">
-                            <div className="flex items-center gap-3">
-                                <div className="w-9 h-9 bg-primary-600 rounded-lg flex items-center justify-center">
-                                    <IconFileText className="text-white w-5 h-5" />
+                        <div className="p-4 border-b border-ink-100 bg-white">
+                            <div className="flex items-center justify-between mb-3">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 bg-ink-900 rounded-lg flex items-center justify-center">
+                                        <IconFileText className="text-white w-5 h-5" />
+                                    </div>
+                                    <div>
+                                        <h1 className="font-display font-bold text-ink-900 text-lg">Media Kit Builder</h1>
+                                        <p className="text-xs text-ink-400">Professional press kits</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h1 className="font-bold text-gray-900">Media Kit Builder</h1>
-                                    <p className="text-xs text-gray-500">Create professional press kits</p>
-                                </div>
-                            </div>
-                            <div className="flex gap-2">
-                                {profiles.length > 0 && (
-                                    <select
-                                        className="text-xs border border-gray-200 rounded px-2 py-1.5"
-                                        onChange={(e) => loadProfile(e.target.value)}
-                                        defaultValue=""
-                                    >
-                                        <option value="">Load...</option>
-                                        {profiles.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
-                                    </select>
-                                )}
                                 <button onClick={saveProfile} className="btn btn-secondary p-2" title="Save Profile">
                                     <IconSave />
                                 </button>
+                            </div>
+
+                            {/* Profile & Data Management */}
+                            <div className="flex gap-2">
+                                <select
+                                    className="input-field flex-1 text-sm py-2"
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        if (value.startsWith('load:')) {
+                                            loadProfile(value.replace('load:', ''));
+                                        } else if (value.startsWith('delete:')) {
+                                            deleteProfile(value.replace('delete:', ''));
+                                        }
+                                        e.target.value = '';
+                                    }}
+                                    defaultValue=""
+                                >
+                                    <option value="">Profiles...</option>
+                                    {profiles.map(p => (
+                                        <option key={p.id} value={`load:${p.id}`}>Load: {p.name}</option>
+                                    ))}
+                                    {profiles.length > 0 && <option disabled>───────────</option>}
+                                    {profiles.map(p => (
+                                        <option key={`del-${p.id}`} value={`delete:${p.id}`}>Delete: {p.name}</option>
+                                    ))}
+                                </select>
+                                <button onClick={exportData} className="btn btn-secondary p-2" title="Export Data">
+                                    <IconExport />
+                                </button>
+                                <label className="btn btn-secondary p-2 cursor-pointer" title="Import Data">
+                                    <IconImport />
+                                    <input type="file" accept=".json" className="hidden" onChange={importData} />
+                                </label>
                             </div>
                         </div>
 
@@ -458,14 +882,14 @@
                         <div className="flex-1 overflow-y-auto p-4 custom-scroll">
 
                             {/* Theme */}
-                            <CollapsibleSection id="theme" title="Theme & Branding">
+                            <CollapsibleSection id="theme" title="Branding">
                                 <div className="grid grid-cols-2 gap-3">
                                     <div>
-                                        <label className="block text-xs font-medium text-gray-600 mb-1">Primary Color</label>
+                                        <label className="block text-xs font-medium text-ink-500 mb-1.5">Primary</label>
                                         <div className="flex items-center gap-2">
                                             <input
                                                 type="color"
-                                                className="w-8 h-8 rounded cursor-pointer"
+                                                className="w-9 h-9 rounded cursor-pointer border border-ink-200"
                                                 value={theme.primaryColor}
                                                 onChange={(e) => setTheme({...theme, primaryColor: e.target.value})}
                                             />
@@ -478,11 +902,11 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <label className="block text-xs font-medium text-gray-600 mb-1">Accent Color</label>
+                                        <label className="block text-xs font-medium text-ink-500 mb-1.5">Accent</label>
                                         <div className="flex items-center gap-2">
                                             <input
                                                 type="color"
-                                                className="w-8 h-8 rounded cursor-pointer"
+                                                className="w-9 h-9 rounded cursor-pointer border border-ink-200"
                                                 value={theme.accentColor}
                                                 onChange={(e) => setTheme({...theme, accentColor: e.target.value})}
                                             />
@@ -498,10 +922,10 @@
                             </CollapsibleSection>
 
                             {/* Organization */}
-                            <CollapsibleSection id="organization" title="Organization Profile">
+                            <CollapsibleSection id="organization" title="Organization">
                                 <div className="space-y-3">
                                     <div>
-                                        <label className="block text-xs font-medium text-gray-600 mb-1">Organization Name</label>
+                                        <label className="block text-xs font-medium text-ink-500 mb-1.5">Name</label>
                                         <input
                                             type="text"
                                             className="input-field"
@@ -510,15 +934,27 @@
                                             onChange={(e) => setOrganization({...organization, name: e.target.value})}
                                         />
                                     </div>
+
                                     <div>
-                                        <label className="block text-xs font-medium text-gray-600 mb-1">Logo</label>
-                                        <label className="input-field block text-center cursor-pointer hover:bg-gray-50">
-                                            <span className="text-gray-500 text-sm">{organization.logo ? 'Change Logo' : 'Upload Logo'}</span>
+                                        <label className="block text-xs font-medium text-ink-500 mb-1.5">Logo</label>
+                                        <label className="flex items-center justify-center gap-2 input-field cursor-pointer hover:bg-ink-50 transition-colors">
+                                            {organization.logo ? (
+                                                <>
+                                                    <img src={organization.logo} alt="Logo" className="h-6 object-contain" />
+                                                    <span className="text-ink-500 text-sm">Change logo</span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <IconUpload className="text-ink-400" />
+                                                    <span className="text-ink-500 text-sm">Upload logo (max 2MB)</span>
+                                                </>
+                                            )}
                                             <input type="file" accept="image/*" className="hidden" onChange={handleLogoUpload} />
                                         </label>
                                     </div>
+
                                     <div>
-                                        <label className="block text-xs font-medium text-gray-600 mb-1">Tagline</label>
+                                        <label className="block text-xs font-medium text-ink-500 mb-1.5">Tagline</label>
                                         <input
                                             type="text"
                                             className="input-field"
@@ -527,8 +963,9 @@
                                             onChange={(e) => setOrganization({...organization, tagline: e.target.value})}
                                         />
                                     </div>
+
                                     <div>
-                                        <label className="block text-xs font-medium text-gray-600 mb-1">Mission Statement</label>
+                                        <label className="block text-xs font-medium text-ink-500 mb-1.5">Mission</label>
                                         <textarea
                                             className="input-field"
                                             rows="3"
@@ -537,9 +974,10 @@
                                             onChange={(e) => setOrganization({...organization, mission: e.target.value})}
                                         />
                                     </div>
+
                                     <div className="grid grid-cols-2 gap-3">
                                         <div>
-                                            <label className="block text-xs font-medium text-gray-600 mb-1">Founded</label>
+                                            <label className="block text-xs font-medium text-ink-500 mb-1.5">Founded</label>
                                             <input
                                                 type="number"
                                                 className="input-field"
@@ -548,7 +986,7 @@
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-xs font-medium text-gray-600 mb-1">Website</label>
+                                            <label className="block text-xs font-medium text-ink-500 mb-1.5">Website</label>
                                             <input
                                                 type="url"
                                                 className="input-field"
@@ -558,16 +996,26 @@
                                             />
                                         </div>
                                     </div>
-                                    <div className="pt-2 border-t border-gray-100">
-                                        <label className="block text-xs font-medium text-gray-600 mb-2">Contact Person</label>
+
+                                    <div className="pt-3 border-t border-ink-100">
+                                        <label className="block text-xs font-medium text-ink-500 mb-2">Contact Person</label>
                                         <div className="space-y-2">
-                                            <input
-                                                type="text"
-                                                className="input-field"
-                                                placeholder="Name"
-                                                value={organization.contact.name}
-                                                onChange={(e) => setOrganization({...organization, contact: {...organization.contact, name: e.target.value}})}
-                                            />
+                                            <div className="grid grid-cols-2 gap-2">
+                                                <input
+                                                    type="text"
+                                                    className="input-field"
+                                                    placeholder="Name"
+                                                    value={organization.contact.name}
+                                                    onChange={(e) => setOrganization({...organization, contact: {...organization.contact, name: e.target.value}})}
+                                                />
+                                                <input
+                                                    type="text"
+                                                    className="input-field"
+                                                    placeholder="Title"
+                                                    value={organization.contact.title}
+                                                    onChange={(e) => setOrganization({...organization, contact: {...organization.contact, title: e.target.value}})}
+                                                />
+                                            </div>
                                             <div className="grid grid-cols-2 gap-2">
                                                 <input
                                                     type="email"
@@ -590,41 +1038,109 @@
                             </CollapsibleSection>
 
                             {/* Audience */}
-                            <CollapsibleSection id="audience" title="Audience Demographics">
+                            <CollapsibleSection id="audience" title="Audience">
                                 <div className="space-y-4">
                                     <div>
-                                        <label className="block text-xs font-medium text-gray-600 mb-1">Total Audience Reach</label>
+                                        <label className="block text-xs font-medium text-ink-500 mb-1.5">Total Reach</label>
                                         <input
                                             type="number"
                                             className="input-field"
-                                            placeholder="Combined reach across all platforms"
+                                            placeholder="Combined reach across platforms"
                                             value={audience.totalReach || ''}
                                             onChange={(e) => setAudience({...audience, totalReach: parseInt(e.target.value) || 0})}
                                         />
                                     </div>
 
+                                    {/* Age */}
                                     <div>
-                                        <label className="block text-xs font-medium text-gray-600 mb-2">Age Distribution</label>
+                                        <div className="flex items-center justify-between mb-2">
+                                            <label className="text-xs font-medium text-ink-500">Age Distribution</label>
+                                            {agePercentageSum !== 100 && (
+                                                <span className="text-xs text-amber-600 flex items-center gap-1">
+                                                    <IconAlertCircle className="w-3 h-3" />
+                                                    {agePercentageSum}%
+                                                </span>
+                                            )}
+                                        </div>
                                         <div className="space-y-2">
                                             {audience.demographics.ageRanges.map((range, i) => (
                                                 <div key={i} className="flex items-center gap-2">
-                                                    <span className="text-xs text-gray-500 w-16">{range.range}</span>
+                                                    <span className="text-xs text-ink-500 w-14">{range.range}</span>
                                                     <input
                                                         type="range"
                                                         min="0"
                                                         max="100"
-                                                        className="flex-1"
+                                                        className="flex-1 accent-ink-900"
                                                         value={range.percentage}
-                                                        onChange={(e) => updateAgeRange(i, 'percentage', e.target.value)}
+                                                        onChange={(e) => updateDemographic('ageRanges', i, 'percentage', e.target.value)}
                                                     />
-                                                    <span className="text-xs font-mono w-10 text-right">{range.percentage}%</span>
+                                                    <span className="text-xs font-mono w-10 text-right text-ink-600">{range.percentage}%</span>
                                                 </div>
                                             ))}
                                         </div>
                                     </div>
 
+                                    {/* Gender */}
                                     <div>
-                                        <label className="block text-xs font-medium text-gray-600 mb-2">Geographic Distribution</label>
+                                        <div className="flex items-center justify-between mb-2">
+                                            <label className="text-xs font-medium text-ink-500">Gender</label>
+                                            {genderPercentageSum !== 100 && (
+                                                <span className="text-xs text-amber-600 flex items-center gap-1">
+                                                    <IconAlertCircle className="w-3 h-3" />
+                                                    {genderPercentageSum}%
+                                                </span>
+                                            )}
+                                        </div>
+                                        <div className="space-y-2">
+                                            {audience.demographics.gender.map((g, i) => (
+                                                <div key={i} className="flex items-center gap-2">
+                                                    <span className="text-xs text-ink-500 w-14">{g.type}</span>
+                                                    <input
+                                                        type="range"
+                                                        min="0"
+                                                        max="100"
+                                                        className="flex-1 accent-ink-900"
+                                                        value={g.percentage}
+                                                        onChange={(e) => updateDemographic('gender', i, 'percentage', e.target.value)}
+                                                    />
+                                                    <span className="text-xs font-mono w-10 text-right text-ink-600">{g.percentage}%</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Income */}
+                                    <div>
+                                        <div className="flex items-center justify-between mb-2">
+                                            <label className="text-xs font-medium text-ink-500">Household Income</label>
+                                            {incomePercentageSum !== 100 && (
+                                                <span className="text-xs text-amber-600 flex items-center gap-1">
+                                                    <IconAlertCircle className="w-3 h-3" />
+                                                    {incomePercentageSum}%
+                                                </span>
+                                            )}
+                                        </div>
+                                        <div className="space-y-2">
+                                            {audience.demographics.income.map((inc, i) => (
+                                                <div key={i} className="flex items-center gap-2">
+                                                    <span className="text-xs text-ink-500 w-20">{inc.range}</span>
+                                                    <input
+                                                        type="range"
+                                                        min="0"
+                                                        max="100"
+                                                        className="flex-1 accent-ink-900"
+                                                        value={inc.percentage}
+                                                        onChange={(e) => updateDemographic('income', i, 'percentage', e.target.value)}
+                                                    />
+                                                    <span className="text-xs font-mono w-10 text-right text-ink-600">{inc.percentage}%</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Locations */}
+                                    <div>
+                                        <label className="block text-xs font-medium text-ink-500 mb-2">Top Locations</label>
                                         <div className="space-y-2">
                                             {audience.demographics.locations.map((loc, i) => (
                                                 <div key={i} className="flex items-center gap-2">
@@ -633,17 +1149,25 @@
                                                         className="input-field flex-1"
                                                         placeholder="City/Region"
                                                         value={loc.area}
-                                                        onChange={(e) => updateLocation(i, 'area', e.target.value)}
+                                                        onChange={(e) => {
+                                                            const updated = [...audience.demographics.locations];
+                                                            updated[i] = { ...updated[i], area: e.target.value };
+                                                            setAudience({...audience, demographics: {...audience.demographics, locations: updated}});
+                                                        }}
                                                     />
                                                     <input
                                                         type="number"
-                                                        className="input-field w-20"
+                                                        className="input-field w-16 text-center"
                                                         placeholder="%"
                                                         value={loc.percentage || ''}
-                                                        onChange={(e) => updateLocation(i, 'percentage', e.target.value)}
+                                                        onChange={(e) => {
+                                                            const updated = [...audience.demographics.locations];
+                                                            updated[i] = { ...updated[i], percentage: parseInt(e.target.value) || 0 };
+                                                            setAudience({...audience, demographics: {...audience.demographics, locations: updated}});
+                                                        }}
                                                     />
                                                     {audience.demographics.locations.length > 1 && (
-                                                        <button onClick={() => removeLocation(i)} className="text-gray-400 hover:text-red-500">
+                                                        <button onClick={() => removeLocation(i)} className="text-ink-300 hover:text-red-500 transition-colors">
                                                             <IconTrash />
                                                         </button>
                                                     )}
@@ -651,15 +1175,16 @@
                                             ))}
                                             <button
                                                 onClick={addLocation}
-                                                className="text-xs text-primary-600 hover:text-primary-700 flex items-center gap-1"
+                                                className="text-xs text-accent-terracotta hover:text-accent-rust flex items-center gap-1 transition-colors"
                                             >
-                                                <IconPlus /> Add Location
+                                                <IconPlus /> Add location
                                             </button>
                                         </div>
                                     </div>
 
+                                    {/* Interests */}
                                     <div>
-                                        <label className="block text-xs font-medium text-gray-600 mb-1">Audience Interests</label>
+                                        <label className="block text-xs font-medium text-ink-500 mb-1.5">Interests</label>
                                         <input
                                             type="text"
                                             className="input-field"
@@ -678,35 +1203,39 @@
                             </CollapsibleSection>
 
                             {/* Platforms */}
-                            <CollapsibleSection id="platforms" title="Platforms & Ad Rates">
-                                <div className="space-y-4">
+                            <CollapsibleSection id="platforms" title="Platforms" badge={`${enabledPlatforms.length} active`}>
+                                <div className="space-y-3">
                                     {platforms.map(platform => (
-                                        <div key={platform.id} className={`border rounded-lg ${platform.enabled ? 'border-primary-200 bg-primary-50/30' : 'border-gray-200'}`}>
+                                        <div
+                                            key={platform.id}
+                                            className={`border rounded-lg transition-all ${platform.enabled ? 'border-ink-200 bg-white' : 'border-ink-100 bg-ink-50/50'}`}
+                                        >
                                             <div className="p-3 flex items-center justify-between">
-                                                <label className="flex items-center gap-2 cursor-pointer">
+                                                <label className="flex items-center gap-2.5 cursor-pointer">
                                                     <input
                                                         type="checkbox"
                                                         checked={platform.enabled}
                                                         onChange={() => togglePlatform(platform.id)}
-                                                        className="w-4 h-4 text-primary-600 rounded"
+                                                        className="w-4 h-4 rounded accent-ink-900"
                                                     />
-                                                    <span className="font-medium text-sm">{platform.name}</span>
+                                                    <span className="text-lg">{platform.icon}</span>
+                                                    <span className="font-medium text-sm text-ink-800">{platform.name}</span>
                                                 </label>
                                             </div>
 
                                             {platform.enabled && (
-                                                <div className="px-3 pb-3 space-y-3">
+                                                <div className="px-3 pb-3 space-y-3 border-t border-ink-100 pt-3">
                                                     {/* Metrics */}
                                                     <div>
-                                                        <span className="text-xs font-medium text-gray-500">Metrics</span>
-                                                        <div className="grid grid-cols-2 gap-2 mt-1">
+                                                        <span className="text-xs font-medium text-ink-400">Metrics</span>
+                                                        <div className="grid grid-cols-2 gap-2 mt-1.5">
                                                             {platform.metrics.map((metric, i) => (
                                                                 <div key={i}>
-                                                                    <label className="text-[10px] text-gray-400">{metric.label}</label>
+                                                                    <label className="text-[10px] text-ink-400 uppercase tracking-wide">{metric.label}</label>
                                                                     <input
                                                                         type="text"
-                                                                        className="input-field py-1.5 text-xs"
-                                                                        placeholder="0"
+                                                                        className="input-field py-1.5 text-xs mt-0.5"
+                                                                        placeholder="—"
                                                                         value={metric.value}
                                                                         onChange={(e) => updatePlatformMetric(platform.id, i, e.target.value)}
                                                                     />
@@ -717,34 +1246,37 @@
 
                                                     {/* Ad Options */}
                                                     <div>
-                                                        <span className="text-xs font-medium text-gray-500">Ad Options</span>
-                                                        <div className="space-y-2 mt-1">
+                                                        <span className="text-xs font-medium text-ink-400">Ad Units</span>
+                                                        <div className="space-y-2 mt-1.5">
                                                             {platform.adOptions.map((option, i) => (
-                                                                <div key={i} className="bg-white p-2 rounded border border-gray-100 space-y-1">
+                                                                <div key={i} className="bg-ink-50 p-2.5 rounded-lg space-y-1.5">
                                                                     <div className="flex items-center gap-2">
                                                                         <input
                                                                             type="text"
-                                                                            className="input-field py-1 text-xs flex-1"
+                                                                            className="input-field py-1.5 text-xs flex-1 bg-white"
                                                                             placeholder="Ad unit name"
                                                                             value={option.name}
                                                                             onChange={(e) => updateAdOption(platform.id, i, 'name', e.target.value)}
                                                                         />
                                                                         <input
                                                                             type="text"
-                                                                            className="input-field py-1 text-xs w-24"
+                                                                            className="input-field py-1.5 text-xs w-24 bg-white font-mono"
                                                                             placeholder="$000"
                                                                             value={option.rate}
                                                                             onChange={(e) => updateAdOption(platform.id, i, 'rate', e.target.value)}
                                                                         />
                                                                         {platform.adOptions.length > 1 && (
-                                                                            <button onClick={() => removeAdOption(platform.id, i)} className="text-gray-400 hover:text-red-500">
+                                                                            <button
+                                                                                onClick={() => removeAdOption(platform.id, i)}
+                                                                                className="text-ink-300 hover:text-red-500 transition-colors"
+                                                                            >
                                                                                 <IconTrash />
                                                                             </button>
                                                                         )}
                                                                     </div>
                                                                     <input
                                                                         type="text"
-                                                                        className="input-field py-1 text-xs"
+                                                                        className="input-field py-1.5 text-xs bg-white"
                                                                         placeholder="Description"
                                                                         value={option.description}
                                                                         onChange={(e) => updateAdOption(platform.id, i, 'description', e.target.value)}
@@ -753,9 +1285,9 @@
                                                             ))}
                                                             <button
                                                                 onClick={() => addAdOption(platform.id)}
-                                                                className="text-xs text-primary-600 hover:text-primary-700 flex items-center gap-1"
+                                                                className="text-xs text-accent-terracotta hover:text-accent-rust flex items-center gap-1 transition-colors"
                                                             >
-                                                                <IconPlus /> Add Ad Option
+                                                                <IconPlus /> Add ad unit
                                                             </button>
                                                         </div>
                                                     </div>
@@ -766,15 +1298,124 @@
                                 </div>
                             </CollapsibleSection>
 
+                            {/* Packages */}
+                            <CollapsibleSection id="packages" title="Packages">
+                                <div className="space-y-3">
+                                    {packages.map(pkg => (
+                                        <div key={pkg.id} className="bg-ink-50 p-3 rounded-lg space-y-2">
+                                            <div className="flex items-center gap-2">
+                                                <input
+                                                    type="text"
+                                                    className="input-field flex-1 font-medium"
+                                                    placeholder="Package name"
+                                                    value={pkg.name}
+                                                    onChange={(e) => updatePackage(pkg.id, 'name', e.target.value)}
+                                                />
+                                                <input
+                                                    type="text"
+                                                    className="input-field w-24 font-mono"
+                                                    placeholder="$000"
+                                                    value={pkg.price}
+                                                    onChange={(e) => updatePackage(pkg.id, 'price', e.target.value)}
+                                                />
+                                                <button onClick={() => removePackage(pkg.id)} className="text-ink-300 hover:text-red-500 transition-colors">
+                                                    <IconTrash />
+                                                </button>
+                                            </div>
+                                            <input
+                                                type="text"
+                                                className="input-field text-sm"
+                                                placeholder="Description"
+                                                value={pkg.description}
+                                                onChange={(e) => updatePackage(pkg.id, 'description', e.target.value)}
+                                            />
+                                            <div className="space-y-1">
+                                                {pkg.items.map((item, i) => (
+                                                    <input
+                                                        key={i}
+                                                        type="text"
+                                                        className="input-field py-1.5 text-xs"
+                                                        placeholder="Included item"
+                                                        value={item}
+                                                        onChange={(e) => updatePackageItem(pkg.id, i, e.target.value)}
+                                                    />
+                                                ))}
+                                                <button
+                                                    onClick={() => addPackageItem(pkg.id)}
+                                                    className="text-xs text-accent-terracotta hover:text-accent-rust flex items-center gap-1"
+                                                >
+                                                    <IconPlus /> Add item
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                    <button
+                                        onClick={addPackage}
+                                        className="w-full py-2.5 border-2 border-dashed border-ink-200 rounded-lg text-xs text-ink-500 hover:border-ink-300 hover:text-ink-600 flex items-center justify-center gap-1 transition-colors"
+                                    >
+                                        <IconPlus /> Add package
+                                    </button>
+                                </div>
+                            </CollapsibleSection>
+
+                            {/* Case Studies */}
+                            <CollapsibleSection id="caseStudies" title="Case Studies">
+                                <div className="space-y-3">
+                                    {caseStudies.map(cs => (
+                                        <div key={cs.id} className="bg-ink-50 p-3 rounded-lg space-y-2">
+                                            <div className="flex items-center gap-2">
+                                                <input
+                                                    type="text"
+                                                    className="input-field flex-1 font-medium"
+                                                    placeholder="Client name"
+                                                    value={cs.client}
+                                                    onChange={(e) => updateCaseStudy(cs.id, 'client', e.target.value)}
+                                                />
+                                                <button onClick={() => removeCaseStudy(cs.id)} className="text-ink-300 hover:text-red-500 transition-colors">
+                                                    <IconTrash />
+                                                </button>
+                                            </div>
+                                            <textarea
+                                                className="input-field text-sm"
+                                                rows="2"
+                                                placeholder="Challenge faced..."
+                                                value={cs.challenge}
+                                                onChange={(e) => updateCaseStudy(cs.id, 'challenge', e.target.value)}
+                                            />
+                                            <textarea
+                                                className="input-field text-sm"
+                                                rows="2"
+                                                placeholder="Solution provided..."
+                                                value={cs.solution}
+                                                onChange={(e) => updateCaseStudy(cs.id, 'solution', e.target.value)}
+                                            />
+                                            <input
+                                                type="text"
+                                                className="input-field text-sm"
+                                                placeholder="Results achieved (e.g., 50% increase in leads)"
+                                                value={cs.results}
+                                                onChange={(e) => updateCaseStudy(cs.id, 'results', e.target.value)}
+                                            />
+                                        </div>
+                                    ))}
+                                    <button
+                                        onClick={addCaseStudy}
+                                        className="w-full py-2.5 border-2 border-dashed border-ink-200 rounded-lg text-xs text-ink-500 hover:border-ink-300 hover:text-ink-600 flex items-center justify-center gap-1 transition-colors"
+                                    >
+                                        <IconPlus /> Add case study
+                                    </button>
+                                </div>
+                            </CollapsibleSection>
+
                             {/* Testimonials */}
                             <CollapsibleSection id="testimonials" title="Testimonials">
                                 <div className="space-y-3">
                                     {testimonials.map(t => (
-                                        <div key={t.id} className="bg-gray-50 p-3 rounded-lg space-y-2">
+                                        <div key={t.id} className="bg-ink-50 p-3 rounded-lg space-y-2">
                                             <textarea
                                                 className="input-field text-sm"
                                                 rows="2"
-                                                placeholder="Quote from advertiser or partner..."
+                                                placeholder="Quote from advertiser..."
                                                 value={t.quote}
                                                 onChange={(e) => updateTestimonial(t.id, 'quote', e.target.value)}
                                             />
@@ -782,11 +1423,18 @@
                                                 <input
                                                     type="text"
                                                     className="input-field flex-1"
-                                                    placeholder="Source name"
+                                                    placeholder="Name"
                                                     value={t.source}
                                                     onChange={(e) => updateTestimonial(t.id, 'source', e.target.value)}
                                                 />
-                                                <button onClick={() => removeTestimonial(t.id)} className="text-gray-400 hover:text-red-500">
+                                                <input
+                                                    type="text"
+                                                    className="input-field flex-1"
+                                                    placeholder="Company"
+                                                    value={t.company}
+                                                    onChange={(e) => updateTestimonial(t.id, 'company', e.target.value)}
+                                                />
+                                                <button onClick={() => removeTestimonial(t.id)} className="text-ink-300 hover:text-red-500 transition-colors">
                                                     <IconTrash />
                                                 </button>
                                             </div>
@@ -794,76 +1442,98 @@
                                     ))}
                                     <button
                                         onClick={addTestimonial}
-                                        className="w-full py-2 border-2 border-dashed border-gray-200 rounded-lg text-xs text-gray-500 hover:border-gray-300 flex items-center justify-center gap-1"
+                                        className="w-full py-2.5 border-2 border-dashed border-ink-200 rounded-lg text-xs text-ink-500 hover:border-ink-300 hover:text-ink-600 flex items-center justify-center gap-1 transition-colors"
                                     >
-                                        <IconPlus /> Add Testimonial
+                                        <IconPlus /> Add testimonial
                                     </button>
                                 </div>
                             </CollapsibleSection>
 
                             {/* Attribution */}
-                            <div className="py-4 text-center text-xs text-gray-400">
-                                <p>Media Kit Builder | © 2025 <a href="https://centerforcooperativemedia.org/" className="hover:text-primary-600">Center for Cooperative Media</a></p>
-                                <p>Created by <a href="https://twitter.com/jsamditis" className="hover:text-primary-600">Joe Amditis</a></p>
+                            <div className="py-6 text-center text-xs text-ink-400">
+                                <p className="font-display">Media Kit Builder</p>
+                                <p>© 2025 <a href="https://centerforcooperativemedia.org/" className="hover:text-accent-terracotta transition-colors">Center for Cooperative Media</a></p>
+                                <p className="mt-1">Created by <a href="https://twitter.com/jsamditis" className="hover:text-accent-terracotta transition-colors">Joe Amditis</a></p>
                             </div>
                         </div>
                     </div>
 
                     {/* === PREVIEW PANEL === */}
-                    <div className={`flex-1 bg-gray-100 flex flex-col h-[calc(100%-56px)] lg:h-full ${activeTab === 'editor' ? 'hidden lg:flex' : 'flex'}`}>
+                    <div className={`flex-1 bg-paper-cream flex flex-col h-[calc(100%-56px)] lg:h-full ${activeTab === 'editor' ? 'hidden lg:flex' : 'flex'}`}>
 
                         {/* Toolbar */}
-                        <div className="p-4 bg-white border-b border-gray-200 flex justify-end">
-                            <button
-                                onClick={handleDownload}
-                                disabled={isGenerating}
-                                className="btn btn-primary flex items-center gap-2"
-                            >
-                                {isGenerating ? 'Generating...' : <><IconDownload /> Download PDF</>}
-                            </button>
+                        <div className="p-4 bg-white border-b border-ink-100 flex justify-between items-center">
+                            <div className="text-xs text-ink-400">
+                                {hasUnsavedChanges && <span className="text-amber-600">Unsaved changes</span>}
+                            </div>
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={handleDownloadPNG}
+                                    disabled={isGenerating}
+                                    className="btn btn-secondary flex items-center gap-1.5"
+                                >
+                                    <IconImage /> PNG
+                                </button>
+                                <button
+                                    onClick={handleDownloadPDF}
+                                    disabled={isGenerating}
+                                    className="btn btn-primary flex items-center gap-1.5"
+                                >
+                                    {isGenerating ? 'Generating...' : <><IconDownload /> PDF</>}
+                                </button>
+                            </div>
                         </div>
 
                         {/* Preview */}
                         <div className="flex-1 overflow-auto p-6 custom-scroll">
                             <div
                                 id="media-kit-preview"
-                                className="bg-white shadow-lg max-w-[800px] mx-auto"
-                                style={{ fontFamily: 'DM Sans, sans-serif' }}
+                                className="bg-white shadow-lg max-w-[800px] mx-auto animate-scale-in"
+                                style={{ fontFamily: 'Outfit, sans-serif' }}
                             >
                                 {/* Header */}
                                 <header
-                                    className="p-8 text-white"
+                                    className="p-10 text-white relative overflow-hidden"
                                     style={{ backgroundColor: theme.primaryColor }}
                                 >
-                                    <div className="flex items-start justify-between">
-                                        <div className="flex-1">
-                                            {organization.logo && (
-                                                <img src={organization.logo} alt="Logo" className="h-12 mb-4 object-contain" />
-                                            )}
-                                            <h1 className="text-3xl font-bold mb-1" style={{ fontFamily: 'DM Serif Display, serif' }}>
-                                                {organization.name || 'Your Organization'}
-                                            </h1>
-                                            {organization.tagline && (
-                                                <p className="text-white/80 text-sm">{organization.tagline}</p>
-                                            )}
-                                        </div>
-                                        <div className="text-right text-sm">
-                                            <p className="text-2xl font-bold mb-1" style={{ fontFamily: 'DM Serif Display, serif' }}>
-                                                Media Kit
-                                            </p>
-                                            <p className="text-white/70">{new Date().getFullYear()}</p>
+                                    <div className="relative z-10">
+                                        <div className="flex items-start justify-between">
+                                            <div className="flex-1">
+                                                {organization.logo && (
+                                                    <img src={organization.logo} alt="Logo" className="h-14 mb-5 object-contain" />
+                                                )}
+                                                <h1 className="text-4xl font-bold mb-2" style={{ fontFamily: 'Fraunces, serif' }}>
+                                                    {organization.name || 'Your Organization'}
+                                                </h1>
+                                                {organization.tagline && (
+                                                    <p className="text-white/80 text-sm font-light">{organization.tagline}</p>
+                                                )}
+                                            </div>
+                                            <div className="text-right">
+                                                <p className="text-2xl font-bold mb-1" style={{ fontFamily: 'Fraunces, serif' }}>
+                                                    Media Kit
+                                                </p>
+                                                <p className="text-white/60 text-sm">{new Date().getFullYear()}</p>
+                                            </div>
                                         </div>
                                     </div>
+                                    {/* Decorative element */}
+                                    <div
+                                        className="absolute -bottom-20 -right-20 w-60 h-60 rounded-full opacity-10"
+                                        style={{ backgroundColor: theme.accentColor }}
+                                    />
                                 </header>
 
-                                <div className="p-8 space-y-8">
+                                <div className="p-10 space-y-10">
                                     {/* Mission */}
                                     {organization.mission && (
                                         <section>
-                                            <h2 className="text-lg font-bold mb-3" style={{ color: theme.primaryColor }}>About Us</h2>
-                                            <p className="text-gray-600 text-sm leading-relaxed">{organization.mission}</p>
+                                            <h2 className="text-xl font-bold mb-4" style={{ fontFamily: 'Fraunces, serif', color: theme.primaryColor }}>
+                                                About Us
+                                            </h2>
+                                            <p className="text-ink-600 leading-relaxed">{organization.mission}</p>
                                             {organization.foundedYear && (
-                                                <p className="text-xs text-gray-400 mt-2">Est. {organization.foundedYear}</p>
+                                                <p className="text-xs text-ink-400 mt-3 uppercase tracking-wider">Est. {organization.foundedYear}</p>
                                             )}
                                         </section>
                                     )}
@@ -871,64 +1541,107 @@
                                     {/* Audience */}
                                     {audience.totalReach > 0 && (
                                         <section>
-                                            <h2 className="text-lg font-bold mb-4" style={{ color: theme.primaryColor }}>Our Audience</h2>
+                                            <h2 className="text-xl font-bold mb-6" style={{ fontFamily: 'Fraunces, serif', color: theme.primaryColor }}>
+                                                Our Audience
+                                            </h2>
 
-                                            <div className="text-center mb-6 p-4 rounded-lg" style={{ backgroundColor: theme.primaryColor + '10' }}>
-                                                <p className="text-3xl font-bold" style={{ color: theme.primaryColor }}>
+                                            <div
+                                                className="text-center mb-8 p-6 rounded-xl"
+                                                style={{ backgroundColor: theme.primaryColor + '08' }}
+                                            >
+                                                <p className="text-4xl font-bold" style={{ color: theme.primaryColor }}>
                                                     {audience.totalReach.toLocaleString()}
                                                 </p>
-                                                <p className="text-xs text-gray-500 uppercase tracking-wider">Total Reach</p>
+                                                <p className="text-xs text-ink-500 uppercase tracking-wider mt-1">Total Reach</p>
                                             </div>
 
-                                            <div className="grid grid-cols-2 gap-6">
-                                                {/* Age Distribution */}
+                                            <div className="grid grid-cols-3 gap-6">
+                                                {/* Age */}
                                                 <div>
-                                                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Age Distribution</h3>
+                                                    <h3 className="text-xs font-semibold text-ink-500 uppercase tracking-wider mb-3">Age</h3>
                                                     <div className="space-y-2">
                                                         {audience.demographics.ageRanges.map((range, i) => (
                                                             <div key={i} className="flex items-center gap-2">
-                                                                <span className="text-xs text-gray-500 w-12">{range.range}</span>
-                                                                <div className="flex-1 bg-gray-100 rounded-full h-4 overflow-hidden">
+                                                                <span className="text-xs text-ink-500 w-10">{range.range}</span>
+                                                                <div className="flex-1 bg-ink-100 rounded-full h-2.5 overflow-hidden">
                                                                     <div
-                                                                        className="h-full rounded-full transition-all"
+                                                                        className="h-full rounded-full"
                                                                         style={{
                                                                             width: `${range.percentage}%`,
                                                                             backgroundColor: theme.primaryColor
                                                                         }}
                                                                     />
                                                                 </div>
-                                                                <span className="text-xs font-mono text-gray-600 w-8">{range.percentage}%</span>
+                                                                <span className="text-xs font-mono text-ink-600 w-8">{range.percentage}%</span>
                                                             </div>
                                                         ))}
                                                     </div>
                                                 </div>
 
-                                                {/* Locations */}
-                                                {audience.demographics.locations.some(l => l.area) && (
-                                                    <div>
-                                                        <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Top Locations</h3>
-                                                        <div className="space-y-2">
-                                                            {audience.demographics.locations.filter(l => l.area).map((loc, i) => (
-                                                                <div key={i} className="flex items-center justify-between">
-                                                                    <span className="text-sm text-gray-700">{loc.area}</span>
-                                                                    <span className="text-sm font-mono" style={{ color: theme.primaryColor }}>{loc.percentage}%</span>
+                                                {/* Gender */}
+                                                <div>
+                                                    <h3 className="text-xs font-semibold text-ink-500 uppercase tracking-wider mb-3">Gender</h3>
+                                                    <div className="space-y-2">
+                                                        {audience.demographics.gender.map((g, i) => (
+                                                            <div key={i} className="flex items-center gap-2">
+                                                                <span className="text-xs text-ink-500 w-12">{g.type}</span>
+                                                                <div className="flex-1 bg-ink-100 rounded-full h-2.5 overflow-hidden">
+                                                                    <div
+                                                                        className="h-full rounded-full"
+                                                                        style={{
+                                                                            width: `${g.percentage}%`,
+                                                                            backgroundColor: theme.accentColor
+                                                                        }}
+                                                                    />
                                                                 </div>
-                                                            ))}
-                                                        </div>
+                                                                <span className="text-xs font-mono text-ink-600 w-8">{g.percentage}%</span>
+                                                            </div>
+                                                        ))}
                                                     </div>
-                                                )}
+                                                </div>
+
+                                                {/* Income */}
+                                                <div>
+                                                    <h3 className="text-xs font-semibold text-ink-500 uppercase tracking-wider mb-3">Income</h3>
+                                                    <div className="space-y-2">
+                                                        {audience.demographics.income.map((inc, i) => (
+                                                            <div key={i} className="flex items-center justify-between">
+                                                                <span className="text-xs text-ink-600">{inc.range}</span>
+                                                                <span className="text-xs font-mono" style={{ color: theme.primaryColor }}>{inc.percentage}%</span>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
                                             </div>
+
+                                            {/* Locations */}
+                                            {audience.demographics.locations.some(l => l.area) && (
+                                                <div className="mt-6 pt-6 border-t border-ink-100">
+                                                    <h3 className="text-xs font-semibold text-ink-500 uppercase tracking-wider mb-3">Top Locations</h3>
+                                                    <div className="flex flex-wrap gap-3">
+                                                        {audience.demographics.locations.filter(l => l.area).map((loc, i) => (
+                                                            <span
+                                                                key={i}
+                                                                className="px-3 py-1.5 rounded-full text-sm"
+                                                                style={{ backgroundColor: theme.primaryColor + '10', color: theme.primaryColor }}
+                                                            >
+                                                                {loc.area} <span className="font-mono opacity-70">{loc.percentage}%</span>
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
 
                                             {/* Interests */}
                                             {audience.demographics.interests.length > 0 && (
                                                 <div className="mt-4">
-                                                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Interests</h3>
+                                                    <h3 className="text-xs font-semibold text-ink-500 uppercase tracking-wider mb-2">Interests</h3>
                                                     <div className="flex flex-wrap gap-2">
                                                         {audience.demographics.interests.map((interest, i) => (
                                                             <span
                                                                 key={i}
-                                                                className="px-2 py-1 rounded text-xs"
-                                                                style={{ backgroundColor: theme.accentColor + '20', color: theme.accentColor }}
+                                                                className="px-2.5 py-1 rounded text-xs"
+                                                                style={{ backgroundColor: theme.accentColor + '15', color: theme.accentColor }}
                                                             >
                                                                 {interest}
                                                             </span>
@@ -939,25 +1652,31 @@
                                         </section>
                                     )}
 
-                                    {/* Platforms & Ad Rates */}
+                                    {/* Platforms */}
                                     {enabledPlatforms.length > 0 && (
                                         <section>
-                                            <h2 className="text-lg font-bold mb-4" style={{ color: theme.primaryColor }}>Advertising Opportunities</h2>
+                                            <h2 className="text-xl font-bold mb-6" style={{ fontFamily: 'Fraunces, serif', color: theme.primaryColor }}>
+                                                Advertising Opportunities
+                                            </h2>
 
-                                            <div className="space-y-6">
+                                            <div className="space-y-5">
                                                 {enabledPlatforms.map(platform => (
-                                                    <div key={platform.id} className="border border-gray-200 rounded-lg overflow-hidden">
-                                                        <div className="px-4 py-3 font-semibold text-sm" style={{ backgroundColor: theme.primaryColor + '10', color: theme.primaryColor }}>
+                                                    <div key={platform.id} className="border border-ink-200 rounded-xl overflow-hidden">
+                                                        <div
+                                                            className="px-5 py-3 font-semibold text-sm flex items-center gap-2"
+                                                            style={{ backgroundColor: theme.primaryColor + '08', color: theme.primaryColor }}
+                                                        >
+                                                            <span>{platform.icon}</span>
                                                             {platform.name}
                                                         </div>
-                                                        <div className="p-4">
+                                                        <div className="p-5">
                                                             {/* Metrics */}
                                                             {platform.metrics.some(m => m.value) && (
-                                                                <div className="flex flex-wrap gap-4 mb-4 pb-4 border-b border-gray-100">
+                                                                <div className="flex flex-wrap gap-6 mb-5 pb-5 border-b border-ink-100">
                                                                     {platform.metrics.filter(m => m.value).map((metric, i) => (
                                                                         <div key={i}>
-                                                                            <p className="text-lg font-bold" style={{ color: theme.primaryColor }}>{metric.value}</p>
-                                                                            <p className="text-xs text-gray-500">{metric.label}</p>
+                                                                            <p className="text-xl font-bold" style={{ color: theme.primaryColor }}>{metric.value}</p>
+                                                                            <p className="text-xs text-ink-500">{metric.label}</p>
                                                                         </div>
                                                                     ))}
                                                                 </div>
@@ -968,13 +1687,13 @@
                                                                 {platform.adOptions.filter(o => o.name).map((option, i) => (
                                                                     <div key={i} className="flex items-start justify-between">
                                                                         <div>
-                                                                            <p className="font-medium text-sm text-gray-900">{option.name}</p>
+                                                                            <p className="font-medium text-sm text-ink-900">{option.name}</p>
                                                                             {option.description && (
-                                                                                <p className="text-xs text-gray-500">{option.description}</p>
+                                                                                <p className="text-xs text-ink-500 mt-0.5">{option.description}</p>
                                                                             )}
                                                                         </div>
                                                                         {option.rate && (
-                                                                            <p className="font-bold text-sm" style={{ color: theme.accentColor }}>{option.rate}</p>
+                                                                            <p className="font-bold text-sm font-mono" style={{ color: theme.accentColor }}>{option.rate}</p>
                                                                         )}
                                                                     </div>
                                                                 ))}
@@ -986,15 +1705,88 @@
                                         </section>
                                     )}
 
-                                    {/* Testimonials */}
-                                    {testimonials.length > 0 && testimonials.some(t => t.quote) && (
+                                    {/* Packages */}
+                                    {packages.some(p => p.name && p.price) && (
                                         <section>
-                                            <h2 className="text-lg font-bold mb-4" style={{ color: theme.primaryColor }}>What Partners Say</h2>
+                                            <h2 className="text-xl font-bold mb-6" style={{ fontFamily: 'Fraunces, serif', color: theme.primaryColor }}>
+                                                Packages
+                                            </h2>
+                                            <div className="grid grid-cols-2 gap-4">
+                                                {packages.filter(p => p.name && p.price).map(pkg => (
+                                                    <div
+                                                        key={pkg.id}
+                                                        className="p-5 rounded-xl border-2"
+                                                        style={{ borderColor: theme.accentColor + '30' }}
+                                                    >
+                                                        <div className="flex items-start justify-between mb-3">
+                                                            <h3 className="font-bold text-ink-900">{pkg.name}</h3>
+                                                            <span className="font-bold font-mono" style={{ color: theme.accentColor }}>{pkg.price}</span>
+                                                        </div>
+                                                        {pkg.description && (
+                                                            <p className="text-xs text-ink-500 mb-3">{pkg.description}</p>
+                                                        )}
+                                                        <ul className="text-xs text-ink-600 space-y-1">
+                                                            {pkg.items.filter(Boolean).map((item, i) => (
+                                                                <li key={i} className="flex items-center gap-2">
+                                                                    <IconCheck className="w-3 h-3" style={{ color: theme.accentColor }} />
+                                                                    {item}
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </section>
+                                    )}
+
+                                    {/* Case Studies */}
+                                    {caseStudies.some(cs => cs.client && cs.results) && (
+                                        <section>
+                                            <h2 className="text-xl font-bold mb-6" style={{ fontFamily: 'Fraunces, serif', color: theme.primaryColor }}>
+                                                Success Stories
+                                            </h2>
+                                            <div className="space-y-5">
+                                                {caseStudies.filter(cs => cs.client && cs.results).map(cs => (
+                                                    <div key={cs.id} className="bg-ink-50 rounded-xl p-5">
+                                                        <h3 className="font-bold text-ink-900 mb-2">{cs.client}</h3>
+                                                        {cs.challenge && (
+                                                            <p className="text-sm text-ink-600 mb-2">
+                                                                <span className="font-medium">Challenge:</span> {cs.challenge}
+                                                            </p>
+                                                        )}
+                                                        {cs.solution && (
+                                                            <p className="text-sm text-ink-600 mb-2">
+                                                                <span className="font-medium">Solution:</span> {cs.solution}
+                                                            </p>
+                                                        )}
+                                                        <p className="text-sm font-medium" style={{ color: theme.accentColor }}>
+                                                            Result: {cs.results}
+                                                        </p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </section>
+                                    )}
+
+                                    {/* Testimonials */}
+                                    {testimonials.some(t => t.quote) && (
+                                        <section>
+                                            <h2 className="text-xl font-bold mb-6" style={{ fontFamily: 'Fraunces, serif', color: theme.primaryColor }}>
+                                                What Partners Say
+                                            </h2>
                                             <div className="space-y-4">
                                                 {testimonials.filter(t => t.quote).map(t => (
-                                                    <blockquote key={t.id} className="border-l-4 pl-4 italic text-gray-600 text-sm" style={{ borderColor: theme.accentColor }}>
+                                                    <blockquote
+                                                        key={t.id}
+                                                        className="border-l-4 pl-5 italic text-ink-600"
+                                                        style={{ borderColor: theme.accentColor }}
+                                                    >
                                                         "{t.quote}"
-                                                        {t.source && <footer className="mt-1 text-xs text-gray-400 not-italic">— {t.source}</footer>}
+                                                        {(t.source || t.company) && (
+                                                            <footer className="mt-2 text-xs text-ink-400 not-italic">
+                                                                — {t.source}{t.company && `, ${t.company}`}
+                                                            </footer>
+                                                        )}
                                                     </blockquote>
                                                 ))}
                                             </div>
@@ -1003,14 +1795,21 @@
 
                                     {/* Contact */}
                                     {(organization.contact.name || organization.contact.email) && (
-                                        <section className="pt-6 border-t border-gray-200">
-                                            <h2 className="text-lg font-bold mb-3" style={{ color: theme.primaryColor }}>Get in Touch</h2>
-                                            <div className="text-sm text-gray-600">
-                                                {organization.contact.name && <p className="font-medium">{organization.contact.name}</p>}
-                                                {organization.contact.email && <p>{organization.contact.email}</p>}
+                                        <section className="pt-8 border-t border-ink-200">
+                                            <h2 className="text-xl font-bold mb-4" style={{ fontFamily: 'Fraunces, serif', color: theme.primaryColor }}>
+                                                Get in Touch
+                                            </h2>
+                                            <div className="text-sm text-ink-600">
+                                                {organization.contact.name && (
+                                                    <p className="font-medium text-ink-900">
+                                                        {organization.contact.name}
+                                                        {organization.contact.title && <span className="font-normal text-ink-500">, {organization.contact.title}</span>}
+                                                    </p>
+                                                )}
+                                                {organization.contact.email && <p className="mt-1">{organization.contact.email}</p>}
                                                 {organization.contact.phone && <p>{organization.contact.phone}</p>}
                                                 {organization.website && (
-                                                    <p className="mt-2" style={{ color: theme.primaryColor }}>{organization.website}</p>
+                                                    <p className="mt-2 font-medium" style={{ color: theme.primaryColor }}>{organization.website}</p>
                                                 )}
                                             </div>
                                         </section>
@@ -1018,7 +1817,10 @@
                                 </div>
 
                                 {/* Footer */}
-                                <footer className="px-8 py-4 bg-gray-50 text-center text-xs text-gray-400">
+                                <footer
+                                    className="px-10 py-5 text-center text-xs"
+                                    style={{ backgroundColor: theme.primaryColor + '05', color: theme.primaryColor }}
+                                >
                                     Generated with Media Kit Builder by Center for Cooperative Media
                                 </footer>
                             </div>
@@ -1026,21 +1828,26 @@
                     </div>
 
                     {/* === MOBILE TAB BAR === */}
-                    <div className="lg:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 flex h-14 z-50">
+                    <div className="lg:hidden fixed bottom-0 left-0 w-full bg-white border-t border-ink-200 flex h-14 z-50">
                         <button
                             onClick={() => setActiveTab('editor')}
-                            className={`flex-1 flex flex-col items-center justify-center gap-1 ${activeTab === 'editor' ? 'text-primary-600' : 'text-gray-400'}`}
+                            className={`flex-1 flex flex-col items-center justify-center gap-1 transition-colors ${activeTab === 'editor' ? 'text-ink-900' : 'text-ink-400'}`}
                         >
                             <IconEdit />
                             <span className="text-[10px] font-medium">Editor</span>
                         </button>
                         <button
                             onClick={() => setActiveTab('preview')}
-                            className={`flex-1 flex flex-col items-center justify-center gap-1 ${activeTab === 'preview' ? 'text-primary-600' : 'text-gray-400'}`}
+                            className={`flex-1 flex flex-col items-center justify-center gap-1 transition-colors ${activeTab === 'preview' ? 'text-ink-900' : 'text-ink-400'}`}
                         >
                             <IconEye />
                             <span className="text-[10px] font-medium">Preview</span>
                         </button>
+                    </div>
+
+                    {/* Toast */}
+                    <div className={`toast ${toast.visible ? 'visible' : ''}`}>
+                        {toast.message}
                     </div>
                 </div>
             );
