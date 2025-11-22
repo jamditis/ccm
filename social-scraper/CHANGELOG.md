@@ -2,6 +2,36 @@
 
 All notable changes to the NJ Influencer Social Media Scraper will be documented in this file.
 
+## [0.1.8] - 2025-11-21
+
+### Video Processing Progress
+- **520 videos processed** (17.1% of 3,047)
+- Completed batches 320-420 and 420-520 with GPU acceleration
+- Recovery process at 90% (batch 9/10)
+
+### M1 GPU Acceleration
+- Modified `transcriber.py` to use MPS (Metal Performance Shaders)
+- Automatic device detection: MPS → CUDA → CPU
+- Significantly faster transcription on Apple Silicon
+
+### Progress Summary
+| Range | Status | Notes |
+|-------|--------|-------|
+| 0-99 | Recovery 90% | Batch 9/10 |
+| 100-319 | Complete | Original + session |
+| 320-420 | Complete | GPU enabled |
+| 420-520 | Complete | GPU enabled |
+| 520-620 | In progress | Next batch |
+
+### GitHub Sync
+- Repository: https://github.com/jamditis/ccm/tree/main/social-scraper
+- Code synced to public repo (no secrets/data)
+
+### Remaining Work
+- **2,527 videos remaining** (520/3,047 = 17.1% complete)
+- Recovery process nearly complete (videos 0-99)
+- Next batch: 520-620
+
 ## [0.1.7] - 2025-11-21
 
 ### Video Processing Progress
