@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaboration Agreement Generator | Center for Cooperative Media</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- React & DOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- PDF Lib -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Source Sans 3', 'sans-serif'],
+                        'serif': ['Libre Baskerville', 'serif'],
+                        'mono': ['Source Code Pro', 'monospace'],
+                    },
+                    colors: {
+                        legal: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.3s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background: #f1f5f9;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+
+        .input-field {
+            @apply w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-sm transition-all;
+        }
+        .input-field:focus {
+            @apply outline-none border-legal-600 ring-2 ring-legal-600/20;
+        }
+
+        .btn {
+            @apply px-4 py-2 rounded-lg font-semibold text-sm transition-all;
+        }
+        .btn-primary {
+            @apply bg-legal-800 text-white hover:bg-legal-900;
+        }
+        .btn-secondary {
+            @apply bg-white text-legal-700 border border-gray-200 hover:bg-gray-50;
+        }
+
+        .section-toggle {
+            @apply flex items-center justify-between p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors;
+        }
+
+        /* Custom scrollbar */
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+        /* Print */
+        @media print {
+            body { background: white; }
+            .no-print { display: none !important; }
+        }
+
+        /* Mobile */
+        @media screen and (max-width: 768px) {
+            input, select, textarea { font-size: 16px !important; }
+        }
+
+        /* Legal document styling */
+        .legal-doc {
+            font-family: 'Libre Baskerville', serif;
+            line-height: 1.8;
+        }
+        .legal-doc h1 { font-size: 1.5rem; font-weight: 700; text-align: center; margin-bottom: 1rem; }
+        .legal-doc h2 { font-size: 1rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+        .legal-doc p { margin-bottom: 0.75rem; text-align: justify; }
+        .legal-doc .section-num { font-weight: 700; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // --- ICONS ---
+        const IconFileContract = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>;
+        const IconPlus = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>;
+        const IconTrash = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>;
+        const IconDownload = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>;
+        const IconSave = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>;
+        const IconChevronDown = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>;
+        const IconEye = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>;
+        const IconEdit = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>;
+
+        // --- AGREEMENT TEMPLATES ---
+        const AGREEMENT_TYPES = [
+            {
+                id: 'shared_reporting',
+                name: 'Shared Reporting Project',
+                description: 'For joint investigations or reporting projects',
+                sections: ['purpose', 'roles', 'editorial', 'byline', 'publication', 'communication', 'confidentiality', 'termination']
+            },
+            {
+                id: 'republishing',
+                name: 'Content Sharing/Republishing',
+                description: 'For republishing or syndication arrangements',
+                sections: ['purpose', 'publication', 'byline', 'financial', 'termination']
+            },
+            {
+                id: 'resource_sharing',
+                name: 'Resource Sharing',
+                description: 'For sharing staff, equipment, or data',
+                sections: ['purpose', 'roles', 'financial', 'confidentiality', 'termination']
+            },
+            {
+                id: 'event_cohost',
+                name: 'Event Co-hosting',
+                description: 'For jointly organized events',
+                sections: ['purpose', 'roles', 'financial', 'communication', 'termination']
+            },
+            {
+                id: 'general_mou',
+                name: 'General Partnership MOU',
+                description: 'Broad partnership memorandum',
+                sections: ['purpose', 'roles', 'communication', 'confidentiality', 'dispute', 'termination']
+            }
+        ];
+
+        const SECTION_TEMPLATES = {
+            purpose: {
+                title: 'Purpose & Scope',
+                content: `The Parties enter into this Agreement to collaborate on [PROJECT NAME/DESCRIPTION]. The scope of this collaboration includes [SPECIFIC ACTIVITIES AND DELIVERABLES]. This Agreement is intended to establish a framework for cooperation and does not create a legal partnership, joint venture, or agency relationship between the Parties.`
+            },
+            roles: {
+                title: 'Roles & Responsibilities',
+                content: `Each Party agrees to fulfill the following responsibilities:\n\n[PARTY 1 NAME] shall:\n• [Responsibility 1]\n• [Responsibility 2]\n\n[PARTY 2 NAME] shall:\n• [Responsibility 1]\n• [Responsibility 2]\n\nAll Parties agree to:\n• Communicate regularly about project progress\n• Meet agreed-upon deadlines\n• Maintain professional standards`
+            },
+            editorial: {
+                title: 'Editorial Control & Standards',
+                content: `All content produced under this Agreement shall adhere to established journalistic standards and ethics. Each Party maintains editorial independence over content published on their own platforms. Joint content shall require mutual approval before publication. Any disputes regarding editorial decisions shall be resolved through good-faith discussion between designated editors from each organization.`
+            },
+            byline: {
+                title: 'Byline & Credit',
+                content: `All published content shall include appropriate attribution to contributing Parties. Standard byline format: "[Reporter Name], [Organization 1] and [Organization 2]." Each Party shall be credited in any promotional materials related to this collaboration. Logos may be used with prior written approval.`
+            },
+            publication: {
+                title: 'Publication Rights',
+                content: `[LEAD ORGANIZATION] shall have first publication rights for [TIMEFRAME]. After initial publication, other Parties may republish with [CONDITIONS]. All Parties retain the right to reference and link to published content. Archived content shall remain accessible according to each Party's standard policies.`
+            },
+            financial: {
+                title: 'Financial Arrangements',
+                content: `[SELECT ONE OR CUSTOMIZE]\n\nOption A - No Financial Exchange: This collaboration involves no exchange of funds between Parties. Each Party shall bear its own costs.\n\nOption B - Cost Sharing: Parties shall share costs as follows: [BREAKDOWN]. Invoices shall be submitted within [TIMEFRAME] and paid within [PAYMENT TERMS].\n\nOption C - Revenue Sharing: Revenue generated from this collaboration shall be shared as follows: [BREAKDOWN].`
+            },
+            communication: {
+                title: 'Communication Protocols',
+                content: `Primary contacts for this Agreement:\n\n[PARTY 1]: [Name, Email, Phone]\n[PARTY 2]: [Name, Email, Phone]\n\nParties agree to:\n• Respond to communications within [TIMEFRAME]\n• Hold regular check-in meetings [FREQUENCY]\n• Document major decisions in writing\n• Notify other Parties promptly of any issues affecting the collaboration`
+            },
+            confidentiality: {
+                title: 'Confidentiality',
+                content: `Parties agree to maintain confidentiality of:\n• Unpublished reporting and sources\n• Internal communications and deliberations\n• Financial and operational information\n• Any information designated as confidential\n\nThis obligation survives termination of this Agreement. Standard journalistic source protection practices shall apply to all shared reporting.`
+            },
+            dispute: {
+                title: 'Dispute Resolution',
+                content: `In the event of a dispute, Parties agree to:\n\n1. First attempt resolution through direct communication between primary contacts\n2. If unresolved, escalate to organizational leadership\n3. If still unresolved, engage a mutually agreed-upon mediator\n4. Mediation costs shall be shared equally\n\nParties agree to continue fulfilling non-disputed obligations during resolution process.`
+            },
+            termination: {
+                title: 'Termination',
+                content: `This Agreement may be terminated:\n• By mutual written consent of all Parties\n• By any Party with [30/60/90] days written notice\n• Immediately upon material breach that remains uncured after [14] days written notice\n\nUpon termination:\n• Parties shall complete any work in progress or agree to transition plan\n• Each Party retains rights to content they created\n• Confidentiality obligations survive termination`
+            }
+        };
+
+        const CollaborationAgreementGenerator = () => {
+            // --- STATE ---
+            const [activeTab, setActiveTab] = useState('editor');
+            const [agreementType, setAgreementType] = useState('shared_reporting');
+            const [title, setTitle] = useState('MEMORANDUM OF UNDERSTANDING');
+            const [effectiveDate, setEffectiveDate] = useState(new Date().toISOString().split('T')[0]);
+
+            const [parties, setParties] = useState([
+                { id: 1, orgName: '', contactName: '', contactTitle: '', contactEmail: '', address: '', role: 'Lead' },
+                { id: 2, orgName: '', contactName: '', contactTitle: '', contactEmail: '', address: '', role: 'Partner' }
+            ]);
+
+            const [sections, setSections] = useState(() => {
+                const type = AGREEMENT_TYPES.find(t => t.id === 'shared_reporting');
+                return type.sections.map(sectionId => ({
+                    id: sectionId,
+                    ...SECTION_TEMPLATES[sectionId],
+                    included: true,
+                    edited: false
+                }));
+            });
+
+            const [customClauses, setCustomClauses] = useState([]);
+            const [profiles, setProfiles] = useState([]);
+            const [isGenerating, setIsGenerating] = useState(false);
+
+            // --- EFFECTS ---
+            useEffect(() => {
+                const saved = localStorage.getItem('collaboration_agreement_profiles');
+                if (saved) setProfiles(JSON.parse(saved));
+
+                const handleResize = () => {
+                    if (window.innerWidth >= 1024) {
+                        setActiveTab('split');
+                    } else if (activeTab === 'split') {
+                        setActiveTab('editor');
+                    }
+                };
+                window.addEventListener('resize', handleResize);
+                handleResize();
+                return () => window.removeEventListener('resize', handleResize);
+            }, []);
+
+            // Update sections when agreement type changes
+            useEffect(() => {
+                const type = AGREEMENT_TYPES.find(t => t.id === agreementType);
+                if (type) {
+                    setSections(type.sections.map(sectionId => ({
+                        id: sectionId,
+                        ...SECTION_TEMPLATES[sectionId],
+                        included: true,
+                        edited: false
+                    })));
+                }
+            }, [agreementType]);
+
+            // --- HANDLERS ---
+            const addParty = () => {
+                setParties([...parties, {
+                    id: Date.now(),
+                    orgName: '',
+                    contactName: '',
+                    contactTitle: '',
+                    contactEmail: '',
+                    address: '',
+                    role: 'Partner'
+                }]);
+            };
+
+            const updateParty = (id, field, value) => {
+                setParties(parties.map(p => p.id === id ? { ...p, [field]: value } : p));
+            };
+
+            const removeParty = (id) => {
+                if (parties.length > 2) {
+                    setParties(parties.filter(p => p.id !== id));
+                }
+            };
+
+            const toggleSection = (id) => {
+                setSections(sections.map(s =>
+                    s.id === id ? { ...s, included: !s.included } : s
+                ));
+            };
+
+            const updateSectionContent = (id, content) => {
+                setSections(sections.map(s =>
+                    s.id === id ? { ...s, content, edited: true } : s
+                ));
+            };
+
+            const addCustomClause = () => {
+                setCustomClauses([...customClauses, { id: Date.now(), title: '', content: '' }]);
+            };
+
+            const updateCustomClause = (id, field, value) => {
+                setCustomClauses(customClauses.map(c =>
+                    c.id === id ? { ...c, [field]: value } : c
+                ));
+            };
+
+            const removeCustomClause = (id) => {
+                setCustomClauses(customClauses.filter(c => c.id !== id));
+            };
+
+            const saveProfile = () => {
+                const name = prompt("Profile name:");
+                if (!name) return;
+                const profile = {
+                    id: Date.now(),
+                    name,
+                    data: { agreementType, title, parties, sections, customClauses }
+                };
+                const updated = [...profiles, profile];
+                setProfiles(updated);
+                localStorage.setItem('collaboration_agreement_profiles', JSON.stringify(updated));
+            };
+
+            const loadProfile = (profileId) => {
+                const profile = profiles.find(p => p.id === Number(profileId));
+                if (profile) {
+                    setAgreementType(profile.data.agreementType);
+                    setTitle(profile.data.title);
+                    setParties(profile.data.parties);
+                    setSections(profile.data.sections);
+                    setCustomClauses(profile.data.customClauses || []);
+                }
+            };
+
+            const handleDownload = () => {
+                setIsGenerating(true);
+                const element = document.getElementById('agreement-preview');
+                const opt = {
+                    margin: 0.75,
+                    filename: `${title.replace(/\s+/g, '_')}.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                };
+                html2pdf().set(opt).from(element).save().then(() => setIsGenerating(false));
+            };
+
+            // Get party names for text replacement
+            const getPartyNames = () => parties.map(p => p.orgName || `[Party ${parties.indexOf(p) + 1}]`);
+
+            // Replace placeholders in content
+            const processContent = (content) => {
+                let processed = content;
+                parties.forEach((party, i) => {
+                    const name = party.orgName || `[Party ${i + 1}]`;
+                    processed = processed.replace(new RegExp(`\\[PARTY ${i + 1}\\]`, 'g'), name);
+                    processed = processed.replace(new RegExp(`\\[PARTY ${i + 1} NAME\\]`, 'g'), name);
+                });
+                return processed;
+            };
+
+            const includedSections = sections.filter(s => s.included);
+
+            return (
+                <div className="flex h-screen flex-col lg:flex-row">
+
+                    {/* === EDITOR PANEL === */}
+                    <div className={`w-full lg:w-[420px] xl:w-[480px] bg-white border-r border-gray-200 flex flex-col h-[calc(100%-56px)] lg:h-full ${activeTab === 'preview' ? 'hidden lg:flex' : 'flex'}`}>
+
+                        {/* Header */}
+                        <div className="p-4 border-b border-gray-100 flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <div className="w-9 h-9 bg-legal-800 rounded-lg flex items-center justify-center">
+                                    <IconFileContract className="text-white w-5 h-5" />
+                                </div>
+                                <div>
+                                    <h1 className="font-bold text-gray-900">Agreement Generator</h1>
+                                    <p className="text-xs text-gray-500">Create collaboration MOUs</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-2">
+                                {profiles.length > 0 && (
+                                    <select
+                                        className="text-xs border border-gray-200 rounded px-2 py-1.5"
+                                        onChange={(e) => loadProfile(e.target.value)}
+                                        defaultValue=""
+                                    >
+                                        <option value="">Load...</option>
+                                        {profiles.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
+                                    </select>
+                                )}
+                                <button onClick={saveProfile} className="btn btn-secondary p-2">
+                                    <IconSave />
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Form */}
+                        <div className="flex-1 overflow-y-auto p-4 custom-scroll space-y-6">
+
+                            {/* Agreement Type */}
+                            <section>
+                                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Agreement Type</label>
+                                <select
+                                    className="input-field"
+                                    value={agreementType}
+                                    onChange={(e) => setAgreementType(e.target.value)}
+                                >
+                                    {AGREEMENT_TYPES.map(type => (
+                                        <option key={type.id} value={type.id}>{type.name}</option>
+                                    ))}
+                                </select>
+                                <p className="text-xs text-gray-500 mt-1">
+                                    {AGREEMENT_TYPES.find(t => t.id === agreementType)?.description}
+                                </p>
+                            </section>
+
+                            {/* Basic Info */}
+                            <section>
+                                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Document Details</label>
+                                <div className="space-y-3">
+                                    <input
+                                        type="text"
+                                        className="input-field"
+                                        placeholder="Document Title"
+                                        value={title}
+                                        onChange={(e) => setTitle(e.target.value)}
+                                    />
+                                    <div>
+                                        <label className="block text-xs text-gray-500 mb-1">Effective Date</label>
+                                        <input
+                                            type="date"
+                                            className="input-field"
+                                            value={effectiveDate}
+                                            onChange={(e) => setEffectiveDate(e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+                            </section>
+
+                            {/* Parties */}
+                            <section>
+                                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Parties</label>
+                                <div className="space-y-3">
+                                    {parties.map((party, index) => (
+                                        <div key={party.id} className="bg-gray-50 rounded-lg p-3 space-y-2">
+                                            <div className="flex items-center justify-between">
+                                                <span className="text-xs font-semibold text-gray-600">Party {index + 1}</span>
+                                                {parties.length > 2 && (
+                                                    <button onClick={() => removeParty(party.id)} className="text-gray-400 hover:text-red-500">
+                                                        <IconTrash />
+                                                    </button>
+                                                )}
+                                            </div>
+                                            <input
+                                                type="text"
+                                                className="input-field"
+                                                placeholder="Organization Name"
+                                                value={party.orgName}
+                                                onChange={(e) => updateParty(party.id, 'orgName', e.target.value)}
+                                            />
+                                            <div className="grid grid-cols-2 gap-2">
+                                                <input
+                                                    type="text"
+                                                    className="input-field"
+                                                    placeholder="Contact Name"
+                                                    value={party.contactName}
+                                                    onChange={(e) => updateParty(party.id, 'contactName', e.target.value)}
+                                                />
+                                                <input
+                                                    type="text"
+                                                    className="input-field"
+                                                    placeholder="Title"
+                                                    value={party.contactTitle}
+                                                    onChange={(e) => updateParty(party.id, 'contactTitle', e.target.value)}
+                                                />
+                                            </div>
+                                            <input
+                                                type="email"
+                                                className="input-field"
+                                                placeholder="Email"
+                                                value={party.contactEmail}
+                                                onChange={(e) => updateParty(party.id, 'contactEmail', e.target.value)}
+                                            />
+                                            <textarea
+                                                className="input-field"
+                                                rows="2"
+                                                placeholder="Address"
+                                                value={party.address}
+                                                onChange={(e) => updateParty(party.id, 'address', e.target.value)}
+                                            />
+                                            <select
+                                                className="input-field"
+                                                value={party.role}
+                                                onChange={(e) => updateParty(party.id, 'role', e.target.value)}
+                                            >
+                                                <option value="Lead">Lead Organization</option>
+                                                <option value="Partner">Partner Organization</option>
+                                                <option value="Contributor">Contributing Partner</option>
+                                            </select>
+                                        </div>
+                                    ))}
+                                    <button
+                                        onClick={addParty}
+                                        className="w-full py-2 border-2 border-dashed border-gray-200 rounded-lg text-xs text-gray-500 hover:border-gray-300 flex items-center justify-center gap-1"
+                                    >
+                                        <IconPlus /> Add Party
+                                    </button>
+                                </div>
+                            </section>
+
+                            {/* Sections */}
+                            <section>
+                                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Agreement Sections</label>
+                                <div className="space-y-2">
+                                    {sections.map(section => (
+                                        <div key={section.id} className="border border-gray-200 rounded-lg overflow-hidden">
+                                            <div
+                                                className="section-toggle"
+                                                onClick={() => toggleSection(section.id)}
+                                            >
+                                                <div className="flex items-center gap-2">
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={section.included}
+                                                        onChange={() => {}}
+                                                        className="w-4 h-4 text-legal-600 rounded"
+                                                    />
+                                                    <span className="text-sm font-medium text-gray-700">{section.title}</span>
+                                                </div>
+                                                {section.edited && <span className="text-xs text-blue-600">Edited</span>}
+                                            </div>
+                                            {section.included && (
+                                                <div className="p-3 border-t border-gray-100">
+                                                    <textarea
+                                                        className="input-field text-xs leading-relaxed"
+                                                        rows="6"
+                                                        value={section.content}
+                                                        onChange={(e) => updateSectionContent(section.id, e.target.value)}
+                                                    />
+                                                </div>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+
+                            {/* Custom Clauses */}
+                            <section>
+                                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Custom Clauses</label>
+                                <div className="space-y-3">
+                                    {customClauses.map(clause => (
+                                        <div key={clause.id} className="bg-gray-50 rounded-lg p-3 space-y-2">
+                                            <div className="flex items-center gap-2">
+                                                <input
+                                                    type="text"
+                                                    className="input-field flex-1"
+                                                    placeholder="Section Title"
+                                                    value={clause.title}
+                                                    onChange={(e) => updateCustomClause(clause.id, 'title', e.target.value)}
+                                                />
+                                                <button onClick={() => removeCustomClause(clause.id)} className="text-gray-400 hover:text-red-500">
+                                                    <IconTrash />
+                                                </button>
+                                            </div>
+                                            <textarea
+                                                className="input-field text-xs"
+                                                rows="4"
+                                                placeholder="Clause content..."
+                                                value={clause.content}
+                                                onChange={(e) => updateCustomClause(clause.id, 'content', e.target.value)}
+                                            />
+                                        </div>
+                                    ))}
+                                    <button
+                                        onClick={addCustomClause}
+                                        className="w-full py-2 border-2 border-dashed border-gray-200 rounded-lg text-xs text-gray-500 hover:border-gray-300 flex items-center justify-center gap-1"
+                                    >
+                                        <IconPlus /> Add Custom Clause
+                                    </button>
+                                </div>
+                            </section>
+
+                            {/* Attribution */}
+                            <div className="py-4 text-center text-xs text-gray-400">
+                                <p>Collaboration Agreement Generator</p>
+                                <p>© 2025 <a href="https://centerforcooperativemedia.org/" className="hover:text-legal-600">Center for Cooperative Media</a></p>
+                                <p>Created by <a href="https://twitter.com/jsamditis" className="hover:text-legal-600">Joe Amditis</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* === PREVIEW PANEL === */}
+                    <div className={`flex-1 bg-gray-100 flex flex-col h-[calc(100%-56px)] lg:h-full ${activeTab === 'editor' ? 'hidden lg:flex' : 'flex'}`}>
+
+                        {/* Toolbar */}
+                        <div className="p-4 bg-white border-b border-gray-200 flex justify-end">
+                            <button
+                                onClick={handleDownload}
+                                disabled={isGenerating}
+                                className="btn btn-primary flex items-center gap-2"
+                            >
+                                {isGenerating ? 'Generating...' : <><IconDownload /> Download PDF</>}
+                            </button>
+                        </div>
+
+                        {/* Preview */}
+                        <div className="flex-1 overflow-auto p-6 custom-scroll">
+                            <div
+                                id="agreement-preview"
+                                className="bg-white shadow-lg max-w-[800px] mx-auto p-12 legal-doc"
+                            >
+                                {/* Title */}
+                                <h1>{title}</h1>
+                                <p className="text-center text-sm text-gray-500 mb-8">
+                                    Effective Date: {new Date(effectiveDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                                </p>
+
+                                {/* Parties Introduction */}
+                                <p>
+                                    This {title} ("Agreement") is entered into by and between:
+                                </p>
+                                <div className="my-4 space-y-3">
+                                    {parties.map((party, i) => (
+                                        <p key={party.id}>
+                                            <strong>{party.orgName || `[Party ${i + 1} Name]`}</strong>
+                                            {party.address && <span className="block text-sm text-gray-600 ml-4">{party.address}</span>}
+                                            {party.contactName && (
+                                                <span className="block text-sm text-gray-600 ml-4">
+                                                    Contact: {party.contactName}{party.contactTitle && `, ${party.contactTitle}`}
+                                                    {party.contactEmail && ` (${party.contactEmail})`}
+                                                </span>
+                                            )}
+                                        </p>
+                                    ))}
+                                </div>
+                                <p>
+                                    (collectively referred to as the "Parties" and individually as a "Party")
+                                </p>
+
+                                {/* Sections */}
+                                {includedSections.map((section, i) => (
+                                    <div key={section.id}>
+                                        <h2>
+                                            <span className="section-num">{i + 1}.</span> {section.title}
+                                        </h2>
+                                        <p style={{ whiteSpace: 'pre-wrap' }}>
+                                            {processContent(section.content)}
+                                        </p>
+                                    </div>
+                                ))}
+
+                                {/* Custom Clauses */}
+                                {customClauses.filter(c => c.title && c.content).map((clause, i) => (
+                                    <div key={clause.id}>
+                                        <h2>
+                                            <span className="section-num">{includedSections.length + i + 1}.</span> {clause.title}
+                                        </h2>
+                                        <p style={{ whiteSpace: 'pre-wrap' }}>
+                                            {processContent(clause.content)}
+                                        </p>
+                                    </div>
+                                ))}
+
+                                {/* Signatures */}
+                                <div className="mt-12 pt-8 border-t border-gray-300">
+                                    <h2 className="text-center mb-8">
+                                        <span className="section-num">{includedSections.length + customClauses.filter(c => c.title).length + 1}.</span> Signatures
+                                    </h2>
+                                    <p className="text-center text-sm text-gray-600 mb-8">
+                                        IN WITNESS WHEREOF, the Parties have executed this Agreement as of the date first written above.
+                                    </p>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        {parties.map((party, i) => (
+                                            <div key={party.id} className="space-y-4">
+                                                <p className="font-bold">{party.orgName || `[Party ${i + 1}]`}</p>
+                                                <div>
+                                                    <div className="border-b border-gray-400 h-8 mb-1"></div>
+                                                    <p className="text-xs text-gray-500">Signature</p>
+                                                </div>
+                                                <div>
+                                                    <div className="border-b border-gray-400 h-8 mb-1"></div>
+                                                    <p className="text-xs text-gray-500">Printed Name & Title</p>
+                                                </div>
+                                                <div>
+                                                    <div className="border-b border-gray-400 h-8 mb-1"></div>
+                                                    <p className="text-xs text-gray-500">Date</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Footer */}
+                                <footer className="mt-12 pt-4 border-t border-gray-200 text-center text-xs text-gray-400">
+                                    Generated with Collaboration Agreement Generator by Center for Cooperative Media
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* === MOBILE TAB BAR === */}
+                    <div className="lg:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 flex h-14 z-50">
+                        <button
+                            onClick={() => setActiveTab('editor')}
+                            className={`flex-1 flex flex-col items-center justify-center gap-1 ${activeTab === 'editor' ? 'text-legal-800' : 'text-gray-400'}`}
+                        >
+                            <IconEdit />
+                            <span className="text-[10px] font-medium">Editor</span>
+                        </button>
+                        <button
+                            onClick={() => setActiveTab('preview')}
+                            className={`flex-1 flex flex-col items-center justify-center gap-1 ${activeTab === 'preview' ? 'text-legal-800' : 'text-gray-400'}`}
+                        >
+                            <IconEye />
+                            <span className="text-[10px] font-medium">Preview</span>
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<CollaborationAgreementGenerator />);
+    </script>
+</body>
+</html>

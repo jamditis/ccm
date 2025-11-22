@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grant Proposal Outline Generator | Center for Cooperative Media</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- React & DOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- PDF Lib -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Open Sans', 'sans-serif'],
+                        'serif': ['Merriweather', 'serif'],
+                        'mono': ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        grant: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background: #f8fafc;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .input-field {
+            @apply w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-sm transition-all;
+        }
+        .input-field:focus {
+            @apply outline-none border-grant-500 ring-2 ring-grant-500/20;
+        }
+
+        .btn {
+            @apply px-4 py-2 rounded-lg font-semibold text-sm transition-all;
+        }
+        .btn-primary {
+            @apply bg-grant-600 text-white hover:bg-grant-700;
+        }
+        .btn-secondary {
+            @apply bg-white text-gray-700 border border-gray-200 hover:bg-gray-50;
+        }
+
+        .section-nav-item {
+            @apply flex items-center gap-3 px-3 py-2 rounded-lg text-sm cursor-pointer transition-all;
+        }
+        .section-nav-item:hover {
+            @apply bg-gray-100;
+        }
+        .section-nav-item.active {
+            @apply bg-grant-50 text-grant-700;
+        }
+        .section-nav-item.complete {
+            @apply text-green-600;
+        }
+
+        /* Custom scrollbar */
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 3px; }
+
+        /* Print */
+        @media print {
+            body { background: white; }
+            .no-print { display: none !important; }
+        }
+
+        /* Mobile */
+        @media screen and (max-width: 768px) {
+            input, select, textarea { font-size: 16px !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+
+        // --- ICONS ---
+        const IconFileText = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>;
+        const IconCheck = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>;
+        const IconCircle = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/></svg>;
+        const IconDownload = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>;
+        const IconSave = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>;
+        const IconInfo = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>;
+        const IconCopy = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>;
+
+        // --- FUNDER TEMPLATES ---
+        const FUNDER_TEMPLATES = {
+            generic: {
+                name: 'Generic Journalism Grant',
+                description: 'Standard grant proposal structure',
+                loiSections: ['executive_summary', 'organization', 'problem', 'project', 'budget_summary'],
+                fullSections: ['executive_summary', 'organization', 'problem', 'project', 'goals', 'methods', 'timeline', 'evaluation', 'budget', 'sustainability', 'personnel'],
+                attachments: ['501c3', 'budget_detailed', 'bios', 'board_list'],
+                tips: 'Focus on measurable outcomes and community impact. Be specific about how you will reach underserved audiences.'
+            },
+            knight: {
+                name: 'Knight Foundation',
+                description: 'For Knight Foundation journalism grants',
+                loiSections: ['executive_summary', 'organization', 'problem', 'project', 'budget_summary'],
+                fullSections: ['executive_summary', 'organization', 'problem', 'project', 'goals', 'methods', 'timeline', 'evaluation', 'budget', 'sustainability', 'personnel'],
+                attachments: ['501c3', 'budget_detailed', 'bios', 'board_list', 'financials'],
+                tips: 'Knight prioritizes innovation, scalability, and projects that can be replicated. Emphasize how your project advances informed and engaged communities.'
+            },
+            gni: {
+                name: 'Google News Initiative',
+                description: 'For GNI Innovation Challenge and other programs',
+                loiSections: ['executive_summary', 'organization', 'project', 'goals', 'budget_summary'],
+                fullSections: ['executive_summary', 'organization', 'project', 'goals', 'methods', 'timeline', 'evaluation', 'budget', 'sustainability'],
+                attachments: ['budget_detailed', 'bios'],
+                tips: 'GNI focuses on business sustainability and reader revenue. Emphasize technology innovation and potential for industry-wide impact.'
+            },
+            rfa: {
+                name: 'Report for America',
+                description: 'For RFA corps member applications',
+                loiSections: ['organization', 'problem', 'project', 'budget_summary'],
+                fullSections: ['organization', 'problem', 'project', 'goals', 'methods', 'timeline', 'budget', 'sustainability'],
+                attachments: ['501c3', 'budget_detailed', 'coverage_samples'],
+                tips: 'RFA wants to see clear community need and how a corps member will fill coverage gaps. Show commitment to mentorship and sustainability.'
+            },
+            lma: {
+                name: 'Local Media Association',
+                description: 'For LMA and local journalism funders',
+                loiSections: ['executive_summary', 'organization', 'problem', 'project'],
+                fullSections: ['executive_summary', 'organization', 'problem', 'project', 'goals', 'methods', 'timeline', 'budget', 'sustainability'],
+                attachments: ['501c3', 'budget_detailed', 'bios'],
+                tips: 'Emphasize local community impact and engagement metrics. Show how you will measure success in terms of audience growth and trust.'
+            }
+        };
+
+        // --- SECTION DEFINITIONS ---
+        const SECTION_DEFINITIONS = {
+            executive_summary: {
+                title: 'Executive Summary',
+                guidance: 'Provide a compelling overview of your project in 2-3 paragraphs. Include: what you will do, why it matters, who will benefit, how much you need, and what success looks like. This is often the only section decision-makers read carefully, so make it count.',
+                maxLength: 500,
+                required: true,
+                prompts: [
+                    'What problem does your project address?',
+                    'What is your proposed solution?',
+                    'What outcomes do you expect?',
+                    'How much funding do you need?'
+                ]
+            },
+            organization: {
+                title: 'Organization Background',
+                guidance: 'Describe your organization\'s history, mission, and qualifications. Include: when you were founded, your track record, audience reach, and why you\'re the right organization for this project. Mention relevant past projects or grants.',
+                maxLength: 400,
+                required: true,
+                prompts: [
+                    'When was your organization founded?',
+                    'What is your mission?',
+                    'What is your current reach/audience?',
+                    'What relevant experience do you have?'
+                ]
+            },
+            problem: {
+                title: 'Problem Statement / Need',
+                guidance: 'Clearly define the problem or gap you\'re addressing. Use data and examples to demonstrate the need. Explain why this matters to your community and what happens if the problem isn\'t addressed. Be specific and avoid generalizations.',
+                maxLength: 400,
+                required: true,
+                prompts: [
+                    'What specific problem are you addressing?',
+                    'What data supports this need?',
+                    'Who is affected by this problem?',
+                    'Why is action needed now?'
+                ]
+            },
+            project: {
+                title: 'Project Description',
+                guidance: 'Describe what you will do with clear, specific details. Explain your approach, key activities, and deliverables. Show how your project directly addresses the problem statement. Be concrete about outputs (stories produced, events held, tools built).',
+                maxLength: 600,
+                required: true,
+                prompts: [
+                    'What specific activities will you undertake?',
+                    'What will you produce or deliver?',
+                    'How does this address the stated need?',
+                    'What makes your approach effective?'
+                ]
+            },
+            goals: {
+                title: 'Goals & Objectives',
+                guidance: 'List 3-5 specific, measurable goals. Use SMART criteria (Specific, Measurable, Achievable, Relevant, Time-bound). Goals should describe desired changes, not activities. Objectives are the steps to achieve each goal.',
+                maxLength: 400,
+                required: true,
+                prompts: [
+                    'What change do you want to create?',
+                    'How will you measure success?',
+                    'What are your key milestones?'
+                ]
+            },
+            methods: {
+                title: 'Methods / Activities',
+                guidance: 'Detail how you will accomplish your goals. Describe specific strategies, approaches, and activities. Explain why these methods are appropriate for your project and audience. Include any partnerships or collaborations.',
+                maxLength: 500,
+                required: false,
+                prompts: [
+                    'What strategies will you use?',
+                    'Why are these methods appropriate?',
+                    'Who will you partner with?',
+                    'How will you reach your audience?'
+                ]
+            },
+            timeline: {
+                title: 'Timeline / Milestones',
+                guidance: 'Provide a realistic timeline with key milestones. Break the project into phases with specific deliverables and dates. Show that you\'ve thought through the sequence of activities. Include time for evaluation and reporting.',
+                maxLength: 400,
+                required: true,
+                prompts: [
+                    'What are your project phases?',
+                    'What are key milestones and dates?',
+                    'When will you complete major deliverables?'
+                ]
+            },
+            evaluation: {
+                title: 'Evaluation Plan',
+                guidance: 'Explain how you will measure success and learn from the project. Include: metrics you\'ll track, data collection methods, how you\'ll assess impact, and how you\'ll share learnings. Be specific about quantitative and qualitative measures.',
+                maxLength: 400,
+                required: false,
+                prompts: [
+                    'What metrics will you track?',
+                    'How will you collect data?',
+                    'How will you assess impact?',
+                    'How will you share learnings?'
+                ]
+            },
+            budget: {
+                title: 'Budget & Justification',
+                guidance: 'Provide a clear budget summary with major categories. Justify significant expenses and show how funds will be allocated efficiently. Note any matching funds, in-kind support, or other revenue sources. Be prepared to provide a detailed line-item budget.',
+                maxLength: 500,
+                required: true,
+                prompts: [
+                    'What are your major expense categories?',
+                    'How much are you requesting?',
+                    'What other funding do you have?',
+                    'How will funds be allocated?'
+                ]
+            },
+            budget_summary: {
+                title: 'Budget Summary',
+                guidance: 'Provide a brief overview of your funding request. Include total amount requested, major expense categories, and any matching funds. Save detailed line items for the full proposal or budget attachment.',
+                maxLength: 200,
+                required: true,
+                prompts: [
+                    'How much are you requesting?',
+                    'What are major expense categories?',
+                    'Do you have matching funds?'
+                ]
+            },
+            sustainability: {
+                title: 'Sustainability Plan',
+                guidance: 'Explain how the project or its impact will continue after grant funding ends. Describe: revenue strategies, ongoing funding sources, organizational capacity building, and how you\'ll maintain momentum. Funders want to invest in lasting change.',
+                maxLength: 400,
+                required: true,
+                prompts: [
+                    'How will the project continue after funding?',
+                    'What revenue sources will you develop?',
+                    'How will you build organizational capacity?'
+                ]
+            },
+            personnel: {
+                title: 'Key Personnel',
+                guidance: 'Introduce the team members who will lead and execute the project. Include relevant experience and specific roles. Show that you have the expertise and capacity to succeed. Mention any advisors or partners.',
+                maxLength: 300,
+                required: false,
+                prompts: [
+                    'Who will lead the project?',
+                    'What relevant experience do they have?',
+                    'What are their specific roles?'
+                ]
+            }
+        };
+
+        const ATTACHMENT_DEFINITIONS = {
+            '501c3': { name: '501(c)(3) Determination Letter', required: true },
+            'budget_detailed': { name: 'Detailed Line-Item Budget', required: true },
+            'bios': { name: 'Staff Bios / Resumes', required: true },
+            'board_list': { name: 'Board of Directors List', required: false },
+            'financials': { name: 'Financial Statements (2 years)', required: false },
+            'coverage_samples': { name: 'Coverage Samples', required: false }
+        };
+
+        const GrantProposalGenerator = () => {
+            // --- STATE ---
+            const [funderTemplate, setFunderTemplate] = useState('generic');
+            const [proposalType, setProposalType] = useState('full');
+
+            const [projectInfo, setProjectInfo] = useState({
+                title: '',
+                organization: '',
+                requestAmount: '',
+                duration: '12 months'
+            });
+
+            const [sections, setSections] = useState([]);
+            const [activeSection, setActiveSection] = useState(null);
+            const [attachments, setAttachments] = useState({});
+
+            const [profiles, setProfiles] = useState([]);
+            const [isGenerating, setIsGenerating] = useState(false);
+            const [showGuidance, setShowGuidance] = useState(true);
+            const [copySuccess, setCopySuccess] = useState(null);
+
+            // --- EFFECTS ---
+            useEffect(() => {
+                const saved = localStorage.getItem('grant_proposal_profiles');
+                if (saved) setProfiles(JSON.parse(saved));
+            }, []);
+
+            // Initialize sections when template or type changes
+            useEffect(() => {
+                const template = FUNDER_TEMPLATES[funderTemplate];
+                const sectionIds = proposalType === 'loi' ? template.loiSections : template.fullSections;
+
+                setSections(sectionIds.map(id => ({
+                    id,
+                    ...SECTION_DEFINITIONS[id],
+                    content: '',
+                    complete: false
+                })));
+
+                // Initialize attachments
+                const attachmentState = {};
+                template.attachments.forEach(id => {
+                    attachmentState[id] = { ...ATTACHMENT_DEFINITIONS[id], uploaded: false, notes: '' };
+                });
+                setAttachments(attachmentState);
+
+                // Set active section
+                if (sectionIds.length > 0) {
+                    setActiveSection(sectionIds[0]);
+                }
+            }, [funderTemplate, proposalType]);
+
+            // --- CALCULATIONS ---
+            const progress = useMemo(() => {
+                if (sections.length === 0) return 0;
+                const complete = sections.filter(s => s.complete).length;
+                return Math.round((complete / sections.length) * 100);
+            }, [sections]);
+
+            // --- HANDLERS ---
+            const updateSection = (id, field, value) => {
+                setSections(sections.map(s =>
+                    s.id === id ? { ...s, [field]: value } : s
+                ));
+            };
+
+            const toggleSectionComplete = (id) => {
+                setSections(sections.map(s =>
+                    s.id === id ? { ...s, complete: !s.complete } : s
+                ));
+            };
+
+            const toggleAttachment = (id) => {
+                setAttachments({
+                    ...attachments,
+                    [id]: { ...attachments[id], uploaded: !attachments[id].uploaded }
+                });
+            };
+
+            const copySection = async (content) => {
+                try {
+                    await navigator.clipboard.writeText(content);
+                    setCopySuccess(activeSection);
+                    setTimeout(() => setCopySuccess(null), 2000);
+                } catch (err) {
+                    console.error('Failed to copy:', err);
+                }
+            };
+
+            const saveProfile = () => {
+                const name = prompt("Profile name:");
+                if (!name) return;
+                const profile = {
+                    id: Date.now(),
+                    name,
+                    data: { funderTemplate, proposalType, projectInfo, sections, attachments }
+                };
+                const updated = [...profiles, profile];
+                setProfiles(updated);
+                localStorage.setItem('grant_proposal_profiles', JSON.stringify(updated));
+            };
+
+            const loadProfile = (profileId) => {
+                const profile = profiles.find(p => p.id === Number(profileId));
+                if (profile) {
+                    setFunderTemplate(profile.data.funderTemplate);
+                    setProposalType(profile.data.proposalType);
+                    setProjectInfo(profile.data.projectInfo);
+                    setSections(profile.data.sections);
+                    setAttachments(profile.data.attachments || {});
+                    if (profile.data.sections.length > 0) {
+                        setActiveSection(profile.data.sections[0].id);
+                    }
+                }
+            };
+
+            const handleDownload = () => {
+                setIsGenerating(true);
+                const element = document.getElementById('proposal-preview');
+                const opt = {
+                    margin: 0.75,
+                    filename: `${projectInfo.title || 'Grant_Proposal'}_Outline.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                };
+                html2pdf().set(opt).from(element).save().then(() => setIsGenerating(false));
+            };
+
+            const currentSection = sections.find(s => s.id === activeSection);
+            const template = FUNDER_TEMPLATES[funderTemplate];
+
+            return (
+                <div className="flex h-screen flex-col md:flex-row">
+
+                    {/* === SIDEBAR === */}
+                    <div className="w-full md:w-64 lg:w-72 bg-white border-r border-gray-200 flex flex-col no-print">
+
+                        {/* Header */}
+                        <div className="p-4 border-b border-gray-100">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="w-9 h-9 bg-grant-600 rounded-lg flex items-center justify-center">
+                                    <IconFileText className="text-white w-5 h-5" />
+                                </div>
+                                <div>
+                                    <h1 className="font-bold text-gray-900 text-sm">Grant Proposal</h1>
+                                    <p className="text-xs text-gray-500">Outline Generator</p>
+                                </div>
+                            </div>
+
+                            {/* Progress */}
+                            <div className="mb-4">
+                                <div className="flex justify-between text-xs mb-1">
+                                    <span className="text-gray-500">Progress</span>
+                                    <span className="font-semibold text-grant-600">{progress}%</span>
+                                </div>
+                                <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div
+                                        className="h-full bg-grant-500 transition-all duration-300"
+                                        style={{ width: `${progress}%` }}
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Template Selection */}
+                            <div className="space-y-2">
+                                <select
+                                    className="input-field text-xs"
+                                    value={funderTemplate}
+                                    onChange={(e) => setFunderTemplate(e.target.value)}
+                                >
+                                    {Object.entries(FUNDER_TEMPLATES).map(([id, t]) => (
+                                        <option key={id} value={id}>{t.name}</option>
+                                    ))}
+                                </select>
+                                <select
+                                    className="input-field text-xs"
+                                    value={proposalType}
+                                    onChange={(e) => setProposalType(e.target.value)}
+                                >
+                                    <option value="loi">Letter of Inquiry (LOI)</option>
+                                    <option value="full">Full Proposal</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        {/* Section Navigation */}
+                        <div className="flex-1 overflow-y-auto p-3 custom-scroll">
+                            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 px-3">Sections</p>
+                            <nav className="space-y-1">
+                                {sections.map(section => (
+                                    <div
+                                        key={section.id}
+                                        onClick={() => setActiveSection(section.id)}
+                                        className={`section-nav-item ${activeSection === section.id ? 'active' : ''} ${section.complete ? 'complete' : ''}`}
+                                    >
+                                        {section.complete ? (
+                                            <IconCheck className="w-4 h-4 flex-shrink-0" />
+                                        ) : (
+                                            <IconCircle className="w-4 h-4 flex-shrink-0 text-gray-300" />
+                                        )}
+                                        <span className="truncate">{section.title}</span>
+                                        {section.required && <span className="text-red-400 text-xs">*</span>}
+                                    </div>
+                                ))}
+                            </nav>
+
+                            {/* Attachments */}
+                            {Object.keys(attachments).length > 0 && (
+                                <div className="mt-4">
+                                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 px-3">Attachments</p>
+                                    <div className="space-y-1">
+                                        {Object.entries(attachments).map(([id, att]) => (
+                                            <label
+                                                key={id}
+                                                className="section-nav-item cursor-pointer"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    checked={att.uploaded}
+                                                    onChange={() => toggleAttachment(id)}
+                                                    className="w-4 h-4 text-grant-600 rounded"
+                                                />
+                                                <span className="truncate text-xs">{att.name}</span>
+                                                {att.required && <span className="text-red-400 text-xs">*</span>}
+                                            </label>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Actions */}
+                        <div className="p-3 border-t border-gray-100 space-y-2">
+                            {profiles.length > 0 && (
+                                <select
+                                    className="input-field text-xs"
+                                    onChange={(e) => loadProfile(e.target.value)}
+                                    defaultValue=""
+                                >
+                                    <option value="">Load Draft...</option>
+                                    {profiles.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
+                                </select>
+                            )}
+                            <div className="flex gap-2">
+                                <button onClick={saveProfile} className="btn btn-secondary flex-1 text-xs flex items-center justify-center gap-1">
+                                    <IconSave /> Save
+                                </button>
+                                <button onClick={handleDownload} disabled={isGenerating} className="btn btn-primary flex-1 text-xs flex items-center justify-center gap-1">
+                                    <IconDownload /> {isGenerating ? '...' : 'PDF'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* === MAIN CONTENT === */}
+                    <div className="flex-1 flex flex-col h-full overflow-hidden">
+
+                        {/* Project Info Bar */}
+                        <div className="p-4 bg-white border-b border-gray-200 no-print">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <input
+                                    type="text"
+                                    className="input-field"
+                                    placeholder="Project Title"
+                                    value={projectInfo.title}
+                                    onChange={(e) => setProjectInfo({...projectInfo, title: e.target.value})}
+                                />
+                                <input
+                                    type="text"
+                                    className="input-field"
+                                    placeholder="Organization"
+                                    value={projectInfo.organization}
+                                    onChange={(e) => setProjectInfo({...projectInfo, organization: e.target.value})}
+                                />
+                                <input
+                                    type="text"
+                                    className="input-field"
+                                    placeholder="Request Amount"
+                                    value={projectInfo.requestAmount}
+                                    onChange={(e) => setProjectInfo({...projectInfo, requestAmount: e.target.value})}
+                                />
+                                <input
+                                    type="text"
+                                    className="input-field"
+                                    placeholder="Duration"
+                                    value={projectInfo.duration}
+                                    onChange={(e) => setProjectInfo({...projectInfo, duration: e.target.value})}
+                                />
+                            </div>
+                        </div>
+
+                        {/* Editor Area */}
+                        <div className="flex-1 overflow-y-auto p-6 custom-scroll">
+                            {currentSection ? (
+                                <div className="max-w-3xl mx-auto space-y-4">
+                                    {/* Section Header */}
+                                    <div className="flex items-start justify-between">
+                                        <div>
+                                            <h2 className="text-xl font-bold text-gray-900">{currentSection.title}</h2>
+                                            {currentSection.maxLength && (
+                                                <p className="text-xs text-gray-500 mt-1">
+                                                    Suggested length: ~{currentSection.maxLength} words
+                                                    {currentSection.content && (
+                                                        <span className="ml-2">
+                                                            (Current: {currentSection.content.split(/\s+/).filter(Boolean).length})
+                                                        </span>
+                                                    )}
+                                                </p>
+                                            )}
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <button
+                                                onClick={() => copySection(currentSection.content)}
+                                                className="btn btn-secondary text-xs flex items-center gap-1"
+                                                disabled={!currentSection.content}
+                                            >
+                                                <IconCopy />
+                                                {copySuccess === activeSection ? 'Copied!' : 'Copy'}
+                                            </button>
+                                            <label className="flex items-center gap-2 cursor-pointer">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={currentSection.complete}
+                                                    onChange={() => toggleSectionComplete(activeSection)}
+                                                    className="w-4 h-4 text-grant-600 rounded"
+                                                />
+                                                <span className="text-xs font-medium text-gray-600">Complete</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    {/* Guidance Panel */}
+                                    {showGuidance && (
+                                        <div className="bg-grant-50 border border-grant-100 rounded-lg p-4">
+                                            <div className="flex items-start gap-2 mb-2">
+                                                <IconInfo className="text-grant-600 flex-shrink-0 mt-0.5" />
+                                                <div>
+                                                    <h3 className="font-semibold text-sm text-grant-900">Writing Guidance</h3>
+                                                    <p className="text-sm text-grant-700 mt-1">{currentSection.guidance}</p>
+                                                </div>
+                                            </div>
+                                            {currentSection.prompts && (
+                                                <div className="mt-3 pt-3 border-t border-grant-100">
+                                                    <p className="text-xs font-semibold text-grant-600 mb-2">Consider addressing:</p>
+                                                    <ul className="text-xs text-grant-700 space-y-1">
+                                                        {currentSection.prompts.map((prompt, i) => (
+                                                            <li key={i}>• {prompt}</li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            )}
+                                            <button
+                                                onClick={() => setShowGuidance(false)}
+                                                className="text-xs text-grant-600 hover:text-grant-800 mt-2"
+                                            >
+                                                Hide guidance
+                                            </button>
+                                        </div>
+                                    )}
+
+                                    {!showGuidance && (
+                                        <button
+                                            onClick={() => setShowGuidance(true)}
+                                            className="text-xs text-grant-600 hover:text-grant-800 flex items-center gap-1"
+                                        >
+                                            <IconInfo /> Show writing guidance
+                                        </button>
+                                    )}
+
+                                    {/* Content Editor */}
+                                    <textarea
+                                        className="input-field min-h-[300px] text-sm leading-relaxed"
+                                        placeholder={`Write your ${currentSection.title.toLowerCase()} here...`}
+                                        value={currentSection.content}
+                                        onChange={(e) => updateSection(activeSection, 'content', e.target.value)}
+                                    />
+
+                                    {/* Funder Tips */}
+                                    {template.tips && (
+                                        <div className="bg-yellow-50 border border-yellow-100 rounded-lg p-4">
+                                            <p className="text-xs font-semibold text-yellow-800 mb-1">
+                                                Tips for {template.name}
+                                            </p>
+                                            <p className="text-sm text-yellow-700">{template.tips}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <div className="flex items-center justify-center h-full text-gray-400">
+                                    Select a section to begin writing
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Hidden Preview for PDF Export */}
+                    <div id="proposal-preview" className="hidden print:block bg-white p-8" style={{ fontFamily: 'Open Sans, sans-serif' }}>
+                        <div className="text-center mb-8">
+                            <h1 className="text-2xl font-bold text-gray-900 mb-2">{projectInfo.title || 'Grant Proposal'}</h1>
+                            <p className="text-gray-600">{projectInfo.organization}</p>
+                            {projectInfo.requestAmount && (
+                                <p className="text-lg font-semibold text-grant-600 mt-2">
+                                    Request: {projectInfo.requestAmount} | Duration: {projectInfo.duration}
+                                </p>
+                            )}
+                            <p className="text-sm text-gray-500 mt-2">
+                                {proposalType === 'loi' ? 'Letter of Inquiry' : 'Full Proposal'} - {template.name}
+                            </p>
+                        </div>
+
+                        {sections.map((section, i) => (
+                            <div key={section.id} className="mb-6">
+                                <h2 className="text-lg font-bold text-gray-900 mb-2 border-b border-gray-200 pb-1">
+                                    {i + 1}. {section.title}
+                                </h2>
+                                <div className="text-sm text-gray-700 whitespace-pre-wrap leading-relaxed">
+                                    {section.content || <span className="text-gray-400 italic">[Content not yet written]</span>}
+                                </div>
+                            </div>
+                        ))}
+
+                        {/* Attachments Checklist */}
+                        {Object.keys(attachments).length > 0 && (
+                            <div className="mt-8 pt-6 border-t border-gray-200">
+                                <h2 className="text-lg font-bold text-gray-900 mb-3">Required Attachments</h2>
+                                <ul className="text-sm space-y-1">
+                                    {Object.entries(attachments).map(([id, att]) => (
+                                        <li key={id} className="flex items-center gap-2">
+                                            {att.uploaded ? (
+                                                <IconCheck className="text-green-600" />
+                                            ) : (
+                                                <IconCircle className="text-gray-300" />
+                                            )}
+                                            <span className={att.uploaded ? 'text-green-700' : 'text-gray-600'}>
+                                                {att.name}
+                                                {att.required && <span className="text-red-400">*</span>}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        <footer className="mt-8 pt-4 border-t border-gray-200 text-center text-xs text-gray-400">
+                            Generated with Grant Proposal Outline Generator by Center for Cooperative Media
+                        </footer>
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<GrantProposalGenerator />);
+    </script>
+</body>
+</html>

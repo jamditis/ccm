@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancer Rate Calculator | Center for Cooperative Media</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- React & DOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- PDF Lib -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'slide-up': 'slideUp 0.4s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .input-field {
+            @apply w-full px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm transition-all duration-200;
+        }
+        .input-field:focus {
+            @apply outline-none border-brand-500 ring-2 ring-brand-500/20;
+        }
+
+        .btn-primary {
+            @apply px-6 py-3 bg-brand-600 text-white rounded-lg font-semibold text-sm transition-all duration-200 hover:bg-brand-700 hover:shadow-lg hover:shadow-brand-600/25;
+        }
+
+        .btn-secondary {
+            @apply px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-medium text-sm transition-all duration-200 hover:bg-gray-200;
+        }
+
+        .card {
+            @apply bg-white rounded-xl shadow-sm border border-gray-100;
+        }
+
+        .section-title {
+            @apply text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3;
+        }
+
+        /* Custom Radio/Checkbox Styling */
+        .option-card {
+            @apply relative p-4 border-2 border-gray-100 rounded-lg cursor-pointer transition-all duration-200 hover:border-gray-200 hover:bg-gray-50;
+        }
+        .option-card.selected {
+            @apply border-brand-500 bg-brand-50;
+        }
+
+        /* Scrollbar */
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 3px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+
+        /* Print styles */
+        @media print {
+            body { background: white; }
+            .no-print { display: none !important; }
+        }
+
+        /* Mobile inputs */
+        @media screen and (max-width: 768px) {
+            input, select, textarea { font-size: 16px !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+
+        // --- ICONS ---
+        const IconCalculator = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>;
+        const IconCopy = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>;
+        const IconDownload = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>;
+        const IconInfo = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>;
+        const IconPlus = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>;
+        const IconTrash = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>;
+        const IconTrendingUp = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>;
+        const IconSave = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>;
+
+        // --- CONSTANTS ---
+        const PROJECT_TYPES = [
+            { id: 'article', name: 'Article/Story', icon: '📝', rateMethod: 'word' },
+            { id: 'photo', name: 'Photo Assignment', icon: '📸', rateMethod: 'project' },
+            { id: 'video', name: 'Video Production', icon: '🎬', rateMethod: 'project' },
+            { id: 'podcast', name: 'Podcast/Audio', icon: '🎙️', rateMethod: 'project' },
+            { id: 'social', name: 'Social Content', icon: '📱', rateMethod: 'project' },
+            { id: 'editing', name: 'Editing/Consulting', icon: '✏️', rateMethod: 'hour' },
+        ];
+
+        const RATE_METHODS = [
+            { id: 'word', name: 'Per Word', unit: 'words' },
+            { id: 'hour', name: 'Per Hour', unit: 'hours' },
+            { id: 'project', name: 'Per Project', unit: 'project' },
+            { id: 'day', name: 'Day Rate', unit: 'days' },
+        ];
+
+        const COMPLEXITY_LEVELS = {
+            research: [
+                { id: 'light', name: 'Light', multiplier: 1.0, description: 'Basic research, few sources' },
+                { id: 'moderate', name: 'Moderate', multiplier: 1.25, description: 'Multiple sources, some interviews' },
+                { id: 'deep', name: 'Deep', multiplier: 1.5, description: 'Extensive research, many interviews, data analysis' },
+            ],
+            turnaround: [
+                { id: 'standard', name: 'Standard', multiplier: 1.0, description: '1-2 weeks' },
+                { id: 'rush_week', name: 'Rush (1 week)', multiplier: 1.25, description: 'Under a week' },
+                { id: 'rush_48h', name: 'Rush (48hr)', multiplier: 1.5, description: '24-48 hours' },
+                { id: 'rush_24h', name: 'Rush (24hr)', multiplier: 2.0, description: 'Same day / next day' },
+            ],
+        };
+
+        const RIGHTS_OPTIONS = [
+            { id: 'fnasr', name: 'FNASR', multiplier: 1.0, description: 'First North American Serial Rights - you retain ownership' },
+            { id: 'exclusive_limited', name: 'Exclusive (Limited)', multiplier: 1.5, description: 'Exclusive for 30-90 days, then reverts' },
+            { id: 'exclusive_perpetual', name: 'Exclusive (Perpetual)', multiplier: 2.0, description: 'Permanent exclusive license' },
+            { id: 'work_for_hire', name: 'Work for Hire', multiplier: 2.5, description: 'Full transfer of copyright' },
+        ];
+
+        // Market benchmarks based on industry surveys (2024)
+        const BENCHMARKS = {
+            article: { low: 0.25, median: 0.50, high: 1.50, premium: 2.50, unit: 'per word' },
+            photo: { low: 150, median: 350, high: 750, premium: 1500, unit: 'per assignment' },
+            video: { low: 500, median: 1500, high: 3500, premium: 7500, unit: 'per project' },
+            podcast: { low: 200, median: 500, high: 1200, premium: 2500, unit: 'per episode' },
+            social: { low: 50, median: 150, high: 400, premium: 800, unit: 'per post/package' },
+            editing: { low: 35, median: 65, high: 125, premium: 200, unit: 'per hour' },
+        };
+
+        const FreelancerRateCalculator = () => {
+            // --- STATE ---
+            const [projectType, setProjectType] = useState('article');
+            const [rateMethod, setRateMethod] = useState('word');
+            const [baseRate, setBaseRate] = useState(0.50);
+            const [quantity, setQuantity] = useState(1000);
+
+            const [complexity, setComplexity] = useState({
+                research: 'light',
+                travel: false,
+                specialized: false,
+                interviews: 0,
+            });
+
+            const [turnaround, setTurnaround] = useState('standard');
+            const [rights, setRights] = useState('fnasr');
+
+            const [expenses, setExpenses] = useState([]);
+            const [clientName, setClientName] = useState('');
+            const [projectDescription, setProjectDescription] = useState('');
+
+            const [profiles, setProfiles] = useState([]);
+            const [showQuote, setShowQuote] = useState(false);
+            const [copySuccess, setCopySuccess] = useState(false);
+
+            // --- EFFECTS ---
+            useEffect(() => {
+                const savedProfiles = localStorage.getItem('rate_calculator_profiles');
+                if (savedProfiles) {
+                    setProfiles(JSON.parse(savedProfiles));
+                }
+            }, []);
+
+            // Update rate method when project type changes
+            useEffect(() => {
+                const type = PROJECT_TYPES.find(t => t.id === projectType);
+                if (type) {
+                    setRateMethod(type.rateMethod);
+                    // Set default base rate from benchmarks
+                    const benchmark = BENCHMARKS[projectType];
+                    if (benchmark) {
+                        setBaseRate(benchmark.median);
+                    }
+                }
+            }, [projectType]);
+
+            // --- CALCULATIONS ---
+            const calculations = useMemo(() => {
+                // Base calculation
+                let base = baseRate * quantity;
+
+                // Complexity multipliers
+                const researchMultiplier = COMPLEXITY_LEVELS.research.find(r => r.id === complexity.research)?.multiplier || 1;
+                const travelBonus = complexity.travel ? 0.15 : 0;
+                const specializedBonus = complexity.specialized ? 0.20 : 0;
+                const interviewBonus = complexity.interviews > 0 ? Math.min(complexity.interviews * 0.05, 0.25) : 0;
+
+                const complexityMultiplier = researchMultiplier + travelBonus + specializedBonus + interviewBonus;
+                const afterComplexity = base * complexityMultiplier;
+
+                // Turnaround multiplier
+                const turnaroundMultiplier = COMPLEXITY_LEVELS.turnaround.find(t => t.id === turnaround)?.multiplier || 1;
+                const afterTurnaround = afterComplexity * turnaroundMultiplier;
+
+                // Rights multiplier
+                const rightsMultiplier = RIGHTS_OPTIONS.find(r => r.id === rights)?.multiplier || 1;
+                const afterRights = afterTurnaround * rightsMultiplier;
+
+                // Expenses
+                const totalExpenses = expenses.reduce((sum, exp) => sum + (parseFloat(exp.cost) || 0), 0);
+
+                // Final total
+                const total = afterRights + totalExpenses;
+
+                // Kill fee (25-50%)
+                const killFee = total * 0.33;
+
+                // Market comparison
+                const benchmark = BENCHMARKS[projectType];
+                let marketPosition = 'median';
+                const effectiveRate = total / quantity;
+                if (benchmark) {
+                    if (effectiveRate < benchmark.low) marketPosition = 'below';
+                    else if (effectiveRate < benchmark.median) marketPosition = 'low';
+                    else if (effectiveRate < benchmark.high) marketPosition = 'median';
+                    else if (effectiveRate < benchmark.premium) marketPosition = 'high';
+                    else marketPosition = 'premium';
+                }
+
+                return {
+                    base,
+                    complexityMultiplier,
+                    afterComplexity,
+                    turnaroundMultiplier,
+                    afterTurnaround,
+                    rightsMultiplier,
+                    afterRights,
+                    totalExpenses,
+                    total,
+                    killFee,
+                    marketPosition,
+                    effectiveRate,
+                };
+            }, [baseRate, quantity, complexity, turnaround, rights, expenses, projectType]);
+
+            // --- HANDLERS ---
+            const addExpense = () => {
+                setExpenses([...expenses, { id: Date.now(), item: '', cost: 0 }]);
+            };
+
+            const updateExpense = (id, field, value) => {
+                setExpenses(expenses.map(exp =>
+                    exp.id === id ? { ...exp, [field]: value } : exp
+                ));
+            };
+
+            const removeExpense = (id) => {
+                setExpenses(expenses.filter(exp => exp.id !== id));
+            };
+
+            const saveProfile = () => {
+                const name = prompt("Profile name (e.g., 'Standard Article Rate'):");
+                if (!name) return;
+
+                const newProfile = {
+                    id: Date.now(),
+                    name,
+                    data: { projectType, rateMethod, baseRate, complexity, turnaround, rights }
+                };
+
+                const updatedProfiles = [...profiles, newProfile];
+                setProfiles(updatedProfiles);
+                localStorage.setItem('rate_calculator_profiles', JSON.stringify(updatedProfiles));
+            };
+
+            const loadProfile = (profileId) => {
+                const profile = profiles.find(p => p.id === Number(profileId));
+                if (profile) {
+                    setProjectType(profile.data.projectType);
+                    setRateMethod(profile.data.rateMethod);
+                    setBaseRate(profile.data.baseRate);
+                    setComplexity(profile.data.complexity);
+                    setTurnaround(profile.data.turnaround);
+                    setRights(profile.data.rights);
+                }
+            };
+
+            const generateQuoteText = () => {
+                const typeInfo = PROJECT_TYPES.find(t => t.id === projectType);
+                const methodInfo = RATE_METHODS.find(m => m.id === rateMethod);
+                const rightsInfo = RIGHTS_OPTIONS.find(r => r.id === rights);
+                const turnaroundInfo = COMPLEXITY_LEVELS.turnaround.find(t => t.id === turnaround);
+
+                return `RATE QUOTE
+${clientName ? `\nTo: ${clientName}` : ''}
+Date: ${new Date().toLocaleDateString()}
+${projectDescription ? `\nProject: ${projectDescription}` : ''}
+
+PROJECT TYPE: ${typeInfo?.name}
+
+RATE BREAKDOWN:
+• Base Rate: $${baseRate.toFixed(2)} ${methodInfo?.unit === 'words' ? 'per word' : methodInfo?.unit === 'hours' ? 'per hour' : methodInfo?.unit === 'days' ? 'per day' : 'flat rate'}
+• Quantity: ${quantity.toLocaleString()} ${methodInfo?.unit}
+• Subtotal: $${calculations.base.toFixed(2)}
+
+ADJUSTMENTS:
+• Complexity Factor: ${((calculations.complexityMultiplier - 1) * 100).toFixed(0)}% adjustment
+• Turnaround: ${turnaroundInfo?.name} (${((calculations.turnaroundMultiplier - 1) * 100).toFixed(0)}% adjustment)
+• Rights: ${rightsInfo?.name} (${((calculations.rightsMultiplier - 1) * 100).toFixed(0)}% premium)
+${expenses.length > 0 ? `• Expenses: $${calculations.totalExpenses.toFixed(2)}` : ''}
+
+TOTAL QUOTE: $${calculations.total.toFixed(2)}
+
+TERMS:
+• Kill Fee: $${calculations.killFee.toFixed(2)} (33% of total)
+• Rights Granted: ${rightsInfo?.description}
+• Payment: Net 30 upon delivery
+
+This quote is valid for 14 days from the date above.`;
+            };
+
+            const copyQuote = async () => {
+                try {
+                    await navigator.clipboard.writeText(generateQuoteText());
+                    setCopySuccess(true);
+                    setTimeout(() => setCopySuccess(false), 2000);
+                } catch (err) {
+                    console.error('Failed to copy:', err);
+                }
+            };
+
+            const downloadQuote = () => {
+                const element = document.getElementById('quote-content');
+                const opt = {
+                    margin: 0.75,
+                    filename: `Rate_Quote_${new Date().toISOString().split('T')[0]}.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                };
+                html2pdf().set(opt).from(element).save();
+            };
+
+            const getMarketPositionColor = (position) => {
+                const colors = {
+                    below: 'text-red-600 bg-red-50',
+                    low: 'text-orange-600 bg-orange-50',
+                    median: 'text-blue-600 bg-blue-50',
+                    high: 'text-green-600 bg-green-50',
+                    premium: 'text-purple-600 bg-purple-50',
+                };
+                return colors[position] || colors.median;
+            };
+
+            const benchmark = BENCHMARKS[projectType];
+
+            return (
+                <div className="min-h-screen p-4 md:p-8">
+                    <div className="max-w-6xl mx-auto">
+
+                        {/* Header */}
+                        <header className="mb-8 animate-fade-in">
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 bg-brand-600 rounded-xl flex items-center justify-center shadow-lg shadow-brand-600/25">
+                                        <IconCalculator className="text-white" />
+                                    </div>
+                                    <div>
+                                        <h1 className="text-2xl font-bold text-gray-900">Freelancer Rate Calculator</h1>
+                                        <p className="text-sm text-gray-500">Calculate fair rates for journalism projects</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-center gap-2">
+                                    {profiles.length > 0 && (
+                                        <select
+                                            className="input-field py-2 text-sm"
+                                            onChange={(e) => loadProfile(e.target.value)}
+                                            defaultValue=""
+                                        >
+                                            <option value="">Load Profile...</option>
+                                            {profiles.map(p => (
+                                                <option key={p.id} value={p.id}>{p.name}</option>
+                                            ))}
+                                        </select>
+                                    )}
+                                    <button onClick={saveProfile} className="btn-secondary flex items-center gap-2">
+                                        <IconSave /> Save
+                                    </button>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div className="grid lg:grid-cols-3 gap-6">
+
+                            {/* Left Column - Calculator Inputs */}
+                            <div className="lg:col-span-2 space-y-6">
+
+                                {/* Project Type */}
+                                <section className="card p-6 animate-slide-up" style={{animationDelay: '0.1s'}}>
+                                    <h2 className="section-title">Project Type</h2>
+                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                        {PROJECT_TYPES.map(type => (
+                                            <div
+                                                key={type.id}
+                                                onClick={() => setProjectType(type.id)}
+                                                className={`option-card ${projectType === type.id ? 'selected' : ''}`}
+                                            >
+                                                <span className="text-2xl mb-2 block">{type.icon}</span>
+                                                <span className="text-sm font-medium text-gray-900">{type.name}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </section>
+
+                                {/* Base Rate */}
+                                <section className="card p-6 animate-slide-up" style={{animationDelay: '0.15s'}}>
+                                    <h2 className="section-title">Base Rate</h2>
+                                    <div className="grid md:grid-cols-3 gap-4">
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-2">Rate Method</label>
+                                            <select
+                                                className="input-field"
+                                                value={rateMethod}
+                                                onChange={(e) => setRateMethod(e.target.value)}
+                                            >
+                                                {RATE_METHODS.map(method => (
+                                                    <option key={method.id} value={method.id}>{method.name}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                Rate ($)
+                                            </label>
+                                            <input
+                                                type="number"
+                                                step="0.01"
+                                                className="input-field font-mono"
+                                                value={baseRate}
+                                                onChange={(e) => setBaseRate(parseFloat(e.target.value) || 0)}
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                {RATE_METHODS.find(m => m.id === rateMethod)?.unit === 'project'
+                                                    ? 'Quantity'
+                                                    : `Number of ${RATE_METHODS.find(m => m.id === rateMethod)?.unit}`}
+                                            </label>
+                                            <input
+                                                type="number"
+                                                className="input-field font-mono"
+                                                value={quantity}
+                                                onChange={(e) => setQuantity(parseInt(e.target.value) || 0)}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Market Benchmark */}
+                                    {benchmark && (
+                                        <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+                                            <div className="flex items-center gap-2 mb-2">
+                                                <IconTrendingUp className="text-gray-400" />
+                                                <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Market Benchmarks ({benchmark.unit})</span>
+                                            </div>
+                                            <div className="flex gap-4 text-sm">
+                                                <span className="text-gray-500">Low: <strong className="text-gray-900">${benchmark.low}</strong></span>
+                                                <span className="text-gray-500">Median: <strong className="text-gray-900">${benchmark.median}</strong></span>
+                                                <span className="text-gray-500">High: <strong className="text-gray-900">${benchmark.high}</strong></span>
+                                                <span className="text-gray-500">Premium: <strong className="text-gray-900">${benchmark.premium}</strong></span>
+                                            </div>
+                                        </div>
+                                    )}
+                                </section>
+
+                                {/* Complexity Factors */}
+                                <section className="card p-6 animate-slide-up" style={{animationDelay: '0.2s'}}>
+                                    <h2 className="section-title">Complexity Factors</h2>
+
+                                    <div className="space-y-4">
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-2">Research Depth</label>
+                                            <div className="grid grid-cols-3 gap-3">
+                                                {COMPLEXITY_LEVELS.research.map(level => (
+                                                    <div
+                                                        key={level.id}
+                                                        onClick={() => setComplexity({...complexity, research: level.id})}
+                                                        className={`option-card text-center ${complexity.research === level.id ? 'selected' : ''}`}
+                                                    >
+                                                        <span className="text-sm font-medium block">{level.name}</span>
+                                                        <span className="text-xs text-gray-500">{level.description}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div className="grid md:grid-cols-3 gap-4">
+                                            <label className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors">
+                                                <input
+                                                    type="checkbox"
+                                                    className="w-4 h-4 text-brand-600 rounded"
+                                                    checked={complexity.travel}
+                                                    onChange={(e) => setComplexity({...complexity, travel: e.target.checked})}
+                                                />
+                                                <div>
+                                                    <span className="text-sm font-medium text-gray-900">Travel Required</span>
+                                                    <span className="text-xs text-gray-500 block">+15%</span>
+                                                </div>
+                                            </label>
+
+                                            <label className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors">
+                                                <input
+                                                    type="checkbox"
+                                                    className="w-4 h-4 text-brand-600 rounded"
+                                                    checked={complexity.specialized}
+                                                    onChange={(e) => setComplexity({...complexity, specialized: e.target.checked})}
+                                                />
+                                                <div>
+                                                    <span className="text-sm font-medium text-gray-900">Specialized Expertise</span>
+                                                    <span className="text-xs text-gray-500 block">+20%</span>
+                                                </div>
+                                            </label>
+
+                                            <div>
+                                                <label className="block text-sm font-medium text-gray-700 mb-1">Interviews</label>
+                                                <input
+                                                    type="number"
+                                                    min="0"
+                                                    className="input-field py-2"
+                                                    value={complexity.interviews}
+                                                    onChange={(e) => setComplexity({...complexity, interviews: parseInt(e.target.value) || 0})}
+                                                    placeholder="Number"
+                                                />
+                                                <span className="text-xs text-gray-500">+5% each (max 25%)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                {/* Turnaround & Rights */}
+                                <section className="card p-6 animate-slide-up" style={{animationDelay: '0.25s'}}>
+                                    <div className="grid md:grid-cols-2 gap-6">
+                                        <div>
+                                            <h2 className="section-title">Turnaround Time</h2>
+                                            <div className="space-y-2">
+                                                {COMPLEXITY_LEVELS.turnaround.map(level => (
+                                                    <label
+                                                        key={level.id}
+                                                        className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-colors ${turnaround === level.id ? 'bg-brand-50 border border-brand-200' : 'bg-gray-50 hover:bg-gray-100'}`}
+                                                    >
+                                                        <input
+                                                            type="radio"
+                                                            name="turnaround"
+                                                            className="w-4 h-4 text-brand-600"
+                                                            checked={turnaround === level.id}
+                                                            onChange={() => setTurnaround(level.id)}
+                                                        />
+                                                        <div className="flex-1">
+                                                            <span className="text-sm font-medium text-gray-900">{level.name}</span>
+                                                            <span className="text-xs text-gray-500 block">{level.description}</span>
+                                                        </div>
+                                                        {level.multiplier > 1 && (
+                                                            <span className="text-xs font-medium text-orange-600">+{((level.multiplier - 1) * 100).toFixed(0)}%</span>
+                                                        )}
+                                                    </label>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <h2 className="section-title">Rights & Licensing</h2>
+                                            <div className="space-y-2">
+                                                {RIGHTS_OPTIONS.map(option => (
+                                                    <label
+                                                        key={option.id}
+                                                        className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-colors ${rights === option.id ? 'bg-brand-50 border border-brand-200' : 'bg-gray-50 hover:bg-gray-100'}`}
+                                                    >
+                                                        <input
+                                                            type="radio"
+                                                            name="rights"
+                                                            className="w-4 h-4 text-brand-600"
+                                                            checked={rights === option.id}
+                                                            onChange={() => setRights(option.id)}
+                                                        />
+                                                        <div className="flex-1">
+                                                            <span className="text-sm font-medium text-gray-900">{option.name}</span>
+                                                            <span className="text-xs text-gray-500 block">{option.description}</span>
+                                                        </div>
+                                                        {option.multiplier > 1 && (
+                                                            <span className="text-xs font-medium text-purple-600">+{((option.multiplier - 1) * 100).toFixed(0)}%</span>
+                                                        )}
+                                                    </label>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                {/* Expenses */}
+                                <section className="card p-6 animate-slide-up" style={{animationDelay: '0.3s'}}>
+                                    <h2 className="section-title">Expenses</h2>
+
+                                    <div className="space-y-3">
+                                        {expenses.map(expense => (
+                                            <div key={expense.id} className="flex gap-3 items-center">
+                                                <input
+                                                    type="text"
+                                                    placeholder="Item description"
+                                                    className="input-field flex-1"
+                                                    value={expense.item}
+                                                    onChange={(e) => updateExpense(expense.id, 'item', e.target.value)}
+                                                />
+                                                <div className="relative">
+                                                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">$</span>
+                                                    <input
+                                                        type="number"
+                                                        step="0.01"
+                                                        placeholder="0.00"
+                                                        className="input-field w-32 pl-7 font-mono"
+                                                        value={expense.cost}
+                                                        onChange={(e) => updateExpense(expense.id, 'cost', e.target.value)}
+                                                    />
+                                                </div>
+                                                <button
+                                                    onClick={() => removeExpense(expense.id)}
+                                                    className="p-2 text-gray-400 hover:text-red-500 transition-colors"
+                                                >
+                                                    <IconTrash />
+                                                </button>
+                                            </div>
+                                        ))}
+
+                                        <button
+                                            onClick={addExpense}
+                                            className="w-full py-3 border-2 border-dashed border-gray-200 rounded-lg text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-600 transition-colors flex items-center justify-center gap-2"
+                                        >
+                                            <IconPlus /> Add Expense
+                                        </button>
+                                    </div>
+                                </section>
+                            </div>
+
+                            {/* Right Column - Results */}
+                            <div className="space-y-6">
+
+                                {/* Total Card */}
+                                <div className="card p-6 bg-gradient-to-br from-brand-600 to-brand-700 text-white sticky top-4 animate-slide-up">
+                                    <div className="text-center mb-6">
+                                        <p className="text-brand-100 text-sm font-medium uppercase tracking-wider mb-2">Total Quote</p>
+                                        <p className="text-5xl font-bold font-mono">
+                                            ${calculations.total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                        </p>
+                                    </div>
+
+                                    {/* Market Position */}
+                                    <div className={`text-center mb-6 py-2 px-4 rounded-lg ${getMarketPositionColor(calculations.marketPosition)}`}>
+                                        <span className="text-xs font-semibold uppercase tracking-wider">
+                                            {calculations.marketPosition} Market Rate
+                                        </span>
+                                    </div>
+
+                                    {/* Breakdown */}
+                                    <div className="space-y-3 text-sm">
+                                        <div className="flex justify-between">
+                                            <span className="text-brand-100">Base</span>
+                                            <span className="font-mono">${calculations.base.toFixed(2)}</span>
+                                        </div>
+                                        {calculations.complexityMultiplier !== 1 && (
+                                            <div className="flex justify-between">
+                                                <span className="text-brand-100">Complexity</span>
+                                                <span className="font-mono">×{calculations.complexityMultiplier.toFixed(2)}</span>
+                                            </div>
+                                        )}
+                                        {calculations.turnaroundMultiplier !== 1 && (
+                                            <div className="flex justify-between">
+                                                <span className="text-brand-100">Rush Fee</span>
+                                                <span className="font-mono">×{calculations.turnaroundMultiplier.toFixed(2)}</span>
+                                            </div>
+                                        )}
+                                        {calculations.rightsMultiplier !== 1 && (
+                                            <div className="flex justify-between">
+                                                <span className="text-brand-100">Rights Premium</span>
+                                                <span className="font-mono">×{calculations.rightsMultiplier.toFixed(2)}</span>
+                                            </div>
+                                        )}
+                                        {calculations.totalExpenses > 0 && (
+                                            <div className="flex justify-between">
+                                                <span className="text-brand-100">Expenses</span>
+                                                <span className="font-mono">+${calculations.totalExpenses.toFixed(2)}</span>
+                                            </div>
+                                        )}
+                                        <div className="border-t border-brand-500 pt-3 flex justify-between">
+                                            <span className="text-brand-100">Kill Fee (33%)</span>
+                                            <span className="font-mono">${calculations.killFee.toFixed(2)}</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Actions */}
+                                    <div className="mt-6 space-y-2">
+                                        <button
+                                            onClick={() => setShowQuote(true)}
+                                            className="w-full py-3 bg-white text-brand-700 rounded-lg font-semibold text-sm hover:bg-brand-50 transition-colors"
+                                        >
+                                            Generate Quote
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Tips */}
+                                <div className="card p-6 animate-slide-up" style={{animationDelay: '0.35s'}}>
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <IconInfo className="text-blue-500" />
+                                        <h3 className="text-sm font-semibold text-gray-900">Rate Tips</h3>
+                                    </div>
+                                    <ul className="text-xs text-gray-600 space-y-2">
+                                        <li>• Always charge for research time and interviews</li>
+                                        <li>• Rush fees compensate for disrupted schedules</li>
+                                        <li>• Work-for-hire should command premium rates</li>
+                                        <li>• Include kill fees in your contract</li>
+                                        <li>• Track expenses separately for reimbursement</li>
+                                    </ul>
+                                </div>
+
+                                {/* Attribution */}
+                                <div className="text-center py-4 text-xs text-gray-400">
+                                    <p>Freelancer Rate Calculator</p>
+                                    <p>© 2025 <a href="https://centerforcooperativemedia.org/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-600">Center for Cooperative Media</a></p>
+                                    <p className="mt-1">Created by <a href="https://twitter.com/jsamditis" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-brand-600">Joe Amditis</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Quote Modal */}
+                    {showQuote && (
+                        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50" onClick={() => setShowQuote(false)}>
+                            <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden" onClick={e => e.stopPropagation()}>
+                                <div className="p-4 border-b border-gray-100 flex items-center justify-between">
+                                    <h3 className="font-semibold text-gray-900">Rate Quote</h3>
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            onClick={copyQuote}
+                                            className={`btn-secondary flex items-center gap-2 ${copySuccess ? 'bg-green-100 text-green-700' : ''}`}
+                                        >
+                                            <IconCopy /> {copySuccess ? 'Copied!' : 'Copy'}
+                                        </button>
+                                        <button onClick={downloadQuote} className="btn-secondary flex items-center gap-2">
+                                            <IconDownload /> PDF
+                                        </button>
+                                        <button onClick={() => setShowQuote(false)} className="p-2 text-gray-400 hover:text-gray-600">
+                                            ×
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div className="p-6 overflow-y-auto max-h-[calc(90vh-80px)]">
+                                    {/* Client Info */}
+                                    <div className="mb-4 grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label className="block text-xs font-medium text-gray-500 mb-1">Client Name (optional)</label>
+                                            <input
+                                                type="text"
+                                                className="input-field py-2"
+                                                placeholder="Client or publication name"
+                                                value={clientName}
+                                                onChange={(e) => setClientName(e.target.value)}
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-medium text-gray-500 mb-1">Project Description (optional)</label>
+                                            <input
+                                                type="text"
+                                                className="input-field py-2"
+                                                placeholder="Brief description"
+                                                value={projectDescription}
+                                                onChange={(e) => setProjectDescription(e.target.value)}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Quote Preview */}
+                                    <div id="quote-content" className="bg-gray-50 rounded-lg p-6 font-mono text-sm whitespace-pre-wrap text-gray-700">
+                                        {generateQuoteText()}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<FreelancerRateCalculator />);
+    </script>
+</body>
+</html>
