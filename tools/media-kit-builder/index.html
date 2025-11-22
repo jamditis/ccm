@@ -291,6 +291,180 @@
             }
         };
 
+        // --- MEDIA KIT TEMPLATES ---
+        const MEDIA_KIT_TEMPLATES = {
+            local_newspaper: {
+                id: 'local_newspaper',
+                name: 'Local Newspaper',
+                description: 'Traditional local news outlet with print and digital presence',
+                icon: '📰',
+                color: '#1a1d24',
+                organization: {
+                    tagline: 'Your trusted source for local news',
+                    mission: 'We are committed to delivering accurate, timely, and relevant news coverage that keeps our community informed and engaged. Our journalism upholds the highest standards of integrity while serving the public interest.',
+                    foundedYear: 1985
+                },
+                audience: {
+                    totalReach: 50000,
+                    demographics: {
+                        ageRanges: [
+                            { range: '18-24', percentage: 8 },
+                            { range: '25-34', percentage: 18 },
+                            { range: '35-44', percentage: 22 },
+                            { range: '45-54', percentage: 26 },
+                            { range: '55+', percentage: 26 }
+                        ],
+                        locations: [
+                            { area: 'City Center', percentage: 40 },
+                            { area: 'Suburbs', percentage: 35 },
+                            { area: 'Rural Areas', percentage: 25 }
+                        ],
+                        interests: ['Local News', 'Politics', 'Community Events', 'Sports', 'Business']
+                    }
+                },
+                platforms: [
+                    { name: 'Website', enabled: true },
+                    { name: 'Newsletter', enabled: true },
+                    { name: 'Social Media', enabled: true },
+                    { name: 'Podcast', enabled: false },
+                    { name: 'Print', enabled: true }
+                ],
+                theme: {
+                    primaryColor: '#1a1d24',
+                    accentColor: '#c86d39'
+                }
+            },
+            digital_outlet: {
+                id: 'digital_outlet',
+                name: 'Digital-Only Outlet',
+                description: 'Modern digital news organization focused on web and social',
+                icon: '💻',
+                color: '#2563eb',
+                organization: {
+                    tagline: 'News for the digital age',
+                    mission: 'We deliver fast, accurate news coverage optimized for how modern readers consume information. Our digital-first approach ensures our audience stays informed across all their devices.',
+                    foundedYear: 2018
+                },
+                audience: {
+                    totalReach: 150000,
+                    demographics: {
+                        ageRanges: [
+                            { range: '18-24', percentage: 22 },
+                            { range: '25-34', percentage: 35 },
+                            { range: '35-44', percentage: 25 },
+                            { range: '45-54', percentage: 12 },
+                            { range: '55+', percentage: 6 }
+                        ],
+                        locations: [
+                            { area: 'Metro Area', percentage: 60 },
+                            { area: 'Statewide', percentage: 30 },
+                            { area: 'National', percentage: 10 }
+                        ],
+                        interests: ['Breaking News', 'Technology', 'Politics', 'Culture', 'Business']
+                    }
+                },
+                platforms: [
+                    { name: 'Website', enabled: true },
+                    { name: 'Newsletter', enabled: true },
+                    { name: 'Social Media', enabled: true },
+                    { name: 'Podcast', enabled: false },
+                    { name: 'Print', enabled: false }
+                ],
+                theme: {
+                    primaryColor: '#2563eb',
+                    accentColor: '#f59e0b'
+                }
+            },
+            podcast_network: {
+                id: 'podcast_network',
+                name: 'Podcast Network',
+                description: 'Audio-first news and storytelling organization',
+                icon: '🎙️',
+                color: '#7c3aed',
+                organization: {
+                    tagline: 'Stories worth hearing',
+                    mission: 'We produce compelling audio journalism that informs, entertains, and connects listeners to the stories that matter. Our podcasts combine rigorous reporting with engaging storytelling.',
+                    foundedYear: 2019
+                },
+                audience: {
+                    totalReach: 75000,
+                    demographics: {
+                        ageRanges: [
+                            { range: '18-24', percentage: 18 },
+                            { range: '25-34', percentage: 38 },
+                            { range: '35-44', percentage: 28 },
+                            { range: '45-54', percentage: 12 },
+                            { range: '55+', percentage: 4 }
+                        ],
+                        locations: [
+                            { area: 'National', percentage: 70 },
+                            { area: 'Regional', percentage: 20 },
+                            { area: 'International', percentage: 10 }
+                        ],
+                        interests: ['Podcasts', 'Investigative Journalism', 'True Crime', 'Politics', 'Culture']
+                    }
+                },
+                platforms: [
+                    { name: 'Website', enabled: true },
+                    { name: 'Newsletter', enabled: true },
+                    { name: 'Social Media', enabled: true },
+                    { name: 'Podcast', enabled: true },
+                    { name: 'Print', enabled: false }
+                ],
+                theme: {
+                    primaryColor: '#7c3aed',
+                    accentColor: '#ec4899'
+                }
+            },
+            newsletter_publisher: {
+                id: 'newsletter_publisher',
+                name: 'Newsletter Publisher',
+                description: 'Email-first publication with dedicated subscriber base',
+                icon: '📧',
+                color: '#059669',
+                organization: {
+                    tagline: 'Curated news, delivered daily',
+                    mission: 'We cut through the noise to deliver the news that matters most, directly to your inbox. Our newsletters are carefully curated to save you time while keeping you informed.',
+                    foundedYear: 2020
+                },
+                audience: {
+                    totalReach: 25000,
+                    demographics: {
+                        ageRanges: [
+                            { range: '18-24', percentage: 12 },
+                            { range: '25-34', percentage: 32 },
+                            { range: '35-44', percentage: 30 },
+                            { range: '45-54', percentage: 18 },
+                            { range: '55+', percentage: 8 }
+                        ],
+                        locations: [
+                            { area: 'Urban Professionals', percentage: 55 },
+                            { area: 'Suburban', percentage: 30 },
+                            { area: 'Other', percentage: 15 }
+                        ],
+                        interests: ['Business', 'Finance', 'Technology', 'Career', 'Industry News']
+                    }
+                },
+                platforms: [
+                    { name: 'Website', enabled: false },
+                    { name: 'Newsletter', enabled: true },
+                    { name: 'Social Media', enabled: true },
+                    { name: 'Podcast', enabled: false },
+                    { name: 'Print', enabled: false }
+                ],
+                theme: {
+                    primaryColor: '#059669',
+                    accentColor: '#d68344'
+                }
+            }
+        };
+
+        // Icon for templates
+        const IconTemplate = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>;
+        const IconPackage = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16.5 9.4l-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>;
+        const IconUpload = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>;
+        const IconDatabase = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>;
+
         // --- DEFAULT PLATFORMS ---
         const getDefaultPlatforms = () => [
             {
@@ -402,6 +576,7 @@
 
             const [platforms, setPlatforms] = useState(getDefaultPlatforms());
             const [testimonials, setTestimonials] = useState([]);
+            const [packages, setPackages] = useState([]);
             const [rateTemplate, setRateTemplate] = useState('standard');
 
             const [theme, setTheme] = useState({
@@ -414,7 +589,12 @@
             const [isGenerating, setIsGenerating] = useState(false);
             const [exportType, setExportType] = useState('pdf');
             const [draggedPlatform, setDraggedPlatform] = useState(null);
+            const [showTemplateModal, setShowTemplateModal] = useState(false);
+            const [showImportExportModal, setShowImportExportModal] = useState(false);
+            const [importExportTab, setImportExportTab] = useState('export');
+            const [isDraggingFile, setIsDraggingFile] = useState(false);
             const autoSaveRef = useRef(null);
+            const fileInputRef = useRef(null);
 
             // --- COMPUTED VALUES ---
             const completionPercentage = React.useMemo(() => {
@@ -462,11 +642,12 @@
                 // Auto-save draft
                 const draft = localStorage.getItem('media_kit_draft');
                 if (draft) {
-                    const { organization: org, audience: aud, platforms: plat, testimonials: test, theme: th, rateTemplate: rt } = JSON.parse(draft);
+                    const { organization: org, audience: aud, platforms: plat, testimonials: test, packages: pkg, theme: th, rateTemplate: rt } = JSON.parse(draft);
                     if (org) setOrganization(org);
                     if (aud) setAudience(aud);
                     if (plat) setPlatforms(plat);
                     if (test) setTestimonials(test);
+                    if (pkg) setPackages(pkg);
                     if (th) setTheme(th);
                     if (rt) setRateTemplate(rt);
                 }
@@ -489,10 +670,10 @@
                 if (autoSaveRef.current) clearTimeout(autoSaveRef.current);
                 autoSaveRef.current = setTimeout(() => {
                     localStorage.setItem('media_kit_draft', JSON.stringify({
-                        organization, audience, platforms, testimonials, theme, rateTemplate
+                        organization, audience, platforms, testimonials, packages, theme, rateTemplate
                     }));
                 }, 1000);
-            }, [organization, audience, platforms, testimonials, theme, rateTemplate]);
+            }, [organization, audience, platforms, testimonials, packages, theme, rateTemplate]);
 
             // --- HANDLERS ---
             const toggleSection = (section) => {
@@ -623,6 +804,243 @@
                 setTestimonials(prev => prev.filter(t => t.id !== id));
             };
 
+            // Package management
+            const addPackage = () => {
+                setPackages([...packages, {
+                    id: Date.now(),
+                    name: '',
+                    description: '',
+                    items: [],
+                    totalValue: '',
+                    price: '',
+                    savings: ''
+                }]);
+            };
+
+            const updatePackage = (id, field, value) => {
+                setPackages(prev => prev.map(p =>
+                    p.id === id ? { ...p, [field]: value } : p
+                ));
+            };
+
+            const removePackage = (id) => {
+                setPackages(prev => prev.filter(p => p.id !== id));
+            };
+
+            const addPackageItem = (packageId) => {
+                setPackages(prev => prev.map(p => {
+                    if (p.id === packageId) {
+                        return {
+                            ...p,
+                            items: [...p.items, { id: Date.now(), platform: '', adOption: '', quantity: 1 }]
+                        };
+                    }
+                    return p;
+                }));
+            };
+
+            const updatePackageItem = (packageId, itemId, field, value) => {
+                setPackages(prev => prev.map(p => {
+                    if (p.id === packageId) {
+                        return {
+                            ...p,
+                            items: p.items.map(item =>
+                                item.id === itemId ? { ...item, [field]: value } : item
+                            )
+                        };
+                    }
+                    return p;
+                }));
+            };
+
+            const removePackageItem = (packageId, itemId) => {
+                setPackages(prev => prev.map(p => {
+                    if (p.id === packageId) {
+                        return {
+                            ...p,
+                            items: p.items.filter(item => item.id !== itemId)
+                        };
+                    }
+                    return p;
+                }));
+            };
+
+            const addPresetPackage = (preset) => {
+                const enabledPlatformsList = platforms.filter(p => p.enabled);
+                if (enabledPlatformsList.length === 0) {
+                    addToast('Enable at least one platform first', 'error');
+                    return;
+                }
+
+                let newPackage = {
+                    id: Date.now(),
+                    name: '',
+                    description: '',
+                    items: [],
+                    totalValue: '',
+                    price: '',
+                    savings: '10%'
+                };
+
+                if (preset === 'starter') {
+                    newPackage.name = 'Starter Package';
+                    newPackage.description = 'Perfect for testing the waters with our audience';
+                    newPackage.savings = '10%';
+                } else if (preset === 'growth') {
+                    newPackage.name = 'Growth Package';
+                    newPackage.description = 'Increased visibility across multiple channels';
+                    newPackage.savings = '15%';
+                } else if (preset === 'premium') {
+                    newPackage.name = 'Premium Package';
+                    newPackage.description = 'Maximum exposure with priority placement';
+                    newPackage.savings = '20%';
+                }
+
+                setPackages([...packages, newPackage]);
+                addToast(`${newPackage.name} added`, 'success');
+            };
+
+            // Export data as JSON
+            const exportData = () => {
+                const data = {
+                    version: '1.0',
+                    exportDate: new Date().toISOString(),
+                    organization,
+                    audience,
+                    platforms,
+                    testimonials,
+                    packages,
+                    theme,
+                    rateTemplate
+                };
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `${organization.name || 'MediaKit'}_backup_${new Date().toISOString().split('T')[0]}.json`;
+                link.click();
+                URL.revokeObjectURL(url);
+                addToast('Data exported successfully', 'success');
+                setShowImportExportModal(false);
+            };
+
+            // Import data from JSON
+            const importData = (file) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const data = JSON.parse(e.target.result);
+
+                        // Validate it's a media kit export
+                        if (!data.organization || !data.audience) {
+                            throw new Error('Invalid media kit file');
+                        }
+
+                        // Import all data
+                        if (data.organization) setOrganization(data.organization);
+                        if (data.audience) setAudience(data.audience);
+                        if (data.platforms) setPlatforms(data.platforms);
+                        if (data.testimonials) setTestimonials(data.testimonials);
+                        if (data.packages) setPackages(data.packages);
+                        if (data.theme) setTheme(data.theme);
+                        if (data.rateTemplate) setRateTemplate(data.rateTemplate);
+
+                        addToast('Data imported successfully', 'success');
+                        setShowImportExportModal(false);
+                    } catch (error) {
+                        addToast('Failed to import: Invalid file format', 'error');
+                        console.error(error);
+                    }
+                };
+                reader.readAsText(file);
+            };
+
+            const handleFileDrop = (e) => {
+                e.preventDefault();
+                setIsDraggingFile(false);
+                const file = e.dataTransfer.files[0];
+                if (file && file.type === 'application/json') {
+                    importData(file);
+                } else {
+                    addToast('Please drop a JSON file', 'error');
+                }
+            };
+
+            const handleFileSelect = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    importData(file);
+                }
+            };
+
+            // Custom platform management
+            const addCustomPlatform = () => {
+                const newPlatform = {
+                    id: Date.now(),
+                    name: 'New Platform',
+                    icon: 'custom',
+                    enabled: true,
+                    isCustom: true,
+                    metrics: [
+                        { label: 'Metric 1', value: '' }
+                    ],
+                    adOptions: [
+                        { name: 'Ad Option', description: '', rate: '', specs: '' }
+                    ]
+                };
+                setPlatforms([...platforms, newPlatform]);
+                addToast('Custom platform added', 'success');
+            };
+
+            const updatePlatformName = (platformId, name) => {
+                setPlatforms(prev => prev.map(p =>
+                    p.id === platformId ? { ...p, name } : p
+                ));
+            };
+
+            const addPlatformMetric = (platformId) => {
+                setPlatforms(prev => prev.map(p => {
+                    if (p.id === platformId) {
+                        return {
+                            ...p,
+                            metrics: [...p.metrics, { label: 'New Metric', value: '' }]
+                        };
+                    }
+                    return p;
+                }));
+            };
+
+            const updateMetricLabel = (platformId, metricIndex, label) => {
+                setPlatforms(prev => prev.map(p => {
+                    if (p.id === platformId) {
+                        const metrics = [...p.metrics];
+                        metrics[metricIndex] = { ...metrics[metricIndex], label };
+                        return { ...p, metrics };
+                    }
+                    return p;
+                }));
+            };
+
+            const removeMetric = (platformId, metricIndex) => {
+                setPlatforms(prev => prev.map(p => {
+                    if (p.id === platformId && p.metrics.length > 1) {
+                        return {
+                            ...p,
+                            metrics: p.metrics.filter((_, i) => i !== metricIndex)
+                        };
+                    }
+                    return p;
+                }));
+            };
+
+            const removePlatform = (platformId) => {
+                const platform = platforms.find(p => p.id === platformId);
+                if (platform && platform.isCustom) {
+                    setPlatforms(prev => prev.filter(p => p.id !== platformId));
+                    addToast('Platform removed', 'success');
+                }
+            };
+
             // Drag and drop handlers
             const handleDragStart = (e, platformId) => {
                 setDraggedPlatform(platformId);
@@ -652,7 +1070,7 @@
                 const profile = {
                     id: Date.now(),
                     name,
-                    data: { organization, audience, platforms, testimonials, theme, rateTemplate }
+                    data: { organization, audience, platforms, testimonials, packages, theme, rateTemplate }
                 };
                 const updated = [...profiles, profile];
                 setProfiles(updated);
@@ -667,6 +1085,7 @@
                     setAudience(profile.data.audience);
                     setPlatforms(profile.data.platforms || getDefaultPlatforms());
                     setTestimonials(profile.data.testimonials || []);
+                    setPackages(profile.data.packages || []);
                     if (profile.data.theme) setTheme(profile.data.theme);
                     if (profile.data.rateTemplate) setRateTemplate(profile.data.rateTemplate);
                     addToast(`Loaded "${profile.name}"`, 'success');
@@ -710,9 +1129,56 @@
                     });
                     setPlatforms(getDefaultPlatforms());
                     setTestimonials([]);
+                    setPackages([]);
                     localStorage.removeItem('media_kit_draft');
                     addToast('Draft cleared', 'success');
                 }
+            };
+
+            const applyTemplate = (templateId) => {
+                const template = MEDIA_KIT_TEMPLATES[templateId];
+                if (!template) return;
+
+                // Apply organization defaults (keep name empty for user to fill)
+                setOrganization(prev => ({
+                    ...prev,
+                    name: '',
+                    logo: null,
+                    tagline: template.organization.tagline,
+                    mission: template.organization.mission,
+                    foundedYear: template.organization.foundedYear,
+                    website: '',
+                    contact: { name: '', email: '', phone: '' }
+                }));
+
+                // Apply audience defaults
+                setAudience({
+                    totalReach: template.audience.totalReach,
+                    demographics: template.audience.demographics
+                });
+
+                // Apply platform settings
+                const newPlatforms = getDefaultPlatforms().map(platform => {
+                    const templatePlatform = template.platforms.find(p => p.name === platform.name);
+                    return {
+                        ...platform,
+                        enabled: templatePlatform ? templatePlatform.enabled : platform.enabled
+                    };
+                });
+                setPlatforms(newPlatforms);
+
+                // Apply theme
+                setTheme({
+                    primaryColor: template.theme.primaryColor,
+                    accentColor: template.theme.accentColor,
+                    fontStyle: 'editorial'
+                });
+
+                // Clear testimonials for fresh start
+                setTestimonials([]);
+
+                setShowTemplateModal(false);
+                addToast(`Template "${template.name}" applied`, 'success');
             };
 
             const handleDownload = async () => {
@@ -816,11 +1282,215 @@
                 );
             };
 
+            // Template Modal Component
+            const TemplateModal = () => {
+                if (!showTemplateModal) return null;
+
+                return (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                        {/* Backdrop */}
+                        <div
+                            className="absolute inset-0 bg-ink-900/60 backdrop-blur-sm animate-fade-in"
+                            onClick={() => setShowTemplateModal(false)}
+                        />
+
+                        {/* Modal */}
+                        <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[85vh] overflow-hidden animate-slide-up">
+                            {/* Header */}
+                            <div className="p-6 border-b border-ink-100">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <h2 className="text-xl font-bold text-ink-900 font-serif">Choose a Template</h2>
+                                        <p className="text-sm text-ink-500 mt-1">Start with pre-configured settings for your organization type</p>
+                                    </div>
+                                    <button
+                                        onClick={() => setShowTemplateModal(false)}
+                                        className="p-2 text-ink-400 hover:text-ink-600 hover:bg-ink-100 rounded-lg transition-colors"
+                                    >
+                                        <IconX />
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Template Grid */}
+                            <div className="p-6 overflow-y-auto custom-scroll" style={{ maxHeight: 'calc(85vh - 100px)' }}>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    {Object.values(MEDIA_KIT_TEMPLATES).map(template => (
+                                        <button
+                                            key={template.id}
+                                            onClick={() => applyTemplate(template.id)}
+                                            className="text-left p-5 rounded-xl border-2 border-ink-100 hover:border-copper-300 hover:bg-copper-50/30 transition-all duration-200 group"
+                                        >
+                                            <div className="flex items-start gap-4">
+                                                <div
+                                                    className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0"
+                                                    style={{ backgroundColor: template.color + '15' }}
+                                                >
+                                                    {template.icon}
+                                                </div>
+                                                <div className="flex-1 min-w-0">
+                                                    <h3 className="font-semibold text-ink-900 group-hover:text-copper-700 transition-colors">
+                                                        {template.name}
+                                                    </h3>
+                                                    <p className="text-sm text-ink-500 mt-1">
+                                                        {template.description}
+                                                    </p>
+                                                    <div className="flex flex-wrap gap-1.5 mt-3">
+                                                        {template.platforms.filter(p => p.enabled).map(p => (
+                                                            <span
+                                                                key={p.name}
+                                                                className="px-2 py-0.5 text-[10px] font-medium rounded-full"
+                                                                style={{ backgroundColor: template.color + '15', color: template.color }}
+                                                            >
+                                                                {p.name}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                    <div className="flex items-center gap-3 mt-3 text-xs text-ink-400">
+                                                        <span>{template.audience.totalReach.toLocaleString()} reach</span>
+                                                        <span>•</span>
+                                                        <span>Est. {template.organization.foundedYear}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    ))}
+                                </div>
+
+                                {/* Note */}
+                                <p className="text-xs text-ink-400 text-center mt-6">
+                                    Templates provide starting values you can customize. Your organization name and logo will need to be added.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                );
+            };
+
+            // Import/Export Modal Component
+            const ImportExportModal = () => {
+                if (!showImportExportModal) return null;
+
+                return (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                        <div
+                            className="absolute inset-0 bg-ink-900/60 backdrop-blur-sm animate-fade-in"
+                            onClick={() => setShowImportExportModal(false)}
+                        />
+                        <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-slide-up">
+                            <div className="p-6 border-b border-ink-100">
+                                <div className="flex items-center justify-between">
+                                    <h2 className="text-xl font-bold text-ink-900 font-serif">Import / Export</h2>
+                                    <button
+                                        onClick={() => setShowImportExportModal(false)}
+                                        className="p-2 text-ink-400 hover:text-ink-600 hover:bg-ink-100 rounded-lg transition-colors"
+                                    >
+                                        <IconX />
+                                    </button>
+                                </div>
+                                <div className="flex gap-2 mt-4">
+                                    <button
+                                        onClick={() => setImportExportTab('export')}
+                                        className={`flex-1 py-2 text-sm font-medium rounded-lg transition-colors ${
+                                            importExportTab === 'export'
+                                                ? 'bg-ink-900 text-white'
+                                                : 'bg-ink-100 text-ink-600 hover:bg-ink-200'
+                                        }`}
+                                    >
+                                        Export
+                                    </button>
+                                    <button
+                                        onClick={() => setImportExportTab('import')}
+                                        className={`flex-1 py-2 text-sm font-medium rounded-lg transition-colors ${
+                                            importExportTab === 'import'
+                                                ? 'bg-ink-900 text-white'
+                                                : 'bg-ink-100 text-ink-600 hover:bg-ink-200'
+                                        }`}
+                                    >
+                                        Import
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className="p-6">
+                                {importExportTab === 'export' ? (
+                                    <div className="space-y-4">
+                                        <p className="text-sm text-ink-600">
+                                            Export your media kit data as a JSON file for backup or transfer to another device.
+                                        </p>
+                                        <div className="bg-ink-50 p-4 rounded-lg">
+                                            <p className="text-xs text-ink-500 mb-2">Export includes:</p>
+                                            <ul className="text-xs text-ink-600 space-y-1">
+                                                <li>• Organization profile & logo</li>
+                                                <li>• Audience demographics</li>
+                                                <li>• Platform metrics & ad rates</li>
+                                                <li>• Packages & testimonials</li>
+                                                <li>• Theme settings</li>
+                                            </ul>
+                                        </div>
+                                        <button
+                                            onClick={exportData}
+                                            className="w-full btn btn-copper flex items-center justify-center gap-2"
+                                        >
+                                            <IconDownload /> Download JSON Backup
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <div className="space-y-4">
+                                        <p className="text-sm text-ink-600">
+                                            Import a previously exported media kit JSON file to restore your data.
+                                        </p>
+                                        <div
+                                            className={`border-2 border-dashed rounded-xl p-8 text-center transition-colors ${
+                                                isDraggingFile
+                                                    ? 'border-copper-500 bg-copper-50'
+                                                    : 'border-ink-200 hover:border-ink-300'
+                                            }`}
+                                            onDragOver={(e) => { e.preventDefault(); setIsDraggingFile(true); }}
+                                            onDragLeave={() => setIsDraggingFile(false)}
+                                            onDrop={handleFileDrop}
+                                        >
+                                            <IconUpload className="w-8 h-8 text-ink-400 mx-auto mb-3" />
+                                            <p className="text-sm text-ink-600 mb-2">
+                                                Drag & drop your JSON file here
+                                            </p>
+                                            <p className="text-xs text-ink-400 mb-3">or</p>
+                                            <button
+                                                onClick={() => fileInputRef.current?.click()}
+                                                className="btn btn-secondary"
+                                            >
+                                                Browse Files
+                                            </button>
+                                            <input
+                                                ref={fileInputRef}
+                                                type="file"
+                                                accept=".json"
+                                                className="hidden"
+                                                onChange={handleFileSelect}
+                                            />
+                                        </div>
+                                        <p className="text-xs text-ink-400 text-center">
+                                            This will replace all current data
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                );
+            };
+
             // Get enabled platforms
             const enabledPlatforms = platforms.filter(p => p.enabled);
 
             return (
                 <div className="flex h-screen flex-col lg:flex-row">
+
+                    {/* Template Modal */}
+                    <TemplateModal />
+
+                    {/* Import/Export Modal */}
+                    <ImportExportModal />
 
                     {/* === EDITOR PANEL === */}
                     <div className={`w-full lg:w-[440px] xl:w-[500px] bg-white/95 backdrop-blur-sm border-r border-ink-200 flex flex-col h-[calc(100%-56px)] lg:h-full ${activeTab === 'preview' ? 'hidden lg:flex' : 'flex'}`}>
@@ -844,6 +1514,20 @@
                         {/* Toolbar */}
                         <div className="px-4 py-2 border-b border-ink-100 flex items-center justify-between bg-ink-50/50">
                             <div className="flex items-center gap-2">
+                                <button
+                                    onClick={() => setShowTemplateModal(true)}
+                                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-copper-700 bg-copper-50 hover:bg-copper-100 rounded-lg transition-colors"
+                                >
+                                    <IconTemplate className="w-3.5 h-3.5" />
+                                    Templates
+                                </button>
+                                <button
+                                    onClick={() => setShowImportExportModal(true)}
+                                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-ink-600 bg-ink-100 hover:bg-ink-200 rounded-lg transition-colors"
+                                >
+                                    <IconDatabase className="w-3.5 h-3.5" />
+                                    Data
+                                </button>
                                 {profiles.length > 0 && (
                                     <select
                                         className="text-xs border border-ink-200 rounded px-2 py-1.5 bg-white"
@@ -1157,9 +1841,27 @@
                                                             onChange={() => togglePlatform(platform.id)}
                                                             className="w-4 h-4 text-copper-600 rounded accent-copper-600"
                                                         />
-                                                        <span className="font-medium text-sm">{platform.name}</span>
+                                                        {platform.isCustom ? (
+                                                            <input
+                                                                type="text"
+                                                                className="font-medium text-sm bg-transparent border-b border-transparent hover:border-ink-300 focus:border-copper-500 focus:outline-none px-1 -mx-1"
+                                                                value={platform.name}
+                                                                onChange={(e) => updatePlatformName(platform.id, e.target.value)}
+                                                                onClick={(e) => e.stopPropagation()}
+                                                            />
+                                                        ) : (
+                                                            <span className="font-medium text-sm">{platform.name}</span>
+                                                        )}
                                                     </label>
                                                 </div>
+                                                {platform.isCustom && (
+                                                    <button
+                                                        onClick={() => removePlatform(platform.id)}
+                                                        className="text-ink-400 hover:text-red-500 transition-colors"
+                                                    >
+                                                        <IconTrash />
+                                                    </button>
+                                                )}
                                             </div>
 
                                             {platform.enabled && (
@@ -1170,7 +1872,26 @@
                                                         <div className="grid grid-cols-2 gap-2 mt-1">
                                                             {platform.metrics.map((metric, i) => (
                                                                 <div key={i}>
-                                                                    <label className="text-[10px] text-ink-400">{metric.label}</label>
+                                                                    {platform.isCustom ? (
+                                                                        <div className="flex items-center gap-1">
+                                                                            <input
+                                                                                type="text"
+                                                                                className="text-[10px] text-ink-400 bg-transparent border-b border-transparent hover:border-ink-300 focus:border-copper-500 focus:outline-none flex-1"
+                                                                                value={metric.label}
+                                                                                onChange={(e) => updateMetricLabel(platform.id, i, e.target.value)}
+                                                                            />
+                                                                            {platform.metrics.length > 1 && (
+                                                                                <button
+                                                                                    onClick={() => removeMetric(platform.id, i)}
+                                                                                    className="text-ink-300 hover:text-red-500"
+                                                                                >
+                                                                                    <IconX className="w-3 h-3" />
+                                                                                </button>
+                                                                            )}
+                                                                        </div>
+                                                                    ) : (
+                                                                        <label className="text-[10px] text-ink-400">{metric.label}</label>
+                                                                    )}
                                                                     <input
                                                                         type="text"
                                                                         className="input-field py-1.5 text-xs"
@@ -1181,6 +1902,14 @@
                                                                 </div>
                                                             ))}
                                                         </div>
+                                                        {platform.isCustom && (
+                                                            <button
+                                                                onClick={() => addPlatformMetric(platform.id)}
+                                                                className="text-xs text-copper-600 hover:text-copper-700 flex items-center gap-1 mt-2"
+                                                            >
+                                                                <IconPlus /> Add Metric
+                                                            </button>
+                                                        )}
                                                     </div>
 
                                                     {/* Ad Options */}
@@ -1238,6 +1967,14 @@
                                             )}
                                         </div>
                                     ))}
+
+                                    {/* Add Custom Platform */}
+                                    <button
+                                        onClick={addCustomPlatform}
+                                        className="w-full py-2.5 border-2 border-dashed border-ink-200 rounded-lg text-xs text-ink-500 hover:border-copper-300 hover:text-copper-600 flex items-center justify-center gap-1 transition-colors"
+                                    >
+                                        <IconPlus /> Add Custom Platform
+                                    </button>
                                 </div>
                             </CollapsibleSection>
 
@@ -1272,6 +2009,159 @@
                                         className="w-full py-2 border-2 border-dashed border-ink-200 rounded-lg text-xs text-ink-500 hover:border-ink-300 flex items-center justify-center gap-1 transition-colors"
                                     >
                                         <IconPlus /> Add Testimonial
+                                    </button>
+                                </div>
+                            </CollapsibleSection>
+
+                            {/* Advertising Packages */}
+                            <CollapsibleSection id="packages" title="Advertising Packages" badge={packages.length > 0 ? `${packages.length} packages` : null}>
+                                <div className="space-y-4">
+                                    <p className="text-xs text-ink-500">
+                                        Bundle ad options into packages to offer discounts and simplify purchasing for advertisers.
+                                    </p>
+
+                                    {/* Preset buttons */}
+                                    <div className="flex flex-wrap gap-2">
+                                        <button
+                                            onClick={() => addPresetPackage('starter')}
+                                            className="px-3 py-1.5 text-xs font-medium bg-sage-50 text-sage-700 hover:bg-sage-100 rounded-lg transition-colors"
+                                        >
+                                            + Starter
+                                        </button>
+                                        <button
+                                            onClick={() => addPresetPackage('growth')}
+                                            className="px-3 py-1.5 text-xs font-medium bg-copper-50 text-copper-700 hover:bg-copper-100 rounded-lg transition-colors"
+                                        >
+                                            + Growth
+                                        </button>
+                                        <button
+                                            onClick={() => addPresetPackage('premium')}
+                                            className="px-3 py-1.5 text-xs font-medium bg-ink-100 text-ink-700 hover:bg-ink-200 rounded-lg transition-colors"
+                                        >
+                                            + Premium
+                                        </button>
+                                    </div>
+
+                                    {/* Package list */}
+                                    {packages.map(pkg => (
+                                        <div key={pkg.id} className="border border-ink-200 rounded-lg p-3 space-y-3">
+                                            <div className="flex items-start gap-2">
+                                                <IconPackage className="text-copper-500 mt-1 flex-shrink-0" />
+                                                <div className="flex-1 space-y-2">
+                                                    <input
+                                                        type="text"
+                                                        className="input-field font-medium"
+                                                        placeholder="Package Name"
+                                                        value={pkg.name}
+                                                        onChange={(e) => updatePackage(pkg.id, 'name', e.target.value)}
+                                                    />
+                                                    <input
+                                                        type="text"
+                                                        className="input-field text-sm"
+                                                        placeholder="Brief description..."
+                                                        value={pkg.description}
+                                                        onChange={(e) => updatePackage(pkg.id, 'description', e.target.value)}
+                                                    />
+                                                </div>
+                                                <button
+                                                    onClick={() => removePackage(pkg.id)}
+                                                    className="text-ink-400 hover:text-red-500 transition-colors"
+                                                >
+                                                    <IconTrash />
+                                                </button>
+                                            </div>
+
+                                            {/* Package items */}
+                                            <div className="space-y-2">
+                                                <label className="text-xs font-medium text-ink-500">Included Items</label>
+                                                {pkg.items.map(item => (
+                                                    <div key={item.id} className="flex items-center gap-2 bg-ink-50 p-2 rounded">
+                                                        <select
+                                                            className="input-field flex-1 py-1.5 text-xs"
+                                                            value={item.platform}
+                                                            onChange={(e) => updatePackageItem(pkg.id, item.id, 'platform', e.target.value)}
+                                                        >
+                                                            <option value="">Select platform...</option>
+                                                            {platforms.filter(p => p.enabled).map(p => (
+                                                                <option key={p.id} value={p.name}>{p.name}</option>
+                                                            ))}
+                                                        </select>
+                                                        <select
+                                                            className="input-field flex-1 py-1.5 text-xs"
+                                                            value={item.adOption}
+                                                            onChange={(e) => updatePackageItem(pkg.id, item.id, 'adOption', e.target.value)}
+                                                        >
+                                                            <option value="">Select ad...</option>
+                                                            {item.platform && platforms.find(p => p.name === item.platform)?.adOptions.map((opt, i) => (
+                                                                <option key={i} value={opt.name}>{opt.name}</option>
+                                                            ))}
+                                                        </select>
+                                                        <input
+                                                            type="number"
+                                                            min="1"
+                                                            className="input-field w-14 py-1.5 text-xs text-center"
+                                                            placeholder="Qty"
+                                                            value={item.quantity}
+                                                            onChange={(e) => updatePackageItem(pkg.id, item.id, 'quantity', parseInt(e.target.value) || 1)}
+                                                        />
+                                                        <button
+                                                            onClick={() => removePackageItem(pkg.id, item.id)}
+                                                            className="text-ink-400 hover:text-red-500"
+                                                        >
+                                                            <IconX className="w-3 h-3" />
+                                                        </button>
+                                                    </div>
+                                                ))}
+                                                <button
+                                                    onClick={() => addPackageItem(pkg.id)}
+                                                    className="text-xs text-copper-600 hover:text-copper-700 flex items-center gap-1"
+                                                >
+                                                    <IconPlus /> Add Item
+                                                </button>
+                                            </div>
+
+                                            {/* Pricing */}
+                                            <div className="grid grid-cols-3 gap-2 pt-2 border-t border-ink-100">
+                                                <div>
+                                                    <label className="text-[10px] text-ink-400">Total Value</label>
+                                                    <input
+                                                        type="text"
+                                                        className="input-field py-1.5 text-xs"
+                                                        placeholder="$0"
+                                                        value={pkg.totalValue}
+                                                        onChange={(e) => updatePackage(pkg.id, 'totalValue', e.target.value)}
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label className="text-[10px] text-ink-400">Package Price</label>
+                                                    <input
+                                                        type="text"
+                                                        className="input-field py-1.5 text-xs"
+                                                        placeholder="$0"
+                                                        value={pkg.price}
+                                                        onChange={(e) => updatePackage(pkg.id, 'price', e.target.value)}
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label className="text-[10px] text-ink-400">Savings</label>
+                                                    <input
+                                                        type="text"
+                                                        className="input-field py-1.5 text-xs"
+                                                        placeholder="10%"
+                                                        value={pkg.savings}
+                                                        onChange={(e) => updatePackage(pkg.id, 'savings', e.target.value)}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+
+                                    {/* Add custom package */}
+                                    <button
+                                        onClick={addPackage}
+                                        className="w-full py-2 border-2 border-dashed border-ink-200 rounded-lg text-xs text-ink-500 hover:border-ink-300 flex items-center justify-center gap-1 transition-colors"
+                                    >
+                                        <IconPlus /> Add Custom Package
                                     </button>
                                 </div>
                             </CollapsibleSection>
@@ -1488,6 +2378,59 @@
                                                                     </div>
                                                                 ))}
                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </section>
+                                    )}
+
+                                    {/* Advertising Packages */}
+                                    {packages.length > 0 && packages.some(p => p.name) && (
+                                        <section>
+                                            <h2 className="text-lg font-bold mb-4" style={{ color: theme.primaryColor, fontFamily: 'Fraunces, serif' }}>Advertising Packages</h2>
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                {packages.filter(p => p.name).map(pkg => (
+                                                    <div key={pkg.id} className="border border-gray-200 rounded-xl p-4 relative overflow-hidden">
+                                                        {pkg.savings && (
+                                                            <div
+                                                                className="absolute top-3 right-3 px-2 py-0.5 text-[10px] font-bold rounded"
+                                                                style={{ backgroundColor: theme.accentColor, color: 'white' }}
+                                                            >
+                                                                Save {pkg.savings}
+                                                            </div>
+                                                        )}
+                                                        <h3 className="font-semibold text-sm mb-1" style={{ color: theme.primaryColor }}>
+                                                            {pkg.name}
+                                                        </h3>
+                                                        {pkg.description && (
+                                                            <p className="text-xs text-gray-500 mb-3">{pkg.description}</p>
+                                                        )}
+
+                                                        {pkg.items.length > 0 && (
+                                                            <div className="space-y-1 mb-3">
+                                                                {pkg.items.filter(item => item.adOption).map(item => (
+                                                                    <div key={item.id} className="flex items-center gap-2 text-xs text-gray-600">
+                                                                        <span className="w-1 h-1 rounded-full" style={{ backgroundColor: theme.accentColor }} />
+                                                                        {item.quantity > 1 && <span className="font-medium">{item.quantity}x</span>}
+                                                                        <span>{item.adOption}</span>
+                                                                        <span className="text-gray-400">({item.platform})</span>
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+                                                        )}
+
+                                                        <div className="flex items-baseline gap-2">
+                                                            {pkg.price && (
+                                                                <span className="text-xl font-bold" style={{ color: theme.primaryColor }}>
+                                                                    {pkg.price}
+                                                                </span>
+                                                            )}
+                                                            {pkg.totalValue && (
+                                                                <span className="text-xs text-gray-400 line-through">
+                                                                    {pkg.totalValue}
+                                                                </span>
+                                                            )}
                                                         </div>
                                                     </div>
                                                 ))}
