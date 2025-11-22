@@ -18,8 +18,9 @@ The Center recently received a [$2.5 million Knight Foundation grant](https://ww
 
 ## Tools in This Repository
 
-### LLM Journalism Tool Advisor
-**Location**: [`/tools/ccm-app`](./tools/ccm-app)
+### LLM Journalism Tool Advisor | **Location**: [`/tools/ccm-app`](./tools/ccm-app)
+
+![LLM Journalism Tool Advisor](https://i.imgur.com/DW3dNiy.png)
 
 An interactive decision tree application that helps journalists select the most appropriate AI/LLM tools for their specific tasks. Features include:
 
@@ -34,8 +35,9 @@ An interactive decision tree application that helps journalists select the most 
 
 ---
 
-### Invoicer
-**Location**: [`/tools/invoicer`](./tools/invoicer)
+### Invoicer | **Location**: [`/tools/invoicer`](./tools/invoicer)
+
+![Invoicer tool](https://i.imgur.com/QHPpkqv.jpeg)
 
 A professional invoice generator for creating beautiful, customizable invoices. Perfect for freelance journalists, consultants, and small newsrooms. Features include:
 
@@ -51,8 +53,9 @@ A professional invoice generator for creating beautiful, customizable invoices. 
 
 ---
 
-### Sponsorship Package Generator
-**Location**: [`/tools/sponsorship-generator`](./tools/sponsorship-generator)
+### Sponsorship Package Generator | **Location**: [`/tools/sponsorship-generator`](./tools/sponsorship-generator)
+
+![Sponsorship generator tool](https://i.imgur.com/lLMOTD5.jpeg)
 
 A tool for creating professional sponsorship proposals and package overviews for events. Ideal for news organizations seeking sponsorships for events, programs, or initiatives. Features include:
 
@@ -176,7 +179,7 @@ ccm/
 
 Joe is the Associate Director of Operations at the Center for Cooperative Media and an adjunct professor in the College of Communication and Media at Montclair State University. He specializes in local news ecosystem management, collaborative journalism, and AI applications for journalism.
 
-Joe is the author of several guides and educational resources for small and local newsrooms, including guides on generative AI. He is also the producer and host of the [WTF Just Happened Today](https://wtfjht.com/) podcast and a veteran of the NJ Army National Guard.
+Joe is the author of several guides and educational resources for small and local newsrooms, including guides on generative AI. He is also the former producer and host of the [WTF Just Happened Today](https://wtfjht.com/) podcast and a veteran of the NJ Army National Guard.
 
 - Email: amditisj@montclair.edu
 - Twitter: [@jsamditis](https://twitter.com/jsamditis)
