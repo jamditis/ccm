@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Budget Calculator | Center for Cooperative Media</title>
+    <title>Event budget calculator | Center for cooperative media</title>
 
-    <!-- React -->
+    <!-- React & ReactDOM -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -16,31 +16,60 @@
     <!-- PDF Export -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-    <!-- Google Fonts -->
+    <!-- Framer Motion (via CDN for React) - approximating simple animations with CSS for single-file stability, 
+         but using a lightweight approach for transitions -->
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace']
+                        sans: ['Manrope', 'sans-serif'],
+                        serif: ['Libre Baskerville', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        ccm: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e'
+                        paper: '#fdfbf7',
+                        ink: {
+                            50: '#f4f6f8',
+                            100: '#e4e7eb',
+                            200: '#cbd2d9',
+                            300: '#9aa5b1',
+                            400: '#7b8794',
+                            500: '#616e7c',
+                            600: '#52606d',
+                            700: '#3e4c59',
+                            800: '#323f4b',
+                            900: '#1f2933',
+                        },
+                        ledger: {
+                            green: '#059669',
+                            red: '#e11d48',
+                            gold: '#d97706',
+                            accent: '#3b82f6'
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'float': '0 10px 40px -10px rgba(0, 0, 0, 0.1)',
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                        'slide-in': 'slideIn 0.3s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideIn: {
+                            '0%': { transform: 'translateX(100%)' },
+                            '100%': { transform: 'translateX(0)' },
                         }
                     }
                 }
@@ -49,11 +78,45 @@
     </script>
 
     <style>
-        @media print {
-            .no-print { display: none !important; }
-            .print-break { page-break-before: always; }
+        /* Atmosphere & Textures */
+        body {
+            background-color: #fdfbf7;
+            background-image: 
+                linear-gradient(rgba(228, 231, 235, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(228, 231, 235, 0.3) 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: #1f2933;
         }
 
+        /* Noise texture overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd2d9;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9aa5b1;
+        }
+
+        /* Hide number input spinners */
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button {
             -webkit-appearance: none;
@@ -62,175 +125,156 @@
         input[type="number"] {
             -moz-appearance: textfield;
         }
+
+        /* Print Styles */
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; color: black; }
+            body::before { display: none; }
+            .print-break { page-break-before: always; }
+            .print-shadow-none { box-shadow: none !important; border: 1px solid #ddd; }
+        }
+
+        /* Utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
+<body>
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect, useMemo } = React;
+        const { useState, useEffect, useMemo, useCallback } = React;
 
-        // Icons
+        // --- Icons (SVG) ---
         const Icons = {
-            Plus: () => (
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-            ),
-            Trash: () => (
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="3,6 5,6 21,6"></polyline>
-                    <path d="M19,6v14a2,2 0 0,1 -2,2H7a2,2 0 0,1 -2,-2V6m3,0V4a2,2 0 0,1 2,-2h4a2,2 0 0,1 2,2v2"></path>
-                </svg>
-            ),
-            Download: () => (
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="7 10 12 15 17 10"></polyline>
-                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-            ),
-            Save: () => (
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
-                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
-                    <polyline points="7 3 7 8 15 8"></polyline>
-                </svg>
-            ),
-            ChevronDown: () => (
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-            ),
-            DollarSign: () => (
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="12" y1="1" x2="12" y2="23"></line>
-                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                </svg>
-            ),
-            TrendingUp: () => (
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                    <polyline points="17 6 23 6 23 12"></polyline>
-                </svg>
-            ),
-            TrendingDown: () => (
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline>
-                    <polyline points="17 18 23 18 23 12"></polyline>
-                </svg>
-            ),
-            Calendar: () => (
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-            ),
-            Reset: () => (
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="1 4 1 10 7 10"></polyline>
-                    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
-                </svg>
-            )
+            Plus: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>,
+            Trash: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3,6 5,6 21,6"></polyline><path d="M19,6v14a2,2 0 0,1 -2,2H7a2,2 0 0,1 -2,-2V6m3,0V4a2,2 0 0,1 2,-2h4a2,2 0 0,1 2,2v2"></path></svg>,
+            Download: () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>,
+            Save: () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>,
+            ChevronDown: ({ className }) => <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>,
+            Wallet: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>,
+            TrendingUp: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>,
+            TrendingDown: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>,
+            Reset: () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>,
+            FileText: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
         };
 
-        // Default expense categories
+        // --- Constants & Utilities ---
         const DEFAULT_EXPENSE_CATEGORIES = [
-            { id: 'venue', name: 'Venue & Space', items: [] },
-            { id: 'catering', name: 'Catering & Refreshments', items: [] },
-            { id: 'av', name: 'Audio/Visual & Tech', items: [] },
-            { id: 'marketing', name: 'Marketing & Promotion', items: [] },
-            { id: 'staffing', name: 'Staffing & Speakers', items: [] },
-            { id: 'materials', name: 'Materials & Supplies', items: [] },
+            { id: 'venue', name: 'Venue & space', items: [] },
+            { id: 'catering', name: 'Catering & refreshments', items: [] },
+            { id: 'av', name: 'Audio/visual & tech', items: [] },
+            { id: 'marketing', name: 'Marketing & promotion', items: [] },
+            { id: 'staffing', name: 'Staffing & speakers', items: [] },
+            { id: 'materials', name: 'Materials & supplies', items: [] },
             { id: 'misc', name: 'Miscellaneous', items: [] }
         ];
 
-        // Default revenue categories
         const DEFAULT_REVENUE_CATEGORIES = [
             { id: 'sponsorships', name: 'Sponsorships', items: [] },
-            { id: 'tickets', name: 'Ticket Sales', items: [] },
-            { id: 'donations', name: 'Donations & Grants', items: [] },
-            { id: 'other', name: 'Other Revenue', items: [] }
+            { id: 'tickets', name: 'Ticket sales', items: [] },
+            { id: 'donations', name: 'Donations & grants', items: [] },
+            { id: 'other', name: 'Other revenue', items: [] }
         ];
 
-        // Format currency
         const formatCurrency = (amount) => {
             return new Intl.NumberFormat('en-US', {
                 style: 'currency',
                 currency: 'USD',
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
             }).format(amount);
         };
 
-        // Generate unique ID
         const generateId = () => Math.random().toString(36).substr(2, 9);
 
-        // Collapsible Section Component
-        const CollapsibleSection = ({ title, children, defaultOpen = true, badge = null }) => {
-            const [isOpen, setIsOpen] = useState(defaultOpen);
+        // --- Components ---
+
+        // 1. Toast Notification System
+        const Toast = ({ message, type, onClose }) => {
+            useEffect(() => {
+                const timer = setTimeout(onClose, 3000);
+                return () => clearTimeout(timer);
+            }, [onClose]);
+
+            const bgColors = {
+                success: 'bg-ink-900 text-white border-ink-900',
+                error: 'bg-ledger-red text-white border-ledger-red',
+                info: 'bg-white text-ink-900 border-ink-200'
+            };
 
             return (
-                <div className="border border-gray-200 rounded-lg bg-white overflow-hidden">
-                    <button
-                        onClick={() => setIsOpen(!isOpen)}
-                        className="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
-                    >
-                        <div className="flex items-center gap-3">
-                            <span className="font-semibold text-gray-900">{title}</span>
-                            {badge && (
-                                <span className="px-2 py-0.5 bg-ccm-100 text-ccm-700 text-sm font-medium rounded">
-                                    {badge}
-                                </span>
-                            )}
-                        </div>
-                        <span className={`transform transition-transform ${isOpen ? 'rotate-180' : ''}`}>
-                            <Icons.ChevronDown />
-                        </span>
-                    </button>
-                    {isOpen && (
-                        <div className="border-t border-gray-200 p-4">
-                            {children}
-                        </div>
-                    )}
+                <div className={`fixed bottom-6 right-6 z-50 px-6 py-3 rounded-lg shadow-float border ${bgColors[type]} flex items-center gap-3 animate-slide-in`}>
+                    <span className="font-medium text-sm">{message}</span>
                 </div>
             );
         };
 
-        // Line Item Row Component
-        const LineItemRow = ({ item, onUpdate, onDelete }) => {
-            return (
-                <div className="flex items-center gap-3 py-2 group">
+        // 2. Styled Input Components
+        const LedgerInput = ({ label, value, onChange, type = "text", placeholder, className = "", prefix }) => (
+            <div className={`relative group ${className}`}>
+                {label && <label className="block text-xs font-semibold text-ink-500 uppercase tracking-wider mb-1.5">{label}</label>}
+                <div className="relative transition-all duration-200 transform origin-left">
+                    {prefix && (
+                        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-400 font-mono text-sm pointer-events-none group-focus-within:text-ledger-accent transition-colors">
+                            {prefix}
+                        </div>
+                    )}
                     <input
-                        type="text"
-                        value={item.description}
-                        onChange={(e) => onUpdate({ ...item, description: e.target.value })}
-                        placeholder="Description"
-                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-ccm-500 focus:border-ccm-500"
+                        type={type}
+                        value={value}
+                        onChange={onChange}
+                        placeholder={placeholder}
+                        className={`w-full bg-white border border-ink-200 rounded-md py-2.5 ${prefix ? 'pl-8' : 'pl-3'} pr-3 text-sm text-ink-900 placeholder-ink-300 focus:ring-2 focus:ring-ledger-accent/20 focus:border-ledger-accent outline-none transition-all shadow-sm font-medium ${type === 'number' ? 'font-mono' : 'font-sans'}`}
                     />
-                    <div className="relative">
-                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
+                </div>
+            </div>
+        );
+
+        // 3. Line Item Row
+        const LineItemRow = ({ item, onUpdate, onDelete, delay }) => {
+            return (
+                <div 
+                    className="flex items-start gap-3 p-3 rounded-lg hover:bg-ink-50 transition-colors group border border-transparent hover:border-ink-100"
+                    style={{ animationDelay: `${delay}ms` }}
+                >
+                    <div className="flex-1">
                         <input
-                            type="number"
-                            value={item.amount || ''}
-                            onChange={(e) => onUpdate({ ...item, amount: parseFloat(e.target.value) || 0 })}
-                            placeholder="0"
-                            className="w-28 pl-7 pr-3 py-2 border border-gray-300 rounded-md text-sm text-right focus:ring-2 focus:ring-ccm-500 focus:border-ccm-500 font-mono"
+                            type="text"
+                            value={item.description}
+                            onChange={(e) => onUpdate({ ...item, description: e.target.value })}
+                            placeholder="Item description"
+                            className="w-full bg-transparent border-none p-0 text-sm text-ink-900 placeholder-ink-300 focus:ring-0 font-medium"
+                        />
+                        <input
+                            type="text"
+                            value={item.notes || ''}
+                            onChange={(e) => onUpdate({ ...item, notes: e.target.value })}
+                            placeholder="Add notes (optional)"
+                            className="w-full bg-transparent border-none p-0 text-xs text-ink-400 placeholder-ink-200 focus:ring-0 mt-1"
                         />
                     </div>
-                    <input
-                        type="text"
-                        value={item.notes || ''}
-                        onChange={(e) => onUpdate({ ...item, notes: e.target.value })}
-                        placeholder="Notes"
-                        className="w-32 px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-ccm-500 focus:border-ccm-500"
-                    />
+                    
+                    <div className="w-32 relative">
+                        <span className="absolute left-2 top-1/2 -translate-y-1/2 text-ink-400 text-xs font-mono">$</span>
+                        <input
+                            type="number"
+                            value={item.amount === 0 ? '' : item.amount}
+                            onChange={(e) => onUpdate({ ...item, amount: parseFloat(e.target.value) || 0 })}
+                            placeholder="0.00"
+                            className="w-full bg-white border border-ink-200 rounded px-2 py-1 pl-6 text-right text-sm font-mono text-ink-900 focus:border-ledger-accent focus:ring-1 focus:ring-ledger-accent outline-none"
+                        />
+                    </div>
+
                     <button
                         onClick={onDelete}
-                        className="p-2 text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="p-1.5 text-ink-300 hover:text-ledger-red hover:bg-ledger-red/10 rounded transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100"
+                        title="Remove item"
                     >
                         <Icons.Trash />
                     </button>
@@ -238,27 +282,21 @@
             );
         };
 
-        // Category Section Component
-        const CategorySection = ({ category, type, onUpdateCategory }) => {
+        // 4. Category Section
+        const CategorySection = ({ category, type, onUpdateCategory, index }) => {
+            const [isOpen, setIsOpen] = useState(category.items.length > 0);
+            const categoryTotal = category.items.reduce((sum, item) => sum + (item.amount || 0), 0);
+            
             const addItem = () => {
-                const newItem = {
-                    id: generateId(),
-                    description: '',
-                    amount: 0,
-                    notes: ''
-                };
-                onUpdateCategory({
-                    ...category,
-                    items: [...category.items, newItem]
-                });
+                const newItem = { id: generateId(), description: '', amount: 0, notes: '' };
+                onUpdateCategory({ ...category, items: [...category.items, newItem] });
+                setIsOpen(true);
             };
 
             const updateItem = (updatedItem) => {
                 onUpdateCategory({
                     ...category,
-                    items: category.items.map(item =>
-                        item.id === updatedItem.id ? updatedItem : item
-                    )
+                    items: category.items.map(item => item.id === updatedItem.id ? updatedItem : item)
                 });
             };
 
@@ -269,492 +307,487 @@
                 });
             };
 
-            const categoryTotal = category.items.reduce((sum, item) => sum + (item.amount || 0), 0);
-
             return (
-                <div className="mb-4 last:mb-0">
-                    <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-medium text-gray-700">{category.name}</h4>
-                        <span className={`text-sm font-mono ${type === 'expense' ? 'text-red-600' : 'text-green-600'}`}>
-                            {formatCurrency(categoryTotal)}
-                        </span>
-                    </div>
-
-                    <div className="space-y-1">
-                        {category.items.map(item => (
-                            <LineItemRow
-                                key={item.id}
-                                item={item}
-                                onUpdate={updateItem}
-                                onDelete={() => deleteItem(item.id)}
-                            />
-                        ))}
-                    </div>
-
-                    <button
-                        onClick={addItem}
-                        className="mt-2 flex items-center gap-1 text-sm text-ccm-600 hover:text-ccm-700 font-medium"
+                <div className="bg-white border border-ink-100 rounded-xl shadow-sm overflow-hidden mb-4 transition-shadow hover:shadow-md">
+                    <div 
+                        className="flex items-center justify-between p-4 cursor-pointer select-none bg-gradient-to-r from-white to-ink-50/50"
+                        onClick={() => setIsOpen(!isOpen)}
                     >
-                        <Icons.Plus />
-                        Add Item
-                    </button>
+                        <div className="flex items-center gap-3">
+                            <div className={`p-1.5 rounded-md transition-transform duration-300 ${isOpen ? 'rotate-180 bg-ink-100' : 'bg-transparent'}`}>
+                                <Icons.ChevronDown className="w-4 h-4 text-ink-500" />
+                            </div>
+                            <h3 className="font-serif text-ink-800 font-medium">{category.name}</h3>
+                            <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-ink-100 text-ink-500">
+                                {category.items.length}
+                            </span>
+                        </div>
+                        <div className={`font-mono font-medium ${type === 'expense' ? 'text-ledger-red' : 'text-ledger-green'}`}>
+                            {formatCurrency(categoryTotal)}
+                        </div>
+                    </div>
+
+                    {isOpen && (
+                        <div className="border-t border-ink-50 p-2">
+                            {category.items.length === 0 ? (
+                                <div className="text-center py-6 text-ink-400 text-sm italic">
+                                    No items in this category yet.
+                                </div>
+                            ) : (
+                                <div className="space-y-1">
+                                    {category.items.map((item, i) => (
+                                        <LineItemRow
+                                            key={item.id}
+                                            item={item}
+                                            onUpdate={updateItem}
+                                            onDelete={() => deleteItem(item.id)}
+                                            delay={i * 50}
+                                        />
+                                    ))}
+                                </div>
+                            )}
+                            <button
+                                onClick={(e) => { e.stopPropagation(); addItem(); }}
+                                className="w-full mt-2 py-2 flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider text-ink-500 hover:text-ink-800 hover:bg-ink-50 rounded-lg transition-all border border-dashed border-ink-200 hover:border-ink-300"
+                            >
+                                <Icons.Plus />
+                                Add entry
+                            </button>
+                        </div>
+                    )}
                 </div>
             );
         };
 
-        // Summary Card Component
-        const SummaryCard = ({ title, amount, type, icon: Icon }) => {
-            const colorClasses = {
-                expense: 'bg-red-50 border-red-200 text-red-700',
-                revenue: 'bg-green-50 border-green-200 text-green-700',
-                neutral: 'bg-gray-50 border-gray-200 text-gray-700',
-                profit: amount >= 0 ? 'bg-green-50 border-green-200 text-green-700' : 'bg-red-50 border-red-200 text-red-700'
+        // 5. Summary Card
+        const SummaryCard = ({ label, amount, type, subtext }) => {
+            const styles = {
+                revenue: { text: 'text-ledger-green', bg: 'bg-ledger-green/5', border: 'border-ledger-green/20' },
+                expense: { text: 'text-ledger-red', bg: 'bg-ledger-red/5', border: 'border-ledger-red/20' },
+                netPositive: { text: 'text-ink-900', bg: 'bg-ledger-gold/10', border: 'border-ledger-gold/30' },
+                netNegative: { text: 'text-ledger-red', bg: 'bg-ledger-red/5', border: 'border-ledger-red/20' }
             };
 
+            let styleKey = type;
+            if (type === 'net') styleKey = amount >= 0 ? 'netPositive' : 'netNegative';
+            
+            const style = styles[styleKey];
+
             return (
-                <div className={`p-4 rounded-lg border ${colorClasses[type]}`}>
-                    <div className="flex items-center gap-2 mb-1">
-                        {Icon && <Icon />}
-                        <span className="text-sm font-medium">{title}</span>
+                <div className={`p-5 rounded-xl border ${style.border} ${style.bg} relative overflow-hidden group`}>
+                    <div className="relative z-10">
+                        <p className="text-xs font-bold uppercase tracking-widest opacity-60 mb-1">{label}</p>
+                        <p className={`text-2xl font-mono font-bold ${style.text} tracking-tight`}>
+                            {formatCurrency(amount)}
+                        </p>
+                        {subtext && <p className="text-xs mt-2 opacity-70 font-medium">{subtext}</p>}
                     </div>
-                    <div className="text-2xl font-bold font-mono">
-                        {formatCurrency(amount)}
-                    </div>
+                    {/* Decorative background blob */}
+                    <div className={`absolute -right-4 -bottom-4 w-24 h-24 rounded-full opacity-10 bg-current transition-transform group-hover:scale-150 duration-500 ${style.text}`} />
                 </div>
             );
         };
 
-        // Main App Component
-        const EventBudgetCalculator = () => {
-            // Event info state
-            const [eventInfo, setEventInfo] = useState({
-                name: '',
-                date: '',
-                location: '',
-                description: ''
-            });
-
-            // Budget state
+        // Main App
+        const EventBudgetLedger = () => {
+            const [eventInfo, setEventInfo] = useState({ name: '', date: '', location: '', description: '' });
             const [expenseCategories, setExpenseCategories] = useState(DEFAULT_EXPENSE_CATEGORIES);
             const [revenueCategories, setRevenueCategories] = useState(DEFAULT_REVENUE_CATEGORIES);
-
-            // Saved budgets
             const [savedBudgets, setSavedBudgets] = useState([]);
-            const [selectedBudget, setSelectedBudget] = useState('');
+            const [notification, setNotification] = useState(null);
+            const [activeTab, setActiveTab] = useState('expenses'); // 'expenses' | 'revenue'
 
-            // Load saved budgets on mount
+            // Load saved data
             useEffect(() => {
-                const saved = localStorage.getItem('ccm_event_budgets');
-                if (saved) {
-                    setSavedBudgets(JSON.parse(saved));
-                }
+                const saved = localStorage.getItem('ccm_ledger_data');
+                if (saved) setSavedBudgets(JSON.parse(saved));
             }, []);
 
-            // Calculate totals
+            // Totals calculation
             const totals = useMemo(() => {
-                const totalExpenses = expenseCategories.reduce((sum, cat) =>
-                    sum + cat.items.reduce((catSum, item) => catSum + (item.amount || 0), 0), 0
+                const expenses = expenseCategories.reduce((sum, cat) => 
+                    sum + cat.items.reduce((iSum, item) => iSum + (item.amount || 0), 0), 0
                 );
-
-                const totalRevenue = revenueCategories.reduce((sum, cat) =>
-                    sum + cat.items.reduce((catSum, item) => catSum + (item.amount || 0), 0), 0
+                const revenue = revenueCategories.reduce((sum, cat) => 
+                    sum + cat.items.reduce((iSum, item) => iSum + (item.amount || 0), 0), 0
                 );
-
-                return {
-                    expenses: totalExpenses,
-                    revenue: totalRevenue,
-                    netIncome: totalRevenue - totalExpenses
-                };
+                return { expenses, revenue, net: revenue - expenses };
             }, [expenseCategories, revenueCategories]);
 
-            // Update expense category
-            const updateExpenseCategory = (updatedCategory) => {
-                setExpenseCategories(cats =>
-                    cats.map(cat => cat.id === updatedCategory.id ? updatedCategory : cat)
-                );
-            };
+            const notify = (message, type = 'success') => setNotification({ message, type });
 
-            // Update revenue category
-            const updateRevenueCategory = (updatedCategory) => {
-                setRevenueCategories(cats =>
-                    cats.map(cat => cat.id === updatedCategory.id ? updatedCategory : cat)
-                );
-            };
-
-            // Save budget
-            const saveBudget = () => {
-                const budgetName = prompt('Enter a name for this budget:');
-                if (!budgetName) return;
-
+            // Actions
+            const handleSave = () => {
+                if (!eventInfo.name) {
+                    notify('Please name your event before saving', 'error');
+                    return;
+                }
                 const budget = {
                     id: generateId(),
-                    name: budgetName,
-                    eventInfo,
-                    expenseCategories,
-                    revenueCategories,
-                    savedAt: new Date().toISOString()
+                    name: eventInfo.name,
+                    updatedAt: new Date().toISOString(),
+                    data: { eventInfo, expenseCategories, revenueCategories }
                 };
-
-                const updated = [...savedBudgets, budget];
+                
+                const updated = [budget, ...savedBudgets.filter(b => b.name !== budget.name)];
                 setSavedBudgets(updated);
-                localStorage.setItem('ccm_event_budgets', JSON.stringify(updated));
-                setSelectedBudget(budget.id);
+                localStorage.setItem('ccm_ledger_data', JSON.stringify(updated));
+                notify('Budget saved to local ledger');
             };
 
-            // Load budget
-            const loadBudget = (budgetId) => {
-                const budget = savedBudgets.find(b => b.id === budgetId);
-                if (budget) {
-                    setEventInfo(budget.eventInfo);
-                    setExpenseCategories(budget.expenseCategories);
-                    setRevenueCategories(budget.revenueCategories);
-                    setSelectedBudget(budgetId);
+            const handleLoad = (budget) => {
+                setEventInfo(budget.data.eventInfo);
+                setExpenseCategories(budget.data.expenseCategories);
+                setRevenueCategories(budget.data.revenueCategories);
+                notify(`Loaded "${budget.name}"`);
+            };
+
+            const handleReset = () => {
+                if(confirm("Start a fresh ledger? Unsaved changes will be lost.")) {
+                    setEventInfo({ name: '', date: '', location: '', description: '' });
+                    setExpenseCategories(DEFAULT_EXPENSE_CATEGORIES);
+                    setRevenueCategories(DEFAULT_REVENUE_CATEGORIES);
+                    notify('Ledger reset', 'info');
                 }
             };
 
-            // Delete budget
-            const deleteBudget = (budgetId) => {
-                if (!confirm('Delete this saved budget?')) return;
-
-                const updated = savedBudgets.filter(b => b.id !== budgetId);
-                setSavedBudgets(updated);
-                localStorage.setItem('ccm_event_budgets', JSON.stringify(updated));
-                if (selectedBudget === budgetId) {
-                    setSelectedBudget('');
-                }
-            };
-
-            // Reset to defaults
-            const resetBudget = () => {
-                if (!confirm('Reset all budget data? This cannot be undone.')) return;
-
-                setEventInfo({ name: '', date: '', location: '', description: '' });
-                setExpenseCategories(DEFAULT_EXPENSE_CATEGORIES);
-                setRevenueCategories(DEFAULT_REVENUE_CATEGORIES);
-                setSelectedBudget('');
-            };
-
-            // Export to PDF
-            const exportPDF = () => {
-                const element = document.getElementById('budget-export');
+            const handleExportPDF = () => {
+                const element = document.getElementById('print-view');
                 const opt = {
                     margin: 0.5,
-                    filename: `${eventInfo.name || 'event'}-budget.pdf`,
+                    filename: `${eventInfo.name || 'event'}_ledger.pdf`,
                     image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2 },
+                    html2canvas: { scale: 2, useCORS: true },
                     jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
                 };
                 html2pdf().set(opt).from(element).save();
+                notify('Generating PDF statement...', 'info');
             };
 
             return (
-                <div className="min-h-screen bg-gray-50">
-                    {/* Header */}
-                    <header className="bg-white border-b border-gray-200 sticky top-0 z-10 no-print">
-                        <div className="max-w-6xl mx-auto px-4 py-4">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <h1 className="text-2xl font-bold text-gray-900">Event Budget Calculator</h1>
-                                    <p className="text-sm text-gray-500">Center for Cooperative Media</p>
-                                </div>
+                <div className="min-h-screen pb-20">
+                    {notification && (
+                        <Toast 
+                            message={notification.message} 
+                            type={notification.type} 
+                            onClose={() => setNotification(null)} 
+                        />
+                    )}
+
+                    {/* Top Navigation Bar */}
+                    <nav className="sticky top-0 z-40 glass-panel border-b border-ink-200/50 no-print">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="flex justify-between items-center h-16">
                                 <div className="flex items-center gap-3">
-                                    <button
-                                        onClick={resetBudget}
-                                        className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded-md hover:bg-gray-50"
-                                    >
+                                    <div className="bg-ink-900 text-white p-2 rounded-lg">
+                                        <Icons.Wallet />
+                                    </div>
+                                    <div>
+                                        <h1 className="font-serif font-bold text-lg text-ink-900 leading-tight">Event budget calculator</h1>
+                                        <p className="text-[10px] font-bold uppercase tracking-widest text-ink-500">Center for cooperative media</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    {savedBudgets.length > 0 && (
+                                        <div className="relative group mr-2 hidden sm:block">
+                                            <button className="text-xs font-bold uppercase tracking-wider text-ink-500 hover:text-ink-900 flex items-center gap-1 px-3 py-2 rounded-md hover:bg-ink-100 transition-colors">
+                                                Load Saved <Icons.ChevronDown className="w-3 h-3" />
+                                            </button>
+                                            <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-lg shadow-float border border-ink-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform origin-top-right z-50 p-1">
+                                                {savedBudgets.map(b => (
+                                                    <button 
+                                                        key={b.id}
+                                                        onClick={() => handleLoad(b)}
+                                                        className="w-full text-left px-3 py-2 text-sm text-ink-700 hover:bg-ink-50 rounded-md block truncate"
+                                                    >
+                                                        {b.name}
+                                                        <span className="block text-[10px] text-ink-400 font-mono mt-0.5">
+                                                            {new Date(b.updatedAt).toLocaleDateString()}
+                                                        </span>
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                    <button onClick={handleReset} className="p-2 text-ink-400 hover:text-ink-900 hover:bg-ink-100 rounded-lg transition-colors" title="Reset">
                                         <Icons.Reset />
-                                        Reset
                                     </button>
-                                    <button
-                                        onClick={saveBudget}
-                                        className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded-md hover:bg-gray-50"
-                                    >
-                                        <Icons.Save />
-                                        Save
+                                    <div className="h-6 w-px bg-ink-200 mx-1"></div>
+                                    <button onClick={handleSave} className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-ink-700 bg-white border border-ink-200 rounded-lg shadow-sm hover:bg-ink-50 hover:border-ink-300 transition-all">
+                                        <Icons.Save /> <span className="hidden sm:inline">Save</span>
                                     </button>
-                                    <button
-                                        onClick={exportPDF}
-                                        className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-ccm-600 rounded-md hover:bg-ccm-700"
-                                    >
-                                        <Icons.Download />
-                                        Export PDF
+                                    <button onClick={handleExportPDF} className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-white bg-ink-900 rounded-lg shadow-lg shadow-ink-900/20 hover:bg-ink-800 hover:shadow-xl transition-all transform hover:-translate-y-0.5">
+                                        <Icons.Download /> <span className="hidden sm:inline">Export PDF</span>
                                     </button>
                                 </div>
                             </div>
                         </div>
-                    </header>
+                    </nav>
 
-                    <main className="max-w-6xl mx-auto px-4 py-6">
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                            {/* Left Column - Input */}
-                            <div className="lg:col-span-2 space-y-4 no-print">
-                                {/* Saved Budgets */}
-                                {savedBudgets.length > 0 && (
-                                    <div className="bg-white border border-gray-200 rounded-lg p-4">
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                                            Load Saved Budget
-                                        </label>
-                                        <div className="flex gap-2">
-                                            <select
-                                                value={selectedBudget}
-                                                onChange={(e) => loadBudget(e.target.value)}
-                                                className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-ccm-500 focus:border-ccm-500"
-                                            >
-                                                <option value="">Select a budget...</option>
-                                                {savedBudgets.map(budget => (
-                                                    <option key={budget.id} value={budget.id}>
-                                                        {budget.name}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                            {selectedBudget && (
-                                                <button
-                                                    onClick={() => deleteBudget(selectedBudget)}
-                                                    className="px-3 py-2 text-red-600 hover:text-red-700 border border-red-300 rounded-md hover:bg-red-50"
-                                                >
-                                                    <Icons.Trash />
-                                                </button>
-                                            )}
-                                        </div>
-                                    </div>
-                                )}
-
-                                {/* Event Info */}
-                                <CollapsibleSection title="Event Information">
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div className="col-span-2">
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                                                Event Name
-                                            </label>
-                                            <input
-                                                type="text"
+                    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 no-print">
+                        {/* Header / Inputs */}
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 animate-fade-in-up">
+                            <div className="lg:col-span-8">
+                                <div className="bg-white rounded-2xl shadow-soft border border-ink-100 p-6 lg:p-8 relative overflow-hidden">
+                                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-ledger-accent via-purple-500 to-ledger-gold"></div>
+                                    <h2 className="font-serif text-2xl text-ink-900 mb-6">Event details</h2>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="col-span-1 md:col-span-2">
+                                            <LedgerInput 
+                                                label="Event name" 
+                                                placeholder="e.g. 2026 Excellence in journalism awards" 
                                                 value={eventInfo.name}
-                                                onChange={(e) => setEventInfo({ ...eventInfo, name: e.target.value })}
-                                                placeholder="e.g., 2026 Community Media Luncheon"
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-ccm-500 focus:border-ccm-500"
+                                                onChange={e => setEventInfo({...eventInfo, name: e.target.value})}
+                                                className="text-lg"
                                             />
                                         </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                                                Date
-                                            </label>
-                                            <input
-                                                type="date"
-                                                value={eventInfo.date}
-                                                onChange={(e) => setEventInfo({ ...eventInfo, date: e.target.value })}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-ccm-500 focus:border-ccm-500"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                                                Location
-                                            </label>
-                                            <input
-                                                type="text"
-                                                value={eventInfo.location}
-                                                onChange={(e) => setEventInfo({ ...eventInfo, location: e.target.value })}
-                                                placeholder="e.g., Montclair, NJ"
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-ccm-500 focus:border-ccm-500"
-                                            />
-                                        </div>
-                                        <div className="col-span-2">
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                                                Description / Notes
-                                            </label>
-                                            <textarea
+                                        <LedgerInput 
+                                            label="Date" 
+                                            type="date"
+                                            value={eventInfo.date}
+                                            onChange={e => setEventInfo({...eventInfo, date: e.target.value})}
+                                        />
+                                        <LedgerInput 
+                                            label="Location" 
+                                            placeholder="Venue or City"
+                                            value={eventInfo.location}
+                                            onChange={e => setEventInfo({...eventInfo, location: e.target.value})}
+                                        />
+                                        <div className="col-span-1 md:col-span-2">
+                                            <label className="block text-xs font-semibold text-ink-500 uppercase tracking-wider mb-1.5">Description</label>
+                                            <textarea 
+                                                className="w-full bg-white border border-ink-200 rounded-md py-2.5 px-3 text-sm text-ink-900 placeholder-ink-300 focus:ring-2 focus:ring-ledger-accent/20 focus:border-ledger-accent outline-none transition-all shadow-sm resize-none font-medium"
+                                                rows="2"
+                                                placeholder="Brief summary for the report..."
                                                 value={eventInfo.description}
-                                                onChange={(e) => setEventInfo({ ...eventInfo, description: e.target.value })}
-                                                placeholder="Brief description of the event..."
-                                                rows={2}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-ccm-500 focus:border-ccm-500"
+                                                onChange={e => setEventInfo({...eventInfo, description: e.target.value})}
                                             />
                                         </div>
                                     </div>
-                                </CollapsibleSection>
-
-                                {/* Expenses */}
-                                <CollapsibleSection
-                                    title="Expenses"
-                                    badge={formatCurrency(totals.expenses)}
-                                >
-                                    {expenseCategories.map(category => (
-                                        <CategorySection
-                                            key={category.id}
-                                            category={category}
-                                            type="expense"
-                                            onUpdateCategory={updateExpenseCategory}
-                                        />
-                                    ))}
-                                </CollapsibleSection>
-
-                                {/* Revenue */}
-                                <CollapsibleSection
-                                    title="Revenue"
-                                    badge={formatCurrency(totals.revenue)}
-                                >
-                                    {revenueCategories.map(category => (
-                                        <CategorySection
-                                            key={category.id}
-                                            category={category}
-                                            type="revenue"
-                                            onUpdateCategory={updateRevenueCategory}
-                                        />
-                                    ))}
-                                </CollapsibleSection>
+                                </div>
                             </div>
 
-                            {/* Right Column - Summary */}
-                            <div className="space-y-4">
-                                {/* Summary Cards */}
-                                <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-4 sticky top-24">
-                                    <h3 className="font-semibold text-gray-900">Budget Summary</h3>
-
-                                    <SummaryCard
-                                        title="Total Revenue"
-                                        amount={totals.revenue}
-                                        type="revenue"
-                                        icon={Icons.TrendingUp}
-                                    />
-
-                                    <SummaryCard
-                                        title="Total Expenses"
-                                        amount={totals.expenses}
-                                        type="expense"
-                                        icon={Icons.TrendingDown}
-                                    />
-
-                                    <div className="border-t border-gray-200 pt-4">
-                                        <SummaryCard
-                                            title="Net Income"
-                                            amount={totals.netIncome}
-                                            type="profit"
-                                            icon={Icons.DollarSign}
-                                        />
+                            {/* Real-time Summary Widget */}
+                            <div className="lg:col-span-4 space-y-4 sticky top-24">
+                                <div className="bg-ink-900 rounded-2xl shadow-float p-6 text-white relative overflow-hidden">
+                                    {/* Abstract shapes */}
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl"></div>
+                                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-ledger-accent opacity-20 rounded-full translate-y-1/2 -translate-x-1/2 blur-xl"></div>
+                                    
+                                    <h3 className="text-ink-300 text-xs font-bold uppercase tracking-widest mb-1">Net Balance</h3>
+                                    <div className={`text-4xl font-mono font-bold tracking-tight mb-6 flex items-center gap-2 ${totals.net < 0 ? 'text-ledger-red' : 'text-white'}`}>
+                                        {formatCurrency(totals.net)}
+                                        {totals.net < 0 ? <Icons.TrendingDown /> : <Icons.TrendingUp />}
+                                    </div>
+                                    
+                                    <div className="space-y-4">
+                                        <div>
+                                            <div className="flex justify-between text-xs font-medium mb-1 opacity-80">
+                                                <span>Revenue</span>
+                                                <span>{formatCurrency(totals.revenue)}</span>
+                                            </div>
+                                            <div className="h-1.5 bg-ink-800 rounded-full overflow-hidden">
+                                                <div className="h-full bg-ledger-green rounded-full" style={{ width: '100%' }}></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className="flex justify-between text-xs font-medium mb-1 opacity-80">
+                                                <span>Expenses</span>
+                                                <span>{formatCurrency(totals.expenses)}</span>
+                                            </div>
+                                            <div className="h-1.5 bg-ink-800 rounded-full overflow-hidden">
+                                                <div 
+                                                    className={`h-full rounded-full transition-all duration-500 ${totals.expenses > totals.revenue ? 'bg-ledger-red' : 'bg-white'}`} 
+                                                    style={{ width: `${Math.min((totals.expenses / (totals.revenue || 1)) * 100, 100)}%` }}
+                                                ></div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     {totals.expenses > 0 && (
-                                        <div className="text-sm text-gray-500 pt-2">
-                                            <p>
-                                                Coverage: {totals.expenses > 0 ? Math.round((totals.revenue / totals.expenses) * 100) : 0}%
-                                            </p>
-                                            {totals.netIncome < 0 && (
-                                                <p className="text-red-600 mt-1">
-                                                    Need {formatCurrency(Math.abs(totals.netIncome))} more to break even
-                                                </p>
-                                            )}
+                                        <div className="mt-6 pt-4 border-t border-white/10 text-center">
+                                            <span className="inline-block px-3 py-1 rounded-full bg-white/10 text-xs font-medium text-ink-200">
+                                                {totals.revenue >= totals.expenses 
+                                                    ? 'Budget Balanced' 
+                                                    : `${Math.round((totals.revenue/totals.expenses)*100)}% Covered`}
+                                            </span>
                                         </div>
                                     )}
                                 </div>
                             </div>
                         </div>
 
-                        {/* Export Template (hidden) */}
-                        <div id="budget-export" className="hidden print:block bg-white p-8">
-                            <div className="mb-6">
-                                <h1 className="text-2xl font-bold text-gray-900 mb-1">
-                                    {eventInfo.name || 'Event Budget'}
-                                </h1>
-                                {eventInfo.date && (
-                                    <p className="text-gray-600">
-                                        {new Date(eventInfo.date).toLocaleDateString('en-US', {
-                                            weekday: 'long',
-                                            year: 'numeric',
-                                            month: 'long',
-                                            day: 'numeric'
-                                        })}
-                                        {eventInfo.location && ` • ${eventInfo.location}`}
-                                    </p>
-                                )}
-                                {eventInfo.description && (
-                                    <p className="text-gray-500 mt-2 text-sm">{eventInfo.description}</p>
-                                )}
-                            </div>
-
-                            {/* Summary */}
-                            <div className="grid grid-cols-3 gap-4 mb-6">
-                                <div className="bg-green-50 p-4 rounded-lg">
-                                    <div className="text-sm text-green-700 font-medium">Total Revenue</div>
-                                    <div className="text-xl font-bold text-green-800 font-mono">
-                                        {formatCurrency(totals.revenue)}
-                                    </div>
-                                </div>
-                                <div className="bg-red-50 p-4 rounded-lg">
-                                    <div className="text-sm text-red-700 font-medium">Total Expenses</div>
-                                    <div className="text-xl font-bold text-red-800 font-mono">
-                                        {formatCurrency(totals.expenses)}
-                                    </div>
-                                </div>
-                                <div className={`p-4 rounded-lg ${totals.netIncome >= 0 ? 'bg-green-50' : 'bg-red-50'}`}>
-                                    <div className={`text-sm font-medium ${totals.netIncome >= 0 ? 'text-green-700' : 'text-red-700'}`}>
-                                        Net Income
-                                    </div>
-                                    <div className={`text-xl font-bold font-mono ${totals.netIncome >= 0 ? 'text-green-800' : 'text-red-800'}`}>
-                                        {formatCurrency(totals.netIncome)}
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Expenses Detail */}
-                            <div className="mb-6">
-                                <h2 className="text-lg font-semibold text-gray-900 mb-3 border-b pb-2">Expenses</h2>
-                                {expenseCategories.map(category => {
-                                    const catTotal = category.items.reduce((sum, item) => sum + (item.amount || 0), 0);
-                                    if (catTotal === 0) return null;
-
-                                    return (
-                                        <div key={category.id} className="mb-4">
-                                            <div className="flex justify-between font-medium text-gray-700 mb-1">
-                                                <span>{category.name}</span>
-                                                <span className="font-mono">{formatCurrency(catTotal)}</span>
-                                            </div>
-                                            {category.items.filter(item => item.amount > 0).map(item => (
-                                                <div key={item.id} className="flex justify-between text-sm text-gray-600 pl-4">
-                                                    <span>{item.description || 'Unnamed item'}</span>
-                                                    <span className="font-mono">{formatCurrency(item.amount)}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    );
-                                })}
-                            </div>
-
-                            {/* Revenue Detail */}
-                            <div>
-                                <h2 className="text-lg font-semibold text-gray-900 mb-3 border-b pb-2">Revenue</h2>
-                                {revenueCategories.map(category => {
-                                    const catTotal = category.items.reduce((sum, item) => sum + (item.amount || 0), 0);
-                                    if (catTotal === 0) return null;
-
-                                    return (
-                                        <div key={category.id} className="mb-4">
-                                            <div className="flex justify-between font-medium text-gray-700 mb-1">
-                                                <span>{category.name}</span>
-                                                <span className="font-mono">{formatCurrency(catTotal)}</span>
-                                            </div>
-                                            {category.items.filter(item => item.amount > 0).map(item => (
-                                                <div key={item.id} className="flex justify-between text-sm text-gray-600 pl-4">
-                                                    <span>{item.description || 'Unnamed item'}</span>
-                                                    <span className="font-mono">{formatCurrency(item.amount)}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    );
-                                })}
-                            </div>
-
-                            {/* Footer */}
-                            <div className="mt-8 pt-4 border-t text-xs text-gray-400 text-center">
-                                Generated by Event Budget Calculator • Center for Cooperative Media
+                        {/* Tabs Controller */}
+                        <div className="flex justify-center mb-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+                            <div className="bg-ink-100/50 p-1 rounded-xl inline-flex">
+                                <button
+                                    onClick={() => setActiveTab('expenses')}
+                                    className={`px-6 py-2.5 rounded-lg text-sm font-bold transition-all ${activeTab === 'expenses' ? 'bg-white text-ink-900 shadow-sm' : 'text-ink-500 hover:text-ink-700'}`}
+                                >
+                                    Expenses
+                                </button>
+                                <button
+                                    onClick={() => setActiveTab('revenue')}
+                                    className={`px-6 py-2.5 rounded-lg text-sm font-bold transition-all ${activeTab === 'revenue' ? 'bg-white text-ink-900 shadow-sm' : 'text-ink-500 hover:text-ink-700'}`}
+                                >
+                                    Revenue
+                                </button>
                             </div>
                         </div>
+
+                        {/* Main Ledger Area */}
+                        <div className="grid grid-cols-1 gap-6 max-w-4xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                            {activeTab === 'expenses' && (
+                                <div className="space-y-6">
+                                    <div className="flex justify-between items-baseline border-b border-ink-200 pb-2 mb-4">
+                                        <h2 className="text-lg font-serif font-bold text-ink-800">Expense breakdown</h2>
+                                        <span className="text-sm font-mono font-medium text-ink-500">Total: {formatCurrency(totals.expenses)}</span>
+                                    </div>
+                                    {expenseCategories.map((cat, idx) => (
+                                        <CategorySection 
+                                            key={cat.id} 
+                                            category={cat} 
+                                            type="expense" 
+                                            onUpdateCategory={(c) => setExpenseCategories(cats => cats.map(x => x.id === c.id ? c : x))}
+                                            index={idx}
+                                        />
+                                    ))}
+                                </div>
+                            )}
+
+                            {activeTab === 'revenue' && (
+                                <div className="space-y-6">
+                                    <div className="flex justify-between items-baseline border-b border-ink-200 pb-2 mb-4">
+                                        <h2 className="text-lg font-serif font-bold text-ink-800">Revenue sources</h2>
+                                        <span className="text-sm font-mono font-medium text-ink-500">Total: {formatCurrency(totals.revenue)}</span>
+                                    </div>
+                                    {revenueCategories.map((cat, idx) => (
+                                        <CategorySection 
+                                            key={cat.id} 
+                                            category={cat} 
+                                            type="revenue" 
+                                            onUpdateCategory={(c) => setRevenueCategories(cats => cats.map(x => x.id === c.id ? c : x))}
+                                            index={idx}
+                                        />
+                                    ))}
+                                </div>
+                            )}
+                        </div>
                     </main>
+
+                    {/* --- Print View (Hidden in web, Visible in PDF) --- */}
+                    <div id="print-view" className="hidden print:block bg-white p-12 max-w-[8.5in] mx-auto">
+                        {/* Header */}
+                        <div className="flex justify-between items-start mb-12 border-b-2 border-black pb-6">
+                            <div>
+                                <h1 className="text-4xl font-serif font-bold mb-2">{eventInfo.name || 'Event budget report'}</h1>
+                                <div className="text-sm text-gray-600 space-y-1">
+                                    <p><span className="font-bold">Date:</span> {eventInfo.date || 'TBD'}</p>
+                                    <p><span className="font-bold">Location:</span> {eventInfo.location || 'TBD'}</p>
+                                </div>
+                            </div>
+                            <div className="text-right">
+                                <div className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Generated by</div>
+                                <div className="text-lg font-bold">Center for cooperative media</div>
+                                <div className="text-sm text-gray-500 mt-1">{new Date().toLocaleDateString()}</div>
+                            </div>
+                        </div>
+
+                        {/* Description */}
+                        {eventInfo.description && (
+                            <div className="mb-10 bg-gray-50 p-4 rounded border border-gray-200">
+                                <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Overview</h3>
+                                <p className="text-sm text-gray-800 leading-relaxed">{eventInfo.description}</p>
+                            </div>
+                        )}
+
+                        {/* Executive Summary */}
+                        <div className="mb-12">
+                            <h2 className="text-xl font-bold mb-4 uppercase tracking-wider text-black border-b border-gray-200 pb-2">Executive summary</h2>
+                            <div className="flex gap-8">
+                                <div className="flex-1 p-4 border border-gray-200 rounded">
+                                    <div className="text-xs text-gray-500 uppercase">Total revenue</div>
+                                    <div className="text-2xl font-mono font-bold text-black mt-1">{formatCurrency(totals.revenue)}</div>
+                                </div>
+                                <div className="flex-1 p-4 border border-gray-200 rounded">
+                                    <div className="text-xs text-gray-500 uppercase">Total expenses</div>
+                                    <div className="text-2xl font-mono font-bold text-black mt-1">{formatCurrency(totals.expenses)}</div>
+                                </div>
+                                <div className="flex-1 p-4 border border-gray-900 bg-gray-900 text-white rounded">
+                                    <div className="text-xs text-gray-300 uppercase">Net balance</div>
+                                    <div className="text-2xl font-mono font-bold mt-1">{formatCurrency(totals.net)}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Detailed Tables */}
+                        <div className="grid grid-cols-2 gap-12">
+                            <div>
+                                <h3 className="text-lg font-bold mb-4 text-black flex justify-between items-end">
+                                    <span>Revenue</span>
+                                    <span className="text-sm font-mono font-normal">{formatCurrency(totals.revenue)}</span>
+                                </h3>
+                                <div className="space-y-4">
+                                    {revenueCategories.map(cat => {
+                                        const catTotal = cat.items.reduce((s, i) => s + (i.amount || 0), 0);
+                                        if (catTotal === 0) return null;
+                                        return (
+                                            <div key={cat.id} className="border-b border-gray-100 pb-2">
+                                                <div className="flex justify-between text-sm font-bold mb-1">
+                                                    <span>{cat.name}</span>
+                                                    <span className="font-mono">{formatCurrency(catTotal)}</span>
+                                                </div>
+                                                {cat.items.filter(i => i.amount > 0).map(item => (
+                                                    <div key={item.id} className="flex justify-between text-xs text-gray-600 pl-2 mb-1">
+                                                        <span>{item.description}</span>
+                                                        <span className="font-mono">{formatCurrency(item.amount)}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 className="text-lg font-bold mb-4 text-black flex justify-between items-end">
+                                    <span>Expenses</span>
+                                    <span className="text-sm font-mono font-normal">{formatCurrency(totals.expenses)}</span>
+                                </h3>
+                                <div className="space-y-4">
+                                    {expenseCategories.map(cat => {
+                                        const catTotal = cat.items.reduce((s, i) => s + (i.amount || 0), 0);
+                                        if (catTotal === 0) return null;
+                                        return (
+                                            <div key={cat.id} className="border-b border-gray-100 pb-2">
+                                                <div className="flex justify-between text-sm font-bold mb-1">
+                                                    <span>{cat.name}</span>
+                                                    <span className="font-mono">{formatCurrency(catTotal)}</span>
+                                                </div>
+                                                {cat.items.filter(i => i.amount > 0).map(item => (
+                                                    <div key={item.id} className="flex justify-between text-xs text-gray-600 pl-2 mb-1">
+                                                        <span>{item.description}</span>
+                                                        <span className="font-mono">{formatCurrency(item.amount)}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Footer */}
+                        <div className="mt-16 pt-8 border-t border-gray-200 text-center text-xs text-gray-400">
+                            This document was generated automatically. All figures are estimates unless otherwise noted.
+                        </div>
+                    </div>
                 </div>
             );
         };
 
-        // Render
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<EventBudgetCalculator />);
+        root.render(<EventBudgetLedger />);
     </script>
 </body>
 </html>
