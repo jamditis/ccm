@@ -17,62 +17,91 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
-    <!-- Distinctive Typography -->
+    <!-- Typography - Editorial Stack -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        'display': ['Fraunces', 'serif'],
-                        'body': ['Outfit', 'sans-serif'],
+                        'sans': ['Instrument Sans', 'sans-serif'],
+                        'serif': ['Fraunces', 'serif'],
                         'mono': ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
                         ink: {
-                            950: '#0a0a0a',
-                            900: '#141414',
-                            800: '#1f1f1f',
-                            700: '#2e2e2e',
-                            600: '#3d3d3d',
-                            500: '#525252',
-                            400: '#737373',
-                            300: '#a3a3a3',
-                            200: '#d4d4d4',
-                            100: '#e8e8e8',
-                            50: '#f5f5f5',
+                            50: '#f6f7f9',
+                            100: '#eceef2',
+                            200: '#d5d9e2',
+                            300: '#b0b8c9',
+                            400: '#8591ab',
+                            500: '#667391',
+                            600: '#515c78',
+                            700: '#434b62',
+                            800: '#3a4153',
+                            900: '#1a1d24',
+                            950: '#0d0f12',
                         },
-                        paper: {
-                            warm: '#faf8f5',
-                            cream: '#f5f1eb',
-                            ivory: '#fffef9',
+                        copper: {
+                            50: '#fdf8f3',
+                            100: '#f9ede0',
+                            200: '#f2d9be',
+                            300: '#e9bf93',
+                            400: '#de9d65',
+                            500: '#d68344',
+                            600: '#c86d39',
+                            700: '#a65531',
+                            800: '#85452d',
+                            900: '#6c3a27',
                         },
-                        accent: {
-                            terracotta: '#c45d3e',
-                            rust: '#a14028',
-                            gold: '#b8860b',
+                        sage: {
+                            50: '#f4f7f4',
+                            100: '#e3ebe3',
+                            200: '#c8d7c8',
+                            300: '#a3baa3',
+                            400: '#789778',
+                            500: '#5a7a5a',
+                            600: '#466146',
+                            700: '#3a4f3a',
+                            800: '#314131',
+                            900: '#293629',
                         }
                     },
                     animation: {
-                        'fade-up': 'fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards',
-                        'slide-in': 'slideIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards',
-                        'scale-in': 'scaleIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'slide-up': 'slideUp 0.4s ease-out forwards',
+                        'slide-in-right': 'slideInRight 0.3s ease-out forwards',
+                        'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
+                        'toast-in': 'toastIn 0.4s ease-out forwards',
+                        'toast-out': 'toastOut 0.3s ease-in forwards',
                     },
                     keyframes: {
-                        fadeUp: {
-                            '0%': { opacity: '0', transform: 'translateY(16px)' },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
                         },
-                        slideIn: {
-                            '0%': { opacity: '0', transform: 'translateX(-12px)' },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(-10px)' },
                             '100%': { opacity: '1', transform: 'translateX(0)' },
                         },
-                        scaleIn: {
-                            '0%': { opacity: '0', transform: 'scale(0.95)' },
-                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        pulseSoft: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.7' },
+                        },
+                        toastIn: {
+                            '0%': { opacity: '0', transform: 'translateY(-20px) scale(0.95)' },
+                            '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+                        },
+                        toastOut: {
+                            '0%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+                            '100%': { opacity: '0', transform: 'translateY(-10px) scale(0.95)' },
                         }
                     }
                 }
@@ -81,165 +110,107 @@
     </script>
 
     <style>
-        :root {
-            --ink-950: #0a0a0a;
-            --ink-900: #141414;
-            --paper-warm: #faf8f5;
-            --paper-cream: #f5f1eb;
-            --accent-terracotta: #c45d3e;
-            --accent-gold: #b8860b;
-        }
-
         body {
-            background: var(--paper-cream);
-            font-family: 'Outfit', sans-serif;
-            color: var(--ink-900);
+            background: linear-gradient(135deg, #f6f7f9 0%, #eceef2 50%, #f6f7f9 100%);
+            font-family: 'Instrument Sans', sans-serif;
         }
 
-        /* Subtle paper texture */
+        /* Subtle pattern overlay */
         body::before {
-            content: "";
+            content: '';
             position: fixed;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            background-image:
+                radial-gradient(circle at 25% 25%, rgba(214, 131, 68, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(102, 115, 145, 0.03) 0%, transparent 50%);
             pointer-events: none;
             z-index: 0;
         }
 
-        #root { position: relative; z-index: 1; }
-
         .input-field {
-            width: 100%;
-            padding: 0.625rem 0.875rem;
-            background: white;
-            border: 1px solid #e5e5e5;
-            border-radius: 6px;
-            font-size: 0.875rem;
-            font-family: 'Outfit', sans-serif;
-            transition: all 0.2s ease;
+            @apply w-full px-3 py-2.5 bg-white border border-ink-200 rounded-lg text-sm transition-all duration-200;
         }
         .input-field:focus {
-            outline: none;
-            border-color: var(--accent-terracotta);
-            box-shadow: 0 0 0 3px rgba(196, 93, 62, 0.1);
+            @apply outline-none border-copper-500 ring-2 ring-copper-500/20;
         }
-        .input-field::placeholder {
-            color: #a3a3a3;
-        }
-
-        .btn {
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-weight: 500;
-            font-size: 0.875rem;
-            transition: all 0.2s ease;
-            font-family: 'Outfit', sans-serif;
-        }
-        .btn-primary {
-            background: var(--ink-900);
-            color: white;
-        }
-        .btn-primary:hover {
-            background: var(--ink-950);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-        .btn-secondary {
-            background: white;
-            color: var(--ink-900);
-            border: 1px solid #e5e5e5;
-        }
-        .btn-secondary:hover {
-            background: #fafafa;
-            border-color: #d4d4d4;
-        }
-        .btn-danger {
-            background: #fef2f2;
-            color: #b91c1c;
-            border: 1px solid #fecaca;
-        }
-        .btn-danger:hover {
-            background: #fee2e2;
+        .input-field:hover:not(:focus) {
+            @apply border-ink-300;
         }
 
         .section-card {
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #e8e8e8;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            @apply bg-white rounded-xl border border-ink-100 overflow-hidden shadow-sm;
         }
 
         .section-header {
-            padding: 0.875rem 1rem;
-            background: #fafafa;
-            border-bottom: 1px solid #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            transition: background 0.15s ease;
+            @apply px-4 py-3.5 bg-gradient-to-r from-ink-50 to-transparent border-b border-ink-100 flex items-center justify-between cursor-pointer transition-all duration-200;
         }
         .section-header:hover {
-            background: #f5f5f5;
+            @apply from-ink-100;
+        }
+
+        .btn {
+            @apply px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 transform active:scale-[0.98];
+        }
+        .btn-primary {
+            @apply bg-ink-900 text-white hover:bg-ink-800 shadow-lg shadow-ink-900/20;
+        }
+        .btn-secondary {
+            @apply bg-ink-100 text-ink-700 hover:bg-ink-200;
+        }
+        .btn-copper {
+            @apply bg-copper-500 text-white hover:bg-copper-600 shadow-lg shadow-copper-500/20;
         }
 
         /* Custom scrollbar */
-        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
         .custom-scroll::-webkit-scrollbar-track { background: transparent; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #d4d4d4; border-radius: 3px; }
-        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #a3a3a3; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #d5d9e2; border-radius: 3px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #b0b8c9; }
 
-        /* Validation states */
-        .validation-warning {
-            color: #b45309;
-            background: #fffbeb;
-            border: 1px solid #fef3c7;
-            padding: 0.5rem 0.75rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-        }
-
-        /* Print */
+        /* Print styles */
         @media print {
             body { background: white; }
             body::before { display: none; }
             .no-print { display: none !important; }
+            .print-container { box-shadow: none !important; }
         }
 
-        /* Mobile inputs */
+        /* Mobile */
         @media screen and (max-width: 768px) {
             input, select, textarea { font-size: 16px !important; }
         }
 
-        /* Toast notification */
-        .toast {
-            position: fixed;
-            bottom: 1.5rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--ink-900);
-            color: white;
-            padding: 0.75rem 1.25rem;
-            border-radius: 8px;
-            font-size: 0.875rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            opacity: 0;
-            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        /* Drag and drop styles */
+        .dragging {
+            @apply opacity-50 scale-[0.98];
         }
-        .toast.visible {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
+        .drag-over {
+            @apply ring-2 ring-copper-500 ring-offset-2;
+        }
+
+        /* Tooltip styles */
+        .tooltip {
+            @apply invisible opacity-0 absolute z-50 px-2 py-1 text-xs bg-ink-900 text-white rounded shadow-lg transition-all duration-200;
+        }
+        .tooltip-trigger:hover .tooltip {
+            @apply visible opacity-100;
+        }
+
+        /* Progress ring */
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        .progress-ring circle {
+            transition: stroke-dashoffset 0.35s;
         }
     </style>
 </head>
-<body class="min-h-screen">
+<body class="min-h-screen relative">
 
-    <div id="root"></div>
+    <div id="root" class="relative z-10"></div>
 
     <script type="text/babel">
-        const { useState, useEffect, useMemo, useCallback } = React;
+        const { useState, useEffect, useRef, useCallback } = React;
 
         // --- ICONS ---
         const IconFileText = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>;
@@ -251,22 +222,156 @@
         const IconEye = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>;
         const IconEdit = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>;
         const IconImage = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>;
-        const IconUpload = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>;
-        const IconExport = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>;
-        const IconImport = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 18 12 22 8 18"/><line x1="12" y1="22" x2="12" y2="9"/></svg>;
+        const IconGripVertical = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="12" r="1"/><circle cx="9" cy="5" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="19" r="1"/></svg>;
+        const IconInfo = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>;
         const IconCheck = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>;
-        const IconAlertCircle = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>;
+        const IconX = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>;
+        const IconNewspaper = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6z"/></svg>;
 
-        // --- CONSTANTS ---
-        const MAX_LOGO_SIZE = 2 * 1024 * 1024; // 2MB
-        const AUTO_SAVE_INTERVAL = 30000; // 30 seconds
+        // --- TOAST SYSTEM ---
+        const ToastContext = React.createContext();
+
+        const ToastProvider = ({ children }) => {
+            const [toasts, setToasts] = useState([]);
+
+            const addToast = useCallback((message, type = 'success', duration = 3000) => {
+                const id = Date.now();
+                setToasts(prev => [...prev, { id, message, type, exiting: false }]);
+                setTimeout(() => {
+                    setToasts(prev => prev.map(t => t.id === id ? { ...t, exiting: true } : t));
+                    setTimeout(() => {
+                        setToasts(prev => prev.filter(t => t.id !== id));
+                    }, 300);
+                }, duration);
+            }, []);
+
+            return (
+                <ToastContext.Provider value={addToast}>
+                    {children}
+                    <div className="fixed top-4 right-4 z-50 space-y-2">
+                        {toasts.map(toast => (
+                            <div
+                                key={toast.id}
+                                className={`px-4 py-3 rounded-lg shadow-lg flex items-center gap-2 ${
+                                    toast.exiting ? 'animate-toast-out' : 'animate-toast-in'
+                                } ${
+                                    toast.type === 'success' ? 'bg-sage-600 text-white' :
+                                    toast.type === 'error' ? 'bg-red-600 text-white' :
+                                    'bg-ink-800 text-white'
+                                }`}
+                            >
+                                {toast.type === 'success' && <IconCheck className="w-4 h-4" />}
+                                {toast.type === 'error' && <IconX className="w-4 h-4" />}
+                                <span className="text-sm font-medium">{toast.message}</span>
+                            </div>
+                        ))}
+                    </div>
+                </ToastContext.Provider>
+            );
+        };
+
+        const useToast = () => React.useContext(ToastContext);
+
+        // --- RATE CARD TEMPLATES ---
+        const RATE_TEMPLATES = {
+            standard: {
+                name: 'Standard',
+                multiplier: 1,
+                description: 'Regular market rates'
+            },
+            premium: {
+                name: 'Premium',
+                multiplier: 1.5,
+                description: 'Premium positioning & guaranteed placement'
+            },
+            nonprofit: {
+                name: 'Nonprofit',
+                multiplier: 0.7,
+                description: 'Discounted rates for nonprofits'
+            }
+        };
+
+        // --- DEFAULT PLATFORMS ---
+        const getDefaultPlatforms = () => [
+            {
+                id: 1,
+                name: 'Website',
+                icon: 'web',
+                enabled: true,
+                metrics: [
+                    { label: 'Monthly Visitors', value: '' },
+                    { label: 'Page Views', value: '' },
+                    { label: 'Avg. Time on Site', value: '' }
+                ],
+                adOptions: [
+                    { name: 'Leaderboard (728x90)', description: 'Top of page banner', rate: '', specs: 'JPG/PNG/GIF, max 150KB' }
+                ]
+            },
+            {
+                id: 2,
+                name: 'Newsletter',
+                icon: 'email',
+                enabled: true,
+                metrics: [
+                    { label: 'Subscribers', value: '' },
+                    { label: 'Open Rate', value: '' },
+                    { label: 'Click Rate', value: '' }
+                ],
+                adOptions: [
+                    { name: 'Sponsored Section', description: 'Dedicated sponsor message', rate: '', specs: '150 words + image' }
+                ]
+            },
+            {
+                id: 3,
+                name: 'Social Media',
+                icon: 'social',
+                enabled: false,
+                metrics: [
+                    { label: 'Total Followers', value: '' },
+                    { label: 'Engagement Rate', value: '' }
+                ],
+                adOptions: [
+                    { name: 'Sponsored Post', description: 'Native social content', rate: '', specs: 'Platform-specific' }
+                ]
+            },
+            {
+                id: 4,
+                name: 'Podcast',
+                icon: 'audio',
+                enabled: false,
+                metrics: [
+                    { label: 'Downloads/Episode', value: '' },
+                    { label: 'Total Episodes', value: '' }
+                ],
+                adOptions: [
+                    { name: 'Pre-roll (30s)', description: 'Beginning of episode', rate: '', specs: 'Host-read or produced' },
+                    { name: 'Mid-roll (60s)', description: 'Middle of episode', rate: '', specs: 'Host-read or produced' }
+                ]
+            },
+            {
+                id: 5,
+                name: 'Print',
+                icon: 'print',
+                enabled: false,
+                metrics: [
+                    { label: 'Circulation', value: '' },
+                    { label: 'Distribution Area', value: '' },
+                    { label: 'Frequency', value: '' }
+                ],
+                adOptions: [
+                    { name: 'Full Page', description: 'Full page ad', rate: '', specs: '8.5x11", 300 DPI, CMYK' },
+                    { name: 'Half Page', description: 'Half page ad', rate: '', specs: '8.5x5.5", 300 DPI, CMYK' },
+                    { name: 'Quarter Page', description: 'Quarter page ad', rate: '', specs: '4.25x5.5", 300 DPI, CMYK' }
+                ]
+            }
+        ];
 
         const MediaKitBuilder = () => {
+            const addToast = useToast();
+
             // --- STATE ---
             const [activeTab, setActiveTab] = useState('editor');
             const [expandedSections, setExpandedSections] = useState(['organization', 'audience', 'platforms']);
-            const [toast, setToast] = useState({ visible: false, message: '' });
-            const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
             const [organization, setOrganization] = useState({
                 name: '',
@@ -275,7 +380,7 @@
                 mission: '',
                 foundedYear: new Date().getFullYear(),
                 website: '',
-                contact: { name: '', email: '', phone: '', title: '' }
+                contact: { name: '', email: '', phone: '' }
             });
 
             const [audience, setAudience] = useState({
@@ -288,17 +393,6 @@
                         { range: '45-54', percentage: 18 },
                         { range: '55+', percentage: 12 },
                     ],
-                    gender: [
-                        { type: 'Female', percentage: 52 },
-                        { type: 'Male', percentage: 45 },
-                        { type: 'Other', percentage: 3 },
-                    ],
-                    income: [
-                        { range: 'Under $50K', percentage: 25 },
-                        { range: '$50K-$100K', percentage: 40 },
-                        { range: '$100K-$150K', percentage: 25 },
-                        { range: '$150K+', percentage: 10 },
-                    ],
                     locations: [
                         { area: '', percentage: 0 }
                     ],
@@ -306,154 +400,78 @@
                 }
             });
 
-            const [platforms, setPlatforms] = useState([
-                {
-                    id: 1,
-                    name: 'Website',
-                    icon: '🌐',
-                    enabled: true,
-                    metrics: [
-                        { label: 'Monthly Visitors', value: '' },
-                        { label: 'Page Views', value: '' },
-                        { label: 'Avg. Session', value: '' }
-                    ],
-                    adOptions: [
-                        { name: 'Leaderboard (728x90)', description: 'Top of page banner', rate: '', specs: 'JPG/PNG/GIF, max 150KB' }
-                    ]
-                },
-                {
-                    id: 2,
-                    name: 'Newsletter',
-                    icon: '📧',
-                    enabled: true,
-                    metrics: [
-                        { label: 'Subscribers', value: '' },
-                        { label: 'Open Rate', value: '' },
-                        { label: 'Click Rate', value: '' }
-                    ],
-                    adOptions: [
-                        { name: 'Sponsored Section', description: 'Dedicated sponsor message', rate: '', specs: '150 words + image' }
-                    ]
-                },
-                {
-                    id: 3,
-                    name: 'Social Media',
-                    icon: '📱',
-                    enabled: false,
-                    metrics: [
-                        { label: 'Total Followers', value: '' },
-                        { label: 'Engagement Rate', value: '' },
-                        { label: 'Avg. Impressions', value: '' }
-                    ],
-                    adOptions: [
-                        { name: 'Sponsored Post', description: 'Native social content', rate: '', specs: 'Platform-specific' }
-                    ]
-                },
-                {
-                    id: 4,
-                    name: 'Podcast',
-                    icon: '🎙️',
-                    enabled: false,
-                    metrics: [
-                        { label: 'Downloads/Episode', value: '' },
-                        { label: 'Total Episodes', value: '' },
-                        { label: 'Avg. Listen Time', value: '' }
-                    ],
-                    adOptions: [
-                        { name: 'Pre-roll (30s)', description: 'Beginning of episode', rate: '', specs: 'Host-read or produced' },
-                        { name: 'Mid-roll (60s)', description: 'Middle of episode', rate: '', specs: 'Host-read or produced' }
-                    ]
-                },
-                {
-                    id: 5,
-                    name: 'Print',
-                    icon: '📰',
-                    enabled: false,
-                    metrics: [
-                        { label: 'Circulation', value: '' },
-                        { label: 'Readership', value: '' },
-                        { label: 'Frequency', value: '' }
-                    ],
-                    adOptions: [
-                        { name: 'Full Page', description: 'Full page advertisement', rate: '', specs: '8.5" x 11", 300dpi, CMYK' },
-                        { name: 'Half Page', description: 'Half page advertisement', rate: '', specs: '8.5" x 5.5", 300dpi, CMYK' }
-                    ]
-                },
-                {
-                    id: 6,
-                    name: 'Events',
-                    icon: '🎪',
-                    enabled: false,
-                    metrics: [
-                        { label: 'Events/Year', value: '' },
-                        { label: 'Avg. Attendance', value: '' },
-                        { label: 'Total Reach', value: '' }
-                    ],
-                    adOptions: [
-                        { name: 'Title Sponsor', description: 'Premier event sponsorship', rate: '', specs: 'Logo placement, speaking slot, booth' },
-                        { name: 'Supporting Sponsor', description: 'Secondary sponsorship', rate: '', specs: 'Logo placement, materials' }
-                    ]
-                }
-            ]);
-
-            const [packages, setPackages] = useState([
-                {
-                    id: 1,
-                    name: 'Starter Package',
-                    description: 'Perfect for small businesses testing the waters',
-                    items: ['1 Newsletter ad', '1 Social post'],
-                    price: '',
-                    savings: ''
-                }
-            ]);
-
-            const [caseStudies, setCaseStudies] = useState([]);
+            const [platforms, setPlatforms] = useState(getDefaultPlatforms());
             const [testimonials, setTestimonials] = useState([]);
+            const [rateTemplate, setRateTemplate] = useState('standard');
 
             const [theme, setTheme] = useState({
-                primaryColor: '#1a1a1a',
-                accentColor: '#c45d3e'
+                primaryColor: '#1a1d24',
+                accentColor: '#d68344',
+                fontStyle: 'editorial'
             });
 
             const [profiles, setProfiles] = useState([]);
             const [isGenerating, setIsGenerating] = useState(false);
+            const [exportType, setExportType] = useState('pdf');
+            const [draggedPlatform, setDraggedPlatform] = useState(null);
+            const autoSaveRef = useRef(null);
 
-            // --- VALIDATION ---
-            const agePercentageSum = useMemo(() =>
-                audience.demographics.ageRanges.reduce((sum, r) => sum + r.percentage, 0),
-                [audience.demographics.ageRanges]
-            );
+            // --- COMPUTED VALUES ---
+            const completionPercentage = React.useMemo(() => {
+                let score = 0;
+                let total = 0;
 
-            const genderPercentageSum = useMemo(() =>
-                audience.demographics.gender.reduce((sum, g) => sum + g.percentage, 0),
-                [audience.demographics.gender]
-            );
+                // Organization (40 points)
+                total += 40;
+                if (organization.name) score += 10;
+                if (organization.logo) score += 5;
+                if (organization.tagline) score += 5;
+                if (organization.mission) score += 10;
+                if (organization.contact.name) score += 5;
+                if (organization.contact.email) score += 5;
 
-            const incomePercentageSum = useMemo(() =>
-                audience.demographics.income.reduce((sum, i) => sum + i.percentage, 0),
-                [audience.demographics.income]
-            );
+                // Audience (30 points)
+                total += 30;
+                if (audience.totalReach > 0) score += 15;
+                if (audience.demographics.locations.some(l => l.area)) score += 10;
+                if (audience.demographics.interests.length > 0) score += 5;
+
+                // Platforms (30 points)
+                total += 30;
+                const enabledPlatforms = platforms.filter(p => p.enabled);
+                if (enabledPlatforms.length > 0) {
+                    score += 10;
+                    const withMetrics = enabledPlatforms.filter(p => p.metrics.some(m => m.value));
+                    const withRates = enabledPlatforms.filter(p => p.adOptions.some(o => o.rate));
+                    if (withMetrics.length > 0) score += 10;
+                    if (withRates.length > 0) score += 10;
+                }
+
+                return Math.round((score / total) * 100);
+            }, [organization, audience, platforms]);
+
+            const ageRangeTotal = React.useMemo(() => {
+                return audience.demographics.ageRanges.reduce((sum, r) => sum + r.percentage, 0);
+            }, [audience.demographics.ageRanges]);
 
             // --- EFFECTS ---
             useEffect(() => {
-                // Load profiles
                 const saved = localStorage.getItem('media_kit_profiles');
                 if (saved) setProfiles(JSON.parse(saved));
 
-                // Load auto-saved draft
+                // Auto-save draft
                 const draft = localStorage.getItem('media_kit_draft');
                 if (draft) {
-                    const data = JSON.parse(draft);
-                    if (data.organization) setOrganization(data.organization);
-                    if (data.audience) setAudience(data.audience);
-                    if (data.platforms) setPlatforms(data.platforms);
-                    if (data.packages) setPackages(data.packages);
-                    if (data.caseStudies) setCaseStudies(data.caseStudies);
-                    if (data.testimonials) setTestimonials(data.testimonials);
-                    if (data.theme) setTheme(data.theme);
+                    const { organization: org, audience: aud, platforms: plat, testimonials: test, theme: th, rateTemplate: rt } = JSON.parse(draft);
+                    if (org) setOrganization(org);
+                    if (aud) setAudience(aud);
+                    if (plat) setPlatforms(plat);
+                    if (test) setTestimonials(test);
+                    if (th) setTheme(th);
+                    if (rt) setRateTemplate(rt);
                 }
 
-                // Responsive handling
+                // Handle responsive tab switching
                 const handleResize = () => {
                     if (window.innerWidth >= 1024) {
                         setActiveTab('split');
@@ -463,47 +481,18 @@
                 };
                 window.addEventListener('resize', handleResize);
                 handleResize();
+                return () => window.removeEventListener('resize', handleResize);
+            }, []);
 
-                // Warn on unsaved changes
-                const handleBeforeUnload = (e) => {
-                    if (hasUnsavedChanges) {
-                        e.preventDefault();
-                        e.returnValue = '';
-                    }
-                };
-                window.addEventListener('beforeunload', handleBeforeUnload);
-
-                return () => {
-                    window.removeEventListener('resize', handleResize);
-                    window.removeEventListener('beforeunload', handleBeforeUnload);
-                };
-            }, [hasUnsavedChanges]);
-
-            // Auto-save
+            // Auto-save effect
             useEffect(() => {
-                const interval = setInterval(() => {
-                    if (hasUnsavedChanges) {
-                        localStorage.setItem('media_kit_draft', JSON.stringify({
-                            organization, audience, platforms, packages, caseStudies, testimonials, theme
-                        }));
-                        showToast('Draft auto-saved');
-                        setHasUnsavedChanges(false);
-                    }
-                }, AUTO_SAVE_INTERVAL);
-
-                return () => clearInterval(interval);
-            }, [hasUnsavedChanges, organization, audience, platforms, packages, caseStudies, testimonials, theme]);
-
-            // Mark changes
-            useEffect(() => {
-                setHasUnsavedChanges(true);
-            }, [organization, audience, platforms, packages, caseStudies, testimonials, theme]);
-
-            // --- TOAST ---
-            const showToast = (message) => {
-                setToast({ visible: true, message });
-                setTimeout(() => setToast({ visible: false, message: '' }), 3000);
-            };
+                if (autoSaveRef.current) clearTimeout(autoSaveRef.current);
+                autoSaveRef.current = setTimeout(() => {
+                    localStorage.setItem('media_kit_draft', JSON.stringify({
+                        organization, audience, platforms, testimonials, theme, rateTemplate
+                    }));
+                }, 1000);
+            }, [organization, audience, platforms, testimonials, theme, rateTemplate]);
 
             // --- HANDLERS ---
             const toggleSection = (section) => {
@@ -516,36 +505,35 @@
 
             const handleLogoUpload = (e) => {
                 const file = e.target.files[0];
-                if (!file) return;
-
-                if (file.size > MAX_LOGO_SIZE) {
-                    showToast('Logo must be under 2MB');
-                    return;
+                if (file) {
+                    if (file.size > 5 * 1024 * 1024) {
+                        addToast('Logo file must be under 5MB', 'error');
+                        return;
+                    }
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        setOrganization(prev => ({ ...prev, logo: reader.result }));
+                        addToast('Logo uploaded successfully', 'success');
+                    };
+                    reader.readAsDataURL(file);
                 }
-
-                if (!file.type.startsWith('image/')) {
-                    showToast('Please upload an image file');
-                    return;
-                }
-
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    setOrganization(prev => ({ ...prev, logo: reader.result }));
-                    showToast('Logo uploaded');
-                };
-                reader.onerror = () => showToast('Failed to read file');
-                reader.readAsDataURL(file);
             };
 
-            const updateDemographic = (type, index, field, value) => {
-                const updated = [...audience.demographics[type]];
-                updated[index] = {
-                    ...updated[index],
-                    [field]: field === 'percentage' ? Math.max(0, Math.min(100, parseInt(value) || 0)) : value
-                };
+            const updateAgeRange = (index, field, value) => {
+                const updated = [...audience.demographics.ageRanges];
+                updated[index] = { ...updated[index], [field]: field === 'percentage' ? parseInt(value) || 0 : value };
                 setAudience(prev => ({
                     ...prev,
-                    demographics: { ...prev.demographics, [type]: updated }
+                    demographics: { ...prev.demographics, ageRanges: updated }
+                }));
+            };
+
+            const updateLocation = (index, field, value) => {
+                const updated = [...audience.demographics.locations];
+                updated[index] = { ...updated[index], [field]: field === 'percentage' ? parseInt(value) || 0 : value };
+                setAudience(prev => ({
+                    ...prev,
+                    demographics: { ...prev.demographics, locations: updated }
                 }));
             };
 
@@ -611,7 +599,7 @@
 
             const removeAdOption = (platformId, optionIndex) => {
                 setPlatforms(prev => prev.map(p => {
-                    if (p.id === platformId && p.adOptions.length > 1) {
+                    if (p.id === platformId) {
                         return {
                             ...p,
                             adOptions: p.adOptions.filter((_, i) => i !== optionIndex)
@@ -621,72 +609,8 @@
                 }));
             };
 
-            // Package handlers
-            const addPackage = () => {
-                setPackages([...packages, {
-                    id: Date.now(),
-                    name: '',
-                    description: '',
-                    items: [''],
-                    price: '',
-                    savings: ''
-                }]);
-            };
-
-            const updatePackage = (id, field, value) => {
-                setPackages(packages.map(p =>
-                    p.id === id ? { ...p, [field]: value } : p
-                ));
-            };
-
-            const updatePackageItem = (packageId, itemIndex, value) => {
-                setPackages(packages.map(p => {
-                    if (p.id === packageId) {
-                        const items = [...p.items];
-                        items[itemIndex] = value;
-                        return { ...p, items };
-                    }
-                    return p;
-                }));
-            };
-
-            const addPackageItem = (packageId) => {
-                setPackages(packages.map(p => {
-                    if (p.id === packageId) {
-                        return { ...p, items: [...p.items, ''] };
-                    }
-                    return p;
-                }));
-            };
-
-            const removePackage = (id) => {
-                setPackages(packages.filter(p => p.id !== id));
-            };
-
-            // Case study handlers
-            const addCaseStudy = () => {
-                setCaseStudies([...caseStudies, {
-                    id: Date.now(),
-                    client: '',
-                    challenge: '',
-                    solution: '',
-                    results: ''
-                }]);
-            };
-
-            const updateCaseStudy = (id, field, value) => {
-                setCaseStudies(caseStudies.map(cs =>
-                    cs.id === id ? { ...cs, [field]: value } : cs
-                ));
-            };
-
-            const removeCaseStudy = (id) => {
-                setCaseStudies(caseStudies.filter(cs => cs.id !== id));
-            };
-
-            // Testimonial handlers
             const addTestimonial = () => {
-                setTestimonials([...testimonials, { id: Date.now(), quote: '', source: '', company: '' }]);
+                setTestimonials([...testimonials, { id: Date.now(), quote: '', source: '' }]);
             };
 
             const updateTestimonial = (id, field, value) => {
@@ -699,6 +623,28 @@
                 setTestimonials(prev => prev.filter(t => t.id !== id));
             };
 
+            // Drag and drop handlers
+            const handleDragStart = (e, platformId) => {
+                setDraggedPlatform(platformId);
+                e.dataTransfer.effectAllowed = 'move';
+            };
+
+            const handleDragOver = (e, platformId) => {
+                e.preventDefault();
+                if (draggedPlatform && draggedPlatform !== platformId) {
+                    const dragIndex = platforms.findIndex(p => p.id === draggedPlatform);
+                    const hoverIndex = platforms.findIndex(p => p.id === platformId);
+                    const newPlatforms = [...platforms];
+                    const [removed] = newPlatforms.splice(dragIndex, 1);
+                    newPlatforms.splice(hoverIndex, 0, removed);
+                    setPlatforms(newPlatforms);
+                }
+            };
+
+            const handleDragEnd = () => {
+                setDraggedPlatform(null);
+            };
+
             // Profile management
             const saveProfile = () => {
                 const name = prompt("Profile name:");
@@ -706,12 +652,12 @@
                 const profile = {
                     id: Date.now(),
                     name,
-                    data: { organization, audience, platforms, packages, caseStudies, testimonials, theme }
+                    data: { organization, audience, platforms, testimonials, theme, rateTemplate }
                 };
                 const updated = [...profiles, profile];
                 setProfiles(updated);
                 localStorage.setItem('media_kit_profiles', JSON.stringify(updated));
-                showToast(`Saved "${name}"`);
+                addToast(`Profile "${name}" saved`, 'success');
             };
 
             const loadProfile = (profileId) => {
@@ -719,162 +665,209 @@
                 if (profile) {
                     setOrganization(profile.data.organization);
                     setAudience(profile.data.audience);
-                    setPlatforms(profile.data.platforms);
-                    if (profile.data.packages) setPackages(profile.data.packages);
-                    if (profile.data.caseStudies) setCaseStudies(profile.data.caseStudies);
+                    setPlatforms(profile.data.platforms || getDefaultPlatforms());
                     setTestimonials(profile.data.testimonials || []);
                     if (profile.data.theme) setTheme(profile.data.theme);
-                    showToast(`Loaded "${profile.name}"`);
+                    if (profile.data.rateTemplate) setRateTemplate(profile.data.rateTemplate);
+                    addToast(`Loaded "${profile.name}"`, 'success');
                 }
             };
 
             const deleteProfile = (profileId) => {
                 const profile = profiles.find(p => p.id === Number(profileId));
-                if (profile && confirm(`Delete "${profile.name}"?`)) {
+                if (profile && confirm(`Delete profile "${profile.name}"?`)) {
                     const updated = profiles.filter(p => p.id !== Number(profileId));
                     setProfiles(updated);
                     localStorage.setItem('media_kit_profiles', JSON.stringify(updated));
-                    showToast('Profile deleted');
+                    addToast(`Profile deleted`, 'success');
                 }
             };
 
-            const exportData = () => {
-                const data = { organization, audience, platforms, packages, caseStudies, testimonials, theme };
-                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `${organization.name || 'media-kit'}-data.json`;
-                a.click();
-                URL.revokeObjectURL(url);
-                showToast('Data exported');
+            const clearDraft = () => {
+                if (confirm('Clear all current data and start fresh?')) {
+                    setOrganization({
+                        name: '',
+                        logo: null,
+                        tagline: '',
+                        mission: '',
+                        foundedYear: new Date().getFullYear(),
+                        website: '',
+                        contact: { name: '', email: '', phone: '' }
+                    });
+                    setAudience({
+                        totalReach: 0,
+                        demographics: {
+                            ageRanges: [
+                                { range: '18-24', percentage: 15 },
+                                { range: '25-34', percentage: 30 },
+                                { range: '35-44', percentage: 25 },
+                                { range: '45-54', percentage: 18 },
+                                { range: '55+', percentage: 12 },
+                            ],
+                            locations: [{ area: '', percentage: 0 }],
+                            interests: []
+                        }
+                    });
+                    setPlatforms(getDefaultPlatforms());
+                    setTestimonials([]);
+                    localStorage.removeItem('media_kit_draft');
+                    addToast('Draft cleared', 'success');
+                }
             };
 
-            const importData = (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    try {
-                        const data = JSON.parse(event.target.result);
-                        if (data.organization) setOrganization(data.organization);
-                        if (data.audience) setAudience(data.audience);
-                        if (data.platforms) setPlatforms(data.platforms);
-                        if (data.packages) setPackages(data.packages);
-                        if (data.caseStudies) setCaseStudies(data.caseStudies);
-                        if (data.testimonials) setTestimonials(data.testimonials);
-                        if (data.theme) setTheme(data.theme);
-                        showToast('Data imported');
-                    } catch (err) {
-                        showToast('Invalid file format');
+            const handleDownload = async () => {
+                setIsGenerating(true);
+                const element = document.getElementById('media-kit-preview');
+
+                try {
+                    if (exportType === 'pdf') {
+                        const opt = {
+                            margin: 0.5,
+                            filename: `${organization.name || 'Media'}_Kit.pdf`,
+                            image: { type: 'jpeg', quality: 0.98 },
+                            html2canvas: { scale: 2, useCORS: true, logging: false },
+                            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+                            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+                        };
+                        await html2pdf().set(opt).from(element).save();
+                        addToast('PDF downloaded successfully', 'success');
+                    } else {
+                        const canvas = await html2canvas(element, { scale: 2, useCORS: true, logging: false });
+                        const link = document.createElement('a');
+                        link.download = `${organization.name || 'Media'}_Kit.png`;
+                        link.href = canvas.toDataURL('image/png');
+                        link.click();
+                        addToast('PNG downloaded successfully', 'success');
                     }
-                };
-                reader.readAsText(file);
+                } catch (error) {
+                    addToast('Export failed. Please try again.', 'error');
+                    console.error(error);
+                }
+
+                setIsGenerating(false);
             };
 
-            // Export handlers
-            const handleDownloadPDF = () => {
-                setIsGenerating(true);
-                const element = document.getElementById('media-kit-preview');
-                const opt = {
-                    margin: 0.5,
-                    filename: `${organization.name || 'Media'}_Kit.pdf`,
-                    image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2, useCORS: true, logging: false },
-                    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-                };
-                html2pdf().set(opt).from(element).save().then(() => {
-                    setIsGenerating(false);
-                    showToast('PDF downloaded');
-                });
-            };
+            // --- COMPONENTS ---
 
-            const handleDownloadPNG = () => {
-                setIsGenerating(true);
-                const element = document.getElementById('media-kit-preview');
-                html2canvas(element, { scale: 2, useCORS: true }).then(canvas => {
-                    const link = document.createElement('a');
-                    link.download = `${organization.name || 'Media'}_Kit.png`;
-                    link.href = canvas.toDataURL('image/png');
-                    link.click();
-                    setIsGenerating(false);
-                    showToast('PNG downloaded');
-                });
-            };
+            // Tooltip wrapper
+            const Tooltip = ({ children, text }) => (
+                <span className="tooltip-trigger relative inline-flex">
+                    {children}
+                    <span className="tooltip -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                        {text}
+                    </span>
+                </span>
+            );
 
-            // Collapsible Section Component
-            const CollapsibleSection = ({ id, title, badge, children }) => {
-                const isExpanded = expandedSections.includes(id);
+            // Progress Ring
+            const ProgressRing = ({ percentage }) => {
+                const radius = 20;
+                const stroke = 3;
+                const normalizedRadius = radius - stroke * 2;
+                const circumference = normalizedRadius * 2 * Math.PI;
+                const strokeDashoffset = circumference - (percentage / 100) * circumference;
+
                 return (
-                    <div className="section-card mb-4 animate-fade-up" style={{ animationDelay: `${expandedSections.indexOf(id) * 0.05}s` }}>
-                        <div className="section-header" onClick={() => toggleSection(id)}>
-                            <div className="flex items-center gap-2">
-                                <h3 className="font-semibold text-sm text-ink-800">{title}</h3>
-                                {badge && <span className="text-xs bg-accent-terracotta/10 text-accent-terracotta px-2 py-0.5 rounded-full">{badge}</span>}
-                            </div>
-                            <IconChevronDown className={`text-ink-400 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />
-                        </div>
-                        {isExpanded && <div className="p-4">{children}</div>}
+                    <div className="relative inline-flex items-center justify-center">
+                        <svg height={radius * 2} width={radius * 2} className="progress-ring">
+                            <circle
+                                stroke="#e5e7eb"
+                                fill="transparent"
+                                strokeWidth={stroke}
+                                r={normalizedRadius}
+                                cx={radius}
+                                cy={radius}
+                            />
+                            <circle
+                                stroke={percentage >= 70 ? '#5a7a5a' : percentage >= 40 ? '#d68344' : '#667391'}
+                                fill="transparent"
+                                strokeWidth={stroke}
+                                strokeDasharray={circumference + ' ' + circumference}
+                                style={{ strokeDashoffset }}
+                                strokeLinecap="round"
+                                r={normalizedRadius}
+                                cx={radius}
+                                cy={radius}
+                            />
+                        </svg>
+                        <span className="absolute text-[10px] font-bold text-ink-600">{percentage}%</span>
                     </div>
                 );
             };
 
+            // Collapsible Section Component
+            const CollapsibleSection = ({ id, title, children, badge }) => {
+                const isExpanded = expandedSections.includes(id);
+                return (
+                    <div className="section-card mb-4 animate-slide-up" style={{ animationDelay: `${id === 'theme' ? 0 : 50}ms` }}>
+                        <div className="section-header" onClick={() => toggleSection(id)}>
+                            <div className="flex items-center gap-2">
+                                <h3 className="font-semibold text-sm text-ink-700">{title}</h3>
+                                {badge && <span className="px-1.5 py-0.5 bg-copper-100 text-copper-700 text-[10px] font-medium rounded">{badge}</span>}
+                            </div>
+                            <IconChevronDown className={`text-ink-400 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />
+                        </div>
+                        {isExpanded && (
+                            <div className="p-4 animate-fade-in">
+                                {children}
+                            </div>
+                        )}
+                    </div>
+                );
+            };
+
+            // Get enabled platforms
             const enabledPlatforms = platforms.filter(p => p.enabled);
 
             return (
                 <div className="flex h-screen flex-col lg:flex-row">
 
                     {/* === EDITOR PANEL === */}
-                    <div className={`w-full lg:w-[440px] xl:w-[500px] bg-white border-r border-ink-100 flex flex-col h-[calc(100%-56px)] lg:h-full ${activeTab === 'preview' ? 'hidden lg:flex' : 'flex'}`}>
+                    <div className={`w-full lg:w-[440px] xl:w-[500px] bg-white/95 backdrop-blur-sm border-r border-ink-200 flex flex-col h-[calc(100%-56px)] lg:h-full ${activeTab === 'preview' ? 'hidden lg:flex' : 'flex'}`}>
 
                         {/* Header */}
-                        <div className="p-4 border-b border-ink-100 bg-white">
-                            <div className="flex items-center justify-between mb-3">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 bg-ink-900 rounded-lg flex items-center justify-center">
-                                        <IconFileText className="text-white w-5 h-5" />
-                                    </div>
-                                    <div>
-                                        <h1 className="font-display font-bold text-ink-900 text-lg">Media Kit Builder</h1>
-                                        <p className="text-xs text-ink-400">Professional press kits</p>
-                                    </div>
+                        <div className="p-4 border-b border-ink-100 flex items-center justify-between bg-white">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 bg-ink-900 rounded-xl flex items-center justify-center shadow-lg">
+                                    <IconNewspaper className="text-white w-5 h-5" />
                                 </div>
-                                <button onClick={saveProfile} className="btn btn-secondary p-2" title="Save Profile">
-                                    <IconSave />
-                                </button>
+                                <div>
+                                    <h1 className="font-bold text-ink-900 font-serif text-lg">Media Kit Builder</h1>
+                                    <p className="text-xs text-ink-500">Professional press kits made easy</p>
+                                </div>
                             </div>
+                            <div className="flex items-center gap-2">
+                                <ProgressRing percentage={completionPercentage} />
+                            </div>
+                        </div>
 
-                            {/* Profile & Data Management */}
-                            <div className="flex gap-2">
-                                <select
-                                    className="input-field flex-1 text-sm py-2"
-                                    onChange={(e) => {
-                                        const value = e.target.value;
-                                        if (value.startsWith('load:')) {
-                                            loadProfile(value.replace('load:', ''));
-                                        } else if (value.startsWith('delete:')) {
-                                            deleteProfile(value.replace('delete:', ''));
-                                        }
-                                        e.target.value = '';
-                                    }}
-                                    defaultValue=""
-                                >
-                                    <option value="">Profiles...</option>
-                                    {profiles.map(p => (
-                                        <option key={p.id} value={`load:${p.id}`}>Load: {p.name}</option>
-                                    ))}
-                                    {profiles.length > 0 && <option disabled>───────────</option>}
-                                    {profiles.map(p => (
-                                        <option key={`del-${p.id}`} value={`delete:${p.id}`}>Delete: {p.name}</option>
-                                    ))}
-                                </select>
-                                <button onClick={exportData} className="btn btn-secondary p-2" title="Export Data">
-                                    <IconExport />
-                                </button>
-                                <label className="btn btn-secondary p-2 cursor-pointer" title="Import Data">
-                                    <IconImport />
-                                    <input type="file" accept=".json" className="hidden" onChange={importData} />
-                                </label>
+                        {/* Toolbar */}
+                        <div className="px-4 py-2 border-b border-ink-100 flex items-center justify-between bg-ink-50/50">
+                            <div className="flex items-center gap-2">
+                                {profiles.length > 0 && (
+                                    <select
+                                        className="text-xs border border-ink-200 rounded px-2 py-1.5 bg-white"
+                                        onChange={(e) => {
+                                            if (e.target.value) loadProfile(e.target.value);
+                                        }}
+                                        defaultValue=""
+                                    >
+                                        <option value="">Load profile...</option>
+                                        {profiles.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
+                                    </select>
+                                )}
+                            </div>
+                            <div className="flex items-center gap-1">
+                                <Tooltip text="Save profile">
+                                    <button onClick={saveProfile} className="p-2 text-ink-500 hover:text-ink-700 hover:bg-ink-100 rounded-lg transition-colors">
+                                        <IconSave />
+                                    </button>
+                                </Tooltip>
+                                <Tooltip text="Clear draft">
+                                    <button onClick={clearDraft} className="p-2 text-ink-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                                        <IconTrash />
+                                    </button>
+                                </Tooltip>
                             </div>
                         </div>
 
@@ -882,50 +875,66 @@
                         <div className="flex-1 overflow-y-auto p-4 custom-scroll">
 
                             {/* Theme */}
-                            <CollapsibleSection id="theme" title="Branding">
-                                <div className="grid grid-cols-2 gap-3">
-                                    <div>
-                                        <label className="block text-xs font-medium text-ink-500 mb-1.5">Primary</label>
-                                        <div className="flex items-center gap-2">
-                                            <input
-                                                type="color"
-                                                className="w-9 h-9 rounded cursor-pointer border border-ink-200"
-                                                value={theme.primaryColor}
-                                                onChange={(e) => setTheme({...theme, primaryColor: e.target.value})}
-                                            />
-                                            <input
-                                                type="text"
-                                                className="input-field flex-1 font-mono text-xs"
-                                                value={theme.primaryColor}
-                                                onChange={(e) => setTheme({...theme, primaryColor: e.target.value})}
-                                            />
+                            <CollapsibleSection id="theme" title="Theme & Branding">
+                                <div className="space-y-4">
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <div>
+                                            <label className="block text-xs font-medium text-ink-600 mb-1">Primary Color</label>
+                                            <div className="flex items-center gap-2">
+                                                <input
+                                                    type="color"
+                                                    className="w-8 h-8 rounded cursor-pointer border border-ink-200"
+                                                    value={theme.primaryColor}
+                                                    onChange={(e) => setTheme({...theme, primaryColor: e.target.value})}
+                                                />
+                                                <input
+                                                    type="text"
+                                                    className="input-field flex-1 font-mono text-xs"
+                                                    value={theme.primaryColor}
+                                                    onChange={(e) => setTheme({...theme, primaryColor: e.target.value})}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-medium text-ink-600 mb-1">Accent Color</label>
+                                            <div className="flex items-center gap-2">
+                                                <input
+                                                    type="color"
+                                                    className="w-8 h-8 rounded cursor-pointer border border-ink-200"
+                                                    value={theme.accentColor}
+                                                    onChange={(e) => setTheme({...theme, accentColor: e.target.value})}
+                                                />
+                                                <input
+                                                    type="text"
+                                                    className="input-field flex-1 font-mono text-xs"
+                                                    value={theme.accentColor}
+                                                    onChange={(e) => setTheme({...theme, accentColor: e.target.value})}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                     <div>
-                                        <label className="block text-xs font-medium text-ink-500 mb-1.5">Accent</label>
-                                        <div className="flex items-center gap-2">
-                                            <input
-                                                type="color"
-                                                className="w-9 h-9 rounded cursor-pointer border border-ink-200"
-                                                value={theme.accentColor}
-                                                onChange={(e) => setTheme({...theme, accentColor: e.target.value})}
-                                            />
-                                            <input
-                                                type="text"
-                                                className="input-field flex-1 font-mono text-xs"
-                                                value={theme.accentColor}
-                                                onChange={(e) => setTheme({...theme, accentColor: e.target.value})}
-                                            />
-                                        </div>
+                                        <label className="block text-xs font-medium text-ink-600 mb-1">Rate Card Template</label>
+                                        <select
+                                            className="input-field"
+                                            value={rateTemplate}
+                                            onChange={(e) => setRateTemplate(e.target.value)}
+                                        >
+                                            {Object.entries(RATE_TEMPLATES).map(([key, template]) => (
+                                                <option key={key} value={key}>{template.name} - {template.description}</option>
+                                            ))}
+                                        </select>
                                     </div>
                                 </div>
                             </CollapsibleSection>
 
                             {/* Organization */}
-                            <CollapsibleSection id="organization" title="Organization">
+                            <CollapsibleSection id="organization" title="Organization Profile">
                                 <div className="space-y-3">
                                     <div>
-                                        <label className="block text-xs font-medium text-ink-500 mb-1.5">Name</label>
+                                        <label className="block text-xs font-medium text-ink-600 mb-1">
+                                            Organization Name <span className="text-red-500">*</span>
+                                        </label>
                                         <input
                                             type="text"
                                             className="input-field"
@@ -934,27 +943,21 @@
                                             onChange={(e) => setOrganization({...organization, name: e.target.value})}
                                         />
                                     </div>
-
                                     <div>
-                                        <label className="block text-xs font-medium text-ink-500 mb-1.5">Logo</label>
-                                        <label className="flex items-center justify-center gap-2 input-field cursor-pointer hover:bg-ink-50 transition-colors">
-                                            {organization.logo ? (
-                                                <>
-                                                    <img src={organization.logo} alt="Logo" className="h-6 object-contain" />
-                                                    <span className="text-ink-500 text-sm">Change logo</span>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <IconUpload className="text-ink-400" />
-                                                    <span className="text-ink-500 text-sm">Upload logo (max 2MB)</span>
-                                                </>
-                                            )}
+                                        <label className="block text-xs font-medium text-ink-600 mb-1">Logo</label>
+                                        <label className={`input-field block text-center cursor-pointer hover:bg-ink-50 ${organization.logo ? 'border-sage-500 bg-sage-50' : ''}`}>
+                                            <span className="text-ink-500 text-sm flex items-center justify-center gap-2">
+                                                {organization.logo ? (
+                                                    <><IconCheck className="text-sage-600" /> Change Logo</>
+                                                ) : (
+                                                    <><IconImage /> Upload Logo (max 5MB)</>
+                                                )}
+                                            </span>
                                             <input type="file" accept="image/*" className="hidden" onChange={handleLogoUpload} />
                                         </label>
                                     </div>
-
                                     <div>
-                                        <label className="block text-xs font-medium text-ink-500 mb-1.5">Tagline</label>
+                                        <label className="block text-xs font-medium text-ink-600 mb-1">Tagline</label>
                                         <input
                                             type="text"
                                             className="input-field"
@@ -963,9 +966,10 @@
                                             onChange={(e) => setOrganization({...organization, tagline: e.target.value})}
                                         />
                                     </div>
-
                                     <div>
-                                        <label className="block text-xs font-medium text-ink-500 mb-1.5">Mission</label>
+                                        <label className="block text-xs font-medium text-ink-600 mb-1">
+                                            Mission Statement <span className="text-red-500">*</span>
+                                        </label>
                                         <textarea
                                             className="input-field"
                                             rows="3"
@@ -974,10 +978,9 @@
                                             onChange={(e) => setOrganization({...organization, mission: e.target.value})}
                                         />
                                     </div>
-
                                     <div className="grid grid-cols-2 gap-3">
                                         <div>
-                                            <label className="block text-xs font-medium text-ink-500 mb-1.5">Founded</label>
+                                            <label className="block text-xs font-medium text-ink-600 mb-1">Founded</label>
                                             <input
                                                 type="number"
                                                 className="input-field"
@@ -986,7 +989,7 @@
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-xs font-medium text-ink-500 mb-1.5">Website</label>
+                                            <label className="block text-xs font-medium text-ink-600 mb-1">Website</label>
                                             <input
                                                 type="url"
                                                 className="input-field"
@@ -996,26 +999,16 @@
                                             />
                                         </div>
                                     </div>
-
-                                    <div className="pt-3 border-t border-ink-100">
-                                        <label className="block text-xs font-medium text-ink-500 mb-2">Contact Person</label>
+                                    <div className="pt-2 border-t border-ink-100">
+                                        <label className="block text-xs font-medium text-ink-600 mb-2">Contact Person</label>
                                         <div className="space-y-2">
-                                            <div className="grid grid-cols-2 gap-2">
-                                                <input
-                                                    type="text"
-                                                    className="input-field"
-                                                    placeholder="Name"
-                                                    value={organization.contact.name}
-                                                    onChange={(e) => setOrganization({...organization, contact: {...organization.contact, name: e.target.value}})}
-                                                />
-                                                <input
-                                                    type="text"
-                                                    className="input-field"
-                                                    placeholder="Title"
-                                                    value={organization.contact.title}
-                                                    onChange={(e) => setOrganization({...organization, contact: {...organization.contact, title: e.target.value}})}
-                                                />
-                                            </div>
+                                            <input
+                                                type="text"
+                                                className="input-field"
+                                                placeholder="Name"
+                                                value={organization.contact.name}
+                                                onChange={(e) => setOrganization({...organization, contact: {...organization.contact, name: e.target.value}})}
+                                            />
                                             <div className="grid grid-cols-2 gap-2">
                                                 <input
                                                     type="email"
@@ -1038,109 +1031,53 @@
                             </CollapsibleSection>
 
                             {/* Audience */}
-                            <CollapsibleSection id="audience" title="Audience">
+                            <CollapsibleSection id="audience" title="Audience Demographics">
                                 <div className="space-y-4">
                                     <div>
-                                        <label className="block text-xs font-medium text-ink-500 mb-1.5">Total Reach</label>
+                                        <label className="block text-xs font-medium text-ink-600 mb-1">
+                                            Total Audience Reach <span className="text-red-500">*</span>
+                                        </label>
                                         <input
                                             type="number"
                                             className="input-field"
-                                            placeholder="Combined reach across platforms"
+                                            placeholder="Combined reach across all platforms"
                                             value={audience.totalReach || ''}
                                             onChange={(e) => setAudience({...audience, totalReach: parseInt(e.target.value) || 0})}
                                         />
                                     </div>
 
-                                    {/* Age */}
                                     <div>
                                         <div className="flex items-center justify-between mb-2">
-                                            <label className="text-xs font-medium text-ink-500">Age Distribution</label>
-                                            {agePercentageSum !== 100 && (
-                                                <span className="text-xs text-amber-600 flex items-center gap-1">
-                                                    <IconAlertCircle className="w-3 h-3" />
-                                                    {agePercentageSum}%
-                                                </span>
-                                            )}
+                                            <label className="text-xs font-medium text-ink-600">Age Distribution</label>
+                                            <span className={`text-xs font-mono ${ageRangeTotal !== 100 ? 'text-copper-600' : 'text-sage-600'}`}>
+                                                Total: {ageRangeTotal}%
+                                            </span>
                                         </div>
+                                        {ageRangeTotal !== 100 && (
+                                            <p className="text-xs text-copper-600 mb-2 flex items-center gap-1">
+                                                <IconInfo /> Age ranges should total 100%
+                                            </p>
+                                        )}
                                         <div className="space-y-2">
                                             {audience.demographics.ageRanges.map((range, i) => (
                                                 <div key={i} className="flex items-center gap-2">
-                                                    <span className="text-xs text-ink-500 w-14">{range.range}</span>
+                                                    <span className="text-xs text-ink-500 w-16">{range.range}</span>
                                                     <input
                                                         type="range"
                                                         min="0"
                                                         max="100"
-                                                        className="flex-1 accent-ink-900"
+                                                        className="flex-1 accent-copper-500"
                                                         value={range.percentage}
-                                                        onChange={(e) => updateDemographic('ageRanges', i, 'percentage', e.target.value)}
+                                                        onChange={(e) => updateAgeRange(i, 'percentage', e.target.value)}
                                                     />
-                                                    <span className="text-xs font-mono w-10 text-right text-ink-600">{range.percentage}%</span>
+                                                    <span className="text-xs font-mono w-10 text-right">{range.percentage}%</span>
                                                 </div>
                                             ))}
                                         </div>
                                     </div>
 
-                                    {/* Gender */}
                                     <div>
-                                        <div className="flex items-center justify-between mb-2">
-                                            <label className="text-xs font-medium text-ink-500">Gender</label>
-                                            {genderPercentageSum !== 100 && (
-                                                <span className="text-xs text-amber-600 flex items-center gap-1">
-                                                    <IconAlertCircle className="w-3 h-3" />
-                                                    {genderPercentageSum}%
-                                                </span>
-                                            )}
-                                        </div>
-                                        <div className="space-y-2">
-                                            {audience.demographics.gender.map((g, i) => (
-                                                <div key={i} className="flex items-center gap-2">
-                                                    <span className="text-xs text-ink-500 w-14">{g.type}</span>
-                                                    <input
-                                                        type="range"
-                                                        min="0"
-                                                        max="100"
-                                                        className="flex-1 accent-ink-900"
-                                                        value={g.percentage}
-                                                        onChange={(e) => updateDemographic('gender', i, 'percentage', e.target.value)}
-                                                    />
-                                                    <span className="text-xs font-mono w-10 text-right text-ink-600">{g.percentage}%</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    {/* Income */}
-                                    <div>
-                                        <div className="flex items-center justify-between mb-2">
-                                            <label className="text-xs font-medium text-ink-500">Household Income</label>
-                                            {incomePercentageSum !== 100 && (
-                                                <span className="text-xs text-amber-600 flex items-center gap-1">
-                                                    <IconAlertCircle className="w-3 h-3" />
-                                                    {incomePercentageSum}%
-                                                </span>
-                                            )}
-                                        </div>
-                                        <div className="space-y-2">
-                                            {audience.demographics.income.map((inc, i) => (
-                                                <div key={i} className="flex items-center gap-2">
-                                                    <span className="text-xs text-ink-500 w-20">{inc.range}</span>
-                                                    <input
-                                                        type="range"
-                                                        min="0"
-                                                        max="100"
-                                                        className="flex-1 accent-ink-900"
-                                                        value={inc.percentage}
-                                                        onChange={(e) => updateDemographic('income', i, 'percentage', e.target.value)}
-                                                    />
-                                                    <span className="text-xs font-mono w-10 text-right text-ink-600">{inc.percentage}%</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    {/* Locations */}
-                                    <div>
-                                        <label className="block text-xs font-medium text-ink-500 mb-2">Top Locations</label>
+                                        <label className="block text-xs font-medium text-ink-600 mb-2">Geographic Distribution</label>
                                         <div className="space-y-2">
                                             {audience.demographics.locations.map((loc, i) => (
                                                 <div key={i} className="flex items-center gap-2">
@@ -1149,25 +1086,17 @@
                                                         className="input-field flex-1"
                                                         placeholder="City/Region"
                                                         value={loc.area}
-                                                        onChange={(e) => {
-                                                            const updated = [...audience.demographics.locations];
-                                                            updated[i] = { ...updated[i], area: e.target.value };
-                                                            setAudience({...audience, demographics: {...audience.demographics, locations: updated}});
-                                                        }}
+                                                        onChange={(e) => updateLocation(i, 'area', e.target.value)}
                                                     />
                                                     <input
                                                         type="number"
-                                                        className="input-field w-16 text-center"
+                                                        className="input-field w-20"
                                                         placeholder="%"
                                                         value={loc.percentage || ''}
-                                                        onChange={(e) => {
-                                                            const updated = [...audience.demographics.locations];
-                                                            updated[i] = { ...updated[i], percentage: parseInt(e.target.value) || 0 };
-                                                            setAudience({...audience, demographics: {...audience.demographics, locations: updated}});
-                                                        }}
+                                                        onChange={(e) => updateLocation(i, 'percentage', e.target.value)}
                                                     />
                                                     {audience.demographics.locations.length > 1 && (
-                                                        <button onClick={() => removeLocation(i)} className="text-ink-300 hover:text-red-500 transition-colors">
+                                                        <button onClick={() => removeLocation(i)} className="text-ink-400 hover:text-red-500 transition-colors">
                                                             <IconTrash />
                                                         </button>
                                                     )}
@@ -1175,16 +1104,15 @@
                                             ))}
                                             <button
                                                 onClick={addLocation}
-                                                className="text-xs text-accent-terracotta hover:text-accent-rust flex items-center gap-1 transition-colors"
+                                                className="text-xs text-copper-600 hover:text-copper-700 flex items-center gap-1"
                                             >
-                                                <IconPlus /> Add location
+                                                <IconPlus /> Add Location
                                             </button>
                                         </div>
                                     </div>
 
-                                    {/* Interests */}
                                     <div>
-                                        <label className="block text-xs font-medium text-ink-500 mb-1.5">Interests</label>
+                                        <label className="block text-xs font-medium text-ink-600 mb-1">Audience Interests</label>
                                         <input
                                             type="text"
                                             className="input-field"
@@ -1203,39 +1131,50 @@
                             </CollapsibleSection>
 
                             {/* Platforms */}
-                            <CollapsibleSection id="platforms" title="Platforms" badge={`${enabledPlatforms.length} active`}>
+                            <CollapsibleSection id="platforms" title="Platforms & Ad Rates" badge={`${enabledPlatforms.length} active`}>
                                 <div className="space-y-3">
+                                    <p className="text-xs text-ink-500 flex items-center gap-1">
+                                        <IconGripVertical className="text-ink-400" /> Drag to reorder platforms
+                                    </p>
                                     {platforms.map(platform => (
                                         <div
                                             key={platform.id}
-                                            className={`border rounded-lg transition-all ${platform.enabled ? 'border-ink-200 bg-white' : 'border-ink-100 bg-ink-50/50'}`}
+                                            draggable
+                                            onDragStart={(e) => handleDragStart(e, platform.id)}
+                                            onDragOver={(e) => handleDragOver(e, platform.id)}
+                                            onDragEnd={handleDragEnd}
+                                            className={`border rounded-lg transition-all duration-200 ${
+                                                platform.enabled ? 'border-copper-200 bg-copper-50/30' : 'border-ink-200'
+                                            } ${draggedPlatform === platform.id ? 'opacity-50' : ''}`}
                                         >
                                             <div className="p-3 flex items-center justify-between">
-                                                <label className="flex items-center gap-2.5 cursor-pointer">
-                                                    <input
-                                                        type="checkbox"
-                                                        checked={platform.enabled}
-                                                        onChange={() => togglePlatform(platform.id)}
-                                                        className="w-4 h-4 rounded accent-ink-900"
-                                                    />
-                                                    <span className="text-lg">{platform.icon}</span>
-                                                    <span className="font-medium text-sm text-ink-800">{platform.name}</span>
-                                                </label>
+                                                <div className="flex items-center gap-2">
+                                                    <IconGripVertical className="text-ink-300 cursor-grab" />
+                                                    <label className="flex items-center gap-2 cursor-pointer">
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={platform.enabled}
+                                                            onChange={() => togglePlatform(platform.id)}
+                                                            className="w-4 h-4 text-copper-600 rounded accent-copper-600"
+                                                        />
+                                                        <span className="font-medium text-sm">{platform.name}</span>
+                                                    </label>
+                                                </div>
                                             </div>
 
                                             {platform.enabled && (
-                                                <div className="px-3 pb-3 space-y-3 border-t border-ink-100 pt-3">
+                                                <div className="px-3 pb-3 space-y-3">
                                                     {/* Metrics */}
                                                     <div>
-                                                        <span className="text-xs font-medium text-ink-400">Metrics</span>
-                                                        <div className="grid grid-cols-2 gap-2 mt-1.5">
+                                                        <span className="text-xs font-medium text-ink-500">Metrics</span>
+                                                        <div className="grid grid-cols-2 gap-2 mt-1">
                                                             {platform.metrics.map((metric, i) => (
                                                                 <div key={i}>
-                                                                    <label className="text-[10px] text-ink-400 uppercase tracking-wide">{metric.label}</label>
+                                                                    <label className="text-[10px] text-ink-400">{metric.label}</label>
                                                                     <input
                                                                         type="text"
-                                                                        className="input-field py-1.5 text-xs mt-0.5"
-                                                                        placeholder="—"
+                                                                        className="input-field py-1.5 text-xs"
+                                                                        placeholder="0"
                                                                         value={metric.value}
                                                                         onChange={(e) => updatePlatformMetric(platform.id, i, e.target.value)}
                                                                     />
@@ -1246,48 +1185,52 @@
 
                                                     {/* Ad Options */}
                                                     <div>
-                                                        <span className="text-xs font-medium text-ink-400">Ad Units</span>
-                                                        <div className="space-y-2 mt-1.5">
+                                                        <span className="text-xs font-medium text-ink-500">Ad Options</span>
+                                                        <div className="space-y-2 mt-1">
                                                             {platform.adOptions.map((option, i) => (
-                                                                <div key={i} className="bg-ink-50 p-2.5 rounded-lg space-y-1.5">
+                                                                <div key={i} className="bg-white p-2 rounded border border-ink-100 space-y-1">
                                                                     <div className="flex items-center gap-2">
                                                                         <input
                                                                             type="text"
-                                                                            className="input-field py-1.5 text-xs flex-1 bg-white"
+                                                                            className="input-field py-1 text-xs flex-1"
                                                                             placeholder="Ad unit name"
                                                                             value={option.name}
                                                                             onChange={(e) => updateAdOption(platform.id, i, 'name', e.target.value)}
                                                                         />
                                                                         <input
                                                                             type="text"
-                                                                            className="input-field py-1.5 text-xs w-24 bg-white font-mono"
+                                                                            className="input-field py-1 text-xs w-24"
                                                                             placeholder="$000"
                                                                             value={option.rate}
                                                                             onChange={(e) => updateAdOption(platform.id, i, 'rate', e.target.value)}
                                                                         />
                                                                         {platform.adOptions.length > 1 && (
-                                                                            <button
-                                                                                onClick={() => removeAdOption(platform.id, i)}
-                                                                                className="text-ink-300 hover:text-red-500 transition-colors"
-                                                                            >
+                                                                            <button onClick={() => removeAdOption(platform.id, i)} className="text-ink-400 hover:text-red-500">
                                                                                 <IconTrash />
                                                                             </button>
                                                                         )}
                                                                     </div>
                                                                     <input
                                                                         type="text"
-                                                                        className="input-field py-1.5 text-xs bg-white"
+                                                                        className="input-field py-1 text-xs"
                                                                         placeholder="Description"
                                                                         value={option.description}
                                                                         onChange={(e) => updateAdOption(platform.id, i, 'description', e.target.value)}
+                                                                    />
+                                                                    <input
+                                                                        type="text"
+                                                                        className="input-field py-1 text-xs"
+                                                                        placeholder="Specs (dimensions, file type, etc.)"
+                                                                        value={option.specs}
+                                                                        onChange={(e) => updateAdOption(platform.id, i, 'specs', e.target.value)}
                                                                     />
                                                                 </div>
                                                             ))}
                                                             <button
                                                                 onClick={() => addAdOption(platform.id)}
-                                                                className="text-xs text-accent-terracotta hover:text-accent-rust flex items-center gap-1 transition-colors"
+                                                                className="text-xs text-copper-600 hover:text-copper-700 flex items-center gap-1"
                                                             >
-                                                                <IconPlus /> Add ad unit
+                                                                <IconPlus /> Add Ad Option
                                                             </button>
                                                         </div>
                                                     </div>
@@ -1295,115 +1238,6 @@
                                             )}
                                         </div>
                                     ))}
-                                </div>
-                            </CollapsibleSection>
-
-                            {/* Packages */}
-                            <CollapsibleSection id="packages" title="Packages">
-                                <div className="space-y-3">
-                                    {packages.map(pkg => (
-                                        <div key={pkg.id} className="bg-ink-50 p-3 rounded-lg space-y-2">
-                                            <div className="flex items-center gap-2">
-                                                <input
-                                                    type="text"
-                                                    className="input-field flex-1 font-medium"
-                                                    placeholder="Package name"
-                                                    value={pkg.name}
-                                                    onChange={(e) => updatePackage(pkg.id, 'name', e.target.value)}
-                                                />
-                                                <input
-                                                    type="text"
-                                                    className="input-field w-24 font-mono"
-                                                    placeholder="$000"
-                                                    value={pkg.price}
-                                                    onChange={(e) => updatePackage(pkg.id, 'price', e.target.value)}
-                                                />
-                                                <button onClick={() => removePackage(pkg.id)} className="text-ink-300 hover:text-red-500 transition-colors">
-                                                    <IconTrash />
-                                                </button>
-                                            </div>
-                                            <input
-                                                type="text"
-                                                className="input-field text-sm"
-                                                placeholder="Description"
-                                                value={pkg.description}
-                                                onChange={(e) => updatePackage(pkg.id, 'description', e.target.value)}
-                                            />
-                                            <div className="space-y-1">
-                                                {pkg.items.map((item, i) => (
-                                                    <input
-                                                        key={i}
-                                                        type="text"
-                                                        className="input-field py-1.5 text-xs"
-                                                        placeholder="Included item"
-                                                        value={item}
-                                                        onChange={(e) => updatePackageItem(pkg.id, i, e.target.value)}
-                                                    />
-                                                ))}
-                                                <button
-                                                    onClick={() => addPackageItem(pkg.id)}
-                                                    className="text-xs text-accent-terracotta hover:text-accent-rust flex items-center gap-1"
-                                                >
-                                                    <IconPlus /> Add item
-                                                </button>
-                                            </div>
-                                        </div>
-                                    ))}
-                                    <button
-                                        onClick={addPackage}
-                                        className="w-full py-2.5 border-2 border-dashed border-ink-200 rounded-lg text-xs text-ink-500 hover:border-ink-300 hover:text-ink-600 flex items-center justify-center gap-1 transition-colors"
-                                    >
-                                        <IconPlus /> Add package
-                                    </button>
-                                </div>
-                            </CollapsibleSection>
-
-                            {/* Case Studies */}
-                            <CollapsibleSection id="caseStudies" title="Case Studies">
-                                <div className="space-y-3">
-                                    {caseStudies.map(cs => (
-                                        <div key={cs.id} className="bg-ink-50 p-3 rounded-lg space-y-2">
-                                            <div className="flex items-center gap-2">
-                                                <input
-                                                    type="text"
-                                                    className="input-field flex-1 font-medium"
-                                                    placeholder="Client name"
-                                                    value={cs.client}
-                                                    onChange={(e) => updateCaseStudy(cs.id, 'client', e.target.value)}
-                                                />
-                                                <button onClick={() => removeCaseStudy(cs.id)} className="text-ink-300 hover:text-red-500 transition-colors">
-                                                    <IconTrash />
-                                                </button>
-                                            </div>
-                                            <textarea
-                                                className="input-field text-sm"
-                                                rows="2"
-                                                placeholder="Challenge faced..."
-                                                value={cs.challenge}
-                                                onChange={(e) => updateCaseStudy(cs.id, 'challenge', e.target.value)}
-                                            />
-                                            <textarea
-                                                className="input-field text-sm"
-                                                rows="2"
-                                                placeholder="Solution provided..."
-                                                value={cs.solution}
-                                                onChange={(e) => updateCaseStudy(cs.id, 'solution', e.target.value)}
-                                            />
-                                            <input
-                                                type="text"
-                                                className="input-field text-sm"
-                                                placeholder="Results achieved (e.g., 50% increase in leads)"
-                                                value={cs.results}
-                                                onChange={(e) => updateCaseStudy(cs.id, 'results', e.target.value)}
-                                            />
-                                        </div>
-                                    ))}
-                                    <button
-                                        onClick={addCaseStudy}
-                                        className="w-full py-2.5 border-2 border-dashed border-ink-200 rounded-lg text-xs text-ink-500 hover:border-ink-300 hover:text-ink-600 flex items-center justify-center gap-1 transition-colors"
-                                    >
-                                        <IconPlus /> Add case study
-                                    </button>
                                 </div>
                             </CollapsibleSection>
 
@@ -1415,7 +1249,7 @@
                                             <textarea
                                                 className="input-field text-sm"
                                                 rows="2"
-                                                placeholder="Quote from advertiser..."
+                                                placeholder="Quote from advertiser or partner..."
                                                 value={t.quote}
                                                 onChange={(e) => updateTestimonial(t.id, 'quote', e.target.value)}
                                             />
@@ -1423,18 +1257,11 @@
                                                 <input
                                                     type="text"
                                                     className="input-field flex-1"
-                                                    placeholder="Name"
+                                                    placeholder="Source name"
                                                     value={t.source}
                                                     onChange={(e) => updateTestimonial(t.id, 'source', e.target.value)}
                                                 />
-                                                <input
-                                                    type="text"
-                                                    className="input-field flex-1"
-                                                    placeholder="Company"
-                                                    value={t.company}
-                                                    onChange={(e) => updateTestimonial(t.id, 'company', e.target.value)}
-                                                />
-                                                <button onClick={() => removeTestimonial(t.id)} className="text-ink-300 hover:text-red-500 transition-colors">
+                                                <button onClick={() => removeTestimonial(t.id)} className="text-ink-400 hover:text-red-500">
                                                     <IconTrash />
                                                 </button>
                                             </div>
@@ -1442,98 +1269,107 @@
                                     ))}
                                     <button
                                         onClick={addTestimonial}
-                                        className="w-full py-2.5 border-2 border-dashed border-ink-200 rounded-lg text-xs text-ink-500 hover:border-ink-300 hover:text-ink-600 flex items-center justify-center gap-1 transition-colors"
+                                        className="w-full py-2 border-2 border-dashed border-ink-200 rounded-lg text-xs text-ink-500 hover:border-ink-300 flex items-center justify-center gap-1 transition-colors"
                                     >
-                                        <IconPlus /> Add testimonial
+                                        <IconPlus /> Add Testimonial
                                     </button>
                                 </div>
                             </CollapsibleSection>
 
                             {/* Attribution */}
-                            <div className="py-6 text-center text-xs text-ink-400">
-                                <p className="font-display">Media Kit Builder</p>
-                                <p>© 2025 <a href="https://centerforcooperativemedia.org/" className="hover:text-accent-terracotta transition-colors">Center for Cooperative Media</a></p>
-                                <p className="mt-1">Created by <a href="https://twitter.com/jsamditis" className="hover:text-accent-terracotta transition-colors">Joe Amditis</a></p>
+                            <div className="py-4 text-center text-xs text-ink-400">
+                                <p>Media Kit Builder | © 2025 <a href="https://centerforcooperativemedia.org/" className="hover:text-copper-600 transition-colors">Center for Cooperative Media</a></p>
+                                <p>Created by <a href="https://twitter.com/jsamditis" className="hover:text-copper-600 transition-colors">Joe Amditis</a></p>
                             </div>
                         </div>
                     </div>
 
                     {/* === PREVIEW PANEL === */}
-                    <div className={`flex-1 bg-paper-cream flex flex-col h-[calc(100%-56px)] lg:h-full ${activeTab === 'editor' ? 'hidden lg:flex' : 'flex'}`}>
+                    <div className={`flex-1 bg-ink-100/50 flex flex-col h-[calc(100%-56px)] lg:h-full ${activeTab === 'editor' ? 'hidden lg:flex' : 'flex'}`}>
 
                         {/* Toolbar */}
-                        <div className="p-4 bg-white border-b border-ink-100 flex justify-between items-center">
-                            <div className="text-xs text-ink-400">
-                                {hasUnsavedChanges && <span className="text-amber-600">Unsaved changes</span>}
-                            </div>
-                            <div className="flex gap-2">
-                                <button
-                                    onClick={handleDownloadPNG}
-                                    disabled={isGenerating}
-                                    className="btn btn-secondary flex items-center gap-1.5"
+                        <div className="p-4 bg-white border-b border-ink-200 flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                                <select
+                                    className="text-sm border border-ink-200 rounded-lg px-3 py-2 bg-white"
+                                    value={exportType}
+                                    onChange={(e) => setExportType(e.target.value)}
                                 >
-                                    <IconImage /> PNG
-                                </button>
-                                <button
-                                    onClick={handleDownloadPDF}
-                                    disabled={isGenerating}
-                                    className="btn btn-primary flex items-center gap-1.5"
-                                >
-                                    {isGenerating ? 'Generating...' : <><IconDownload /> PDF</>}
-                                </button>
+                                    <option value="pdf">PDF Document</option>
+                                    <option value="png">PNG Image</option>
+                                </select>
                             </div>
+                            <button
+                                onClick={handleDownload}
+                                disabled={isGenerating}
+                                className="btn btn-copper flex items-center gap-2"
+                            >
+                                {isGenerating ? (
+                                    <>
+                                        <span className="animate-pulse-soft">Generating...</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <IconDownload /> Download {exportType.toUpperCase()}
+                                    </>
+                                )}
+                            </button>
                         </div>
 
                         {/* Preview */}
                         <div className="flex-1 overflow-auto p-6 custom-scroll">
                             <div
                                 id="media-kit-preview"
-                                className="bg-white shadow-lg max-w-[800px] mx-auto animate-scale-in"
-                                style={{ fontFamily: 'Outfit, sans-serif' }}
+                                className="bg-white shadow-xl max-w-[800px] mx-auto"
+                                style={{ fontFamily: 'Instrument Sans, sans-serif' }}
                             >
                                 {/* Header */}
                                 <header
-                                    className="p-10 text-white relative overflow-hidden"
+                                    className="p-8 text-white relative overflow-hidden"
                                     style={{ backgroundColor: theme.primaryColor }}
                                 >
-                                    <div className="relative z-10">
-                                        <div className="flex items-start justify-between">
-                                            <div className="flex-1">
-                                                {organization.logo && (
-                                                    <img src={organization.logo} alt="Logo" className="h-14 mb-5 object-contain" />
-                                                )}
-                                                <h1 className="text-4xl font-bold mb-2" style={{ fontFamily: 'Fraunces, serif' }}>
-                                                    {organization.name || 'Your Organization'}
-                                                </h1>
-                                                {organization.tagline && (
-                                                    <p className="text-white/80 text-sm font-light">{organization.tagline}</p>
-                                                )}
-                                            </div>
-                                            <div className="text-right">
-                                                <p className="text-2xl font-bold mb-1" style={{ fontFamily: 'Fraunces, serif' }}>
-                                                    Media Kit
-                                                </p>
-                                                <p className="text-white/60 text-sm">{new Date().getFullYear()}</p>
-                                            </div>
-                                        </div>
-                                    </div>
                                     {/* Decorative element */}
                                     <div
-                                        className="absolute -bottom-20 -right-20 w-60 h-60 rounded-full opacity-10"
-                                        style={{ backgroundColor: theme.accentColor }}
+                                        className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10"
+                                        style={{ backgroundColor: theme.accentColor, transform: 'translate(30%, -30%)' }}
                                     />
+                                    <div className="relative flex items-start justify-between">
+                                        <div className="flex-1">
+                                            {organization.logo && (
+                                                <img src={organization.logo} alt="Logo" className="h-14 mb-4 object-contain" />
+                                            )}
+                                            <h1 className="text-3xl font-bold mb-1" style={{ fontFamily: 'Fraunces, serif' }}>
+                                                {organization.name || 'Your Organization'}
+                                            </h1>
+                                            {organization.tagline && (
+                                                <p className="text-white/80 text-sm">{organization.tagline}</p>
+                                            )}
+                                        </div>
+                                        <div className="text-right">
+                                            <p className="text-2xl font-bold mb-1" style={{ fontFamily: 'Fraunces, serif' }}>
+                                                Media Kit
+                                            </p>
+                                            <p className="text-white/70 text-sm">{new Date().getFullYear()}</p>
+                                            {rateTemplate !== 'standard' && (
+                                                <span
+                                                    className="inline-block mt-2 px-2 py-1 text-xs font-medium rounded"
+                                                    style={{ backgroundColor: theme.accentColor }}
+                                                >
+                                                    {RATE_TEMPLATES[rateTemplate].name} Rates
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
                                 </header>
 
-                                <div className="p-10 space-y-10">
+                                <div className="p-8 space-y-8">
                                     {/* Mission */}
                                     {organization.mission && (
                                         <section>
-                                            <h2 className="text-xl font-bold mb-4" style={{ fontFamily: 'Fraunces, serif', color: theme.primaryColor }}>
-                                                About Us
-                                            </h2>
-                                            <p className="text-ink-600 leading-relaxed">{organization.mission}</p>
+                                            <h2 className="text-lg font-bold mb-3" style={{ color: theme.primaryColor, fontFamily: 'Fraunces, serif' }}>About Us</h2>
+                                            <p className="text-gray-600 text-sm leading-relaxed">{organization.mission}</p>
                                             {organization.foundedYear && (
-                                                <p className="text-xs text-ink-400 mt-3 uppercase tracking-wider">Est. {organization.foundedYear}</p>
+                                                <p className="text-xs text-gray-400 mt-2">Established {organization.foundedYear}</p>
                                             )}
                                         </section>
                                     )}
@@ -1541,107 +1377,64 @@
                                     {/* Audience */}
                                     {audience.totalReach > 0 && (
                                         <section>
-                                            <h2 className="text-xl font-bold mb-6" style={{ fontFamily: 'Fraunces, serif', color: theme.primaryColor }}>
-                                                Our Audience
-                                            </h2>
+                                            <h2 className="text-lg font-bold mb-4" style={{ color: theme.primaryColor, fontFamily: 'Fraunces, serif' }}>Our Audience</h2>
 
-                                            <div
-                                                className="text-center mb-8 p-6 rounded-xl"
-                                                style={{ backgroundColor: theme.primaryColor + '08' }}
-                                            >
-                                                <p className="text-4xl font-bold" style={{ color: theme.primaryColor }}>
+                                            <div className="text-center mb-6 p-6 rounded-xl" style={{ backgroundColor: theme.primaryColor + '08' }}>
+                                                <p className="text-4xl font-bold" style={{ color: theme.primaryColor, fontFamily: 'Fraunces, serif' }}>
                                                     {audience.totalReach.toLocaleString()}
                                                 </p>
-                                                <p className="text-xs text-ink-500 uppercase tracking-wider mt-1">Total Reach</p>
+                                                <p className="text-xs text-gray-500 uppercase tracking-wider mt-1">Total Reach</p>
                                             </div>
 
-                                            <div className="grid grid-cols-3 gap-6">
-                                                {/* Age */}
+                                            <div className="grid grid-cols-2 gap-6">
+                                                {/* Age Distribution */}
                                                 <div>
-                                                    <h3 className="text-xs font-semibold text-ink-500 uppercase tracking-wider mb-3">Age</h3>
+                                                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Age Distribution</h3>
                                                     <div className="space-y-2">
                                                         {audience.demographics.ageRanges.map((range, i) => (
                                                             <div key={i} className="flex items-center gap-2">
-                                                                <span className="text-xs text-ink-500 w-10">{range.range}</span>
-                                                                <div className="flex-1 bg-ink-100 rounded-full h-2.5 overflow-hidden">
+                                                                <span className="text-xs text-gray-500 w-12">{range.range}</span>
+                                                                <div className="flex-1 bg-gray-100 rounded-full h-4 overflow-hidden">
                                                                     <div
-                                                                        className="h-full rounded-full"
+                                                                        className="h-full rounded-full transition-all"
                                                                         style={{
                                                                             width: `${range.percentage}%`,
                                                                             backgroundColor: theme.primaryColor
                                                                         }}
                                                                     />
                                                                 </div>
-                                                                <span className="text-xs font-mono text-ink-600 w-8">{range.percentage}%</span>
+                                                                <span className="text-xs font-mono text-gray-600 w-8">{range.percentage}%</span>
                                                             </div>
                                                         ))}
                                                     </div>
                                                 </div>
 
-                                                {/* Gender */}
-                                                <div>
-                                                    <h3 className="text-xs font-semibold text-ink-500 uppercase tracking-wider mb-3">Gender</h3>
-                                                    <div className="space-y-2">
-                                                        {audience.demographics.gender.map((g, i) => (
-                                                            <div key={i} className="flex items-center gap-2">
-                                                                <span className="text-xs text-ink-500 w-12">{g.type}</span>
-                                                                <div className="flex-1 bg-ink-100 rounded-full h-2.5 overflow-hidden">
-                                                                    <div
-                                                                        className="h-full rounded-full"
-                                                                        style={{
-                                                                            width: `${g.percentage}%`,
-                                                                            backgroundColor: theme.accentColor
-                                                                        }}
-                                                                    />
+                                                {/* Locations */}
+                                                {audience.demographics.locations.some(l => l.area) && (
+                                                    <div>
+                                                        <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Top Locations</h3>
+                                                        <div className="space-y-2">
+                                                            {audience.demographics.locations.filter(l => l.area).map((loc, i) => (
+                                                                <div key={i} className="flex items-center justify-between">
+                                                                    <span className="text-sm text-gray-700">{loc.area}</span>
+                                                                    <span className="text-sm font-mono font-medium" style={{ color: theme.accentColor }}>{loc.percentage}%</span>
                                                                 </div>
-                                                                <span className="text-xs font-mono text-ink-600 w-8">{g.percentage}%</span>
-                                                            </div>
-                                                        ))}
+                                                            ))}
+                                                        </div>
                                                     </div>
-                                                </div>
-
-                                                {/* Income */}
-                                                <div>
-                                                    <h3 className="text-xs font-semibold text-ink-500 uppercase tracking-wider mb-3">Income</h3>
-                                                    <div className="space-y-2">
-                                                        {audience.demographics.income.map((inc, i) => (
-                                                            <div key={i} className="flex items-center justify-between">
-                                                                <span className="text-xs text-ink-600">{inc.range}</span>
-                                                                <span className="text-xs font-mono" style={{ color: theme.primaryColor }}>{inc.percentage}%</span>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </div>
+                                                )}
                                             </div>
-
-                                            {/* Locations */}
-                                            {audience.demographics.locations.some(l => l.area) && (
-                                                <div className="mt-6 pt-6 border-t border-ink-100">
-                                                    <h3 className="text-xs font-semibold text-ink-500 uppercase tracking-wider mb-3">Top Locations</h3>
-                                                    <div className="flex flex-wrap gap-3">
-                                                        {audience.demographics.locations.filter(l => l.area).map((loc, i) => (
-                                                            <span
-                                                                key={i}
-                                                                className="px-3 py-1.5 rounded-full text-sm"
-                                                                style={{ backgroundColor: theme.primaryColor + '10', color: theme.primaryColor }}
-                                                            >
-                                                                {loc.area} <span className="font-mono opacity-70">{loc.percentage}%</span>
-                                                            </span>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            )}
 
                                             {/* Interests */}
                                             {audience.demographics.interests.length > 0 && (
                                                 <div className="mt-4">
-                                                    <h3 className="text-xs font-semibold text-ink-500 uppercase tracking-wider mb-2">Interests</h3>
+                                                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Interests</h3>
                                                     <div className="flex flex-wrap gap-2">
                                                         {audience.demographics.interests.map((interest, i) => (
                                                             <span
                                                                 key={i}
-                                                                className="px-2.5 py-1 rounded text-xs"
-                                                                style={{ backgroundColor: theme.accentColor + '15', color: theme.accentColor }}
+                                                                className="px-3 py-1 rounded-full text-xs font-medium"
+                                                                style={{ backgroundColor: theme.accentColor + '20', color: theme.accentColor }}
                                                             >
                                                                 {interest}
                                                             </span>
@@ -1652,31 +1445,25 @@
                                         </section>
                                     )}
 
-                                    {/* Platforms */}
+                                    {/* Platforms & Ad Rates */}
                                     {enabledPlatforms.length > 0 && (
                                         <section>
-                                            <h2 className="text-xl font-bold mb-6" style={{ fontFamily: 'Fraunces, serif', color: theme.primaryColor }}>
-                                                Advertising Opportunities
-                                            </h2>
+                                            <h2 className="text-lg font-bold mb-4" style={{ color: theme.primaryColor, fontFamily: 'Fraunces, serif' }}>Advertising Opportunities</h2>
 
-                                            <div className="space-y-5">
+                                            <div className="space-y-6">
                                                 {enabledPlatforms.map(platform => (
-                                                    <div key={platform.id} className="border border-ink-200 rounded-xl overflow-hidden">
-                                                        <div
-                                                            className="px-5 py-3 font-semibold text-sm flex items-center gap-2"
-                                                            style={{ backgroundColor: theme.primaryColor + '08', color: theme.primaryColor }}
-                                                        >
-                                                            <span>{platform.icon}</span>
+                                                    <div key={platform.id} className="border border-gray-200 rounded-xl overflow-hidden">
+                                                        <div className="px-4 py-3 font-semibold text-sm" style={{ backgroundColor: theme.primaryColor + '08', color: theme.primaryColor }}>
                                                             {platform.name}
                                                         </div>
-                                                        <div className="p-5">
+                                                        <div className="p-4">
                                                             {/* Metrics */}
                                                             {platform.metrics.some(m => m.value) && (
-                                                                <div className="flex flex-wrap gap-6 mb-5 pb-5 border-b border-ink-100">
+                                                                <div className="flex flex-wrap gap-6 mb-4 pb-4 border-b border-gray-100">
                                                                     {platform.metrics.filter(m => m.value).map((metric, i) => (
                                                                         <div key={i}>
                                                                             <p className="text-xl font-bold" style={{ color: theme.primaryColor }}>{metric.value}</p>
-                                                                            <p className="text-xs text-ink-500">{metric.label}</p>
+                                                                            <p className="text-xs text-gray-500">{metric.label}</p>
                                                                         </div>
                                                                     ))}
                                                                 </div>
@@ -1686,14 +1473,17 @@
                                                             <div className="space-y-3">
                                                                 {platform.adOptions.filter(o => o.name).map((option, i) => (
                                                                     <div key={i} className="flex items-start justify-between">
-                                                                        <div>
-                                                                            <p className="font-medium text-sm text-ink-900">{option.name}</p>
+                                                                        <div className="flex-1">
+                                                                            <p className="font-medium text-sm text-gray-900">{option.name}</p>
                                                                             {option.description && (
-                                                                                <p className="text-xs text-ink-500 mt-0.5">{option.description}</p>
+                                                                                <p className="text-xs text-gray-500">{option.description}</p>
+                                                                            )}
+                                                                            {option.specs && (
+                                                                                <p className="text-xs text-gray-400 mt-0.5 font-mono">{option.specs}</p>
                                                                             )}
                                                                         </div>
                                                                         {option.rate && (
-                                                                            <p className="font-bold text-sm font-mono" style={{ color: theme.accentColor }}>{option.rate}</p>
+                                                                            <p className="font-bold text-sm ml-4" style={{ color: theme.accentColor }}>{option.rate}</p>
                                                                         )}
                                                                     </div>
                                                                 ))}
@@ -1705,88 +1495,15 @@
                                         </section>
                                     )}
 
-                                    {/* Packages */}
-                                    {packages.some(p => p.name && p.price) && (
-                                        <section>
-                                            <h2 className="text-xl font-bold mb-6" style={{ fontFamily: 'Fraunces, serif', color: theme.primaryColor }}>
-                                                Packages
-                                            </h2>
-                                            <div className="grid grid-cols-2 gap-4">
-                                                {packages.filter(p => p.name && p.price).map(pkg => (
-                                                    <div
-                                                        key={pkg.id}
-                                                        className="p-5 rounded-xl border-2"
-                                                        style={{ borderColor: theme.accentColor + '30' }}
-                                                    >
-                                                        <div className="flex items-start justify-between mb-3">
-                                                            <h3 className="font-bold text-ink-900">{pkg.name}</h3>
-                                                            <span className="font-bold font-mono" style={{ color: theme.accentColor }}>{pkg.price}</span>
-                                                        </div>
-                                                        {pkg.description && (
-                                                            <p className="text-xs text-ink-500 mb-3">{pkg.description}</p>
-                                                        )}
-                                                        <ul className="text-xs text-ink-600 space-y-1">
-                                                            {pkg.items.filter(Boolean).map((item, i) => (
-                                                                <li key={i} className="flex items-center gap-2">
-                                                                    <IconCheck className="w-3 h-3" style={{ color: theme.accentColor }} />
-                                                                    {item}
-                                                                </li>
-                                                            ))}
-                                                        </ul>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </section>
-                                    )}
-
-                                    {/* Case Studies */}
-                                    {caseStudies.some(cs => cs.client && cs.results) && (
-                                        <section>
-                                            <h2 className="text-xl font-bold mb-6" style={{ fontFamily: 'Fraunces, serif', color: theme.primaryColor }}>
-                                                Success Stories
-                                            </h2>
-                                            <div className="space-y-5">
-                                                {caseStudies.filter(cs => cs.client && cs.results).map(cs => (
-                                                    <div key={cs.id} className="bg-ink-50 rounded-xl p-5">
-                                                        <h3 className="font-bold text-ink-900 mb-2">{cs.client}</h3>
-                                                        {cs.challenge && (
-                                                            <p className="text-sm text-ink-600 mb-2">
-                                                                <span className="font-medium">Challenge:</span> {cs.challenge}
-                                                            </p>
-                                                        )}
-                                                        {cs.solution && (
-                                                            <p className="text-sm text-ink-600 mb-2">
-                                                                <span className="font-medium">Solution:</span> {cs.solution}
-                                                            </p>
-                                                        )}
-                                                        <p className="text-sm font-medium" style={{ color: theme.accentColor }}>
-                                                            Result: {cs.results}
-                                                        </p>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </section>
-                                    )}
-
                                     {/* Testimonials */}
-                                    {testimonials.some(t => t.quote) && (
+                                    {testimonials.length > 0 && testimonials.some(t => t.quote) && (
                                         <section>
-                                            <h2 className="text-xl font-bold mb-6" style={{ fontFamily: 'Fraunces, serif', color: theme.primaryColor }}>
-                                                What Partners Say
-                                            </h2>
+                                            <h2 className="text-lg font-bold mb-4" style={{ color: theme.primaryColor, fontFamily: 'Fraunces, serif' }}>What Partners Say</h2>
                                             <div className="space-y-4">
                                                 {testimonials.filter(t => t.quote).map(t => (
-                                                    <blockquote
-                                                        key={t.id}
-                                                        className="border-l-4 pl-5 italic text-ink-600"
-                                                        style={{ borderColor: theme.accentColor }}
-                                                    >
+                                                    <blockquote key={t.id} className="border-l-4 pl-4 italic text-gray-600 text-sm" style={{ borderColor: theme.accentColor }}>
                                                         "{t.quote}"
-                                                        {(t.source || t.company) && (
-                                                            <footer className="mt-2 text-xs text-ink-400 not-italic">
-                                                                — {t.source}{t.company && `, ${t.company}`}
-                                                            </footer>
-                                                        )}
+                                                        {t.source && <footer className="mt-1 text-xs text-gray-400 not-italic">— {t.source}</footer>}
                                                     </blockquote>
                                                 ))}
                                             </div>
@@ -1795,18 +1512,11 @@
 
                                     {/* Contact */}
                                     {(organization.contact.name || organization.contact.email) && (
-                                        <section className="pt-8 border-t border-ink-200">
-                                            <h2 className="text-xl font-bold mb-4" style={{ fontFamily: 'Fraunces, serif', color: theme.primaryColor }}>
-                                                Get in Touch
-                                            </h2>
-                                            <div className="text-sm text-ink-600">
-                                                {organization.contact.name && (
-                                                    <p className="font-medium text-ink-900">
-                                                        {organization.contact.name}
-                                                        {organization.contact.title && <span className="font-normal text-ink-500">, {organization.contact.title}</span>}
-                                                    </p>
-                                                )}
-                                                {organization.contact.email && <p className="mt-1">{organization.contact.email}</p>}
+                                        <section className="pt-6 border-t border-gray-200">
+                                            <h2 className="text-lg font-bold mb-3" style={{ color: theme.primaryColor, fontFamily: 'Fraunces, serif' }}>Get in Touch</h2>
+                                            <div className="text-sm text-gray-600">
+                                                {organization.contact.name && <p className="font-medium">{organization.contact.name}</p>}
+                                                {organization.contact.email && <p>{organization.contact.email}</p>}
                                                 {organization.contact.phone && <p>{organization.contact.phone}</p>}
                                                 {organization.website && (
                                                     <p className="mt-2 font-medium" style={{ color: theme.primaryColor }}>{organization.website}</p>
@@ -1817,10 +1527,7 @@
                                 </div>
 
                                 {/* Footer */}
-                                <footer
-                                    className="px-10 py-5 text-center text-xs"
-                                    style={{ backgroundColor: theme.primaryColor + '05', color: theme.primaryColor }}
-                                >
+                                <footer className="px-8 py-4 bg-gray-50 text-center text-xs text-gray-400 border-t border-gray-100">
                                     Generated with Media Kit Builder by Center for Cooperative Media
                                 </footer>
                             </div>
@@ -1831,30 +1538,32 @@
                     <div className="lg:hidden fixed bottom-0 left-0 w-full bg-white border-t border-ink-200 flex h-14 z-50">
                         <button
                             onClick={() => setActiveTab('editor')}
-                            className={`flex-1 flex flex-col items-center justify-center gap-1 transition-colors ${activeTab === 'editor' ? 'text-ink-900' : 'text-ink-400'}`}
+                            className={`flex-1 flex flex-col items-center justify-center gap-1 transition-colors ${activeTab === 'editor' ? 'text-copper-600' : 'text-ink-400'}`}
                         >
                             <IconEdit />
                             <span className="text-[10px] font-medium">Editor</span>
                         </button>
                         <button
                             onClick={() => setActiveTab('preview')}
-                            className={`flex-1 flex flex-col items-center justify-center gap-1 transition-colors ${activeTab === 'preview' ? 'text-ink-900' : 'text-ink-400'}`}
+                            className={`flex-1 flex flex-col items-center justify-center gap-1 transition-colors ${activeTab === 'preview' ? 'text-copper-600' : 'text-ink-400'}`}
                         >
                             <IconEye />
                             <span className="text-[10px] font-medium">Preview</span>
                         </button>
                     </div>
-
-                    {/* Toast */}
-                    <div className={`toast ${toast.visible ? 'visible' : ''}`}>
-                        {toast.message}
-                    </div>
                 </div>
             );
         };
 
+        // App with Toast Provider
+        const App = () => (
+            <ToastProvider>
+                <MediaKitBuilder />
+            </ToastProvider>
+        );
+
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<MediaKitBuilder />);
+        root.render(<App />);
     </script>
 </body>
 </html>
