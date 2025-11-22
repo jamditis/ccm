@@ -4,7 +4,7 @@ A collection of internal and external tools created by the [Center for Cooperati
 
 ## About the Center for Cooperative Media
 
-The [Center for Cooperative Media](https://centerforcooperativemedia.org/) is a grant-funded program at the School of Communication and Media at Montclair State University. Founded in 2012, the Center's mission is to **grow and strengthen local journalism and support an informed society** in New Jersey and beyond.
+The [Center for Cooperative Media](https://centerforcooperativemedia.org/) is a grant-funded program at the College  of Communication and Media at Montclair State University. Founded in 2012, the Center's mission is to **grow and strengthen local journalism and support an informed society** in New Jersey and beyond.
 
 ### What We Do
 
@@ -14,7 +14,7 @@ The [Center for Cooperative Media](https://centerforcooperativemedia.org/) is a 
 - **Develop innovative tools** to help newsrooms operate more efficiently
 - **Host conferences** dedicated to studying collaborative journalism
 
-The Center recently received a [$2.5 million Knight Foundation grant](https://www.montclair.edu/newscenter/2025/02/17/center-for-cooperative-media-receives-2-5m-knight-foundation-grant-to-expand-collaborative-journalism-nationwide/) to launch the Collaborative Media Resource Hub, supporting journalism collaboratives across the United States.
+The Center recently received a [$2.5 million Knight Foundation grant](https://www.montclair.edu/newscenter/2025/02/17/center-for-cooperative-media-receives-2-5m-knight-foundation-grant-to-expand-collaborative-journalism-nationwide/) to launch the Collaborative Journalism Resource Hub, supporting journalism collaboratives across the United States.
 
 ## Tools in This Repository
 
