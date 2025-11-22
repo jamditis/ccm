@@ -2,6 +2,40 @@
 
 All notable changes to the NJ Influencer Social Media Scraper will be documented in this file.
 
+## [0.1.7] - 2025-11-21
+
+### Video Processing Progress
+- **420 videos processed** (320 main + recovery in progress)
+- Completed batch 220-319 successfully
+- GPU acceleration (MPS) enabled for Whisper transcription
+- Processing 320-420 with GPU (2-3x faster)
+
+### M1 GPU Acceleration
+- Modified `transcriber.py` to use MPS (Metal Performance Shaders)
+- Automatic device detection: MPS → CUDA → CPU
+- Significantly faster transcription on Apple Silicon
+
+### Current Running Processes
+- **Recovery (0-99)**: Re-processing lost metadata
+- **Main (320-420)**: GPU-accelerated processing
+
+### Progress Summary
+| Range | Status | Notes |
+|-------|--------|-------|
+| 0-99 | Recovery in progress | Separate directory |
+| 100-219 | Complete | Original run |
+| 220-319 | Complete | This session |
+| 320-420 | In progress | GPU enabled |
+
+### GitHub Sync
+- Repository: https://github.com/jamditis/ccm/tree/main/social-scraper
+- Code synced to public repo (no secrets/data)
+
+### Remaining Work
+- **2,627 videos remaining** (420/3,047 = 13.8% complete)
+- Recovery process in progress (videos 0-99)
+- Next batch: 420-520
+
 ## [0.1.6] - 2025-11-21
 
 ### Video Processing Progress
@@ -36,8 +70,8 @@ python3 analysis/video_processor/batch_monitor.py output \
 # Or manual run (next 10 batches)
 python3 analysis/video_processor/batch_process.py output \
   --results-dir analysis/video_results_with_costs \
-  --start-from 220 \
-  --end-at 320 \
+  --start-from 420 \
+  --end-at 520 \
   --batch-size 10 \
   --gemini-key YOUR_KEY
 ```
@@ -61,10 +95,10 @@ cp -r analysis/video_results_recovery/*/ analysis/video_results_with_costs/
 ```
 
 ### Remaining Work
-- **Main process**: 2,827 videos remaining (220/3,047 = 7.2% complete)
+- **Main process**: 2,627 videos remaining (420/3,047 = 13.8% complete)
 - **Recovery process**: 100 videos (0-99)
 - Estimated Gemini API cost: ~$0.02-0.05 per video
-- Total remaining cost estimate: ~$57-140
+- Total remaining cost estimate: ~$52-130
 
 ## [0.1.5] - 2025-11-21
 
