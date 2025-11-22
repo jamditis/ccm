@@ -71,11 +71,28 @@ A tool for creating professional sponsorship proposals and package overviews for
 
 ---
 
+### Event Budget Calculator | **Location**: [`/tools/event-budget-calculator`](./tools/event-budget-calculator)
+
+A comprehensive budget planning tool for events, helping newsrooms track expenses, revenue, and break-even analysis. Features include:
+
+- Expense categories (venue, catering, A/V, marketing, staffing, materials)
+- Revenue tracking (sponsorships, tickets, donations)
+- Real-time calculations and summary dashboard
+- Break-even analysis and coverage percentage
+- Save/load multiple budgets
+- PDF export
+
+**Tech Stack**: React 18, Tailwind CSS, html2pdf.js
+
+[View Documentation →](./tools/event-budget-calculator/README.md)
+
+---
+
 ## Quick Start
 
 ### Browser-Based Tools
 
-The **Invoicer** and **Sponsorship Generator** are single-file HTML applications that run directly in your browser:
+The **Invoicer**, **Sponsorship Generator**, and **Event Budget Calculator** are single-file HTML applications that run directly in your browser:
 
 1. Navigate to the tool directory
 2. Open `index.html` in any modern web browser
@@ -167,7 +184,10 @@ ccm/
 │   ├── invoicer/                       # Invoice Generator
 │   │   ├── index.html                  # Single-file application
 │   │   └── README.md                   # Tool documentation
-│   └── sponsorship-generator/          # Sponsorship Package Generator
+│   ├── sponsorship-generator/          # Sponsorship Package Generator
+│   │   ├── index.html                  # Single-file application
+│   │   └── README.md                   # Tool documentation
+│   └── event-budget-calculator/        # Event Budget Calculator
 │       ├── index.html                  # Single-file application
 │       └── README.md                   # Tool documentation
 └── ...

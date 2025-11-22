@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Budget Calculator | Center for Cooperative Media</title>
+
+    <!-- React -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- PDF Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        ccm: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .print-break { page-break-before: always; }
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+
+        // Icons
+        const Icons = {
+            Plus: () => (
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            ),
+            Trash: () => (
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="3,6 5,6 21,6"></polyline>
+                    <path d="M19,6v14a2,2 0 0,1 -2,2H7a2,2 0 0,1 -2,-2V6m3,0V4a2,2 0 0,1 2,-2h4a2,2 0 0,1 2,2v2"></path>
+                </svg>
+            ),
+            Download: () => (
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+            ),
+            Save: () => (
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                    <polyline points="7 3 7 8 15 8"></polyline>
+                </svg>
+            ),
+            ChevronDown: () => (
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            ),
+            DollarSign: () => (
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+            ),
+            TrendingUp: () => (
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                    <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+            ),
+            TrendingDown: () => (
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline>
+                    <polyline points="17 18 23 18 23 12"></polyline>
+                </svg>
+            ),
+            Calendar: () => (
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+            ),
+            Reset: () => (
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="1 4 1 10 7 10"></polyline>
+                    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                </svg>
+            )
+        };
+
+        // Default expense categories
+        const DEFAULT_EXPENSE_CATEGORIES = [
+            { id: 'venue', name: 'Venue & Space', items: [] },
+            { id: 'catering', name: 'Catering & Refreshments', items: [] },
+            { id: 'av', name: 'Audio/Visual & Tech', items: [] },
+            { id: 'marketing', name: 'Marketing & Promotion', items: [] },
+            { id: 'staffing', name: 'Staffing & Speakers', items: [] },
+            { id: 'materials', name: 'Materials & Supplies', items: [] },
+            { id: 'misc', name: 'Miscellaneous', items: [] }
+        ];
+
+        // Default revenue categories
+        const DEFAULT_REVENUE_CATEGORIES = [
+            { id: 'sponsorships', name: 'Sponsorships', items: [] },
+            { id: 'tickets', name: 'Ticket Sales', items: [] },
+            { id: 'donations', name: 'Donations & Grants', items: [] },
+            { id: 'other', name: 'Other Revenue', items: [] }
+        ];
+
+        // Format currency
+        const formatCurrency = (amount) => {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        };
+
+        // Generate unique ID
+        const generateId = () => Math.random().toString(36).substr(2, 9);
+
+        // Collapsible Section Component
+        const CollapsibleSection = ({ title, children, defaultOpen = true, badge = null }) => {
+            const [isOpen, setIsOpen] = useState(defaultOpen);
+
+            return (
+                <div className="border border-gray-200 rounded-lg bg-white overflow-hidden">
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
+                    >
+                        <div className="flex items-center gap-3">
+                            <span className="font-semibold text-gray-900">{title}</span>
+                            {badge && (
+                                <span className="px-2 py-0.5 bg-ccm-100 text-ccm-700 text-sm font-medium rounded">
+                                    {badge}
+                                </span>
+                            )}
+                        </div>
+                        <span className={`transform transition-transform ${isOpen ? 'rotate-180' : ''}`}>
+                            <Icons.ChevronDown />
+                        </span>
+                    </button>
+                    {isOpen && (
+                        <div className="border-t border-gray-200 p-4">
+                            {children}
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        // Line Item Row Component
+        const LineItemRow = ({ item, onUpdate, onDelete }) => {
+            return (
+                <div className="flex items-center gap-3 py-2 group">
+                    <input
+                        type="text"
+                        value={item.description}
+                        onChange={(e) => onUpdate({ ...item, description: e.target.value })}
+                        placeholder="Description"
+                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-ccm-500 focus:border-ccm-500"
+                    />
+                    <div className="relative">
+                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
+                        <input
+                            type="number"
+                            value={item.amount || ''}
+                            onChange={(e) => onUpdate({ ...item, amount: parseFloat(e.target.value) || 0 })}
+                            placeholder="0"
+                            className="w-28 pl-7 pr-3 py-2 border border-gray-300 rounded-md text-sm text-right focus:ring-2 focus:ring-ccm-500 focus:border-ccm-500 font-mono"
+                        />
+                    </div>
+                    <input
+                        type="text"
+                        value={item.notes || ''}
+                        onChange={(e) => onUpdate({ ...item, notes: e.target.value })}
+                        placeholder="Notes"
+                        className="w-32 px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-ccm-500 focus:border-ccm-500"
+                    />
+                    <button
+                        onClick={onDelete}
+                        className="p-2 text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                        <Icons.Trash />
+                    </button>
+                </div>
+            );
+        };
+
+        // Category Section Component
+        const CategorySection = ({ category, type, onUpdateCategory }) => {
+            const addItem = () => {
+                const newItem = {
+                    id: generateId(),
+                    description: '',
+                    amount: 0,
+                    notes: ''
+                };
+                onUpdateCategory({
+                    ...category,
+                    items: [...category.items, newItem]
+                });
+            };
+
+            const updateItem = (updatedItem) => {
+                onUpdateCategory({
+                    ...category,
+                    items: category.items.map(item =>
+                        item.id === updatedItem.id ? updatedItem : item
+                    )
+                });
+            };
+
+            const deleteItem = (itemId) => {
+                onUpdateCategory({
+                    ...category,
+                    items: category.items.filter(item => item.id !== itemId)
+                });
+            };
+
+            const categoryTotal = category.items.reduce((sum, item) => sum + (item.amount || 0), 0);
+
+            return (
+                <div className="mb-4 last:mb-0">
+                    <div className="flex items-center justify-between mb-2">
+                        <h4 className="font-medium text-gray-700">{category.name}</h4>
+                        <span className={`text-sm font-mono ${type === 'expense' ? 'text-red-600' : 'text-green-600'}`}>
+                            {formatCurrency(categoryTotal)}
+                        </span>
+                    </div>
+
+                    <div className="space-y-1">
+                        {category.items.map(item => (
+                            <LineItemRow
+                                key={item.id}
+                                item={item}
+                                onUpdate={updateItem}
+                                onDelete={() => deleteItem(item.id)}
+                            />
+                        ))}
+                    </div>
+
+                    <button
+                        onClick={addItem}
+                        className="mt-2 flex items-center gap-1 text-sm text-ccm-600 hover:text-ccm-700 font-medium"
+                    >
+                        <Icons.Plus />
+                        Add Item
+                    </button>
+                </div>
+            );
+        };
+
+        // Summary Card Component
+        const SummaryCard = ({ title, amount, type, icon: Icon }) => {
+            const colorClasses = {
+                expense: 'bg-red-50 border-red-200 text-red-700',
+                revenue: 'bg-green-50 border-green-200 text-green-700',
+                neutral: 'bg-gray-50 border-gray-200 text-gray-700',
+                profit: amount >= 0 ? 'bg-green-50 border-green-200 text-green-700' : 'bg-red-50 border-red-200 text-red-700'
+            };
+
+            return (
+                <div className={`p-4 rounded-lg border ${colorClasses[type]}`}>
+                    <div className="flex items-center gap-2 mb-1">
+                        {Icon && <Icon />}
+                        <span className="text-sm font-medium">{title}</span>
+                    </div>
+                    <div className="text-2xl font-bold font-mono">
+                        {formatCurrency(amount)}
+                    </div>
+                </div>
+            );
+        };
+
+        // Main App Component
+        const EventBudgetCalculator = () => {
+            // Event info state
+            const [eventInfo, setEventInfo] = useState({
+                name: '',
+                date: '',
+                location: '',
+                description: ''
+            });
+
+            // Budget state
+            const [expenseCategories, setExpenseCategories] = useState(DEFAULT_EXPENSE_CATEGORIES);
+            const [revenueCategories, setRevenueCategories] = useState(DEFAULT_REVENUE_CATEGORIES);
+
+            // Saved budgets
+            const [savedBudgets, setSavedBudgets] = useState([]);
+            const [selectedBudget, setSelectedBudget] = useState('');
+
+            // Load saved budgets on mount
+            useEffect(() => {
+                const saved = localStorage.getItem('ccm_event_budgets');
+                if (saved) {
+                    setSavedBudgets(JSON.parse(saved));
+                }
+            }, []);
+
+            // Calculate totals
+            const totals = useMemo(() => {
+                const totalExpenses = expenseCategories.reduce((sum, cat) =>
+                    sum + cat.items.reduce((catSum, item) => catSum + (item.amount || 0), 0), 0
+                );
+
+                const totalRevenue = revenueCategories.reduce((sum, cat) =>
+                    sum + cat.items.reduce((catSum, item) => catSum + (item.amount || 0), 0), 0
+                );
+
+                return {
+                    expenses: totalExpenses,
+                    revenue: totalRevenue,
+                    netIncome: totalRevenue - totalExpenses
+                };
+            }, [expenseCategories, revenueCategories]);
+
+            // Update expense category
+            const updateExpenseCategory = (updatedCategory) => {
+                setExpenseCategories(cats =>
+                    cats.map(cat => cat.id === updatedCategory.id ? updatedCategory : cat)
+                );
+            };
+
+            // Update revenue category
+            const updateRevenueCategory = (updatedCategory) => {
+                setRevenueCategories(cats =>
+                    cats.map(cat => cat.id === updatedCategory.id ? updatedCategory : cat)
+                );
+            };
+
+            // Save budget
+            const saveBudget = () => {
+                const budgetName = prompt('Enter a name for this budget:');
+                if (!budgetName) return;
+
+                const budget = {
+                    id: generateId(),
+                    name: budgetName,
+                    eventInfo,
+                    expenseCategories,
+                    revenueCategories,
+                    savedAt: new Date().toISOString()
+                };
+
+                const updated = [...savedBudgets, budget];
+                setSavedBudgets(updated);
+                localStorage.setItem('ccm_event_budgets', JSON.stringify(updated));
+                setSelectedBudget(budget.id);
+            };
+
+            // Load budget
+            const loadBudget = (budgetId) => {
+                const budget = savedBudgets.find(b => b.id === budgetId);
+                if (budget) {
+                    setEventInfo(budget.eventInfo);
+                    setExpenseCategories(budget.expenseCategories);
+                    setRevenueCategories(budget.revenueCategories);
+                    setSelectedBudget(budgetId);
+                }
+            };
+
+            // Delete budget
+            const deleteBudget = (budgetId) => {
+                if (!confirm('Delete this saved budget?')) return;
+
+                const updated = savedBudgets.filter(b => b.id !== budgetId);
+                setSavedBudgets(updated);
+                localStorage.setItem('ccm_event_budgets', JSON.stringify(updated));
+                if (selectedBudget === budgetId) {
+                    setSelectedBudget('');
+                }
+            };
+
+            // Reset to defaults
+            const resetBudget = () => {
+                if (!confirm('Reset all budget data? This cannot be undone.')) return;
+
+                setEventInfo({ name: '', date: '', location: '', description: '' });
+                setExpenseCategories(DEFAULT_EXPENSE_CATEGORIES);
+                setRevenueCategories(DEFAULT_REVENUE_CATEGORIES);
+                setSelectedBudget('');
+            };
+
+            // Export to PDF
+            const exportPDF = () => {
+                const element = document.getElementById('budget-export');
+                const opt = {
+                    margin: 0.5,
+                    filename: `${eventInfo.name || 'event'}-budget.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                };
+                html2pdf().set(opt).from(element).save();
+            };
+
+            return (
+                <div className="min-h-screen bg-gray-50">
+                    {/* Header */}
+                    <header className="bg-white border-b border-gray-200 sticky top-0 z-10 no-print">
+                        <div className="max-w-6xl mx-auto px-4 py-4">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <h1 className="text-2xl font-bold text-gray-900">Event Budget Calculator</h1>
+                                    <p className="text-sm text-gray-500">Center for Cooperative Media</p>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <button
+                                        onClick={resetBudget}
+                                        className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded-md hover:bg-gray-50"
+                                    >
+                                        <Icons.Reset />
+                                        Reset
+                                    </button>
+                                    <button
+                                        onClick={saveBudget}
+                                        className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded-md hover:bg-gray-50"
+                                    >
+                                        <Icons.Save />
+                                        Save
+                                    </button>
+                                    <button
+                                        onClick={exportPDF}
+                                        className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-ccm-600 rounded-md hover:bg-ccm-700"
+                                    >
+                                        <Icons.Download />
+                                        Export PDF
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    <main className="max-w-6xl mx-auto px-4 py-6">
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            {/* Left Column - Input */}
+                            <div className="lg:col-span-2 space-y-4 no-print">
+                                {/* Saved Budgets */}
+                                {savedBudgets.length > 0 && (
+                                    <div className="bg-white border border-gray-200 rounded-lg p-4">
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                                            Load Saved Budget
+                                        </label>
+                                        <div className="flex gap-2">
+                                            <select
+                                                value={selectedBudget}
+                                                onChange={(e) => loadBudget(e.target.value)}
+                                                className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-ccm-500 focus:border-ccm-500"
+                                            >
+                                                <option value="">Select a budget...</option>
+                                                {savedBudgets.map(budget => (
+                                                    <option key={budget.id} value={budget.id}>
+                                                        {budget.name}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                            {selectedBudget && (
+                                                <button
+                                                    onClick={() => deleteBudget(selectedBudget)}
+                                                    className="px-3 py-2 text-red-600 hover:text-red-700 border border-red-300 rounded-md hover:bg-red-50"
+                                                >
+                                                    <Icons.Trash />
+                                                </button>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Event Info */}
+                                <CollapsibleSection title="Event Information">
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="col-span-2">
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                                Event Name
+                                            </label>
+                                            <input
+                                                type="text"
+                                                value={eventInfo.name}
+                                                onChange={(e) => setEventInfo({ ...eventInfo, name: e.target.value })}
+                                                placeholder="e.g., 2026 Community Media Luncheon"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-ccm-500 focus:border-ccm-500"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                                Date
+                                            </label>
+                                            <input
+                                                type="date"
+                                                value={eventInfo.date}
+                                                onChange={(e) => setEventInfo({ ...eventInfo, date: e.target.value })}
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-ccm-500 focus:border-ccm-500"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                                Location
+                                            </label>
+                                            <input
+                                                type="text"
+                                                value={eventInfo.location}
+                                                onChange={(e) => setEventInfo({ ...eventInfo, location: e.target.value })}
+                                                placeholder="e.g., Montclair, NJ"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-ccm-500 focus:border-ccm-500"
+                                            />
+                                        </div>
+                                        <div className="col-span-2">
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                                Description / Notes
+                                            </label>
+                                            <textarea
+                                                value={eventInfo.description}
+                                                onChange={(e) => setEventInfo({ ...eventInfo, description: e.target.value })}
+                                                placeholder="Brief description of the event..."
+                                                rows={2}
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-ccm-500 focus:border-ccm-500"
+                                            />
+                                        </div>
+                                    </div>
+                                </CollapsibleSection>
+
+                                {/* Expenses */}
+                                <CollapsibleSection
+                                    title="Expenses"
+                                    badge={formatCurrency(totals.expenses)}
+                                >
+                                    {expenseCategories.map(category => (
+                                        <CategorySection
+                                            key={category.id}
+                                            category={category}
+                                            type="expense"
+                                            onUpdateCategory={updateExpenseCategory}
+                                        />
+                                    ))}
+                                </CollapsibleSection>
+
+                                {/* Revenue */}
+                                <CollapsibleSection
+                                    title="Revenue"
+                                    badge={formatCurrency(totals.revenue)}
+                                >
+                                    {revenueCategories.map(category => (
+                                        <CategorySection
+                                            key={category.id}
+                                            category={category}
+                                            type="revenue"
+                                            onUpdateCategory={updateRevenueCategory}
+                                        />
+                                    ))}
+                                </CollapsibleSection>
+                            </div>
+
+                            {/* Right Column - Summary */}
+                            <div className="space-y-4">
+                                {/* Summary Cards */}
+                                <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-4 sticky top-24">
+                                    <h3 className="font-semibold text-gray-900">Budget Summary</h3>
+
+                                    <SummaryCard
+                                        title="Total Revenue"
+                                        amount={totals.revenue}
+                                        type="revenue"
+                                        icon={Icons.TrendingUp}
+                                    />
+
+                                    <SummaryCard
+                                        title="Total Expenses"
+                                        amount={totals.expenses}
+                                        type="expense"
+                                        icon={Icons.TrendingDown}
+                                    />
+
+                                    <div className="border-t border-gray-200 pt-4">
+                                        <SummaryCard
+                                            title="Net Income"
+                                            amount={totals.netIncome}
+                                            type="profit"
+                                            icon={Icons.DollarSign}
+                                        />
+                                    </div>
+
+                                    {totals.expenses > 0 && (
+                                        <div className="text-sm text-gray-500 pt-2">
+                                            <p>
+                                                Coverage: {totals.expenses > 0 ? Math.round((totals.revenue / totals.expenses) * 100) : 0}%
+                                            </p>
+                                            {totals.netIncome < 0 && (
+                                                <p className="text-red-600 mt-1">
+                                                    Need {formatCurrency(Math.abs(totals.netIncome))} more to break even
+                                                </p>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Export Template (hidden) */}
+                        <div id="budget-export" className="hidden print:block bg-white p-8">
+                            <div className="mb-6">
+                                <h1 className="text-2xl font-bold text-gray-900 mb-1">
+                                    {eventInfo.name || 'Event Budget'}
+                                </h1>
+                                {eventInfo.date && (
+                                    <p className="text-gray-600">
+                                        {new Date(eventInfo.date).toLocaleDateString('en-US', {
+                                            weekday: 'long',
+                                            year: 'numeric',
+                                            month: 'long',
+                                            day: 'numeric'
+                                        })}
+                                        {eventInfo.location && ` • ${eventInfo.location}`}
+                                    </p>
+                                )}
+                                {eventInfo.description && (
+                                    <p className="text-gray-500 mt-2 text-sm">{eventInfo.description}</p>
+                                )}
+                            </div>
+
+                            {/* Summary */}
+                            <div className="grid grid-cols-3 gap-4 mb-6">
+                                <div className="bg-green-50 p-4 rounded-lg">
+                                    <div className="text-sm text-green-700 font-medium">Total Revenue</div>
+                                    <div className="text-xl font-bold text-green-800 font-mono">
+                                        {formatCurrency(totals.revenue)}
+                                    </div>
+                                </div>
+                                <div className="bg-red-50 p-4 rounded-lg">
+                                    <div className="text-sm text-red-700 font-medium">Total Expenses</div>
+                                    <div className="text-xl font-bold text-red-800 font-mono">
+                                        {formatCurrency(totals.expenses)}
+                                    </div>
+                                </div>
+                                <div className={`p-4 rounded-lg ${totals.netIncome >= 0 ? 'bg-green-50' : 'bg-red-50'}`}>
+                                    <div className={`text-sm font-medium ${totals.netIncome >= 0 ? 'text-green-700' : 'text-red-700'}`}>
+                                        Net Income
+                                    </div>
+                                    <div className={`text-xl font-bold font-mono ${totals.netIncome >= 0 ? 'text-green-800' : 'text-red-800'}`}>
+                                        {formatCurrency(totals.netIncome)}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Expenses Detail */}
+                            <div className="mb-6">
+                                <h2 className="text-lg font-semibold text-gray-900 mb-3 border-b pb-2">Expenses</h2>
+                                {expenseCategories.map(category => {
+                                    const catTotal = category.items.reduce((sum, item) => sum + (item.amount || 0), 0);
+                                    if (catTotal === 0) return null;
+
+                                    return (
+                                        <div key={category.id} className="mb-4">
+                                            <div className="flex justify-between font-medium text-gray-700 mb-1">
+                                                <span>{category.name}</span>
+                                                <span className="font-mono">{formatCurrency(catTotal)}</span>
+                                            </div>
+                                            {category.items.filter(item => item.amount > 0).map(item => (
+                                                <div key={item.id} className="flex justify-between text-sm text-gray-600 pl-4">
+                                                    <span>{item.description || 'Unnamed item'}</span>
+                                                    <span className="font-mono">{formatCurrency(item.amount)}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+
+                            {/* Revenue Detail */}
+                            <div>
+                                <h2 className="text-lg font-semibold text-gray-900 mb-3 border-b pb-2">Revenue</h2>
+                                {revenueCategories.map(category => {
+                                    const catTotal = category.items.reduce((sum, item) => sum + (item.amount || 0), 0);
+                                    if (catTotal === 0) return null;
+
+                                    return (
+                                        <div key={category.id} className="mb-4">
+                                            <div className="flex justify-between font-medium text-gray-700 mb-1">
+                                                <span>{category.name}</span>
+                                                <span className="font-mono">{formatCurrency(catTotal)}</span>
+                                            </div>
+                                            {category.items.filter(item => item.amount > 0).map(item => (
+                                                <div key={item.id} className="flex justify-between text-sm text-gray-600 pl-4">
+                                                    <span>{item.description || 'Unnamed item'}</span>
+                                                    <span className="font-mono">{formatCurrency(item.amount)}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+
+                            {/* Footer */}
+                            <div className="mt-8 pt-4 border-t text-xs text-gray-400 text-center">
+                                Generated by Event Budget Calculator • Center for Cooperative Media
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            );
+        };
+
+        // Render
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<EventBudgetCalculator />);
+    </script>
+</body>
+</html>
