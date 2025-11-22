@@ -13,8 +13,5 @@ export default defineConfig({
       clientPort: 443,
       host: 'localhost'
     }
-  },
-  define: {
-    'process.env.WS_TOKEN__': JSON.stringify(process.env.WS_TOKEN__ || '')
   }
 })
