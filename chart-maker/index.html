@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NJ PBS Operations Visualizer</title>
+    
+    <!-- 1. Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. Load React and ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- 3. Load Babel for JSX processing -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- 4. Load html2canvas for exports -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        /* Custom scrollbar to match the dark theme */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+        body { margin: 0; overflow: hidden; background-color: #020617; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- 5. The Application Logic -->
+    <script type="text/babel">
+        const { useState, useEffect, useRef, useCallback } = React;
+
+        // --- ICON SYSTEM (Inline SVGs to avoid complex dependencies) ---
+        const Icons = {
+            Users: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
+            Scale: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>,
+            Building2: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>,
+            Radio: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg>,
+            GraduationCap: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>,
+            ShieldCheck: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>,
+            Layout: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="9" y2="21"/></svg>,
+            Globe: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>,
+            Mic2: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 8-9.04 9.06a2.82 2.82 0 1 0 3.98 3.98L16 12"/><path d="m19 7-7 7"/><path d="M15 6v-1a2 2 0 1 1 4 0v2"/><path d="M21 5v2"/><path d="M21 11v2"/></svg>,
+            Tv: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="15" x="2" y="7" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>,
+            DollarSign: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>,
+            Settings: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.47a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.39a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>,
+            Briefcase: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>,
+            Camera: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>,
+            Move: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/><polyline points="15 19 12 22 9 19"/><polyline points="19 9 22 12 19 15"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/></svg>,
+            MousePointer2: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 19-2.96-7.05L2 9l22-7-7 22-2.95-7.04Z"/></svg>,
+            Lock: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>,
+            Unlock: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>,
+            Maximize: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg>,
+            Minimize: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" x2="21" y1="10" y2="3"/><line x1="3" x2="10" y1="21" y2="14"/></svg>,
+            RefreshCw: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+        };
+
+        const NODE_STYLES = {
+            default: "bg-slate-800 border-slate-600 text-slate-200",
+            primary: "bg-blue-900/40 border-blue-500 text-blue-100 shadow-[0_0_15px_rgba(59,130,246,0.3)]",
+            secondary: "bg-purple-900/40 border-purple-500 text-purple-100 shadow-[0_0_15px_rgba(168,85,247,0.3)]",
+            tertiary: "bg-emerald-900/40 border-emerald-500 text-emerald-100",
+            warning: "bg-amber-900/40 border-amber-500 text-amber-100",
+            danger: "bg-rose-900/40 border-rose-500 text-rose-100",
+            ghost: "bg-transparent border-dashed border-slate-600 text-slate-400"
+        };
+
+        const DATA_SETS = {
+            '1.1': {
+                nodes: [
+                    { id: 'n1', x: 100, y: 150, type: 'primary', label: 'NJPBA', sub: 'License Holder', icon: 'Radio' },
+                    { id: 'n2', x: 600, y: 150, type: 'secondary', label: 'Montclair State', sub: 'Programming Provider', icon: 'Building2' },
+                    { id: 'n3', x: 350, y: 150, type: 'default', label: 'PSA Agreement', sub: 'Contract', icon: 'Scale' },
+                    { id: 'n4', x: 350, y: 350, type: 'tertiary', label: 'Advisory Board', sub: 'Community Input', icon: 'Users' },
+                    { id: 'n5', x: 600, y: 300, type: 'ghost', label: 'School of Comm.', sub: 'Integration', icon: 'Layout' },
+                    { id: 'n6', x: 600, y: 400, type: 'ghost', label: 'Center for Coop Media', sub: 'Integration', icon: 'Globe' }
+                ],
+                edges: [
+                    { id: 'e1', source: 'n1', target: 'n3', label: 'Delegates Ops' },
+                    { id: 'e2', source: 'n3', target: 'n2', label: 'Provides Services' },
+                    { id: 'e3', source: 'n3', target: 'n4', label: 'Oversight' },
+                    { id: 'e4', source: 'n2', target: 'n5', label: 'Resources' },
+                    { id: 'e5', source: 'n2', target: 'n6', label: 'Partnership' }
+                ]
+            },
+            '1.2': {
+                nodes: [
+                    { id: 'root', x: 400, y: 50, type: 'primary', label: 'NJPBA Board', sub: 'License Holder', icon: 'Radio' },
+                    { id: 'pres', x: 400, y: 150, type: 'secondary', label: 'MSU President', sub: 'University Lead', icon: 'Building2' },
+                    { id: 'prov', x: 400, y: 250, type: 'default', label: 'Provost', sub: 'Academic Lead', icon: 'GraduationCap' },
+                    { id: 'dean', x: 400, y: 350, type: 'default', label: 'Dean', sub: 'College of Comm.', icon: 'Briefcase' },
+                    { id: 'gm', x: 400, y: 450, type: 'primary', label: 'General Manager', sub: 'NJ PBS', icon: 'Tv' },
+                    { id: 'prog', x: 100, y: 600, type: 'tertiary', label: 'Programming', icon: 'Layout' },
+                    { id: 'tech', x: 250, y: 600, type: 'warning', label: 'Technology', icon: 'Settings' },
+                    { id: 'news', x: 400, y: 600, type: 'danger', label: 'News / Editorial', icon: 'Mic2' },
+                    { id: 'rev', x: 550, y: 600, type: 'tertiary', label: 'Revenue', icon: 'DollarSign' },
+                    { id: 'ops', x: 700, y: 600, type: 'default', label: 'Admin', icon: 'Briefcase' },
+                    { id: 'sub1', x: 100, y: 700, type: 'ghost', label: 'Audience / Partners' },
+                    { id: 'sub2', x: 400, y: 700, type: 'ghost', label: 'Producers' },
+                    { id: 'sub3', x: 550, y: 700, type: 'ghost', label: 'Membership' }
+                ],
+                edges: [
+                    { id: 'e1', source: 'root', target: 'pres', dashed: true, label: 'PSA' },
+                    { id: 'e2', source: 'pres', target: 'prov' },
+                    { id: 'e3', source: 'prov', target: 'dean' },
+                    { id: 'e4', source: 'dean', target: 'gm' },
+                    { id: 'e5', source: 'gm', target: 'prog' },
+                    { id: 'e6', source: 'gm', target: 'tech' },
+                    { id: 'e7', source: 'gm', target: 'news' },
+                    { id: 'e8', source: 'gm', target: 'rev' },
+                    { id: 'e9', source: 'gm', target: 'ops' },
+                    { id: 'e10', source: 'prog', target: 'sub1' },
+                    { id: 'e11', source: 'news', target: 'sub2' },
+                    { id: 'e12', source: 'rev', target: 'sub3' }
+                ]
+            },
+            '1.3': {
+                nodes: [
+                    { id: 'comm', x: 150, y: 100, type: 'tertiary', label: 'Community Board', sub: 'Advisory', icon: 'Users', width: 250 },
+                    { id: 'c_det1', x: 150, y: 220, type: 'ghost', label: 'North / Central / South Reps', width: 200 },
+                    { id: 'c_det2', x: 150, y: 300, type: 'ghost', label: 'Quarterly Meetings', width: 200 },
+                    { id: 'edit', x: 450, y: 100, type: 'danger', label: 'Editorial Independence', sub: 'Oversight', icon: 'ShieldCheck', width: 250 },
+                    { id: 'e_det1', x: 450, y: 220, type: 'ghost', label: 'Firewall Enforcement', width: 200 },
+                    { id: 'e_det2', x: 450, y: 300, type: 'ghost', label: 'Journalists & Academics', width: 200 },
+                    { id: 'stu', x: 750, y: 100, type: 'secondary', label: 'Student Board', sub: 'Educational', icon: 'GraduationCap', width: 250 },
+                    { id: 's_det1', x: 750, y: 220, type: 'ghost', label: 'Faculty Advisors', width: 200 },
+                    { id: 's_det2', x: 750, y: 300, type: 'ghost', label: 'Curriculum Integration', width: 200 },
+                ],
+                edges: [
+                    { id: 'e1', source: 'comm', target: 'c_det1' },
+                    { id: 'e2', source: 'c_det1', target: 'c_det2' },
+                    { id: 'e3', source: 'edit', target: 'e_det1' },
+                    { id: 'e4', source: 'e_det1', target: 'e_det2' },
+                    { id: 'e5', source: 'stu', target: 's_det1' },
+                    { id: 'e6', source: 's_det1', target: 's_det2' }
+                ]
+            }
+        };
+
+        const OrganizationVisualizer = () => {
+            const [activeTab, setActiveTab] = useState('1.1');
+            const [nodes, setNodes] = useState([]);
+            const [edges, setEdges] = useState([]);
+            const [isDragging, setIsDragging] = useState(false);
+            const [draggedNodeId, setDraggedNodeId] = useState(null);
+            const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+            const [scale, setScale] = useState(1);
+            const [isLocked, setIsLocked] = useState(false);
+            const canvasRef = useRef(null);
+            const containerRef = useRef(null);
+
+            useEffect(() => {
+                loadTab(activeTab);
+            }, [activeTab]);
+
+            const loadTab = (tab) => {
+                const data = DATA_SETS[tab];
+                setNodes(data.nodes.map(n => ({...n, width: n.width || 180, height: n.height || 80 })));
+                setEdges(data.edges);
+                setScale(1);
+            };
+
+            const handleMouseDown = (e, nodeId) => {
+                if (isLocked) return;
+                e.stopPropagation();
+                const node = nodes.find(n => n.id === nodeId);
+                setDraggedNodeId(nodeId);
+                setDragOffset({
+                    x: e.clientX / scale - node.x,
+                    y: e.clientY / scale - node.y
+                });
+                setIsDragging(true);
+            };
+
+            const handleMouseMove = useCallback((e) => {
+                if (!isDragging || !draggedNodeId) return;
+                const newX = (e.clientX / scale) - dragOffset.x;
+                const newY = (e.clientY / scale) - dragOffset.y;
+                setNodes(prev => prev.map(n => 
+                    n.id === draggedNodeId ? { ...n, x: newX, y: newY } : n
+                ));
+            }, [isDragging, draggedNodeId, dragOffset, scale]);
+
+            const handleMouseUp = () => {
+                setIsDragging(false);
+                setDraggedNodeId(null);
+            };
+
+            const handleExport = async () => {
+                if (window.html2canvas && canvasRef.current) {
+                    try {
+                        const canvas = await window.html2canvas(canvasRef.current, {
+                            backgroundColor: '#020617',
+                            scale: 2,
+                            logging: false
+                        });
+                        const link = document.createElement('a');
+                        link.download = `NJPBS_Structure_${activeTab}.png`;
+                        link.href = canvas.toDataURL();
+                        link.click();
+                    } catch (err) {
+                        console.error("Export failed:", err);
+                        alert("Export failed. Please try again.");
+                    }
+                }
+            };
+
+            const getIcon = (name) => {
+                const IconComponent = Icons[name];
+                return IconComponent ? <IconComponent className="w-5 h-5" /> : null;
+            };
+
+            return (
+                <div className="flex flex-col h-screen bg-slate-950 text-slate-200 font-sans overflow-hidden" 
+                     onMouseMove={handleMouseMove} 
+                     onMouseUp={handleMouseUp}
+                     onMouseLeave={handleMouseUp}>
+                  
+                  <header className="flex-none bg-slate-900 border-b border-slate-800 px-6 py-4 flex items-center justify-between z-50 shadow-md">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white shadow-lg shadow-blue-500/20">NJ</div>
+                      <div>
+                        <h1 className="text-lg font-bold text-white tracking-tight">Organization Visualizer</h1>
+                        <p className="text-xs text-slate-400">Operations & Business Plan 2025</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center space-x-2 bg-slate-950 p-1 rounded-lg border border-slate-800">
+                      {['1.1', '1.2', '1.3'].map(tab => (
+                        <button key={tab} onClick={() => setActiveTab(tab)}
+                          className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                            activeTab === tab ? 'bg-slate-800 text-white shadow-sm ring-1 ring-slate-700' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+                          }`}>
+                          Section {tab}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="flex items-center space-x-3">
+                      <div className="h-8 w-px bg-slate-800 mx-2"></div>
+                      <button onClick={() => setIsLocked(!isLocked)} className={`p-2 rounded-md transition-colors ${isLocked ? 'bg-rose-500/10 text-rose-400' : 'text-slate-400 hover:text-white'}`} title={isLocked ? "Unlock" : "Lock"}>
+                        {isLocked ? <Icons.Lock className="w-5 h-5"/> : <Icons.Unlock className="w-5 h-5"/>}
+                      </button>
+                      <button onClick={() => loadTab(activeTab)} className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-md" title="Reset">
+                        <Icons.RefreshCw className="w-5 h-5"/>
+                      </button>
+                      <button onClick={handleExport} className="flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md shadow-lg shadow-blue-600/20 font-medium text-sm">
+                        <Icons.Camera className="w-4 h-4"/> <span>Export PNG</span>
+                      </button>
+                    </div>
+                  </header>
+
+                  <div ref={containerRef} className="flex-grow overflow-auto relative bg-slate-950 cursor-grab active:cursor-grabbing custom-scrollbar">
+                    <div className="absolute inset-0 pointer-events-none opacity-20" style={{
+                        backgroundImage: `linear-gradient(to right, #334155 1px, transparent 1px), linear-gradient(to bottom, #334155 1px, transparent 1px)`,
+                        backgroundSize: '40px 40px', transform: `scale(${scale})`, transformOrigin: '0 0'
+                    }}/>
+
+                    <div ref={canvasRef} className="relative min-w-[2000px] min-h-[2000px] transform-gpu transition-transform duration-75 origin-top-left p-10" style={{ transform: `scale(${scale})` }}>
+                      <svg className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible z-0">
+                        <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="28" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b" /></marker></defs>
+                        {edges.map(edge => {
+                          const start = nodes.find(n => n.id === edge.source);
+                          const end = nodes.find(n => n.id === edge.target);
+                          if (!start || !end) return null;
+                          const startX = start.x + (start.width / 2);
+                          const startY = start.y + (start.height / 2);
+                          const endX = end.x + (end.width / 2);
+                          const endY = end.y + (end.height / 2);
+                          const dist = Math.abs(endY - startY);
+                          const pathData = `M ${startX} ${startY} C ${startX} ${startY + dist * 0.5}, ${endX} ${endY - dist * 0.5}, ${endX} ${endY}`;
+                          return (
+                            <g key={edge.id}>
+                              <path d={pathData} stroke="#475569" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)" strokeDasharray={edge.dashed ? "5,5" : "none"} />
+                              {edge.label && (
+                                <foreignObject x={(startX + endX) / 2 - 40} y={(startY + endY) / 2 - 12} width="80" height="24">
+                                  <div className="bg-slate-900 border border-slate-700 text-[10px] text-slate-400 px-2 py-0.5 rounded-full text-center whitespace-nowrap shadow-sm">{edge.label}</div>
+                                </foreignObject>
+                              )}
+                            </g>
+                          );
+                        })}
+                      </svg>
+
+                      {nodes.map(node => (
+                        <div key={node.id} onMouseDown={(e) => handleMouseDown(e, node.id)}
+                          style={{ transform: `translate(${node.x}px, ${node.y}px)`, width: `${node.width}px` }}
+                          className={`absolute z-10 flex flex-col justify-center px-4 py-3 rounded-xl border backdrop-blur-md transition-shadow cursor-move select-none group ${NODE_STYLES[node.type] || NODE_STYLES.default} ${draggedNodeId === node.id ? 'ring-2 ring-white/50 scale-105 shadow-2xl z-50' : ''}`}>
+                          <div className="absolute -top-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div className="bg-slate-700 rounded-full p-0.5"><Icons.Move className="w-3 h-3 text-slate-300" /></div>
+                          </div>
+                          <div className="flex items-center space-x-3 pointer-events-none">
+                            {node.icon && (
+                              <div className={`p-2 rounded-lg ${node.type === 'primary' ? 'bg-blue-500/20 text-blue-300' : node.type === 'secondary' ? 'bg-purple-500/20 text-purple-300' : node.type === 'danger' ? 'bg-rose-500/20 text-rose-300' : 'bg-slate-700/50 text-slate-300'}`}>
+                                {getIcon(node.icon)}
+                              </div>
+                            )}
+                            <div>
+                              <h3 className="font-bold text-sm leading-tight">{node.label}</h3>
+                              {node.sub && <p className="text-[10px] opacity-70 mt-0.5 font-medium uppercase tracking-wide">{node.sub}</p>}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="absolute bottom-6 right-6 flex flex-col space-y-2 z-50">
+                    <div className="bg-slate-900/90 backdrop-blur border border-slate-700 rounded-lg p-2 shadow-xl flex flex-col space-y-2">
+                       <button onClick={() => setScale(s => Math.min(s + 0.1, 2))} className="p-2 hover:bg-slate-800 rounded text-slate-300"><Icons.Maximize className="w-4 h-4" /></button>
+                       <div className="text-center text-[10px] text-slate-500 font-mono">{Math.round(scale * 100)}%</div>
+                       <button onClick={() => setScale(s => Math.max(s - 0.1, 0.5))} className="p-2 hover:bg-slate-800 rounded text-slate-300"><Icons.Minimize className="w-4 h-4" /></button>
+                    </div>
+                  </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<OrganizationVisualizer />);
+    </script>
+</body>
+</html>
