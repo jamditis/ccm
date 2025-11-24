@@ -228,20 +228,24 @@
 
         const PropertiesPanel = ({ selection, nodes, edges, onChange }) => {
             if (!selection) return (
-                <div className="absolute top-20 right-6 w-64 glass-panel rounded-xl p-6 text-center text-slate-500 text-sm">
-                    Select a node or link to edit properties
+                <div className="absolute top-20 right-6 w-64 glass-panel rounded-xl p-6 text-center text-slate-500 text-sm shadow-xl">
+                    <div className="mb-2">
+                        <Icons.Edit className="w-8 h-8 mx-auto mb-2 opacity-30"/>
+                    </div>
+                    <p className="font-medium mb-1">No Selection</p>
+                    <p className="text-xs">Click a node or link to edit</p>
                 </div>
             );
 
             const { id, type } = selection;
-            const item = type === 'node' 
-                ? nodes.find(n => n.id === id) 
+            const item = type === 'node'
+                ? nodes.find(n => n.id === id)
                 : edges.find(e => e.id === id);
 
             if (!item) return null;
 
             return (
-                <div className="absolute top-20 right-6 w-72 glass-panel rounded-xl p-4 shadow-2xl z-40 modal-animate">
+                <div className="absolute top-20 right-6 w-72 glass-panel rounded-xl p-4 shadow-2xl z-50 modal-animate border-2 border-blue-500/30" onClick={(e) => e.stopPropagation()}>
                     <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-700">
                         <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">{type} PROPERTIES</span>
                         <div className="px-2 py-0.5 bg-slate-800 rounded text-[10px] text-slate-500 font-mono">{id}</div>
@@ -339,8 +343,21 @@
                                 <p>Your edits are saved as you switch tabs. Don't refresh the browser!</p>
                             </div>
                         </div>
-                        <div className="pt-4 border-t border-slate-800 text-center">
-                            <button onClick={onClose} className="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-medium shadow-lg">Start Editing</button>
+                        <div className="pt-4 border-t border-slate-800">
+                            <div className="font-bold text-slate-200 mb-2">⌨️ Keyboard Shortcuts</div>
+                            <div className="grid grid-cols-2 gap-2 text-xs">
+                                <div className="flex justify-between items-center bg-slate-800/30 px-2 py-1 rounded">
+                                    <span>Delete item</span>
+                                    <kbd className="bg-slate-700 px-2 py-0.5 rounded font-mono">Del</kbd>
+                                </div>
+                                <div className="flex justify-between items-center bg-slate-800/30 px-2 py-1 rounded">
+                                    <span>Cancel mode</span>
+                                    <kbd className="bg-slate-700 px-2 py-0.5 rounded font-mono">Esc</kbd>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="pt-2 text-center">
+                            <button onClick={onClose} className="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-medium shadow-lg transition-colors">Start Editing</button>
                         </div>
                     </div>
                 </div>
@@ -376,6 +393,25 @@
                 window.addEventListener('beforeunload', handleBeforeUnload);
                 return () => window.removeEventListener('beforeunload', handleBeforeUnload);
             }, []);
+
+            useEffect(() => {
+                const handleKeyDown = (e) => {
+                    // Delete or Backspace to delete selection
+                    if ((e.key === 'Delete' || e.key === 'Backspace') && selection) {
+                        e.preventDefault();
+                        deleteSelection();
+                    }
+                    // Escape to cancel modes and clear selection
+                    if (e.key === 'Escape') {
+                        e.preventDefault();
+                        setMode('select');
+                        setConnectSource(null);
+                        setSelection(null);
+                    }
+                };
+                window.addEventListener('keydown', handleKeyDown);
+                return () => window.removeEventListener('keydown', handleKeyDown);
+            }, [selection, mode]);
 
             const currentNodes = allData[activeTab]?.nodes || [];
             const currentEdges = allData[activeTab]?.edges || [];
@@ -467,6 +503,7 @@
             const handleMouseDown = (e, nodeId) => {
                 if (isLocked) return;
                 e.stopPropagation();
+                e.preventDefault();
                 if (mode === 'connect') { setConnectSource(nodeId); return; }
                 if (mode === 'relink-source') {
                     if (selection && selection.type === 'edge') { updateEdge(selection.id, 'source', nodeId); setMode('select'); }
@@ -509,7 +546,18 @@
 
             const handleEdgeClick = (e, edgeId) => {
                 e.stopPropagation();
+                e.preventDefault();
                 if (mode === 'select') setSelection({ id: edgeId, type: 'edge' });
+            };
+
+            const handleCanvasClick = (e) => {
+                // Only clear selection if clicking directly on canvas, not on child elements
+                if (e.target === e.currentTarget) {
+                    setSelection(null);
+                    if (mode === 'connect') {
+                        setConnectSource(null);
+                    }
+                }
             };
 
             const handleAutoArrange = () => {
@@ -554,10 +602,9 @@
             };
 
             return (
-                <div className="flex flex-col h-screen overflow-hidden" 
-                     onMouseMove={handleCanvasMouseMove} 
-                     onMouseUp={() => handleMouseUp(null, null)} 
-                     onClick={() => setSelection(null)} 
+                <div className="flex flex-col h-screen overflow-hidden"
+                     onMouseMove={handleCanvasMouseMove}
+                     onMouseUp={() => handleMouseUp(null, null)}
                 >
                     {showHelp && <HelpModal onClose={() => setShowHelp(false)} />}
                     
@@ -582,18 +629,103 @@
                         </div>
                         <div className="flex items-center space-x-2">
                              <div className="h-8 w-px bg-slate-800 mx-2"></div>
-                            <button onClick={(e) => { e.stopPropagation(); addNode(); }} className="p-2 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 rounded-md border border-emerald-500/20" title="Add Node"><Icons.Plus className="w-5 h-5"/></button>
-                            <button onClick={(e) => { e.stopPropagation(); setMode(mode === 'connect' ? 'select' : 'connect'); }} className={`p-2 rounded-md border transition-all ${mode === 'connect' ? 'bg-blue-500 text-white border-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]' : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-white'}`} title="Link Mode"><Icons.Link className="w-5 h-5"/></button>
-                            <button onClick={(e) => { e.stopPropagation(); deleteSelection(); }} className={`p-2 rounded-md transition-all ${selection ? 'bg-rose-500/10 text-rose-400 hover:bg-rose-500/20' : 'text-slate-600 cursor-not-allowed'}`} title="Delete"><Icons.Trash2 className="w-5 h-5"/></button>
+                            <button onClick={(e) => { e.stopPropagation(); addNode(); }} className="p-2 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 rounded-md border border-emerald-500/20 transition-all group relative" title="Add Node">
+                                <Icons.Plus className="w-5 h-5"/>
+                                <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Add Node</span>
+                            </button>
+                            <button onClick={(e) => { e.stopPropagation(); setMode(mode === 'connect' ? 'select' : 'connect'); }} className={`p-2 rounded-md border transition-all group relative ${mode === 'connect' ? 'bg-blue-500 text-white border-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]' : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-white'}`} title="Link Mode">
+                                <Icons.Link className="w-5 h-5"/>
+                                <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Link Mode (L)</span>
+                            </button>
+                            <button onClick={(e) => { e.stopPropagation(); deleteSelection(); }} disabled={!selection} className={`p-2 rounded-md transition-all group relative ${selection ? 'bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 border border-rose-500/20' : 'text-slate-600 cursor-not-allowed border border-transparent'}`} title="Delete">
+                                <Icons.Trash2 className="w-5 h-5"/>
+                                <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Delete (Del)</span>
+                            </button>
                              <div className="h-8 w-px bg-slate-800 mx-2"></div>
-                            <button onClick={() => handleAutoArrange()} className="p-2 text-blue-400 hover:text-white hover:bg-blue-600/20 rounded-md" title="Auto Arrange"><Icons.Sparkles className="w-5 h-5"/></button>
-                            <button onClick={handleExport} className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-md" title="Save PNG"><Icons.Camera className="w-5 h-5"/></button>
-                            <button onClick={() => setShowHelp(true)} className="p-2 text-slate-400 hover:text-white" title="Help"><Icons.HelpCircle className="w-5 h-5"/></button>
+                            <button onClick={() => handleAutoArrange()} className="p-2 text-blue-400 hover:text-white hover:bg-blue-600/20 rounded-md transition-all group relative" title="Auto Arrange">
+                                <Icons.Sparkles className="w-5 h-5"/>
+                                <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Auto Arrange</span>
+                            </button>
+                            <button onClick={handleExport} className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-md transition-all group relative" title="Save PNG">
+                                <Icons.Camera className="w-5 h-5"/>
+                                <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Export PNG</span>
+                            </button>
+                            <button onClick={() => setShowHelp(true)} className="p-2 text-slate-400 hover:text-white transition-all group relative" title="Help">
+                                <Icons.HelpCircle className="w-5 h-5"/>
+                                <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Help (H)</span>
+                            </button>
                         </div>
                     </header>
 
+                    {/* Zoom Controls */}
+                    <div className="absolute bottom-6 right-6 flex flex-col space-y-2 z-30">
+                        <button onClick={(e) => { e.stopPropagation(); setScale(Math.min(scale + 0.1, 2)); }} className="p-2 glass-panel rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/90 transition-all shadow-lg" title="Zoom In">
+                            <Icons.Plus className="w-5 h-5"/>
+                        </button>
+                        <div className="px-3 py-1 glass-panel rounded-lg text-xs font-mono text-slate-400 text-center min-w-[60px]">
+                            {Math.round(scale * 100)}%
+                        </div>
+                        <button onClick={(e) => { e.stopPropagation(); setScale(Math.max(scale - 0.1, 0.5)); }} className="p-2 glass-panel rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/90 transition-all shadow-lg" title="Zoom Out">
+                            <Icons.Minimize className="w-5 h-5"/>
+                        </button>
+                        <button onClick={(e) => { e.stopPropagation(); setScale(1); }} className="p-2 glass-panel rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/90 transition-all shadow-lg" title="Reset Zoom">
+                            <Icons.Maximize className="w-5 h-5"/>
+                        </button>
+                    </div>
+
+                    {/* Mode Indicator */}
+                    {mode !== 'select' && (
+                        <div className="absolute top-24 left-1/2 transform -translate-x-1/2 z-30">
+                            <div className="glass-panel rounded-full px-6 py-3 shadow-2xl border-2 border-blue-500/50 modal-animate">
+                                <div className="flex items-center space-x-3">
+                                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                                    <span className="text-sm font-semibold text-blue-300">
+                                        {mode === 'connect' && 'Link Mode: Click two nodes to connect'}
+                                        {mode === 'relink-source' && 'Select New Source Node'}
+                                        {mode === 'relink-target' && 'Select New Target Node'}
+                                    </span>
+                                    <button onClick={(e) => { e.stopPropagation(); setMode('select'); setConnectSource(null); }} className="text-slate-400 hover:text-white ml-2">
+                                        <Icons.X className="w-4 h-4"/>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Status Bar */}
+                    <div className="absolute bottom-6 left-6 z-30 flex items-center space-x-4">
+                        <div className="glass-panel rounded-lg px-4 py-2 shadow-lg">
+                            <div className="flex items-center space-x-4 text-xs">
+                                <div className="flex items-center space-x-2">
+                                    <Icons.Target className="w-4 h-4 text-blue-400"/>
+                                    <span className="text-slate-400">Nodes:</span>
+                                    <span className="text-white font-semibold">{currentNodes.length}</span>
+                                </div>
+                                <div className="h-4 w-px bg-slate-700"></div>
+                                <div className="flex items-center space-x-2">
+                                    <Icons.Link className="w-4 h-4 text-purple-400"/>
+                                    <span className="text-slate-400">Links:</span>
+                                    <span className="text-white font-semibold">{currentEdges.length}</span>
+                                </div>
+                                {selection && (
+                                    <>
+                                        <div className="h-4 w-px bg-slate-700"></div>
+                                        <div className="flex items-center space-x-2">
+                                            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                                            <span className="text-blue-300 font-medium">
+                                                {selection.type === 'node'
+                                                    ? (currentNodes.find(n => n.id === selection.id)?.label || 'Node')
+                                                    : 'Link'} selected
+                                            </span>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+
                     {/* Canvas */}
-                    <div ref={containerRef} className="flex-grow overflow-auto relative bg-slate-950 cursor-grab active:cursor-grabbing custom-scrollbar">
+                    <div ref={containerRef} className="flex-grow overflow-auto relative bg-slate-950 cursor-grab active:cursor-grabbing custom-scrollbar" onClick={handleCanvasClick}>
                         <div className="absolute inset-0 pointer-events-none opacity-20" style={{ backgroundImage: `linear-gradient(to right, #334155 1px, transparent 1px), linear-gradient(to bottom, #334155 1px, transparent 1px)`, backgroundSize: '40px 40px', transform: `scale(${scale})`, transformOrigin: '0 0' }}/>
                         <div ref={canvasRef} className="relative min-w-[3000px] min-h-[3000px] transform-gpu origin-top-left p-10" style={{ transform: `scale(${scale})` }}>
                             <svg className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible z-0">
@@ -605,9 +737,9 @@
                                     const path = drawPath(start, end);
                                     const isSelected = selection && selection.id === edge.id;
                                     return (
-                                        <g key={edge.id} onClick={(e) => handleEdgeClick(e, edge.id)} className="cursor-pointer pointer-events-auto hover:opacity-80">
-                                            <path d={path} stroke="transparent" strokeWidth="15" fill="none" />
-                                            <path d={path} stroke={isSelected ? "#3b82f6" : "#475569"} strokeWidth={isSelected ? "4" : "2"} fill="none" markerEnd="url(#arrowhead)" strokeDasharray={edge.dashed ? "5,5" : "none"} className="transition-colors" />
+                                        <g key={edge.id} onClick={(e) => handleEdgeClick(e, edge.id)} className="cursor-pointer pointer-events-auto group">
+                                            <path d={path} stroke="transparent" strokeWidth="20" fill="none" />
+                                            <path d={path} stroke={isSelected ? "#3b82f6" : "#475569"} strokeWidth={isSelected ? "4" : "2"} fill="none" markerEnd="url(#arrowhead)" strokeDasharray={edge.dashed ? "5,5" : "none"} className="transition-all group-hover:stroke-blue-400 group-hover:stroke-[3px]" />
                                             {edge.label && (
                                                 <foreignObject x={(start.x + end.x + 180)/2 - 40} y={(start.y + end.y + 80)/2 - 12} width="80" height="24">
                                                     <div className={`text-[10px] px-2 py-0.5 rounded-full text-center whitespace-nowrap shadow-sm border ${isSelected ? 'bg-blue-900 border-blue-500 text-white' : 'bg-slate-900 border-slate-700 text-slate-400'}`}>{edge.label}</div>
@@ -622,9 +754,13 @@
                             </svg>
                             {currentNodes.map(node => {
                                 const isSelected = selection && selection.id === node.id;
+                                const isConnecting = mode === 'connect' || mode.includes('relink');
+                                const isSourceNode = connectSource === node.id;
+                                const cursorClass = isConnecting ? 'cursor-pointer' : (isLocked ? 'cursor-default' : 'cursor-move');
                                 return (
-                                    <div key={node.id} onMouseDown={(e) => handleMouseDown(e, node.id)} onMouseUp={(e) => handleMouseUp(e, node.id)} style={{ transform: `translate(${node.x}px, ${node.y}px)`, width: `${node.width || 180}px` }} className={`absolute z-10 flex flex-col justify-center px-4 py-3 rounded-xl border transition-all cursor-move select-none group ${NODE_STYLES[node.type] || NODE_STYLES.default} ${isSelected ? 'ring-2 ring-blue-500 scale-105 shadow-2xl z-50' : ''} ${mode === 'connect' || mode.includes('relink') ? 'hover:ring-2 hover:ring-emerald-500' : ''}`}>
-                                        {(mode === 'connect' || mode.includes('relink')) && <div className="pulse-dot absolute inset-0 rounded-xl bg-emerald-500/10 pointer-events-none"></div>}
+                                    <div key={node.id} onMouseDown={(e) => handleMouseDown(e, node.id)} onMouseUp={(e) => handleMouseUp(e, node.id)} style={{ transform: `translate(${node.x}px, ${node.y}px)`, width: `${node.width || 180}px` }} className={`absolute z-10 flex flex-col justify-center px-4 py-3 rounded-xl border transition-all select-none group ${cursorClass} ${NODE_STYLES[node.type] || NODE_STYLES.default} ${isSelected ? 'ring-4 ring-blue-500 scale-105 shadow-2xl z-50' : 'hover:scale-[1.02] hover:shadow-xl'} ${isConnecting ? 'hover:ring-2 hover:ring-emerald-500' : ''} ${isSourceNode ? 'ring-4 ring-emerald-500 shadow-[0_0_30px_rgba(16,185,129,0.4)]' : ''}`}>
+                                        {(mode === 'connect' || mode.includes('relink')) && !isSourceNode && <div className="pulse-dot absolute inset-0 rounded-xl bg-emerald-500/10 pointer-events-none"></div>}
+                                        {isSourceNode && <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-emerald-500 text-white text-xs px-2 py-1 rounded whitespace-nowrap shadow-lg">Source Node</div>}
                                         <div className="flex items-center space-x-3 pointer-events-none">
                                             {node.icon && <div className={`p-2 rounded-lg ${node.type === 'primary' ? 'bg-blue-500/20 text-blue-300' : node.type === 'secondary' ? 'bg-purple-500/20 text-purple-300' : 'bg-slate-700/50 text-slate-300'}`}>{getIcon(node.icon)}</div>}
                                             <div><h3 className="font-bold text-sm leading-tight tracking-wide">{node.label}</h3>{node.sub && <p className="text-[10px] opacity-70 mt-0.5 font-medium uppercase tracking-wider">{node.sub}</p>}</div>
