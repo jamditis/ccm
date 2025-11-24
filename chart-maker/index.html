@@ -3,85 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NJ PBS Operations Visualizer</title>
+    <title>NJ PBS Visual Editor</title>
     
-    <!-- 1. Load Tailwind CSS -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- 2. Load React and ReactDOM -->
+    <!-- Fonts: Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- React Framework -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    
-    <!-- 3. Load Babel for JSX processing -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
-    <!-- 4. Load html2canvas for exports -->
+    <!-- Export Tool -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-    <!-- Custom Styles -->
     <style>
-        /* Custom scrollbar to match the dark theme */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+        :root {
+            --bg-dark: #020617;
+            --accent-blue: #3b82f6;
         }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #0f172a; 
+        
+        body { 
+            margin: 0; 
+            overflow: hidden; 
+            background-color: var(--bg-dark); 
+            font-family: 'Space Grotesk', sans-serif;
+            color: #e2e8f0;
+            user-select: none;
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #334155; 
-            border-radius: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #475569; 
-        }
-        body { margin: 0; overflow: hidden; background-color: #020617; }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        .modal-animate { animation: fadeIn 0.2s ease-out forwards; }
+        
+        @keyframes pulse-ring { 0% { transform: scale(0.8); opacity: 0.5; } 100% { transform: scale(2); opacity: 0; } }
+        .pulse-dot::before { content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-color: inherit; border-radius: 50%; animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite; z-index: -1; }
+
+        .glass-panel { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(51, 65, 85, 0.5); }
     </style>
 </head>
 <body>
     <div id="root"></div>
 
-    <!-- 5. The Application Logic -->
     <script type="text/babel">
-        const { useState, useEffect, useRef, useCallback } = React;
+        const { useState, useEffect, useRef, useCallback, useMemo } = React;
 
-        // --- ICON SYSTEM (Inline SVGs to avoid complex dependencies) ---
+        // --- ICONS ---
         const Icons = {
-            Users: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
-            Scale: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>,
-            Building2: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>,
-            Radio: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg>,
-            GraduationCap: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>,
-            ShieldCheck: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>,
-            Layout: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="9" y2="21"/></svg>,
-            Globe: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>,
-            Mic2: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 8-9.04 9.06a2.82 2.82 0 1 0 3.98 3.98L16 12"/><path d="m19 7-7 7"/><path d="M15 6v-1a2 2 0 1 1 4 0v2"/><path d="M21 5v2"/><path d="M21 11v2"/></svg>,
-            Tv: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="15" x="2" y="7" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>,
-            DollarSign: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>,
-            Settings: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.47a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.39a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>,
-            Briefcase: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>,
-            Camera: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>,
-            Move: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/><polyline points="15 19 12 22 9 19"/><polyline points="19 9 22 12 19 15"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/></svg>,
-            MousePointer2: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 19-2.96-7.05L2 9l22-7-7 22-2.95-7.04Z"/></svg>,
-            Lock: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>,
-            Unlock: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>,
-            Maximize: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg>,
-            Minimize: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" x2="21" y1="10" y2="3"/><line x1="3" x2="10" y1="21" y2="14"/></svg>,
-            RefreshCw: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+            Users: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
+            Scale: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>,
+            Building2: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>,
+            Radio: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg>,
+            GraduationCap: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>,
+            ShieldCheck: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>,
+            Layout: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="9" y2="21"/></svg>,
+            Globe: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>,
+            Mic2: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 8-9.04 9.06a2.82 2.82 0 1 0 3.98 3.98L16 12"/><path d="m19 7-7 7"/><path d="M15 6v-1a2 2 0 1 1 4 0v2"/><path d="M21 5v2"/><path d="M21 11v2"/></svg>,
+            Tv: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="15" x="2" y="7" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>,
+            DollarSign: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>,
+            Settings: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.47a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.39a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>,
+            Briefcase: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>,
+            Camera: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>,
+            Move: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/><polyline points="15 19 12 22 9 19"/><polyline points="19 9 22 12 19 15"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/></svg>,
+            MousePointer2: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 19-2.96-7.05L2 9l22-7-7 22-2.95-7.04Z"/></svg>,
+            Lock: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>,
+            Unlock: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>,
+            Maximize: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg>,
+            Minimize: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" x2="21" y1="10" y2="3"/><line x1="3" x2="10" y1="21" y2="14"/></svg>,
+            RefreshCw: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>,
+            Sparkles: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275Z"/></svg>,
+            HelpCircle: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>,
+            X: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 18 18"/></svg>,
+            Target: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>,
+            Plus: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>,
+            Trash2: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>,
+            Link: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>,
+            Edit: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
         };
 
         const NODE_STYLES = {
-            default: "bg-slate-800 border-slate-600 text-slate-200",
-            primary: "bg-blue-900/40 border-blue-500 text-blue-100 shadow-[0_0_15px_rgba(59,130,246,0.3)]",
-            secondary: "bg-purple-900/40 border-purple-500 text-purple-100 shadow-[0_0_15px_rgba(168,85,247,0.3)]",
-            tertiary: "bg-emerald-900/40 border-emerald-500 text-emerald-100",
-            warning: "bg-amber-900/40 border-amber-500 text-amber-100",
-            danger: "bg-rose-900/40 border-rose-500 text-rose-100",
-            ghost: "bg-transparent border-dashed border-slate-600 text-slate-400"
+            default: "bg-slate-800/90 border-slate-600 text-slate-200 shadow-lg",
+            primary: "bg-blue-900/60 border-blue-400/50 text-blue-50 shadow-[0_0_20px_rgba(59,130,246,0.2)] backdrop-blur-md",
+            secondary: "bg-purple-900/60 border-purple-400/50 text-purple-50 shadow-[0_0_20px_rgba(168,85,247,0.2)] backdrop-blur-md",
+            tertiary: "bg-emerald-900/60 border-emerald-400/50 text-emerald-50 shadow-lg backdrop-blur-md",
+            warning: "bg-amber-900/60 border-amber-400/50 text-amber-50 shadow-lg backdrop-blur-md",
+            danger: "bg-rose-900/60 border-rose-400/50 text-rose-50 shadow-lg backdrop-blur-md",
+            ghost: "bg-slate-900/30 border-dashed border-slate-500/50 text-slate-400"
         };
 
-        const DATA_SETS = {
+        // --- INITIAL DATA ---
+        const generateId = () => 'id_' + Math.random().toString(36).substr(2, 9);
+        
+        const INITIAL_DATA_SETS = {
             '1.1': {
+                layout: 'flow',
                 nodes: [
                     { id: 'n1', x: 100, y: 150, type: 'primary', label: 'NJPBA', sub: 'License Holder', icon: 'Radio' },
                     { id: 'n2', x: 600, y: 150, type: 'secondary', label: 'Montclair State', sub: 'Programming Provider', icon: 'Building2' },
@@ -99,20 +122,23 @@
                 ]
             },
             '1.2': {
+                layout: 'tree',
                 nodes: [
-                    { id: 'root', x: 400, y: 50, type: 'primary', label: 'NJPBA Board', sub: 'License Holder', icon: 'Radio' },
-                    { id: 'pres', x: 400, y: 150, type: 'secondary', label: 'MSU President', sub: 'University Lead', icon: 'Building2' },
-                    { id: 'prov', x: 400, y: 250, type: 'default', label: 'Provost', sub: 'Academic Lead', icon: 'GraduationCap' },
-                    { id: 'dean', x: 400, y: 350, type: 'default', label: 'Dean', sub: 'College of Comm.', icon: 'Briefcase' },
-                    { id: 'gm', x: 400, y: 450, type: 'primary', label: 'General Manager', sub: 'NJ PBS', icon: 'Tv' },
-                    { id: 'prog', x: 100, y: 600, type: 'tertiary', label: 'Programming', icon: 'Layout' },
-                    { id: 'tech', x: 250, y: 600, type: 'warning', label: 'Technology', icon: 'Settings' },
-                    { id: 'news', x: 400, y: 600, type: 'danger', label: 'News / Editorial', icon: 'Mic2' },
-                    { id: 'rev', x: 550, y: 600, type: 'tertiary', label: 'Revenue', icon: 'DollarSign' },
-                    { id: 'ops', x: 700, y: 600, type: 'default', label: 'Admin', icon: 'Briefcase' },
-                    { id: 'sub1', x: 100, y: 700, type: 'ghost', label: 'Audience / Partners' },
-                    { id: 'sub2', x: 400, y: 700, type: 'ghost', label: 'Producers' },
-                    { id: 'sub3', x: 550, y: 700, type: 'ghost', label: 'Membership' }
+                    { id: 'root', x: 400, y: 50, type: 'primary', label: 'NJPBA Board', sub: 'License Holder', icon: 'Radio', level: 0 },
+                    { id: 'pres', x: 400, y: 150, type: 'secondary', label: 'MSU President', sub: 'University Lead', icon: 'Building2', level: 1 },
+                    { id: 'prov', x: 400, y: 250, type: 'default', label: 'Provost', sub: 'Academic Lead', icon: 'GraduationCap', level: 2 },
+                    { id: 'dean', x: 400, y: 350, type: 'default', label: 'Dean', sub: 'College of Comm.', icon: 'Briefcase', level: 3 },
+                    { id: 'gm', x: 400, y: 450, type: 'primary', label: 'General Manager', sub: 'NJ PBS', icon: 'Tv', level: 4 },
+                    
+                    { id: 'prog', x: 100, y: 600, type: 'tertiary', label: 'Programming', icon: 'Layout', level: 5 },
+                    { id: 'tech', x: 250, y: 600, type: 'warning', label: 'Technology', icon: 'Settings', level: 5 },
+                    { id: 'news', x: 400, y: 600, type: 'danger', label: 'News / Editorial', icon: 'Mic2', level: 5 },
+                    { id: 'rev', x: 550, y: 600, type: 'tertiary', label: 'Revenue', icon: 'DollarSign', level: 5 },
+                    { id: 'ops', x: 700, y: 600, type: 'default', label: 'Admin', icon: 'Briefcase', level: 5 },
+
+                    { id: 'sub1', x: 100, y: 700, type: 'ghost', label: 'Audience / Partners', level: 6, parent: 'prog' },
+                    { id: 'sub2', x: 400, y: 700, type: 'ghost', label: 'Producers', level: 6, parent: 'news' },
+                    { id: 'sub3', x: 550, y: 700, type: 'ghost', label: 'Membership', level: 6, parent: 'rev' }
                 ],
                 edges: [
                     { id: 'e1', source: 'root', target: 'pres', dashed: true, label: 'PSA' },
@@ -130,16 +156,19 @@
                 ]
             },
             '1.3': {
+                layout: 'columns',
                 nodes: [
-                    { id: 'comm', x: 150, y: 100, type: 'tertiary', label: 'Community Board', sub: 'Advisory', icon: 'Users', width: 250 },
-                    { id: 'c_det1', x: 150, y: 220, type: 'ghost', label: 'North / Central / South Reps', width: 200 },
-                    { id: 'c_det2', x: 150, y: 300, type: 'ghost', label: 'Quarterly Meetings', width: 200 },
-                    { id: 'edit', x: 450, y: 100, type: 'danger', label: 'Editorial Independence', sub: 'Oversight', icon: 'ShieldCheck', width: 250 },
-                    { id: 'e_det1', x: 450, y: 220, type: 'ghost', label: 'Firewall Enforcement', width: 200 },
-                    { id: 'e_det2', x: 450, y: 300, type: 'ghost', label: 'Journalists & Academics', width: 200 },
-                    { id: 'stu', x: 750, y: 100, type: 'secondary', label: 'Student Board', sub: 'Educational', icon: 'GraduationCap', width: 250 },
-                    { id: 's_det1', x: 750, y: 220, type: 'ghost', label: 'Faculty Advisors', width: 200 },
-                    { id: 's_det2', x: 750, y: 300, type: 'ghost', label: 'Curriculum Integration', width: 200 },
+                    { id: 'comm', x: 150, y: 100, type: 'tertiary', label: 'Community Board', sub: 'Advisory', icon: 'Users', width: 250, col: 0 },
+                    { id: 'c_det1', x: 150, y: 220, type: 'ghost', label: 'North / Central / South Reps', width: 200, col: 0 },
+                    { id: 'c_det2', x: 150, y: 300, type: 'ghost', label: 'Quarterly Meetings', width: 200, col: 0 },
+
+                    { id: 'edit', x: 450, y: 100, type: 'danger', label: 'Editorial Independence', sub: 'Oversight', icon: 'ShieldCheck', width: 250, col: 1 },
+                    { id: 'e_det1', x: 450, y: 220, type: 'ghost', label: 'Firewall Enforcement', width: 200, col: 1 },
+                    { id: 'e_det2', x: 450, y: 300, type: 'ghost', label: 'Journalists & Academics', width: 200, col: 1 },
+
+                    { id: 'stu', x: 750, y: 100, type: 'secondary', label: 'Student Board', sub: 'Educational', icon: 'GraduationCap', width: 250, col: 2 },
+                    { id: 's_det1', x: 750, y: 220, type: 'ghost', label: 'Faculty Advisors', width: 200, col: 2 },
+                    { id: 's_det2', x: 750, y: 300, type: 'ghost', label: 'Curriculum Integration', width: 200, col: 2 },
                 ],
                 edges: [
                     { id: 'e1', source: 'comm', target: 'c_det1' },
@@ -152,181 +181,505 @@
             }
         };
 
+        const LayoutEngine = {
+            autoArrange: (tab, nodes, width) => {
+                const type = INITIAL_DATA_SETS[tab]?.layout || 'flow';
+                const newNodes = JSON.parse(JSON.stringify(nodes));
+                
+                if (type === 'tree') {
+                    const levels = {};
+                    newNodes.forEach(n => {
+                        const lvl = n.level || 0;
+                        if (!levels[lvl]) levels[lvl] = [];
+                        levels[lvl].push(n);
+                    });
+                    Object.keys(levels).forEach(lvl => {
+                        const levelNodes = levels[lvl];
+                        const count = levelNodes.length;
+                        const totalWidth = count * 220; 
+                        const startX = (width / 2) - (totalWidth / 2) + 90; 
+                        levelNodes.forEach((node, idx) => {
+                            if (node.parent) {
+                                const parent = newNodes.find(p => p.id === node.parent);
+                                if (parent) node.x = parent.x;
+                            } else {
+                                node.x = startX + (idx * 220);
+                            }
+                            node.y = 100 + (lvl * 120);
+                        });
+                    });
+                } else if (type === 'columns') {
+                    const cols = [[], [], []];
+                    newNodes.forEach(n => {
+                        if (n.col !== undefined) cols[n.col].push(n);
+                    });
+                    cols.forEach((colNodes, colIdx) => {
+                        colNodes.forEach((node, idx) => {
+                            node.x = 100 + (colIdx * 350);
+                            node.y = 100 + (idx * 120);
+                        });
+                    });
+                }
+                return newNodes;
+            }
+        };
+
+        // --- COMPONENTS ---
+
+        const PropertiesPanel = ({ selection, nodes, edges, onChange }) => {
+            if (!selection) return (
+                <div className="absolute top-20 right-6 w-64 glass-panel rounded-xl p-6 text-center text-slate-500 text-sm">
+                    Select a node or link to edit properties
+                </div>
+            );
+
+            const { id, type } = selection;
+            const item = type === 'node' 
+                ? nodes.find(n => n.id === id) 
+                : edges.find(e => e.id === id);
+
+            if (!item) return null;
+
+            return (
+                <div className="absolute top-20 right-6 w-72 glass-panel rounded-xl p-4 shadow-2xl z-40 modal-animate">
+                    <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-700">
+                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">{type} PROPERTIES</span>
+                        <div className="px-2 py-0.5 bg-slate-800 rounded text-[10px] text-slate-500 font-mono">{id}</div>
+                    </div>
+
+                    <div className="space-y-4">
+                        {type === 'node' && (
+                            <>
+                                <div>
+                                    <label className="block text-xs text-slate-400 mb-1">Label</label>
+                                    <input type="text" value={item.label || ''} onChange={(e) => onChange(id, type, 'label', e.target.value)} 
+                                        className="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-sm text-white focus:outline-none focus:border-blue-500" />
+                                </div>
+                                <div>
+                                    <label className="block text-xs text-slate-400 mb-1">Sub-Label</label>
+                                    <input type="text" value={item.sub || ''} onChange={(e) => onChange(id, type, 'sub', e.target.value)} 
+                                        className="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-sm text-white focus:outline-none focus:border-blue-500" />
+                                </div>
+                                <div>
+                                    <label className="block text-xs text-slate-400 mb-1">Style Type</label>
+                                    <select value={item.type || 'default'} onChange={(e) => onChange(id, type, 'type', e.target.value)}
+                                        className="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-sm text-white focus:outline-none focus:border-blue-500">
+                                        <option value="default">Default (Grey)</option>
+                                        <option value="primary">Primary (Blue)</option>
+                                        <option value="secondary">Secondary (Purple)</option>
+                                        <option value="tertiary">Tertiary (Emerald)</option>
+                                        <option value="warning">Warning (Amber)</option>
+                                        <option value="danger">Danger (Rose)</option>
+                                        <option value="ghost">Ghost (Dashed)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="block text-xs text-slate-400 mb-1">Icon</label>
+                                    <select value={item.icon || ''} onChange={(e) => onChange(id, type, 'icon', e.target.value)}
+                                        className="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-sm text-white focus:outline-none focus:border-blue-500">
+                                        <option value="">None</option>
+                                        {Object.keys(Icons).map(k => <option key={k} value={k}>{k}</option>)}
+                                    </select>
+                                </div>
+                            </>
+                        )}
+                        
+                        {type === 'edge' && (
+                            <>
+                                <div>
+                                    <label className="block text-xs text-slate-400 mb-1">Label</label>
+                                    <input type="text" value={item.label || ''} onChange={(e) => onChange(id, type, 'label', e.target.value)} 
+                                        className="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-sm text-white focus:outline-none focus:border-blue-500" />
+                                </div>
+                                <div className="flex items-center space-x-2 pt-2">
+                                    <input type="checkbox" checked={item.dashed || false} onChange={(e) => onChange(id, type, 'dashed', e.target.checked)} id="dashCheck" />
+                                    <label htmlFor="dashCheck" className="text-sm text-slate-300">Dashed Line</label>
+                                </div>
+                                <div className="pt-2 border-t border-slate-700 mt-2">
+                                    <p className="text-[10px] text-slate-500 mb-2">RE-LINKING</p>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        <button onClick={() => onChange(id, type, 'relink-source')} className="px-2 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded text-xs">Change Source</button>
+                                        <button onClick={() => onChange(id, type, 'relink-target')} className="px-2 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded text-xs">Change Target</button>
+                                    </div>
+                                    <p className="text-[10px] text-slate-500 mt-1 italic">Click button then click new node</p>
+                                </div>
+                            </>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+
+        const HelpModal = ({ onClose }) => (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4" onClick={onClose}>
+                <div className="bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden modal-animate" onClick={e => e.stopPropagation()}>
+                    <div className="bg-gradient-to-r from-blue-900/40 to-purple-900/40 p-6 border-b border-slate-700 flex justify-between items-center">
+                        <div className="flex items-center space-x-3">
+                            <div className="p-2 bg-blue-500 rounded-lg text-white"><Icons.HelpCircle className="w-6 h-6" /></div>
+                            <h2 className="text-xl font-bold text-white">Visual Editor Guide</h2>
+                        </div>
+                        <button onClick={onClose} className="text-slate-400 hover:text-white transition-colors"><Icons.X className="w-6 h-6" /></button>
+                    </div>
+                    <div className="p-6 space-y-4 text-slate-300 text-sm">
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                                <div className="font-bold text-blue-400 mb-1">Selection</div>
+                                <p>Click any node or line to select it. Properties will appear on the right.</p>
+                            </div>
+                            <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                                <div className="font-bold text-purple-400 mb-1">Add & Link</div>
+                                <p>Use the Toolbar to Add Nodes (+) or Switch to Link Mode (Link Icon) to connect them.</p>
+                            </div>
+                            <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                                <div className="font-bold text-emerald-400 mb-1">Re-Linking</div>
+                                <p>Select a line, then use the "Change Source/Target" buttons in the panel to move endpoints.</p>
+                            </div>
+                            <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                                <div className="font-bold text-amber-400 mb-1">Persistence</div>
+                                <p>Your edits are saved as you switch tabs. Don't refresh the browser!</p>
+                            </div>
+                        </div>
+                        <div className="pt-4 border-t border-slate-800 text-center">
+                            <button onClick={onClose} className="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-medium shadow-lg">Start Editing</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+
+        // --- MAIN APP COMPONENT ---
+
         const OrganizationVisualizer = () => {
+            const [allData, setAllData] = useState(INITIAL_DATA_SETS);
             const [activeTab, setActiveTab] = useState('1.1');
-            const [nodes, setNodes] = useState([]);
-            const [edges, setEdges] = useState([]);
+            const [scale, setScale] = useState(1);
+            const [isLocked, setIsLocked] = useState(false);
+            const [showHelp, setShowHelp] = useState(true);
+            const [selection, setSelection] = useState(null);
             const [isDragging, setIsDragging] = useState(false);
             const [draggedNodeId, setDraggedNodeId] = useState(null);
             const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-            const [scale, setScale] = useState(1);
-            const [isLocked, setIsLocked] = useState(false);
+            const [mode, setMode] = useState('select');
+            const [connectSource, setConnectSource] = useState(null);
+            const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+            const [isExporting, setIsExporting] = useState(false);
+            
             const canvasRef = useRef(null);
             const containerRef = useRef(null);
+            const exportRef = useRef(null);
 
             useEffect(() => {
-                loadTab(activeTab);
-            }, [activeTab]);
+                const handleBeforeUnload = (e) => {
+                    e.preventDefault();
+                    e.returnValue = '';
+                };
+                window.addEventListener('beforeunload', handleBeforeUnload);
+                return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+            }, []);
 
-            const loadTab = (tab) => {
-                const data = DATA_SETS[tab];
-                setNodes(data.nodes.map(n => ({...n, width: n.width || 180, height: n.height || 80 })));
-                setEdges(data.edges);
-                setScale(1);
+            const currentNodes = allData[activeTab]?.nodes || [];
+            const currentEdges = allData[activeTab]?.edges || [];
+
+            // --- EXPORT CALCS ---
+            const exportBounds = useMemo(() => {
+                if (currentNodes.length === 0) return { width: 800, height: 600, minX: 0, minY: 0 };
+                const padding = 50;
+                const minX = Math.min(...currentNodes.map(n => n.x));
+                const maxX = Math.max(...currentNodes.map(n => n.x + (n.width || 180)));
+                const minY = Math.min(...currentNodes.map(n => n.y));
+                const maxY = Math.max(...currentNodes.map(n => n.y + (n.height || 80)));
+                return {
+                    width: maxX - minX + (padding * 2),
+                    height: maxY - minY + (padding * 2),
+                    minX,
+                    minY,
+                    padding
+                };
+            }, [currentNodes]);
+
+            const updateNode = (id, field, value) => {
+                setAllData(prev => ({
+                    ...prev,
+                    [activeTab]: {
+                        ...prev[activeTab],
+                        nodes: prev[activeTab].nodes.map(n => n.id === id ? { ...n, [field]: value } : n)
+                    }
+                }));
+            };
+
+            const updateEdge = (id, field, value) => {
+                setAllData(prev => ({
+                    ...prev,
+                    [activeTab]: {
+                        ...prev[activeTab],
+                        edges: prev[activeTab].edges.map(e => e.id === id ? { ...e, [field]: value } : e)
+                    }
+                }));
+            };
+
+            const addNode = () => {
+                const newId = generateId();
+                const container = containerRef.current;
+                const centerX = (container.scrollLeft + container.clientWidth / 2) / scale - 50;
+                const centerY = (container.scrollTop + container.clientHeight / 2) / scale - 50;
+                const newNode = { id: newId, x: centerX, y: centerY, type: 'default', label: 'New Node', width: 180, height: 80 };
+                setAllData(prev => ({
+                    ...prev,
+                    [activeTab]: {
+                        ...prev[activeTab],
+                        nodes: [...prev[activeTab].nodes, newNode]
+                    }
+                }));
+                setSelection({ id: newId, type: 'node' });
+            };
+
+            const deleteSelection = () => {
+                if (!selection) return;
+                const { id, type } = selection;
+                if (type === 'node') {
+                    setAllData(prev => ({
+                        ...prev,
+                        [activeTab]: {
+                            ...prev[activeTab],
+                            nodes: prev[activeTab].nodes.filter(n => n.id !== id),
+                            edges: prev[activeTab].edges.filter(e => e.source !== id && e.target !== id)
+                        }
+                    }));
+                } else {
+                    setAllData(prev => ({
+                        ...prev,
+                        [activeTab]: {
+                            ...prev[activeTab],
+                            edges: prev[activeTab].edges.filter(e => e.id !== id)
+                        }
+                    }));
+                }
+                setSelection(null);
+            };
+
+            const handlePropertyChange = (id, type, field, value) => {
+                if (field === 'relink-source') { setMode('relink-source'); return; }
+                if (field === 'relink-target') { setMode('relink-target'); return; }
+                if (type === 'node') updateNode(id, field, value);
+                else updateEdge(id, field, value);
             };
 
             const handleMouseDown = (e, nodeId) => {
                 if (isLocked) return;
                 e.stopPropagation();
-                const node = nodes.find(n => n.id === nodeId);
+                if (mode === 'connect') { setConnectSource(nodeId); return; }
+                if (mode === 'relink-source') {
+                    if (selection && selection.type === 'edge') { updateEdge(selection.id, 'source', nodeId); setMode('select'); }
+                    return;
+                }
+                if (mode === 'relink-target') {
+                     if (selection && selection.type === 'edge') { updateEdge(selection.id, 'target', nodeId); setMode('select'); }
+                    return;
+                }
+                const node = currentNodes.find(n => n.id === nodeId);
+                setSelection({ id: nodeId, type: 'node' });
                 setDraggedNodeId(nodeId);
-                setDragOffset({
-                    x: e.clientX / scale - node.x,
-                    y: e.clientY / scale - node.y
-                });
+                setDragOffset({ x: e.clientX / scale - node.x, y: e.clientY / scale - node.y });
                 setIsDragging(true);
             };
 
-            const handleMouseMove = useCallback((e) => {
+            const handleCanvasMouseMove = (e) => {
+                const rect = canvasRef.current.getBoundingClientRect();
+                setMousePos({ x: (e.clientX - rect.left) / scale, y: (e.clientY - rect.top) / scale });
                 if (!isDragging || !draggedNodeId) return;
-                const newX = (e.clientX / scale) - dragOffset.x;
-                const newY = (e.clientY / scale) - dragOffset.y;
-                setNodes(prev => prev.map(n => 
-                    n.id === draggedNodeId ? { ...n, x: newX, y: newY } : n
-                ));
-            }, [isDragging, draggedNodeId, dragOffset, scale]);
+                updateNode(draggedNodeId, 'x', (e.clientX / scale) - dragOffset.x);
+                updateNode(draggedNodeId, 'y', (e.clientY / scale) - dragOffset.y);
+            };
 
-            const handleMouseUp = () => {
+            const handleMouseUp = (e, nodeId) => {
+                if (mode === 'connect' && connectSource && nodeId && connectSource !== nodeId) {
+                    const newEdge = { id: generateId(), source: connectSource, target: nodeId, label: 'Link' };
+                    setAllData(prev => ({
+                        ...prev,
+                        [activeTab]: { ...prev[activeTab], edges: [...prev[activeTab].edges, newEdge] }
+                    }));
+                    setConnectSource(null);
+                    setMode('select'); 
+                } else if (mode === 'connect') {
+                    setConnectSource(null);
+                }
                 setIsDragging(false);
                 setDraggedNodeId(null);
             };
 
+            const handleEdgeClick = (e, edgeId) => {
+                e.stopPropagation();
+                if (mode === 'select') setSelection({ id: edgeId, type: 'edge' });
+            };
+
+            const handleAutoArrange = () => {
+                const width = containerRef.current ? containerRef.current.clientWidth : 1200;
+                const organized = LayoutEngine.autoArrange(activeTab, currentNodes, width);
+                setAllData(prev => ({ ...prev, [activeTab]: { ...prev[activeTab], nodes: organized } }));
+            };
+
             const handleExport = async () => {
-                if (window.html2canvas && canvasRef.current) {
-                    try {
-                        const canvas = await window.html2canvas(canvasRef.current, {
-                            backgroundColor: '#020617',
-                            scale: 2,
-                            logging: false
-                        });
-                        const link = document.createElement('a');
-                        link.download = `NJPBS_Structure_${activeTab}.png`;
-                        link.href = canvas.toDataURL();
-                        link.click();
-                    } catch (err) {
-                        console.error("Export failed:", err);
-                        alert("Export failed. Please try again.");
+                setIsExporting(true);
+                setTimeout(async () => {
+                    if (window.html2canvas && exportRef.current) {
+                        try {
+                            const canvas = await window.html2canvas(exportRef.current, {
+                                backgroundColor: '#020617',
+                                scale: 3,
+                                logging: false
+                            });
+                            const link = document.createElement('a');
+                            link.download = `NJPBS_Visual_${activeTab}.png`;
+                            link.href = canvas.toDataURL();
+                            link.click();
+                        } catch (err) { console.error(err); }
+                        setIsExporting(false);
                     }
-                }
+                }, 100);
             };
 
             const getIcon = (name) => {
-                const IconComponent = Icons[name];
-                return IconComponent ? <IconComponent className="w-5 h-5" /> : null;
+                const Comp = Icons[name];
+                return Comp ? <Comp className="w-5 h-5" /> : null;
+            };
+
+            const drawPath = (start, end) => {
+                if(!start || !end) return '';
+                const startX = start.x + (start.width || 180) / 2;
+                const startY = start.y + (start.height || 80) / 2;
+                const endX = end.x + (end.width || 180) / 2;
+                const endY = end.y + (end.height || 80) / 2;
+                const dist = Math.abs(endY - startY);
+                return `M ${startX} ${startY} C ${startX} ${startY + dist * 0.5}, ${endX} ${endY - dist * 0.5}, ${endX} ${endY}`;
             };
 
             return (
-                <div className="flex flex-col h-screen bg-slate-950 text-slate-200 font-sans overflow-hidden" 
-                     onMouseMove={handleMouseMove} 
-                     onMouseUp={handleMouseUp}
-                     onMouseLeave={handleMouseUp}>
-                  
-                  <header className="flex-none bg-slate-900 border-b border-slate-800 px-6 py-4 flex items-center justify-between z-50 shadow-md">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white shadow-lg shadow-blue-500/20">NJ</div>
-                      <div>
-                        <h1 className="text-lg font-bold text-white tracking-tight">Organization Visualizer</h1>
-                        <p className="text-xs text-slate-400">Operations & Business Plan 2025</p>
-                      </div>
-                    </div>
+                <div className="flex flex-col h-screen overflow-hidden" 
+                     onMouseMove={handleCanvasMouseMove} 
+                     onMouseUp={() => handleMouseUp(null, null)} 
+                     onClick={() => setSelection(null)} 
+                >
+                    {showHelp && <HelpModal onClose={() => setShowHelp(false)} />}
+                    
+                    <PropertiesPanel selection={selection} nodes={currentNodes} edges={currentEdges} onChange={handlePropertyChange} />
 
-                    <div className="flex items-center space-x-2 bg-slate-950 p-1 rounded-lg border border-slate-800">
-                      {['1.1', '1.2', '1.3'].map(tab => (
-                        <button key={tab} onClick={() => setActiveTab(tab)}
-                          className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                            activeTab === tab ? 'bg-slate-800 text-white shadow-sm ring-1 ring-slate-700' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
-                          }`}>
-                          Section {tab}
-                        </button>
-                      ))}
-                    </div>
-
-                    <div className="flex items-center space-x-3">
-                      <div className="h-8 w-px bg-slate-800 mx-2"></div>
-                      <button onClick={() => setIsLocked(!isLocked)} className={`p-2 rounded-md transition-colors ${isLocked ? 'bg-rose-500/10 text-rose-400' : 'text-slate-400 hover:text-white'}`} title={isLocked ? "Unlock" : "Lock"}>
-                        {isLocked ? <Icons.Lock className="w-5 h-5"/> : <Icons.Unlock className="w-5 h-5"/>}
-                      </button>
-                      <button onClick={() => loadTab(activeTab)} className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-md" title="Reset">
-                        <Icons.RefreshCw className="w-5 h-5"/>
-                      </button>
-                      <button onClick={handleExport} className="flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md shadow-lg shadow-blue-600/20 font-medium text-sm">
-                        <Icons.Camera className="w-4 h-4"/> <span>Export PNG</span>
-                      </button>
-                    </div>
-                  </header>
-
-                  <div ref={containerRef} className="flex-grow overflow-auto relative bg-slate-950 cursor-grab active:cursor-grabbing custom-scrollbar">
-                    <div className="absolute inset-0 pointer-events-none opacity-20" style={{
-                        backgroundImage: `linear-gradient(to right, #334155 1px, transparent 1px), linear-gradient(to bottom, #334155 1px, transparent 1px)`,
-                        backgroundSize: '40px 40px', transform: `scale(${scale})`, transformOrigin: '0 0'
-                    }}/>
-
-                    <div ref={canvasRef} className="relative min-w-[2000px] min-h-[2000px] transform-gpu transition-transform duration-75 origin-top-left p-10" style={{ transform: `scale(${scale})` }}>
-                      <svg className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible z-0">
-                        <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="28" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b" /></marker></defs>
-                        {edges.map(edge => {
-                          const start = nodes.find(n => n.id === edge.source);
-                          const end = nodes.find(n => n.id === edge.target);
-                          if (!start || !end) return null;
-                          const startX = start.x + (start.width / 2);
-                          const startY = start.y + (start.height / 2);
-                          const endX = end.x + (end.width / 2);
-                          const endY = end.y + (end.height / 2);
-                          const dist = Math.abs(endY - startY);
-                          const pathData = `M ${startX} ${startY} C ${startX} ${startY + dist * 0.5}, ${endX} ${endY - dist * 0.5}, ${endX} ${endY}`;
-                          return (
-                            <g key={edge.id}>
-                              <path d={pathData} stroke="#475569" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)" strokeDasharray={edge.dashed ? "5,5" : "none"} />
-                              {edge.label && (
-                                <foreignObject x={(startX + endX) / 2 - 40} y={(startY + endY) / 2 - 12} width="80" height="24">
-                                  <div className="bg-slate-900 border border-slate-700 text-[10px] text-slate-400 px-2 py-0.5 rounded-full text-center whitespace-nowrap shadow-sm">{edge.label}</div>
-                                </foreignObject>
-                              )}
-                            </g>
-                          );
-                        })}
-                      </svg>
-
-                      {nodes.map(node => (
-                        <div key={node.id} onMouseDown={(e) => handleMouseDown(e, node.id)}
-                          style={{ transform: `translate(${node.x}px, ${node.y}px)`, width: `${node.width}px` }}
-                          className={`absolute z-10 flex flex-col justify-center px-4 py-3 rounded-xl border backdrop-blur-md transition-shadow cursor-move select-none group ${NODE_STYLES[node.type] || NODE_STYLES.default} ${draggedNodeId === node.id ? 'ring-2 ring-white/50 scale-105 shadow-2xl z-50' : ''}`}>
-                          <div className="absolute -top-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <div className="bg-slate-700 rounded-full p-0.5"><Icons.Move className="w-3 h-3 text-slate-300" /></div>
-                          </div>
-                          <div className="flex items-center space-x-3 pointer-events-none">
-                            {node.icon && (
-                              <div className={`p-2 rounded-lg ${node.type === 'primary' ? 'bg-blue-500/20 text-blue-300' : node.type === 'secondary' ? 'bg-purple-500/20 text-purple-300' : node.type === 'danger' ? 'bg-rose-500/20 text-rose-300' : 'bg-slate-700/50 text-slate-300'}`}>
-                                {getIcon(node.icon)}
-                              </div>
-                            )}
+                    {/* Header */}
+                    <header className="flex-none bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 flex items-center justify-between z-50">
+                        <div className="flex items-center space-x-4">
+                            <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white shadow">NJ</div>
                             <div>
-                              <h3 className="font-bold text-sm leading-tight">{node.label}</h3>
-                              {node.sub && <p className="text-[10px] opacity-70 mt-0.5 font-medium uppercase tracking-wide">{node.sub}</p>}
+                                <h1 className="text-lg font-bold text-white leading-none">Visual Editor</h1>
+                                <p className="text-xs text-slate-400 mt-1">Live Persistence Active</p>
                             </div>
-                          </div>
                         </div>
-                      ))}
-                    </div>
-                  </div>
+                        <div className="bg-slate-950 p-1 rounded-lg border border-slate-800">
+                            {['1.1', '1.2', '1.3'].map(tab => (
+                                <button key={tab} onClick={() => { setActiveTab(tab); setSelection(null); }}
+                                    className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${activeTab === tab ? 'bg-slate-800 text-white shadow ring-1 ring-slate-700' : 'text-slate-400 hover:text-white'}`}>
+                                    {tab}
+                                </button>
+                            ))}
+                        </div>
+                        <div className="flex items-center space-x-2">
+                             <div className="h-8 w-px bg-slate-800 mx-2"></div>
+                            <button onClick={(e) => { e.stopPropagation(); addNode(); }} className="p-2 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 rounded-md border border-emerald-500/20" title="Add Node"><Icons.Plus className="w-5 h-5"/></button>
+                            <button onClick={(e) => { e.stopPropagation(); setMode(mode === 'connect' ? 'select' : 'connect'); }} className={`p-2 rounded-md border transition-all ${mode === 'connect' ? 'bg-blue-500 text-white border-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]' : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-white'}`} title="Link Mode"><Icons.Link className="w-5 h-5"/></button>
+                            <button onClick={(e) => { e.stopPropagation(); deleteSelection(); }} className={`p-2 rounded-md transition-all ${selection ? 'bg-rose-500/10 text-rose-400 hover:bg-rose-500/20' : 'text-slate-600 cursor-not-allowed'}`} title="Delete"><Icons.Trash2 className="w-5 h-5"/></button>
+                             <div className="h-8 w-px bg-slate-800 mx-2"></div>
+                            <button onClick={() => handleAutoArrange()} className="p-2 text-blue-400 hover:text-white hover:bg-blue-600/20 rounded-md" title="Auto Arrange"><Icons.Sparkles className="w-5 h-5"/></button>
+                            <button onClick={handleExport} className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-md" title="Save PNG"><Icons.Camera className="w-5 h-5"/></button>
+                            <button onClick={() => setShowHelp(true)} className="p-2 text-slate-400 hover:text-white" title="Help"><Icons.HelpCircle className="w-5 h-5"/></button>
+                        </div>
+                    </header>
 
-                  <div className="absolute bottom-6 right-6 flex flex-col space-y-2 z-50">
-                    <div className="bg-slate-900/90 backdrop-blur border border-slate-700 rounded-lg p-2 shadow-xl flex flex-col space-y-2">
-                       <button onClick={() => setScale(s => Math.min(s + 0.1, 2))} className="p-2 hover:bg-slate-800 rounded text-slate-300"><Icons.Maximize className="w-4 h-4" /></button>
-                       <div className="text-center text-[10px] text-slate-500 font-mono">{Math.round(scale * 100)}%</div>
-                       <button onClick={() => setScale(s => Math.max(s - 0.1, 0.5))} className="p-2 hover:bg-slate-800 rounded text-slate-300"><Icons.Minimize className="w-4 h-4" /></button>
+                    {/* Canvas */}
+                    <div ref={containerRef} className="flex-grow overflow-auto relative bg-slate-950 cursor-grab active:cursor-grabbing custom-scrollbar">
+                        <div className="absolute inset-0 pointer-events-none opacity-20" style={{ backgroundImage: `linear-gradient(to right, #334155 1px, transparent 1px), linear-gradient(to bottom, #334155 1px, transparent 1px)`, backgroundSize: '40px 40px', transform: `scale(${scale})`, transformOrigin: '0 0' }}/>
+                        <div ref={canvasRef} className="relative min-w-[3000px] min-h-[3000px] transform-gpu origin-top-left p-10" style={{ transform: `scale(${scale})` }}>
+                            <svg className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible z-0">
+                                <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="28" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b" /></marker></defs>
+                                {currentEdges.map(edge => {
+                                    const start = currentNodes.find(n => n.id === edge.source);
+                                    const end = currentNodes.find(n => n.id === edge.target);
+                                    if(!start || !end) return null;
+                                    const path = drawPath(start, end);
+                                    const isSelected = selection && selection.id === edge.id;
+                                    return (
+                                        <g key={edge.id} onClick={(e) => handleEdgeClick(e, edge.id)} className="cursor-pointer pointer-events-auto hover:opacity-80">
+                                            <path d={path} stroke="transparent" strokeWidth="15" fill="none" />
+                                            <path d={path} stroke={isSelected ? "#3b82f6" : "#475569"} strokeWidth={isSelected ? "4" : "2"} fill="none" markerEnd="url(#arrowhead)" strokeDasharray={edge.dashed ? "5,5" : "none"} className="transition-colors" />
+                                            {edge.label && (
+                                                <foreignObject x={(start.x + end.x + 180)/2 - 40} y={(start.y + end.y + 80)/2 - 12} width="80" height="24">
+                                                    <div className={`text-[10px] px-2 py-0.5 rounded-full text-center whitespace-nowrap shadow-sm border ${isSelected ? 'bg-blue-900 border-blue-500 text-white' : 'bg-slate-900 border-slate-700 text-slate-400'}`}>{edge.label}</div>
+                                                </foreignObject>
+                                            )}
+                                        </g>
+                                    );
+                                })}
+                                {mode === 'connect' && connectSource && (
+                                    <path d={drawPath(currentNodes.find(n => n.id === connectSource), { x: mousePos.x - 90, y: mousePos.y - 40, width: 180, height: 80 })} stroke="#3b82f6" strokeWidth="2" strokeDasharray="5,5" fill="none" />
+                                )}
+                            </svg>
+                            {currentNodes.map(node => {
+                                const isSelected = selection && selection.id === node.id;
+                                return (
+                                    <div key={node.id} onMouseDown={(e) => handleMouseDown(e, node.id)} onMouseUp={(e) => handleMouseUp(e, node.id)} style={{ transform: `translate(${node.x}px, ${node.y}px)`, width: `${node.width || 180}px` }} className={`absolute z-10 flex flex-col justify-center px-4 py-3 rounded-xl border transition-all cursor-move select-none group ${NODE_STYLES[node.type] || NODE_STYLES.default} ${isSelected ? 'ring-2 ring-blue-500 scale-105 shadow-2xl z-50' : ''} ${mode === 'connect' || mode.includes('relink') ? 'hover:ring-2 hover:ring-emerald-500' : ''}`}>
+                                        {(mode === 'connect' || mode.includes('relink')) && <div className="pulse-dot absolute inset-0 rounded-xl bg-emerald-500/10 pointer-events-none"></div>}
+                                        <div className="flex items-center space-x-3 pointer-events-none">
+                                            {node.icon && <div className={`p-2 rounded-lg ${node.type === 'primary' ? 'bg-blue-500/20 text-blue-300' : node.type === 'secondary' ? 'bg-purple-500/20 text-purple-300' : 'bg-slate-700/50 text-slate-300'}`}>{getIcon(node.icon)}</div>}
+                                            <div><h3 className="font-bold text-sm leading-tight tracking-wide">{node.label}</h3>{node.sub && <p className="text-[10px] opacity-70 mt-0.5 font-medium uppercase tracking-wider">{node.sub}</p>}</div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </div>
-                  </div>
+
+                    {/* HIDDEN EXPORT LAYER */}
+                    {isExporting && (
+                        <div ref={exportRef} style={{
+                            position: 'fixed', top: '-10000px', left: '-10000px',
+                            width: `${exportBounds.width}px`, height: `${exportBounds.height}px`,
+                            backgroundColor: '#020617', zIndex: -1000
+                        }}>
+                             <div className="absolute inset-0 opacity-20" style={{ backgroundImage: `linear-gradient(to right, #334155 1px, transparent 1px), linear-gradient(to bottom, #334155 1px, transparent 1px)`, backgroundSize: '40px 40px' }}/>
+                             <svg className="absolute top-0 left-0 w-full h-full overflow-visible">
+                                <defs><marker id="arrowhead-export" markerWidth="10" markerHeight="7" refX="28" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b" /></marker></defs>
+                                {currentEdges.map(edge => {
+                                    const start = currentNodes.find(n => n.id === edge.source);
+                                    const end = currentNodes.find(n => n.id === edge.target);
+                                    if(!start || !end) return null;
+                                    // Shift coordinates based on bounding box
+                                    const shiftedStart = { ...start, x: start.x - exportBounds.minX + exportBounds.padding, y: start.y - exportBounds.minY + exportBounds.padding };
+                                    const shiftedEnd = { ...end, x: end.x - exportBounds.minX + exportBounds.padding, y: end.y - exportBounds.minY + exportBounds.padding };
+                                    const path = drawPath(shiftedStart, shiftedEnd);
+                                    return (
+                                        <g key={'export-' + edge.id}>
+                                            <path d={path} stroke="#475569" strokeWidth="2" fill="none" markerEnd="url(#arrowhead-export)" strokeDasharray={edge.dashed ? "5,5" : "none"} />
+                                            {edge.label && (
+                                                <foreignObject x={(shiftedStart.x + shiftedEnd.x + 180)/2 - 40} y={(shiftedStart.y + shiftedEnd.y + 80)/2 - 12} width="80" height="24">
+                                                    <div className="bg-slate-900 border border-slate-700 text-[10px] text-slate-400 px-2 py-0.5 rounded-full text-center whitespace-nowrap shadow-sm">{edge.label}</div>
+                                                </foreignObject>
+                                            )}
+                                        </g>
+                                    );
+                                })}
+                            </svg>
+                            {currentNodes.map(node => (
+                                <div key={'export-' + node.id} style={{ 
+                                    position: 'absolute',
+                                    left: `${node.x - exportBounds.minX + exportBounds.padding}px`, 
+                                    top: `${node.y - exportBounds.minY + exportBounds.padding}px`, 
+                                    width: `${node.width || 180}px` 
+                                }} className={`flex flex-col justify-center px-4 py-3 rounded-xl border ${NODE_STYLES[node.type] || NODE_STYLES.default}`}>
+                                    <div className="flex items-center space-x-3">
+                                        {node.icon && <div className={`p-2 rounded-lg ${node.type === 'primary' ? 'bg-blue-500/20 text-blue-300' : node.type === 'secondary' ? 'bg-purple-500/20 text-purple-300' : 'bg-slate-700/50 text-slate-300'}`}>{getIcon(node.icon)}</div>}
+                                        <div><h3 className="font-bold text-sm leading-tight tracking-wide">{node.label}</h3>{node.sub && <p className="text-[10px] opacity-70 mt-0.5 font-medium uppercase tracking-wider">{node.sub}</p>}</div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             );
         };
