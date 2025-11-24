@@ -86,18 +86,82 @@
             Plus: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>,
             Trash2: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>,
             Link: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>,
-            Edit: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+            Edit: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>,
+            Sun: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>,
+            Moon: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>,
+            Palette: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
         };
 
-        const NODE_STYLES = {
-            default: "bg-slate-800/90 border-slate-600 text-slate-200 shadow-lg",
-            primary: "bg-blue-900/60 border-blue-400/50 text-blue-50 shadow-[0_0_20px_rgba(59,130,246,0.2)] backdrop-blur-md",
-            secondary: "bg-purple-900/60 border-purple-400/50 text-purple-50 shadow-[0_0_20px_rgba(168,85,247,0.2)] backdrop-blur-md",
-            tertiary: "bg-emerald-900/60 border-emerald-400/50 text-emerald-50 shadow-lg backdrop-blur-md",
-            warning: "bg-amber-900/60 border-amber-400/50 text-amber-50 shadow-lg backdrop-blur-md",
-            danger: "bg-rose-900/60 border-rose-400/50 text-rose-50 shadow-lg backdrop-blur-md",
-            ghost: "bg-slate-900/30 border-dashed border-slate-500/50 text-slate-400"
+        const THEMES = {
+            dark: {
+                name: 'Dark',
+                bg: '#020617',
+                canvas: '#0f172a',
+                text: '#e2e8f0',
+                textSecondary: '#94a3b8',
+                border: '#334155',
+                panel: 'rgba(15, 23, 42, 0.85)',
+                nodes: {
+                    default: "bg-slate-800/90 border-slate-600 text-slate-200 shadow-lg",
+                    primary: "bg-blue-900/60 border-blue-400/50 text-blue-50 shadow-[0_0_20px_rgba(59,130,246,0.2)] backdrop-blur-md",
+                    secondary: "bg-purple-900/60 border-purple-400/50 text-purple-50 shadow-[0_0_20px_rgba(168,85,247,0.2)] backdrop-blur-md",
+                    tertiary: "bg-emerald-900/60 border-emerald-400/50 text-emerald-50 shadow-lg backdrop-blur-md",
+                    warning: "bg-amber-900/60 border-amber-400/50 text-amber-50 shadow-lg backdrop-blur-md",
+                    danger: "bg-rose-900/60 border-rose-400/50 text-rose-50 shadow-lg backdrop-blur-md",
+                    ghost: "bg-slate-900/30 border-dashed border-slate-500/50 text-slate-400"
+                },
+                gridOpacity: 0.2,
+                gridColor: '#334155',
+                edgeColor: '#475569',
+                edgeColorHover: '#60a5fa'
+            },
+            light: {
+                name: 'Light',
+                bg: '#ffffff',
+                canvas: '#f8fafc',
+                text: '#0f172a',
+                textSecondary: '#475569',
+                border: '#cbd5e1',
+                panel: 'rgba(248, 250, 252, 0.95)',
+                nodes: {
+                    default: "bg-white border-slate-300 text-slate-800 shadow-lg",
+                    primary: "bg-blue-50 border-blue-400 text-blue-900 shadow-[0_0_15px_rgba(59,130,246,0.15)]",
+                    secondary: "bg-purple-50 border-purple-400 text-purple-900 shadow-[0_0_15px_rgba(168,85,247,0.15)]",
+                    tertiary: "bg-emerald-50 border-emerald-400 text-emerald-900 shadow-lg",
+                    warning: "bg-amber-50 border-amber-400 text-amber-900 shadow-lg",
+                    danger: "bg-rose-50 border-rose-400 text-rose-900 shadow-lg",
+                    ghost: "bg-slate-50/50 border-dashed border-slate-300 text-slate-600"
+                },
+                gridOpacity: 0.15,
+                gridColor: '#cbd5e1',
+                edgeColor: '#94a3b8',
+                edgeColorHover: '#3b82f6'
+            },
+            blueprint: {
+                name: 'Blueprint',
+                bg: '#0a1929',
+                canvas: '#0d2847',
+                text: '#90caf9',
+                textSecondary: '#64b5f6',
+                border: '#1e4976',
+                panel: 'rgba(13, 40, 71, 0.9)',
+                nodes: {
+                    default: "bg-blue-950/80 border-blue-400/70 text-blue-100 shadow-[0_0_20px_rgba(33,150,243,0.3)]",
+                    primary: "bg-cyan-900/70 border-cyan-300/80 text-cyan-50 shadow-[0_0_25px_rgba(0,188,212,0.4)] backdrop-blur-sm",
+                    secondary: "bg-blue-900/70 border-blue-300/80 text-blue-50 shadow-[0_0_25px_rgba(33,150,243,0.4)] backdrop-blur-sm",
+                    tertiary: "bg-teal-900/70 border-teal-300/80 text-teal-50 shadow-[0_0_20px_rgba(0,150,136,0.3)]",
+                    warning: "bg-amber-900/70 border-amber-300/80 text-amber-50 shadow-[0_0_20px_rgba(255,193,7,0.3)]",
+                    danger: "bg-red-900/70 border-red-300/80 text-red-50 shadow-[0_0_20px_rgba(244,67,54,0.3)]",
+                    ghost: "bg-blue-950/30 border-dashed border-blue-400/40 text-blue-300"
+                },
+                gridOpacity: 0.25,
+                gridColor: '#1e4976',
+                edgeColor: '#42a5f5',
+                edgeColorHover: '#90caf9'
+            }
         };
+
+        const NODE_STYLES = THEMES.dark.nodes; // Default for backwards compatibility
 
         // --- INITIAL DATA ---
         const generateId = () => 'id_' + Math.random().toString(36).substr(2, 9);
@@ -182,45 +246,200 @@
         };
 
         const LayoutEngine = {
-            autoArrange: (tab, nodes, width) => {
-                const type = INITIAL_DATA_SETS[tab]?.layout || 'flow';
-                const newNodes = JSON.parse(JSON.stringify(nodes));
-                
-                if (type === 'tree') {
-                    const levels = {};
-                    newNodes.forEach(n => {
-                        const lvl = n.level || 0;
-                        if (!levels[lvl]) levels[lvl] = [];
-                        levels[lvl].push(n);
+            // Calculate node dimensions based on content
+            getNodeDimensions: (node) => {
+                const baseWidth = node.width || 180;
+                const baseHeight = node.height || 80;
+                // Estimate width based on label length
+                const labelWidth = (node.label?.length || 0) * 8 + 60;
+                const width = Math.max(baseWidth, Math.min(labelWidth, 300));
+                return { width, height: baseHeight };
+            },
+
+            // Build graph structure from edges
+            buildGraphStructure: (nodes, edges) => {
+                const nodeMap = new Map(nodes.map(n => [n.id, { ...n, inEdges: [], outEdges: [] }]));
+
+                edges.forEach(edge => {
+                    const source = nodeMap.get(edge.source);
+                    const target = nodeMap.get(edge.target);
+                    if (source && target) {
+                        source.outEdges.push(edge.target);
+                        target.inEdges.push(edge.source);
+                    }
+                });
+
+                return nodeMap;
+            },
+
+            // Assign layers using longest path algorithm
+            assignLayers: (nodeMap) => {
+                const layers = new Map();
+                const visited = new Set();
+
+                // Find root nodes (no incoming edges)
+                const roots = Array.from(nodeMap.values()).filter(n => n.inEdges.length === 0);
+
+                // If no roots, find nodes with fewest incoming edges
+                if (roots.length === 0) {
+                    const minInEdges = Math.min(...Array.from(nodeMap.values()).map(n => n.inEdges.length));
+                    roots.push(...Array.from(nodeMap.values()).filter(n => n.inEdges.length === minInEdges));
+                }
+
+                // BFS to assign layers
+                const queue = roots.map(n => ({ node: n, layer: 0 }));
+
+                while (queue.length > 0) {
+                    const { node, layer } = queue.shift();
+
+                    if (!layers.has(node.id) || layers.get(node.id) < layer) {
+                        layers.set(node.id, layer);
+                    }
+
+                    // Add children to queue
+                    node.outEdges.forEach(childId => {
+                        const child = nodeMap.get(childId);
+                        if (child) {
+                            queue.push({ node: child, layer: layer + 1 });
+                        }
                     });
-                    Object.keys(levels).forEach(lvl => {
-                        const levelNodes = levels[lvl];
-                        const count = levelNodes.length;
-                        const totalWidth = count * 220; 
-                        const startX = (width / 2) - (totalWidth / 2) + 90; 
-                        levelNodes.forEach((node, idx) => {
-                            if (node.parent) {
-                                const parent = newNodes.find(p => p.id === node.parent);
-                                if (parent) node.x = parent.x;
+                }
+
+                // Handle disconnected nodes
+                nodeMap.forEach((node, id) => {
+                    if (!layers.has(id)) {
+                        layers.set(id, 0);
+                    }
+                });
+
+                return layers;
+            },
+
+            // Reduce edge crossings using barycenter method
+            reduceCrossings: (layerGroups, nodeMap) => {
+                // Multiple passes for better results
+                for (let pass = 0; pass < 3; pass++) {
+                    layerGroups.forEach((layer, layerIdx) => {
+                        if (layerIdx === 0) return;
+
+                        // Calculate barycenter for each node based on connected nodes in previous layer
+                        layer.forEach(node => {
+                            const connectedInPrevLayer = node.inEdges
+                                .map(sourceId => {
+                                    const sourceNode = nodeMap.get(sourceId);
+                                    return layerGroups[layerIdx - 1]?.indexOf(sourceNode);
+                                })
+                                .filter(idx => idx !== undefined && idx !== -1);
+
+                            if (connectedInPrevLayer.length > 0) {
+                                node._barycenter = connectedInPrevLayer.reduce((a, b) => a + b, 0) / connectedInPrevLayer.length;
                             } else {
-                                node.x = startX + (idx * 220);
+                                node._barycenter = layer.indexOf(node);
                             }
-                            node.y = 100 + (lvl * 120);
                         });
+
+                        // Sort by barycenter
+                        layer.sort((a, b) => (a._barycenter || 0) - (b._barycenter || 0));
                     });
-                } else if (type === 'columns') {
-                    const cols = [[], [], []];
-                    newNodes.forEach(n => {
-                        if (n.col !== undefined) cols[n.col].push(n);
+                }
+
+                return layerGroups;
+            },
+
+            autoArrange: (tab, nodes, edges, containerWidth) => {
+                if (nodes.length === 0) return nodes;
+
+                const newNodes = JSON.parse(JSON.stringify(nodes));
+                const width = containerWidth || 1200;
+
+                // Build graph structure
+                const nodeMap = LayoutEngine.buildGraphStructure(newNodes, edges);
+
+                // Assign layers based on graph structure
+                const layers = LayoutEngine.assignLayers(nodeMap);
+
+                // Group nodes by layer
+                const maxLayer = Math.max(...layers.values());
+                const layerGroups = Array.from({ length: maxLayer + 1 }, () => []);
+
+                nodeMap.forEach((node, id) => {
+                    const layer = layers.get(id);
+                    layerGroups[layer].push(node);
+                });
+
+                // Reduce edge crossings
+                LayoutEngine.reduceCrossings(layerGroups, nodeMap);
+
+                // Calculate spacing based on content
+                const verticalSpacing = 150;
+                const horizontalSpacing = 50;
+                const paddingTop = 100;
+                const paddingLeft = 100;
+
+                // Position nodes
+                layerGroups.forEach((layer, layerIdx) => {
+                    if (layer.length === 0) return;
+
+                    // Calculate total width needed for this layer
+                    const layerWidths = layer.map(n => LayoutEngine.getNodeDimensions(n).width);
+                    const totalLayerWidth = layerWidths.reduce((a, b) => a + b, 0) + (horizontalSpacing * (layer.length - 1));
+
+                    // Center the layer
+                    let currentX = Math.max(paddingLeft, (width - totalLayerWidth) / 2);
+                    const currentY = paddingTop + (layerIdx * verticalSpacing);
+
+                    layer.forEach((node, nodeIdx) => {
+                        const dims = LayoutEngine.getNodeDimensions(node);
+                        node.x = currentX;
+                        node.y = currentY;
+                        node.width = dims.width;
+                        node.height = dims.height;
+
+                        currentX += dims.width + horizontalSpacing;
                     });
-                    cols.forEach((colNodes, colIdx) => {
-                        colNodes.forEach((node, idx) => {
-                            node.x = 100 + (colIdx * 350);
-                            node.y = 100 + (idx * 120);
+                });
+
+                // Apply force-directed adjustments for better spacing
+                LayoutEngine.applyForceDirectedAdjustments(layerGroups, nodeMap, edges);
+
+                return Array.from(nodeMap.values());
+            },
+
+            // Apply gentle force-directed adjustments to improve layout
+            applyForceDirectedAdjustments: (layerGroups, nodeMap, edges) => {
+                const iterations = 5;
+                const forceStrength = 0.3;
+
+                for (let iter = 0; iter < iterations; iter++) {
+                    layerGroups.forEach((layer, layerIdx) => {
+                        layer.forEach(node => {
+                            let forceX = 0;
+
+                            // Attract nodes to their connected nodes' X position
+                            node.outEdges.forEach(targetId => {
+                                const target = nodeMap.get(targetId);
+                                if (target && target.y !== node.y) {
+                                    const diff = target.x - node.x;
+                                    forceX += diff * forceStrength;
+                                }
+                            });
+
+                            node.inEdges.forEach(sourceId => {
+                                const source = nodeMap.get(sourceId);
+                                if (source && source.y !== node.y) {
+                                    const diff = source.x - node.x;
+                                    forceX += diff * forceStrength;
+                                }
+                            });
+
+                            // Average the forces
+                            const connectedCount = node.outEdges.length + node.inEdges.length;
+                            if (connectedCount > 0) {
+                                node.x += forceX / connectedCount;
+                            }
                         });
                     });
                 }
-                return newNodes;
             }
         };
 
@@ -380,6 +599,9 @@
             const [connectSource, setConnectSource] = useState(null);
             const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
             const [isExporting, setIsExporting] = useState(false);
+            const [isArranging, setIsArranging] = useState(false);
+            const [theme, setTheme] = useState('dark');
+            const [showThemeMenu, setShowThemeMenu] = useState(false);
             
             const canvasRef = useRef(null);
             const containerRef = useRef(null);
@@ -415,6 +637,7 @@
 
             const currentNodes = allData[activeTab]?.nodes || [];
             const currentEdges = allData[activeTab]?.edges || [];
+            const currentTheme = THEMES[theme];
 
             // --- EXPORT CALCS ---
             const exportBounds = useMemo(() => {
@@ -561,9 +784,13 @@
             };
 
             const handleAutoArrange = () => {
-                const width = containerRef.current ? containerRef.current.clientWidth : 1200;
-                const organized = LayoutEngine.autoArrange(activeTab, currentNodes, width);
-                setAllData(prev => ({ ...prev, [activeTab]: { ...prev[activeTab], nodes: organized } }));
+                setIsArranging(true);
+                setTimeout(() => {
+                    const width = containerRef.current ? containerRef.current.clientWidth : 1200;
+                    const organized = LayoutEngine.autoArrange(activeTab, currentNodes, currentEdges, width);
+                    setAllData(prev => ({ ...prev, [activeTab]: { ...prev[activeTab], nodes: organized } }));
+                    setTimeout(() => setIsArranging(false), 500);
+                }, 50);
             };
 
             const handleExport = async () => {
@@ -603,6 +830,7 @@
 
             return (
                 <div className="flex flex-col h-screen overflow-hidden"
+                     style={{ backgroundColor: currentTheme.bg, color: currentTheme.text }}
                      onMouseMove={handleCanvasMouseMove}
                      onMouseUp={() => handleMouseUp(null, null)}
                 >
@@ -654,6 +882,27 @@
                                 <Icons.HelpCircle className="w-5 h-5"/>
                                 <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Help (H)</span>
                             </button>
+                             <div className="h-8 w-px bg-slate-800 mx-2"></div>
+                            <div className="relative">
+                                <button onClick={(e) => { e.stopPropagation(); setShowThemeMenu(!showThemeMenu); }} className="p-2 text-slate-400 hover:text-white transition-all group relative" title="Theme">
+                                    <Icons.Palette className="w-5 h-5"/>
+                                    <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">Theme</span>
+                                </button>
+                                {showThemeMenu && (
+                                    <div className="absolute top-full right-0 mt-2 glass-panel rounded-lg shadow-2xl border border-slate-700 overflow-hidden z-[60] modal-animate min-w-[160px]" onClick={(e) => e.stopPropagation()}>
+                                        {Object.keys(THEMES).map(themeKey => (
+                                            <button
+                                                key={themeKey}
+                                                onClick={() => { setTheme(themeKey); setShowThemeMenu(false); }}
+                                                className={`w-full px-4 py-2.5 text-left text-sm flex items-center justify-between space-x-3 transition-colors ${theme === themeKey ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800/80'}`}
+                                            >
+                                                <span>{THEMES[themeKey].name}</span>
+                                                {theme === themeKey && <div className="w-2 h-2 bg-white rounded-full"></div>}
+                                            </button>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </header>
 
@@ -692,6 +941,18 @@
                         </div>
                     )}
 
+                    {/* Auto-Arrange Indicator */}
+                    {isArranging && (
+                        <div className="absolute top-24 left-1/2 transform -translate-x-1/2 z-30">
+                            <div className="glass-panel rounded-full px-6 py-3 shadow-2xl border-2 border-emerald-500/50 modal-animate">
+                                <div className="flex items-center space-x-3">
+                                    <div className="w-5 h-5 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+                                    <span className="text-sm font-semibold text-emerald-300">Organizing layout...</span>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Status Bar */}
                     <div className="absolute bottom-6 left-6 z-30 flex items-center space-x-4">
                         <div className="glass-panel rounded-lg px-4 py-2 shadow-lg">
@@ -725,8 +986,8 @@
                     </div>
 
                     {/* Canvas */}
-                    <div ref={containerRef} className="flex-grow overflow-auto relative bg-slate-950 cursor-grab active:cursor-grabbing custom-scrollbar" onClick={handleCanvasClick}>
-                        <div className="absolute inset-0 pointer-events-none opacity-20" style={{ backgroundImage: `linear-gradient(to right, #334155 1px, transparent 1px), linear-gradient(to bottom, #334155 1px, transparent 1px)`, backgroundSize: '40px 40px', transform: `scale(${scale})`, transformOrigin: '0 0' }}/>
+                    <div ref={containerRef} className="flex-grow overflow-auto relative cursor-grab active:cursor-grabbing custom-scrollbar" style={{ backgroundColor: currentTheme.canvas }} onClick={handleCanvasClick}>
+                        <div className="absolute inset-0 pointer-events-none" style={{ opacity: currentTheme.gridOpacity, backgroundImage: `linear-gradient(to right, ${currentTheme.gridColor} 1px, transparent 1px), linear-gradient(to bottom, ${currentTheme.gridColor} 1px, transparent 1px)`, backgroundSize: '40px 40px', transform: `scale(${scale})`, transformOrigin: '0 0' }}/>
                         <div ref={canvasRef} className="relative min-w-[3000px] min-h-[3000px] transform-gpu origin-top-left p-10" style={{ transform: `scale(${scale})` }}>
                             <svg className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible z-0">
                                 <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="28" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b" /></marker></defs>
@@ -739,7 +1000,7 @@
                                     return (
                                         <g key={edge.id} onClick={(e) => handleEdgeClick(e, edge.id)} className="cursor-pointer pointer-events-auto group">
                                             <path d={path} stroke="transparent" strokeWidth="20" fill="none" />
-                                            <path d={path} stroke={isSelected ? "#3b82f6" : "#475569"} strokeWidth={isSelected ? "4" : "2"} fill="none" markerEnd="url(#arrowhead)" strokeDasharray={edge.dashed ? "5,5" : "none"} className="transition-all group-hover:stroke-blue-400 group-hover:stroke-[3px]" />
+                                            <path d={path} stroke={isSelected ? "#3b82f6" : currentTheme.edgeColor} strokeWidth={isSelected ? "4" : "2"} fill="none" markerEnd="url(#arrowhead)" strokeDasharray={edge.dashed ? "5,5" : "none"} className="transition-all" style={{ stroke: isSelected ? "#3b82f6" : undefined }} onMouseEnter={(e) => !isSelected && (e.currentTarget.style.stroke = currentTheme.edgeColorHover)} onMouseLeave={(e) => !isSelected && (e.currentTarget.style.stroke = currentTheme.edgeColor)} />
                                             {edge.label && (
                                                 <foreignObject x={(start.x + end.x + 180)/2 - 40} y={(start.y + end.y + 80)/2 - 12} width="80" height="24">
                                                     <div className={`text-[10px] px-2 py-0.5 rounded-full text-center whitespace-nowrap shadow-sm border ${isSelected ? 'bg-blue-900 border-blue-500 text-white' : 'bg-slate-900 border-slate-700 text-slate-400'}`}>{edge.label}</div>
@@ -758,7 +1019,7 @@
                                 const isSourceNode = connectSource === node.id;
                                 const cursorClass = isConnecting ? 'cursor-pointer' : (isLocked ? 'cursor-default' : 'cursor-move');
                                 return (
-                                    <div key={node.id} onMouseDown={(e) => handleMouseDown(e, node.id)} onMouseUp={(e) => handleMouseUp(e, node.id)} style={{ transform: `translate(${node.x}px, ${node.y}px)`, width: `${node.width || 180}px` }} className={`absolute z-10 flex flex-col justify-center px-4 py-3 rounded-xl border transition-all select-none group ${cursorClass} ${NODE_STYLES[node.type] || NODE_STYLES.default} ${isSelected ? 'ring-4 ring-blue-500 scale-105 shadow-2xl z-50' : 'hover:scale-[1.02] hover:shadow-xl'} ${isConnecting ? 'hover:ring-2 hover:ring-emerald-500' : ''} ${isSourceNode ? 'ring-4 ring-emerald-500 shadow-[0_0_30px_rgba(16,185,129,0.4)]' : ''}`}>
+                                    <div key={node.id} onMouseDown={(e) => handleMouseDown(e, node.id)} onMouseUp={(e) => handleMouseUp(e, node.id)} style={{ transform: `translate(${node.x}px, ${node.y}px)`, width: `${node.width || 180}px` }} className={`absolute z-10 flex flex-col justify-center px-4 py-3 rounded-xl border transition-all select-none group ${cursorClass} ${currentTheme.nodes[node.type] || currentTheme.nodes.default} ${isSelected ? 'ring-4 ring-blue-500 scale-105 shadow-2xl z-50' : 'hover:scale-[1.02] hover:shadow-xl'} ${isConnecting ? 'hover:ring-2 hover:ring-emerald-500' : ''} ${isSourceNode ? 'ring-4 ring-emerald-500 shadow-[0_0_30px_rgba(16,185,129,0.4)]' : ''}`}>
                                         {(mode === 'connect' || mode.includes('relink')) && !isSourceNode && <div className="pulse-dot absolute inset-0 rounded-xl bg-emerald-500/10 pointer-events-none"></div>}
                                         {isSourceNode && <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-emerald-500 text-white text-xs px-2 py-1 rounded whitespace-nowrap shadow-lg">Source Node</div>}
                                         <div className="flex items-center space-x-3 pointer-events-none">
@@ -776,9 +1037,9 @@
                         <div ref={exportRef} style={{
                             position: 'fixed', top: '-10000px', left: '-10000px',
                             width: `${exportBounds.width}px`, height: `${exportBounds.height}px`,
-                            backgroundColor: '#020617', zIndex: -1000
+                            backgroundColor: currentTheme.canvas, zIndex: -1000
                         }}>
-                             <div className="absolute inset-0 opacity-20" style={{ backgroundImage: `linear-gradient(to right, #334155 1px, transparent 1px), linear-gradient(to bottom, #334155 1px, transparent 1px)`, backgroundSize: '40px 40px' }}/>
+                             <div className="absolute inset-0" style={{ opacity: currentTheme.gridOpacity, backgroundImage: `linear-gradient(to right, ${currentTheme.gridColor} 1px, transparent 1px), linear-gradient(to bottom, ${currentTheme.gridColor} 1px, transparent 1px)`, backgroundSize: '40px 40px' }}/>
                              <svg className="absolute top-0 left-0 w-full h-full overflow-visible">
                                 <defs><marker id="arrowhead-export" markerWidth="10" markerHeight="7" refX="28" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b" /></marker></defs>
                                 {currentEdges.map(edge => {
@@ -791,7 +1052,7 @@
                                     const path = drawPath(shiftedStart, shiftedEnd);
                                     return (
                                         <g key={'export-' + edge.id}>
-                                            <path d={path} stroke="#475569" strokeWidth="2" fill="none" markerEnd="url(#arrowhead-export)" strokeDasharray={edge.dashed ? "5,5" : "none"} />
+                                            <path d={path} stroke={currentTheme.edgeColor} strokeWidth="2" fill="none" markerEnd="url(#arrowhead-export)" strokeDasharray={edge.dashed ? "5,5" : "none"} />
                                             {edge.label && (
                                                 <foreignObject x={(shiftedStart.x + shiftedEnd.x + 180)/2 - 40} y={(shiftedStart.y + shiftedEnd.y + 80)/2 - 12} width="80" height="24">
                                                     <div className="bg-slate-900 border border-slate-700 text-[10px] text-slate-400 px-2 py-0.5 rounded-full text-center whitespace-nowrap shadow-sm">{edge.label}</div>
@@ -802,12 +1063,12 @@
                                 })}
                             </svg>
                             {currentNodes.map(node => (
-                                <div key={'export-' + node.id} style={{ 
+                                <div key={'export-' + node.id} style={{
                                     position: 'absolute',
-                                    left: `${node.x - exportBounds.minX + exportBounds.padding}px`, 
-                                    top: `${node.y - exportBounds.minY + exportBounds.padding}px`, 
-                                    width: `${node.width || 180}px` 
-                                }} className={`flex flex-col justify-center px-4 py-3 rounded-xl border ${NODE_STYLES[node.type] || NODE_STYLES.default}`}>
+                                    left: `${node.x - exportBounds.minX + exportBounds.padding}px`,
+                                    top: `${node.y - exportBounds.minY + exportBounds.padding}px`,
+                                    width: `${node.width || 180}px`
+                                }} className={`flex flex-col justify-center px-4 py-3 rounded-xl border ${currentTheme.nodes[node.type] || currentTheme.nodes.default}`}>
                                     <div className="flex items-center space-x-3">
                                         {node.icon && <div className={`p-2 rounded-lg ${node.type === 'primary' ? 'bg-blue-500/20 text-blue-300' : node.type === 'secondary' ? 'bg-purple-500/20 text-purple-300' : 'bg-slate-700/50 text-slate-300'}`}>{getIcon(node.icon)}</div>}
                                         <div><h3 className="font-bold text-sm leading-tight tracking-wide">{node.label}</h3>{node.sub && <p className="text-[10px] opacity-70 mt-0.5 font-medium uppercase tracking-wider">{node.sub}</p>}</div>
