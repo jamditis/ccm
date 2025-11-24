@@ -19,6 +19,14 @@ OUTPUT_DIR = BASE_DIR / "output"
 MAX_POSTS_PER_ACCOUNT = 50
 REQUEST_DELAY = 2  # seconds between requests
 
+
+class Config:
+    """Configuration container for scraper defaults."""
+
+    DEFAULT_POST_LIMIT: int = MAX_POSTS_PER_ACCOUNT
+    RATE_LIMIT_DELAY: int = REQUEST_DELAY
+    OUTPUT_DIR: Path = OUTPUT_DIR
+
 # Instagram settings (requires login for full functionality)
 INSTAGRAM_USERNAME = os.getenv("INSTAGRAM_UN", "")
 INSTAGRAM_PASSWORD = os.getenv("INSTAGRAM_PW", "")
