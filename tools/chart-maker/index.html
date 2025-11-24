@@ -820,54 +820,11 @@
 
             const drawPath = (start, end) => {
                 if(!start || !end) return '';
-
-                // Calculate node centers
-                const startWidth = start.width || 180;
-                const startHeight = start.height || 80;
-                const endWidth = end.width || 180;
-                const endHeight = end.height || 80;
-
-                const startCenterX = start.x + startWidth / 2;
-                const startCenterY = start.y + startHeight / 2;
-                const endCenterX = end.x + endWidth / 2;
-                const endCenterY = end.y + endHeight / 2;
-
-                // Calculate angle between nodes
-                const dx = endCenterX - startCenterX;
-                const dy = endCenterY - startCenterY;
-                const angle = Math.atan2(dy, dx);
-
-                // Calculate edge intersection points for rounded rectangles
-                // Start point (exit from source node)
-                let startX, startY;
-                const absAngle = Math.abs(angle);
-                const startThreshold = Math.atan2(startHeight / 2, startWidth / 2);
-
-                if (absAngle < startThreshold || absAngle > Math.PI - startThreshold) {
-                    // Exit from right or left edge
-                    startX = startCenterX + (Math.cos(angle) > 0 ? startWidth / 2 : -startWidth / 2);
-                    startY = startCenterY + (startWidth / 2) * Math.tan(angle) * Math.sign(Math.cos(angle));
-                } else {
-                    // Exit from top or bottom edge
-                    startY = startCenterY + (Math.sin(angle) > 0 ? startHeight / 2 : -startHeight / 2);
-                    startX = startCenterX + (startHeight / 2) / Math.tan(angle) * Math.sign(Math.sin(angle));
-                }
-
-                // End point (enter target node) - subtract arrow size
-                const arrowOffset = 12; // Offset for arrow
-                let endX, endY;
-                const endThreshold = Math.atan2(endHeight / 2, endWidth / 2);
-
-                if (absAngle < endThreshold || absAngle > Math.PI - endThreshold) {
-                    // Enter from right or left edge
-                    endX = endCenterX - (Math.cos(angle) > 0 ? endWidth / 2 : -endWidth / 2) - Math.cos(angle) * arrowOffset;
-                    endY = endCenterY - (endWidth / 2) * Math.tan(angle) * Math.sign(Math.cos(angle)) - Math.sin(angle) * arrowOffset;
-                } else {
-                    // Enter from top or bottom edge
-                    endY = endCenterY - (Math.sin(angle) > 0 ? endHeight / 2 : -endHeight / 2) - Math.sin(angle) * arrowOffset;
-                    endX = endCenterX - (endHeight / 2) / Math.tan(angle) * Math.sign(Math.sin(angle)) - Math.cos(angle) * arrowOffset;
-                }
-
+                // Simple center-to-center path with arrow at destination
+                const startX = start.x + (start.width || 180) / 2;
+                const startY = start.y + (start.height || 80) / 2;
+                const endX = end.x + (end.width || 180) / 2;
+                const endY = end.y + (end.height || 80) / 2;
                 const dist = Math.abs(endY - startY);
                 return `M ${startX} ${startY} C ${startX} ${startY + dist * 0.5}, ${endX} ${endY - dist * 0.5}, ${endX} ${endY}`;
             };
