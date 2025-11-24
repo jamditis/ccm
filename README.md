@@ -195,15 +195,9 @@ ccm/
 
 ## Author
 
-**[Joe Amditis](https://twitter.com/jsamditis)**
+Created by the [Center for Cooperative Media](https://centerforcooperativemedia.org/) at Montclair State University.
 
-Joe is the Associate Director of Operations at the Center for Cooperative Media and an adjunct professor in the College of Communication and Media at Montclair State University. He specializes in local news ecosystem management, collaborative journalism, and AI applications for journalism.
-
-Joe is the author of several guides and educational resources for small and local newsrooms, including guides on generative AI. He is also the former producer and host of the [WTF Just Happened Today](https://wtfjht.com/) podcast and a veteran of the NJ Army National Guard.
-
-- Email: amditisj@montclair.edu
-- Twitter: [@jsamditis](https://twitter.com/jsamditis)
-- Medium: [jamditis.medium.com](https://jamditis.medium.com/)
+For inquiries, contact: [info@centerforcooperativemedia.org](mailto:info@centerforcooperativemedia.org)
 
 ## License
 

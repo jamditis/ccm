@@ -221,7 +221,7 @@ This project is dedicated to the public domain under the [CC0 1.0 Universal](LIC
 
 ## 👤 Author
 
-Created by [Joe Amditis](https://twitter.com/jsamditis)
+Created by the [Center for Cooperative Media](https://centerforcooperativemedia.org/) at Montclair State University.
 
 Last updated: June 2025
 

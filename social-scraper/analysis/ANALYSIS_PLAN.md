@@ -115,7 +115,7 @@ jupyter notebook nj_influencer_analysis.ipynb
 
 ```bash
 # 1. Navigate to analysis directory
-cd /Users/jamditis/Desktop/Crimes/playground/social-scraper/analysis
+cd social-scraper/analysis
 
 # 2. Run consolidation
 python3 consolidate.py

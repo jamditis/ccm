@@ -7,7 +7,7 @@ A Python workflow to scrape social media content from New Jersey-based influence
 ### 1. Install Dependencies
 
 ```bash
-cd /Users/jamditis/Desktop/Crimes/playground/social-scraper
+cd social-scraper
 pip install -r requirements.txt
 ```
 

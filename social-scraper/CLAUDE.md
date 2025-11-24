@@ -15,14 +15,13 @@
 This ensures continuity and prevents duplicating work or wasting API costs.
 
 ## GitHub Workflow
-**Repo:** https://github.com/jamditis/ccm/tree/main/social-scraper
 
 When updating `CHANGELOG.md`:
-1. Copy updated files to repo: `cp CHANGELOG.md /Users/jamditis/Desktop/Sandbox/ccm-repo/social-scraper/`
-2. Also copy any other changed code files
-3. Create a PR with the changes
+1. Stage your changes: `git add CHANGELOG.md`
+2. Also stage any other changed code files
+3. Commit and create a PR with the changes
 
-This keeps the public repo in sync with local progress.
+This keeps the repository in sync with local progress.
 
 ---
 

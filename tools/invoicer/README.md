@@ -167,8 +167,8 @@ colors: {
 
 ## Credits
 
-- **Created by**: [Joe Amditis](https://twitter.com/jsamditis)
-- **Organization**: [Center for Cooperative Media](https://centerforcooperativemedia.org/)
+- **Created by**: [Center for Cooperative Media](https://centerforcooperativemedia.org/)
+- **Organization**: Montclair State University
 - **Year**: 2025
 
 ## License
