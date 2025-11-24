@@ -820,10 +820,54 @@
 
             const drawPath = (start, end) => {
                 if(!start || !end) return '';
-                const startX = start.x + (start.width || 180) / 2;
-                const startY = start.y + (start.height || 80) / 2;
-                const endX = end.x + (end.width || 180) / 2;
-                const endY = end.y + (end.height || 80) / 2;
+
+                // Calculate node centers
+                const startWidth = start.width || 180;
+                const startHeight = start.height || 80;
+                const endWidth = end.width || 180;
+                const endHeight = end.height || 80;
+
+                const startCenterX = start.x + startWidth / 2;
+                const startCenterY = start.y + startHeight / 2;
+                const endCenterX = end.x + endWidth / 2;
+                const endCenterY = end.y + endHeight / 2;
+
+                // Calculate angle between nodes
+                const dx = endCenterX - startCenterX;
+                const dy = endCenterY - startCenterY;
+                const angle = Math.atan2(dy, dx);
+
+                // Calculate edge intersection points for rounded rectangles
+                // Start point (exit from source node)
+                let startX, startY;
+                const absAngle = Math.abs(angle);
+                const startThreshold = Math.atan2(startHeight / 2, startWidth / 2);
+
+                if (absAngle < startThreshold || absAngle > Math.PI - startThreshold) {
+                    // Exit from right or left edge
+                    startX = startCenterX + (Math.cos(angle) > 0 ? startWidth / 2 : -startWidth / 2);
+                    startY = startCenterY + (startWidth / 2) * Math.tan(angle) * Math.sign(Math.cos(angle));
+                } else {
+                    // Exit from top or bottom edge
+                    startY = startCenterY + (Math.sin(angle) > 0 ? startHeight / 2 : -startHeight / 2);
+                    startX = startCenterX + (startHeight / 2) / Math.tan(angle) * Math.sign(Math.sin(angle));
+                }
+
+                // End point (enter target node) - subtract arrow size
+                const arrowOffset = 12; // Offset for arrow
+                let endX, endY;
+                const endThreshold = Math.atan2(endHeight / 2, endWidth / 2);
+
+                if (absAngle < endThreshold || absAngle > Math.PI - endThreshold) {
+                    // Enter from right or left edge
+                    endX = endCenterX - (Math.cos(angle) > 0 ? endWidth / 2 : -endWidth / 2) - Math.cos(angle) * arrowOffset;
+                    endY = endCenterY - (endWidth / 2) * Math.tan(angle) * Math.sign(Math.cos(angle)) - Math.sin(angle) * arrowOffset;
+                } else {
+                    // Enter from top or bottom edge
+                    endY = endCenterY - (Math.sin(angle) > 0 ? endHeight / 2 : -endHeight / 2) - Math.sin(angle) * arrowOffset;
+                    endX = endCenterX - (endHeight / 2) / Math.tan(angle) * Math.sign(Math.sin(angle)) - Math.cos(angle) * arrowOffset;
+                }
+
                 const dist = Math.abs(endY - startY);
                 return `M ${startX} ${startY} C ${startX} ${startY + dist * 0.5}, ${endX} ${endY - dist * 0.5}, ${endX} ${endY}`;
             };
@@ -990,7 +1034,14 @@
                         <div className="absolute inset-0 pointer-events-none" style={{ opacity: currentTheme.gridOpacity, backgroundImage: `linear-gradient(to right, ${currentTheme.gridColor} 1px, transparent 1px), linear-gradient(to bottom, ${currentTheme.gridColor} 1px, transparent 1px)`, backgroundSize: '40px 40px', transform: `scale(${scale})`, transformOrigin: '0 0' }}/>
                         <div ref={canvasRef} className="relative min-w-[3000px] min-h-[3000px] transform-gpu origin-top-left p-10" style={{ transform: `scale(${scale})` }}>
                             <svg className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible z-0">
-                                <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="28" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b" /></marker></defs>
+                                <defs>
+                                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                                        <polygon points="0 0, 10 3.5, 0 7" fill={currentTheme.edgeColor} />
+                                    </marker>
+                                    <marker id="arrowhead-selected" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                                        <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6" />
+                                    </marker>
+                                </defs>
                                 {currentEdges.map(edge => {
                                     const start = currentNodes.find(n => n.id === edge.source);
                                     const end = currentNodes.find(n => n.id === edge.target);
@@ -1000,7 +1051,7 @@
                                     return (
                                         <g key={edge.id} onClick={(e) => handleEdgeClick(e, edge.id)} className="cursor-pointer pointer-events-auto group">
                                             <path d={path} stroke="transparent" strokeWidth="20" fill="none" />
-                                            <path d={path} stroke={isSelected ? "#3b82f6" : currentTheme.edgeColor} strokeWidth={isSelected ? "4" : "2"} fill="none" markerEnd="url(#arrowhead)" strokeDasharray={edge.dashed ? "5,5" : "none"} className="transition-all" style={{ stroke: isSelected ? "#3b82f6" : undefined }} onMouseEnter={(e) => !isSelected && (e.currentTarget.style.stroke = currentTheme.edgeColorHover)} onMouseLeave={(e) => !isSelected && (e.currentTarget.style.stroke = currentTheme.edgeColor)} />
+                                            <path d={path} stroke={isSelected ? "#3b82f6" : currentTheme.edgeColor} strokeWidth={isSelected ? "4" : "2"} fill="none" markerEnd={isSelected ? "url(#arrowhead-selected)" : "url(#arrowhead)"} strokeDasharray={edge.dashed ? "5,5" : "none"} className="transition-all" style={{ stroke: isSelected ? "#3b82f6" : undefined }} onMouseEnter={(e) => !isSelected && (e.currentTarget.style.stroke = currentTheme.edgeColorHover)} onMouseLeave={(e) => !isSelected && (e.currentTarget.style.stroke = currentTheme.edgeColor)} />
                                             {edge.label && (
                                                 <foreignObject x={(start.x + end.x + 180)/2 - 40} y={(start.y + end.y + 80)/2 - 12} width="80" height="24">
                                                     <div className={`text-[10px] px-2 py-0.5 rounded-full text-center whitespace-nowrap shadow-sm border ${isSelected ? 'bg-blue-900 border-blue-500 text-white' : 'bg-slate-900 border-slate-700 text-slate-400'}`}>{edge.label}</div>
@@ -1041,7 +1092,11 @@
                         }}>
                              <div className="absolute inset-0" style={{ opacity: currentTheme.gridOpacity, backgroundImage: `linear-gradient(to right, ${currentTheme.gridColor} 1px, transparent 1px), linear-gradient(to bottom, ${currentTheme.gridColor} 1px, transparent 1px)`, backgroundSize: '40px 40px' }}/>
                              <svg className="absolute top-0 left-0 w-full h-full overflow-visible">
-                                <defs><marker id="arrowhead-export" markerWidth="10" markerHeight="7" refX="28" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b" /></marker></defs>
+                                <defs>
+                                    <marker id="arrowhead-export" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                                        <polygon points="0 0, 10 3.5, 0 7" fill={currentTheme.edgeColor} />
+                                    </marker>
+                                </defs>
                                 {currentEdges.map(edge => {
                                     const start = currentNodes.find(n => n.id === edge.source);
                                     const end = currentNodes.find(n => n.id === edge.target);
