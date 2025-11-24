@@ -82,6 +82,7 @@ def process_single_video(
     speed_factor: float = 2.0,
     fps: float = 1.0,
     gemini_api_key: Optional[str] = None,
+    openai_api_key: Optional[str] = None,
     skip_transcription: bool = False,
     skip_ocr: bool = False
 ) -> Dict[str, Any]:
@@ -122,7 +123,8 @@ def process_single_video(
             transcript = transcribe_with_speedup(
                 result["audio"]["audio_path"],
                 speed_factor,
-                whisper_model
+                whisper_model,
+                openai_api_key=openai_api_key
             )
 
             # Save transcript
@@ -210,6 +212,7 @@ def batch_process(
     speed_factor: float = 2.0,
     fps: float = 1.0,
     gemini_api_key: Optional[str] = None,
+    openai_api_key: Optional[str] = None,
     skip_transcription: bool = False,
     skip_ocr: bool = False,
     start_from: int = 0,
@@ -277,6 +280,7 @@ def batch_process(
                     speed_factor,
                     fps,
                     gemini_api_key,
+                    openai_api_key,
                     skip_transcription,
                     skip_ocr
                 )
@@ -338,7 +342,8 @@ def batch_process(
             "fps": fps,
             "platform": platform,
             "skip_transcription": skip_transcription,
-            "skip_ocr": skip_ocr
+            "skip_ocr": skip_ocr,
+            "use_openai_api": bool(openai_api_key)
         }
     }
 
@@ -409,6 +414,10 @@ def main():
         help="Gemini API key for OCR fallback"
     )
     parser.add_argument(
+        "--openai-key",
+        help="OpenAI API key for faster Whisper transcription"
+    )
+    parser.add_argument(
         "--skip-transcription",
         action="store_true",
         help="Skip audio transcription"
@@ -433,8 +442,14 @@ def main():
 
     args = parser.parse_args()
 
-    # Check for Gemini key in environment if not provided
+    # Check for API keys in environment if not provided
     gemini_key = args.gemini_key or os.environ.get("GEMINI_API_KEY")
+    openai_key = args.openai_key or os.environ.get("OPENAI_API_KEY")
+
+    if openai_key:
+        print("Using OpenAI Whisper API for transcription (faster)")
+    else:
+        print("Using local Whisper for transcription")
 
     batch_process(
         args.output_dir,
@@ -445,6 +460,7 @@ def main():
         args.speed_factor,
         args.fps,
         gemini_key,
+        openai_key,
         args.skip_transcription,
         args.skip_ocr,
         args.start_from,

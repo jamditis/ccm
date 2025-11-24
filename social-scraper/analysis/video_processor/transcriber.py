@@ -1,31 +1,61 @@
 """
 Transcription Module
 
-Uses OpenAI Whisper (local) to transcribe audio files.
+Uses OpenAI Whisper (local or API) to transcribe audio files.
 Includes timestamp normalization for sped-up audio.
 
 Usage:
     from video_processor import transcribe_with_speedup
 
-    # Transcribe with automatic timestamp correction
+    # Transcribe with automatic timestamp correction (local)
     result = transcribe_with_speedup(
         audio_path="audio_2x.mp3",
         speed_factor=2.0,
         model="medium"
     )
+
+    # Transcribe using OpenAI API (faster)
+    result = transcribe_with_speedup(
+        audio_path="audio_2x.mp3",
+        speed_factor=2.0,
+        openai_api_key="sk-..."
+    )
 """
 
 import os
 import json
-import whisper
 import torch
 from pathlib import Path
 from typing import Optional, List, Dict, Any
 from tqdm import tqdm
 
+# Lazy imports for optional dependencies
+whisper = None
+openai_client = None
 
 # Global model cache
 _model_cache = {}
+
+# Global API client cache
+_api_client = None
+
+
+def _load_whisper():
+    """Lazy load whisper module."""
+    global whisper
+    if whisper is None:
+        import whisper as w
+        whisper = w
+    return whisper
+
+
+def _get_openai_client(api_key: str):
+    """Get or create OpenAI client."""
+    global _api_client
+    if _api_client is None:
+        from openai import OpenAI
+        _api_client = OpenAI(api_key=api_key)
+    return _api_client
 
 
 def get_device():
@@ -37,7 +67,7 @@ def get_device():
     return "cpu"
 
 
-def load_model(model_name: str = "medium") -> whisper.Whisper:
+def load_model(model_name: str = "medium"):
     """
     Load Whisper model with caching.
 
@@ -50,24 +80,23 @@ def load_model(model_name: str = "medium") -> whisper.Whisper:
     if model_name not in _model_cache:
         device = get_device()
         print(f"Loading Whisper model: {model_name} on {device}")
-        _model_cache[model_name] = whisper.load_model(model_name, device=device)
+        w = _load_whisper()
+        _model_cache[model_name] = w.load_model(model_name, device=device)
     return _model_cache[model_name]
 
 
-def transcribe_audio(
+def transcribe_audio_api(
     audio_path: str,
-    model: str = "medium",
-    language: Optional[str] = "en",
-    task: str = "transcribe"
+    api_key: str,
+    language: Optional[str] = "en"
 ) -> Dict[str, Any]:
     """
-    Transcribe audio file using Whisper.
+    Transcribe audio using OpenAI Whisper API.
 
     Args:
         audio_path: Path to audio file
-        model: Whisper model size
+        api_key: OpenAI API key
         language: Language code (None for auto-detect)
-        task: "transcribe" or "translate"
 
     Returns:
         Dict with:
@@ -75,6 +104,71 @@ def transcribe_audio(
             - segments: List of segments with timestamps
             - language: Detected language
     """
+    client = _get_openai_client(api_key)
+
+    with open(audio_path, "rb") as audio_file:
+        # Use verbose_json to get timestamps
+        response = client.audio.transcriptions.create(
+            model="whisper-1",
+            file=audio_file,
+            language=language,
+            response_format="verbose_json",
+            timestamp_granularities=["segment"]
+        )
+
+    # Convert API response to match local format
+    segments = []
+    if hasattr(response, 'segments') and response.segments:
+        for seg in response.segments:
+            segments.append({
+                "start": seg.start,
+                "end": seg.end,
+                "text": seg.text
+            })
+    else:
+        # Fallback if no segments returned
+        segments = [{
+            "start": 0,
+            "end": response.duration if hasattr(response, 'duration') else 0,
+            "text": response.text
+        }]
+
+    return {
+        "text": response.text,
+        "segments": segments,
+        "language": response.language if hasattr(response, 'language') else language,
+        "api_used": True
+    }
+
+
+def transcribe_audio(
+    audio_path: str,
+    model: str = "medium",
+    language: Optional[str] = "en",
+    task: str = "transcribe",
+    openai_api_key: Optional[str] = None
+) -> Dict[str, Any]:
+    """
+    Transcribe audio file using Whisper (local or API).
+
+    Args:
+        audio_path: Path to audio file
+        model: Whisper model size (ignored if using API)
+        language: Language code (None for auto-detect)
+        task: "transcribe" or "translate"
+        openai_api_key: If provided, use OpenAI API instead of local
+
+    Returns:
+        Dict with:
+            - text: Full transcript
+            - segments: List of segments with timestamps
+            - language: Detected language
+    """
+    # Use API if key provided
+    if openai_api_key:
+        return transcribe_audio_api(audio_path, openai_api_key, language)
+
+    # Otherwise use local Whisper
     whisper_model = load_model(model)
 
     result = whisper_model.transcribe(
@@ -133,7 +227,8 @@ def transcribe_with_speedup(
     speed_factor: float = 2.0,
     model: str = "medium",
     language: Optional[str] = "en",
-    output_path: Optional[str] = None
+    output_path: Optional[str] = None,
+    openai_api_key: Optional[str] = None
 ) -> Dict[str, Any]:
     """
     Transcribe sped-up audio and normalize timestamps.
@@ -146,9 +241,10 @@ def transcribe_with_speedup(
     Args:
         audio_path: Path to sped-up audio file
         speed_factor: The speedup factor applied to the audio
-        model: Whisper model size
+        model: Whisper model size (ignored if using API)
         language: Language code
         output_path: Optional path to save JSON results
+        openai_api_key: If provided, use OpenAI API (faster)
 
     Returns:
         Dict with:
@@ -158,8 +254,8 @@ def transcribe_with_speedup(
             - speed_factor: Applied normalization factor
             - audio_path: Source audio file
     """
-    # Transcribe
-    result = transcribe_audio(audio_path, model, language)
+    # Transcribe (API or local)
+    result = transcribe_audio(audio_path, model, language, openai_api_key=openai_api_key)
 
     # Normalize timestamps
     result["segments"] = normalize_timestamps(result["segments"], speed_factor)
