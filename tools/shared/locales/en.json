@@ -1,0 +1,110 @@
+{
+  "common": {
+    "save": "Save",
+    "load": "Load",
+    "export": "Export",
+    "exportPDF": "Export PDF",
+    "exportPNG": "Export PNG",
+    "print": "Print",
+    "reset": "Reset",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "remove": "Remove",
+    "close": "Close",
+    "loading": "Loading...",
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Info"
+  },
+  "validation": {
+    "required": "{{field}} is required",
+    "positiveNumber": "{{field}} must be a positive number",
+    "invalidEmail": "Please enter a valid email address",
+    "invalidPhone": "Please enter a valid phone number",
+    "budgetExceeded": "Expenses exceed revenue"
+  },
+  "errors": {
+    "exportFailed": "Export failed. Please try using Chrome or check your browser settings.",
+    "saveFailed": "Failed to save data. Please try again.",
+    "loadFailed": "Failed to load data",
+    "storageFull": "Storage is full. Please clear some saved data.",
+    "networkError": "Network error. Please check your connection.",
+    "unexpectedError": "An unexpected error occurred"
+  },
+  "notifications": {
+    "saved": "Saved successfully",
+    "loaded": "Loaded successfully",
+    "deleted": "Deleted successfully",
+    "copied": "Copied to clipboard",
+    "exported": "Exported successfully",
+    "reset": "Reset to defaults"
+  },
+  "budget": {
+    "title": "Event Budget Calculator",
+    "eventName": "Event Name",
+    "eventDate": "Date",
+    "eventLocation": "Location",
+    "description": "Description",
+    "expenses": "Expenses",
+    "revenue": "Revenue",
+    "netBalance": "Net Balance",
+    "totalRevenue": "Total Revenue",
+    "totalExpenses": "Total Expenses",
+    "addEntry": "Add Entry",
+    "categories": {
+      "venue": "Venue & Space",
+      "catering": "Catering & Refreshments",
+      "av": "Audio/Visual & Tech",
+      "marketing": "Marketing & Promotion",
+      "staffing": "Staffing & Speakers",
+      "materials": "Materials & Supplies",
+      "misc": "Miscellaneous",
+      "sponsorships": "Sponsorships",
+      "tickets": "Ticket Sales",
+      "donations": "Donations & Grants",
+      "other": "Other Revenue"
+    }
+  },
+  "invoice": {
+    "title": "Invoice",
+    "invoiceNumber": "Invoice Number",
+    "dateIssued": "Date Issued",
+    "dateDue": "Date Due",
+    "from": "From",
+    "to": "Bill To",
+    "lineItems": "Line Items",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "notes": "Notes",
+    "paymentInfo": "Payment Information"
+  },
+  "freelancer": {
+    "title": "Freelancer Rate Calculator",
+    "projectType": "Project Type",
+    "baseRate": "Base Rate",
+    "complexity": "Complexity",
+    "turnaround": "Turnaround",
+    "rights": "Rights & Licensing",
+    "expenses": "Expenses",
+    "totalQuote": "Total Quote",
+    "generateQuote": "Generate Quote",
+    "killFee": "Kill Fee"
+  },
+  "sponsorship": {
+    "title": "Sponsorship Generator",
+    "eventInfo": "Event & Contact Info",
+    "selectTier": "Select Tier",
+    "recipient": "Recipient Details",
+    "customize": "Customize Offer",
+    "benefits": "Benefits"
+  },
+  "attribution": {
+    "createdBy": "Created by",
+    "poweredBy": "Powered by",
+    "copyright": "© {{year}} Center for Cooperative Media"
+  }
+}

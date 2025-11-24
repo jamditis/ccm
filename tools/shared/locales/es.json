@@ -1,0 +1,110 @@
+{
+  "common": {
+    "save": "Guardar",
+    "load": "Cargar",
+    "export": "Exportar",
+    "exportPDF": "Exportar PDF",
+    "exportPNG": "Exportar PNG",
+    "print": "Imprimir",
+    "reset": "Restablecer",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Agregar",
+    "remove": "Quitar",
+    "close": "Cerrar",
+    "loading": "Cargando...",
+    "success": "Éxito",
+    "error": "Error",
+    "warning": "Advertencia",
+    "info": "Información"
+  },
+  "validation": {
+    "required": "{{field}} es obligatorio",
+    "positiveNumber": "{{field}} debe ser un número positivo",
+    "invalidEmail": "Por favor ingrese un correo electrónico válido",
+    "invalidPhone": "Por favor ingrese un número de teléfono válido",
+    "budgetExceeded": "Los gastos superan los ingresos"
+  },
+  "errors": {
+    "exportFailed": "Error al exportar. Por favor intente usar Chrome o revise la configuración de su navegador.",
+    "saveFailed": "Error al guardar los datos. Por favor intente de nuevo.",
+    "loadFailed": "Error al cargar los datos",
+    "storageFull": "El almacenamiento está lleno. Por favor elimine algunos datos guardados.",
+    "networkError": "Error de red. Por favor verifique su conexión.",
+    "unexpectedError": "Ocurrió un error inesperado"
+  },
+  "notifications": {
+    "saved": "Guardado exitosamente",
+    "loaded": "Cargado exitosamente",
+    "deleted": "Eliminado exitosamente",
+    "copied": "Copiado al portapapeles",
+    "exported": "Exportado exitosamente",
+    "reset": "Restablecido a valores predeterminados"
+  },
+  "budget": {
+    "title": "Calculadora de Presupuesto de Eventos",
+    "eventName": "Nombre del Evento",
+    "eventDate": "Fecha",
+    "eventLocation": "Ubicación",
+    "description": "Descripción",
+    "expenses": "Gastos",
+    "revenue": "Ingresos",
+    "netBalance": "Balance Neto",
+    "totalRevenue": "Ingresos Totales",
+    "totalExpenses": "Gastos Totales",
+    "addEntry": "Agregar Entrada",
+    "categories": {
+      "venue": "Lugar y Espacio",
+      "catering": "Catering y Refrigerios",
+      "av": "Audio/Visual y Tecnología",
+      "marketing": "Marketing y Promoción",
+      "staffing": "Personal y Oradores",
+      "materials": "Materiales y Suministros",
+      "misc": "Varios",
+      "sponsorships": "Patrocinios",
+      "tickets": "Venta de Entradas",
+      "donations": "Donaciones y Subvenciones",
+      "other": "Otros Ingresos"
+    }
+  },
+  "invoice": {
+    "title": "Factura",
+    "invoiceNumber": "Número de Factura",
+    "dateIssued": "Fecha de Emisión",
+    "dateDue": "Fecha de Vencimiento",
+    "from": "De",
+    "to": "Facturar A",
+    "lineItems": "Líneas de Detalle",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "notes": "Notas",
+    "paymentInfo": "Información de Pago"
+  },
+  "freelancer": {
+    "title": "Calculadora de Tarifas para Freelancers",
+    "projectType": "Tipo de Proyecto",
+    "baseRate": "Tarifa Base",
+    "complexity": "Complejidad",
+    "turnaround": "Tiempo de Entrega",
+    "rights": "Derechos y Licencias",
+    "expenses": "Gastos",
+    "totalQuote": "Cotización Total",
+    "generateQuote": "Generar Cotización",
+    "killFee": "Tarifa de Cancelación"
+  },
+  "sponsorship": {
+    "title": "Generador de Patrocinios",
+    "eventInfo": "Información del Evento y Contacto",
+    "selectTier": "Seleccionar Nivel",
+    "recipient": "Detalles del Destinatario",
+    "customize": "Personalizar Oferta",
+    "benefits": "Beneficios"
+  },
+  "attribution": {
+    "createdBy": "Creado por",
+    "poweredBy": "Impulsado por",
+    "copyright": "© {{year}} Center for Cooperative Media"
+  }
+}
