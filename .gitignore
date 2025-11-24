@@ -1,0 +1,56 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+*.env
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+.Python
+venv/
+env/
+.venv/
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+scraper.log
+
+# Output data (large scraped content)
+output/
+social-scraper/output/
+
+# Analysis results (may contain PII)
+social-scraper/analysis/data/
+social-scraper/analysis/figures/
+social-scraper/analysis/video_results*/
+
+# Credentials and sessions
+.config/
+*.session
+credentials.json
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Temporary files
+*.tmp
+*.temp
