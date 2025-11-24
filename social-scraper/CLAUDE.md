@@ -1,13 +1,28 @@
 # NJ Influencer Social Media Scraper
 
 ## IMPORTANT: Before Starting Any Task
-**Always check `CHANGELOG.md` first** to understand:
+**Check `SESSION_REPORT_2025-11-21.md` first** for:
+- Resume instructions and commands
+- Running process IDs to check
+- Exact progress state when stopped
+
+**Then check `CHANGELOG.md`** to understand:
 - Current progress and what's been completed
 - Any running processes or pending tasks
 - Known issues and their resolutions
 - TODO items that need attention (e.g., merging recovery data)
 
 This ensures continuity and prevents duplicating work or wasting API costs.
+
+## GitHub Workflow
+**Repo:** https://github.com/jamditis/ccm/tree/main/social-scraper
+
+When updating `CHANGELOG.md`:
+1. Copy updated files to repo: `cp CHANGELOG.md /Users/jamditis/Desktop/Sandbox/ccm-repo/social-scraper/`
+2. Also copy any other changed code files
+3. Create a PR with the changes
+
+This keeps the public repo in sync with local progress.
 
 ---
 
@@ -140,6 +155,27 @@ Data starts at row 4 (after header rows).
 - Batches 2-4 (10-39): Not started
 
 See `output/SCRAPING_REPORT.md` for detailed batch statistics.
+
+### Video Processing - Parallel Batches
+
+Can run **up to 5 batch processes in parallel** without hitting API rate limits:
+
+```bash
+# Example: 5 parallel processes
+python3 analysis/video_processor/batch_process.py output \
+  --results-dir analysis/video_results_with_costs \
+  --start-from 1320 --end-at 1520 \
+  --batch-size 10 \
+  --gemini-key "YOUR_GEMINI_KEY" \
+  --openai-key "YOUR_OPENAI_KEY"
+
+# Repeat with different ranges: 1520-1720, 1720-1920, 1920-2120, etc.
+```
+
+**Rate limit considerations:**
+- OpenAI Whisper: ~50 requests/min
+- Gemini: 15 RPM (free tier), higher on paid
+- 5 processes = ~15-25 API calls/min (safe)
 
 ### Instagram Re-scraping
 
