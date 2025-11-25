@@ -27,7 +27,8 @@ A professional sponsorship proposal and package generator built for the Center f
 - **Editable Footer Labels**: Change "Contact" and "Office" labels to anything
 
 ### Sharing & Templates
-- **Share Link**: Generate a URL that encodes the entire configuration
+- **Share Link**: Generate a compressed URL that encodes the entire configuration (much shorter than raw encoding)
+- **Export/Import**: Download config as JSON file or upload a previously saved config
 - **Templates**: Save configurations as reusable templates
 - **URL-based Loading**: Open shared links in a new browser tab to continue editing
 
@@ -303,6 +304,11 @@ The PDF export system:
 
 ## Changelog
 
+### v2.7
+- Added LZString compression for shareable URLs (50-70% shorter links)
+- Added Export/Import buttons for downloading/uploading config as JSON files
+- Logos are excluded from share URLs to keep them compact
+
 ### v2.6
 - Added drag-and-drop reordering for packages in Generator Mode and Builder Mode
 - Added logo upload functionality (displays in footer)
@@ -321,7 +327,7 @@ The PDF export system:
 ## Credits
 
 - **Organization**: [Center for Cooperative Media](https://centerforcooperativemedia.org/)
-- **Version**: 2.6
+- **Version**: 2.7
 
 ## License
 

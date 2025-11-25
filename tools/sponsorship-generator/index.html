@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CCM Sponsorship Package Generator v2.6</title>
+    <title>CCM Sponsorship Package Generator v2.7</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -25,6 +25,9 @@
 
     <!-- jsPDF for high-fidelity PDF export -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- LZString for URL compression -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
 
     <style>
         /* Custom Scrollbar */
@@ -202,6 +205,7 @@
             Image: (p) => <IconWrapper {...p}><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></IconWrapper>,
             GripVertical: (p) => <IconWrapper {...p}><circle cx="9" cy="12" r="1"></circle><circle cx="9" cy="5" r="1"></circle><circle cx="9" cy="19" r="1"></circle><circle cx="15" cy="12" r="1"></circle><circle cx="15" cy="5" r="1"></circle><circle cx="15" cy="19" r="1"></circle></IconWrapper>,
             Upload: (p) => <IconWrapper {...p}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></IconWrapper>,
+            Download: (p) => <IconWrapper {...p}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></IconWrapper>,
             X: (p) => <IconWrapper {...p}><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></IconWrapper>,
             Link: (p) => <IconWrapper {...p}><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></IconWrapper>,
             Copy: (p) => <IconWrapper {...p}><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></IconWrapper>,
@@ -1006,14 +1010,27 @@
             const [templateName, setTemplateName] = useState('');
             const [linkCopied, setLinkCopied] = useState(false);
 
-            // Compress state to base64 for URL sharing
+            // Compress state using LZString for shorter URLs
             const encodeState = (pkgs, globals) => {
                 const state = { packages: pkgs, globalSettings: globals };
-                return btoa(encodeURIComponent(JSON.stringify(state)));
+                // Remove logo from shared state to keep URL shorter (logos are large base64 strings)
+                const stateToShare = {
+                    ...state,
+                    globalSettings: { ...state.globalSettings, logo: null }
+                };
+                return LZString.compressToEncodedURIComponent(JSON.stringify(stateToShare));
             };
 
-            // Decode state from base64 URL
+            // Decode state from compressed URL (with fallback for legacy base64)
             const decodeState = (encoded) => {
+                // Try LZString decompression first
+                try {
+                    const decompressed = LZString.decompressFromEncodedURIComponent(encoded);
+                    if (decompressed) {
+                        return JSON.parse(decompressed);
+                    }
+                } catch (e) {}
+                // Fallback to legacy base64 decoding
                 try {
                     return JSON.parse(decodeURIComponent(atob(encoded)));
                 } catch (e) {
@@ -1095,6 +1112,44 @@
                 if (confirm('Delete this template?')) {
                     setTemplates(templates.filter(t => t.id !== templateId));
                 }
+            };
+
+            // Download config as JSON file
+            const downloadConfig = () => {
+                const config = {
+                    version: '2.7',
+                    packages: packages,
+                    globalSettings: globalSettings,
+                    exportedAt: new Date().toISOString()
+                };
+                const blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `sponsorship-config-${new Date().toISOString().split('T')[0]}.json`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            };
+
+            // Upload config from JSON file
+            const uploadConfig = (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    try {
+                        const config = JSON.parse(event.target.result);
+                        if (config.packages) setPackages(config.packages);
+                        if (config.globalSettings) setGlobalSettings(config.globalSettings);
+                        alert('Configuration loaded successfully!');
+                    } catch (err) {
+                        alert('Invalid config file. Please select a valid JSON file.');
+                    }
+                };
+                reader.readAsText(file);
+                e.target.value = ''; // Reset input
             };
 
             const resetDefaults = () => {
@@ -1320,17 +1375,41 @@
                     <header className="h-14 bg-[#1a1a1a] text-white flex items-center justify-between px-6 shadow-md z-30 no-print border-b border-gray-800">
                         <div className="flex items-center gap-3 font-mono text-sm">
                             <div className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center font-bold text-[10px]">CM</div>
-                            <span className="hidden sm:inline opacity-80">Sponsorship Generator v2.6</span>
+                            <span className="hidden sm:inline opacity-80">Sponsorship Generator v2.7</span>
                         </div>
                         <div className="flex gap-2">
-                            {/* Share & Template Buttons */}
+                            {/* Hidden file input for config upload */}
+                            <input
+                                type="file"
+                                id="config-upload"
+                                accept=".json"
+                                onChange={uploadConfig}
+                                className="hidden"
+                            />
+                            {/* Share & Config Buttons */}
                             <button
                                 onClick={generateShareLink}
                                 className="px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded bg-gray-700 hover:bg-gray-600 text-white flex items-center gap-2 transition-all"
-                                title="Copy shareable link"
+                                title="Copy shareable link (compressed URL)"
                             >
                                 {linkCopied ? <Icons.Check size={14} /> : <Icons.Link size={14} />}
                                 <span className="hidden md:inline">{linkCopied ? 'Copied!' : 'Share'}</span>
+                            </button>
+                            <button
+                                onClick={downloadConfig}
+                                className="px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded bg-gray-700 hover:bg-gray-600 text-white flex items-center gap-2 transition-all"
+                                title="Download config as JSON file"
+                            >
+                                <Icons.Download size={14} />
+                                <span className="hidden lg:inline">Export</span>
+                            </button>
+                            <button
+                                onClick={() => document.getElementById('config-upload').click()}
+                                className="px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded bg-gray-700 hover:bg-gray-600 text-white flex items-center gap-2 transition-all"
+                                title="Upload config from JSON file"
+                            >
+                                <Icons.Upload size={14} />
+                                <span className="hidden lg:inline">Import</span>
                             </button>
                             <button
                                 onClick={() => setShowTemplateModal(true)}
