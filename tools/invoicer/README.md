@@ -4,6 +4,16 @@ A modern, professional invoice generator built for the Center for Cooperative Me
 
 ## Features
 
+### AI-Powered Document Import (NEW)
+- **Upload Documents**: Import PDFs, images, or text files containing invoice information
+- **Paste Text**: Copy and paste invoice details, emails, or any text with billing information
+- **Smart Extraction**: Claude AI (Sonnet 4.5) reads and understands your documents
+- **Auto-Fill**: Automatically populates all invoice fields from the extracted data:
+  - Sender and recipient information (names, addresses, contact details)
+  - Invoice numbers and dates
+  - Line items with descriptions, rates, and quantities
+  - Payment instructions and notes
+
 ### Invoice Creation
 - **Professional Templates**: Clean, modern invoice design with customizable aesthetics
 - **Line Items**: Add multiple services/products with descriptions, dates, rates, and quantities
@@ -16,7 +26,6 @@ A modern, professional invoice generator built for the Center for Cooperative Me
   - Modern Geometric (Plus Jakarta Sans)
   - Editorial Serif (Cormorant Garamond)
   - Technical Mono (IBM Plex Mono)
-- **Corner Styles**: Sharp, Subtle, Soft, or Round corners
 - **Smart Contrast**: Text automatically adjusts for readability on any background color
 
 ### Data Management
@@ -31,13 +40,52 @@ A modern, professional invoice generator built for the Center for Cooperative Me
 ## Quick Start
 
 1. Open `index.html` in any modern web browser
-2. Fill in your sender information (name, address, email, phone)
-3. Add recipient/client details
-4. Add line items for your services
-5. Customize the design using the Aesthetics panel
-6. Click "Download PDF" to export
+2. **Option A - Manual Entry**:
+   - Fill in your sender information (name, address, email, phone)
+   - Add recipient/client details
+   - Add line items for your services
+3. **Option B - AI Import** (faster!):
+   - Enter your Claude API key in the AI Import section
+   - Upload a document or paste text containing invoice information
+   - Click "Analyze & Populate Invoice" to auto-fill all fields
+4. Customize the design using the Aesthetics panel
+5. Click "Download PDF" to export
 
 ## Usage Guide
+
+### Using AI Document Import
+
+The AI Import feature lets you automatically fill out invoices by uploading documents or pasting text. Here's how to use it:
+
+1. **Get a Claude API Key**:
+   - Visit [console.anthropic.com](https://console.anthropic.com) to create an account
+   - Generate an API key from your account dashboard
+   - Enter the key in the "Claude API Key" field (it will be saved in your browser)
+
+2. **Upload a Document**:
+   - Click the upload area in the AI Import section
+   - Select a PDF, image (JPG, PNG), or text file
+   - Supported formats: PDF invoices, scanned documents, screenshots, CSV files, plain text
+
+3. **Or Paste Text**:
+   - Copy invoice information from an email, document, or website
+   - Paste it into the text area
+   - Works great for email invoices or copied text
+
+4. **Analyze and Populate**:
+   - Click "Analyze & Populate Invoice"
+   - Wait a few seconds while Claude AI reads your document
+   - The form fields will automatically fill with extracted data
+
+5. **Review and Edit**:
+   - Check all auto-filled fields for accuracy
+   - Make any necessary corrections
+   - Add or modify line items as needed
+
+**Tips for Best AI Results**:
+- Clear, legible documents work best
+- Include as much detail as possible in pasted text
+- The AI extracts: names, addresses, dates, amounts, line items, and payment info
 
 ### Setting Up Your Profile
 
@@ -67,7 +115,6 @@ A modern, professional invoice generator built for the Center for Cooperative Me
 ### Customizing Design
 
 - **Accent Color**: Click the color picker to choose your header color
-- **Corners**: Select corner radius (Sharp to Round)
 - **Typography**: Choose font style that matches your brand
 
 ### Payment Instructions
@@ -89,6 +136,18 @@ Include your payment details in the "Payment Instructions" field:
 - Lucide Icons
 - Google Fonts (Syne, Plus Jakarta Sans, Cormorant Garamond, IBM Plex Mono)
 
+### External API
+- **Claude API** (Anthropic): Used for AI-powered document analysis
+  - Model: Claude Sonnet 4.5
+  - Requires user-provided API key
+  - API calls made directly from browser (no backend required)
+
+**API Key Security**:
+- Your API key is stored only in your browser's localStorage
+- It is never sent to any server except Anthropic's API
+- The key stays on your device - we don't collect or store it
+- Clear your browser data to remove the stored key
+
 ### Browser Compatibility
 - Chrome (recommended)
 - Firefox
@@ -99,6 +158,7 @@ Include your payment details in the "Payment Instructions" field:
 ### Local Storage
 The application uses browser localStorage to persist:
 - Saved profiles (sender info, notes, themes)
+- Claude API key (for AI Import feature)
 
 ## File Structure
 
@@ -164,6 +224,14 @@ colors: {
 ### Profile Not Saving
 - Check if localStorage is enabled
 - Ensure browser isn't in private/incognito mode
+
+### AI Import Not Working
+- **Invalid API Key**: Make sure your Claude API key is correct and starts with `sk-ant-`
+- **API Key Not Saved**: The key is stored in your browser's localStorage - ensure cookies/storage aren't blocked
+- **Document Not Recognized**: Try a clearer image or PDF, or paste the text directly
+- **CORS Errors**: The API requires the `anthropic-dangerous-direct-browser-access` header - this is included automatically
+- **Rate Limits**: If you see rate limit errors, wait a moment and try again
+- **Large Files**: Very large images or PDFs may fail - try reducing file size or cropping to relevant sections
 
 ## Credits
 
