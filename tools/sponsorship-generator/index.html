@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CCM Sponsorship Package Generator v2.5 (Stable)</title>
+    <title>CCM Sponsorship Package Generator v2.6</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -199,7 +199,13 @@
             FileText: (p) => <IconWrapper {...p}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></IconWrapper>,
             ChevronDown: (p) => <IconWrapper {...p}><polyline points="6 9 12 15 18 9"></polyline></IconWrapper>,
             ChevronUp: (p) => <IconWrapper {...p}><polyline points="18 15 12 9 6 15"></polyline></IconWrapper>,
-            Image: (p) => <IconWrapper {...p}><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></IconWrapper>
+            Image: (p) => <IconWrapper {...p}><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></IconWrapper>,
+            GripVertical: (p) => <IconWrapper {...p}><circle cx="9" cy="12" r="1"></circle><circle cx="9" cy="5" r="1"></circle><circle cx="9" cy="19" r="1"></circle><circle cx="15" cy="12" r="1"></circle><circle cx="15" cy="5" r="1"></circle><circle cx="15" cy="19" r="1"></circle></IconWrapper>,
+            Upload: (p) => <IconWrapper {...p}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></IconWrapper>,
+            X: (p) => <IconWrapper {...p}><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></IconWrapper>,
+            Link: (p) => <IconWrapper {...p}><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></IconWrapper>,
+            Copy: (p) => <IconWrapper {...p}><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></IconWrapper>,
+            Check: (p) => <IconWrapper {...p}><polyline points="20 6 9 17 4 12"></polyline></IconWrapper>
         };
 
         const FONTS = {
@@ -214,7 +220,11 @@
             orgName: 'Center for Cooperative Media',
             tagline: 'Building a sustainable future for local journalism at Montclair State University.',
             contactName: 'Stefanie Murray',
-            contactLocation: 'Montclair, NJ'
+            contactLocation: 'Montclair, NJ',
+            contactLabel: 'Contact',
+            locationLabel: 'Office',
+            logo: null,
+            headerColors: ['#22d3ee', '#e91e63', '#facc15', '#000000']
         };
 
         const DEFAULT_PACKAGES = [
@@ -344,12 +354,60 @@
 
         // --- COMPONENTS DEFINED BEFORE USE TO PREVENT HOISTING ERRORS ---
 
-        function GeneratorMode({ packages, globalSettings, setGlobalSettings }) {
-            const [viewMode, setViewMode] = useState('single'); 
+        function GeneratorMode({ packages, globalSettings, setGlobalSettings, setPackages }) {
+            const [viewMode, setViewMode] = useState('single');
             const [activePackageId, setActivePackageId] = useState(packages[0]?.id || '');
             const [recipientName, setRecipientName] = useState('Latino Spirit Media');
             const [customData, setCustomData] = useState({});
             const [showGlobalSettings, setShowGlobalSettings] = useState(false);
+            const [draggedPkgId, setDraggedPkgId] = useState(null);
+            const [dragOverPkgId, setDragOverPkgId] = useState(null);
+
+            const handleDragStart = (e, pkgId) => {
+                setDraggedPkgId(pkgId);
+                e.dataTransfer.effectAllowed = 'move';
+            };
+
+            const handleDragOver = (e, pkgId) => {
+                e.preventDefault();
+                if (pkgId !== draggedPkgId) {
+                    setDragOverPkgId(pkgId);
+                }
+            };
+
+            const handleDragEnd = () => {
+                if (draggedPkgId && dragOverPkgId && draggedPkgId !== dragOverPkgId) {
+                    const draggedIndex = packages.findIndex(p => p.id === draggedPkgId);
+                    const targetIndex = packages.findIndex(p => p.id === dragOverPkgId);
+                    const newPackages = [...packages];
+                    const [draggedPkg] = newPackages.splice(draggedIndex, 1);
+                    newPackages.splice(targetIndex, 0, draggedPkg);
+                    setPackages(newPackages);
+                }
+                setDraggedPkgId(null);
+                setDragOverPkgId(null);
+            };
+
+            const handleLogoUpload = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        setGlobalSettings({ ...globalSettings, logo: reader.result });
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+
+            const handleRemoveLogo = () => {
+                setGlobalSettings({ ...globalSettings, logo: null });
+            };
+
+            const handleColorChange = (index, color) => {
+                const newColors = [...(globalSettings.headerColors || ['#22d3ee', '#e91e63', '#facc15', '#000000'])];
+                newColors[index] = color;
+                setGlobalSettings({ ...globalSettings, headerColors: newColors });
+            };
 
             useEffect(() => {
                 const pkg = packages.find(p => p.id === activePackageId) || packages[0];
@@ -389,7 +447,7 @@
                             
                             {/* GLOBAL SETTINGS PANEL */}
                             <div className="mb-6 border border-gray-200 rounded-lg overflow-hidden bg-gray-50 settings-panel">
-                                <button 
+                                <button
                                     onClick={() => setShowGlobalSettings(!showGlobalSettings)}
                                     className="w-full p-3 flex justify-between items-center text-xs font-bold uppercase tracking-widest text-gray-600 bg-gray-100 hover:bg-gray-200 transition-colors"
                                 >
@@ -398,13 +456,57 @@
                                 </button>
                                 {showGlobalSettings && (
                                     <div className="p-4 space-y-3 bg-white">
+                                        {/* Logo Upload */}
+                                        <div className="mb-4">
+                                            <label className="block text-xs font-medium text-gray-600 mb-2 uppercase tracking-wide">Event Logo</label>
+                                            {globalSettings.logo ? (
+                                                <div className="flex items-center gap-3">
+                                                    <img src={globalSettings.logo} alt="Logo" className="h-12 w-auto object-contain border border-gray-200 rounded p-1 bg-white" />
+                                                    <button onClick={handleRemoveLogo} className="text-xs text-red-500 hover:text-red-700 flex items-center gap-1">
+                                                        <Icons.X size={12}/> Remove
+                                                    </button>
+                                                </div>
+                                            ) : (
+                                                <label className="flex items-center gap-2 px-3 py-2 border border-dashed border-gray-300 rounded cursor-pointer hover:border-gray-400 hover:bg-gray-50 transition-colors">
+                                                    <Icons.Upload size={14} className="text-gray-400"/>
+                                                    <span className="text-xs text-gray-500">Upload logo image</span>
+                                                    <input type="file" accept="image/*" onChange={handleLogoUpload} className="hidden" />
+                                                </label>
+                                            )}
+                                        </div>
+
                                         <InputField label="Event Title" value={globalSettings.eventName} onChange={(v) => handleGlobalUpdate('eventName', v)} placeholder="e.g. 2026 Annual Luncheon" />
                                         <InputField label="Date String" value={globalSettings.eventDate} onChange={(v) => handleGlobalUpdate('eventDate', v)} placeholder="e.g. February 19, 2026" />
                                         <InputField label="Organization Name" value={globalSettings.orgName} onChange={(v) => handleGlobalUpdate('orgName', v)} />
                                         <InputField label="Tagline" value={globalSettings.tagline} onChange={(v) => handleGlobalUpdate('tagline', v)} area />
+
+                                        {/* Contact Info with Editable Labels */}
                                         <div className="grid grid-cols-2 gap-2">
-                                            <InputField label="Contact Name" value={globalSettings.contactName} onChange={(v) => handleGlobalUpdate('contactName', v)} />
-                                            <InputField label="Location" value={globalSettings.contactLocation} onChange={(v) => handleGlobalUpdate('contactLocation', v)} />
+                                            <div>
+                                                <InputField label="Footer Label 1" value={globalSettings.contactLabel || 'Contact'} onChange={(v) => handleGlobalUpdate('contactLabel', v)} placeholder="e.g. Contact" />
+                                                <InputField label="Footer Value 1" value={globalSettings.contactName} onChange={(v) => handleGlobalUpdate('contactName', v)} placeholder="e.g. Name" />
+                                            </div>
+                                            <div>
+                                                <InputField label="Footer Label 2" value={globalSettings.locationLabel || 'Office'} onChange={(v) => handleGlobalUpdate('locationLabel', v)} placeholder="e.g. Office" />
+                                                <InputField label="Footer Value 2" value={globalSettings.contactLocation} onChange={(v) => handleGlobalUpdate('contactLocation', v)} placeholder="e.g. Location" />
+                                            </div>
+                                        </div>
+
+                                        {/* Header Color Customization */}
+                                        <div className="mt-4 pt-3 border-t border-gray-200">
+                                            <label className="block text-xs font-medium text-gray-600 mb-2 uppercase tracking-wide">Header Bar Colors</label>
+                                            <div className="flex gap-2">
+                                                {(globalSettings.headerColors || ['#22d3ee', '#e91e63', '#facc15', '#000000']).map((color, idx) => (
+                                                    <div key={idx} className="flex-1">
+                                                        <input
+                                                            type="color"
+                                                            value={color}
+                                                            onChange={(e) => handleColorChange(idx, e.target.value)}
+                                                            className="w-full h-8 rounded cursor-pointer border border-gray-300"
+                                                        />
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                 )}
@@ -427,20 +529,29 @@
 
                             {viewMode === 'single' ? (
                                 <>
-                                    <SectionHeader>1. Select Tier</SectionHeader>
+                                    <SectionHeader>1. Select Tier (drag to reorder)</SectionHeader>
                                     <div className="grid grid-cols-1 gap-2 mb-8">
                                         {packages.map((pkg) => {
                                             const PkgIcon = Icons[pkg.iconName] || Icons.Sparkles;
+                                            const isDragging = draggedPkgId === pkg.id;
+                                            const isDragOver = dragOverPkgId === pkg.id;
                                             return (
-                                                <button
+                                                <div
                                                     key={pkg.id}
+                                                    draggable
+                                                    onDragStart={(e) => handleDragStart(e, pkg.id)}
+                                                    onDragOver={(e) => handleDragOver(e, pkg.id)}
+                                                    onDragEnd={handleDragEnd}
                                                     onClick={() => setActivePackageId(pkg.id)}
-                                                    className={`text-left p-3 rounded-lg border transition-all flex items-center gap-3 group ${
+                                                    className={`text-left p-3 rounded-lg border transition-all flex items-center gap-3 group cursor-pointer ${
                                                         activePackageId === pkg.id
                                                             ? 'border-red-600 bg-red-50 shadow-sm ring-1 ring-red-200'
                                                             : 'border-gray-200 hover:border-gray-400 hover:bg-gray-50'
-                                                    }`}
+                                                    } ${isDragging ? 'opacity-50' : ''} ${isDragOver ? 'border-blue-500 bg-blue-50' : ''}`}
                                                 >
+                                                    <div className="cursor-grab active:cursor-grabbing text-gray-400 hover:text-gray-600">
+                                                        <Icons.GripVertical size={14} />
+                                                    </div>
                                                     <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
                                                         activePackageId === pkg.id ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-500 group-hover:bg-gray-300'
                                                     }`}>
@@ -451,7 +562,7 @@
                                                         <div className="text-xs opacity-70 font-mono">{pkg.cost}</div>
                                                     </div>
                                                     {activePackageId === pkg.id && <Icons.CheckCircle size={16} className="ml-auto text-red-600" />}
-                                                </button>
+                                                </div>
                                             );
                                         })}
                                     </div>
@@ -512,11 +623,17 @@
                             
                             {/* Decorative Top Border */}
                             <div className="absolute top-0 left-0 w-full h-4 border-b-4 border-black flex">
-                                <div className="w-1/4 h-full bg-cyan-400 opacity-80"></div>
-                                <div className="w-1/4 h-full bg-magenta-400 opacity-80 mix-blend-multiply" style={{ backgroundColor: '#e91e63' }}></div>
-                                <div className="w-1/4 h-full bg-yellow-400 opacity-80 mix-blend-multiply"></div>
-                                <div className="w-1/4 h-full bg-black"></div>
+                                {(globalSettings.headerColors || ['#22d3ee', '#e91e63', '#facc15', '#000000']).map((color, idx) => (
+                                    <div key={idx} className="w-1/4 h-full" style={{ backgroundColor: color }}></div>
+                                ))}
                             </div>
+
+                            {/* Logo Display */}
+                            {globalSettings.logo && (
+                                <div className="absolute top-6 right-8">
+                                    <img src={globalSettings.logo} alt="Event Logo" className="h-16 w-auto object-contain" />
+                                </div>
+                            )}
 
                             {viewMode === 'single' ? (
                                 <>
@@ -604,12 +721,11 @@
                                                     </div>
                                                     <div className="text-xs text-gray-500 mb-2 leading-relaxed">{pkg.description}</div>
                                                     <ul className="space-y-1">
-                                                        {pkg.benefits.slice(0,3).map((b, i) => (
+                                                        {pkg.benefits.map((b, i) => (
                                                             <li key={i} className="text-xs flex gap-2">
                                                                 <span className="text-red-500">›</span> {b}
                                                             </li>
                                                         ))}
-                                                        {pkg.benefits.length > 3 && <li className="text-[10px] text-gray-400 pl-3 italic">...and {pkg.benefits.length - 3} more benefits</li>}
                                                     </ul>
                                                 </div>
                                             );
@@ -620,19 +736,24 @@
 
                             <div className="mt-auto pt-8 border-t border-gray-200">
                                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                                    <div>
-                                        <h4 className="font-bold text-lg mb-1" style={{ fontFamily: FONTS.heading }}>{globalSettings.orgName}</h4>
-                                        <div className="text-sm text-gray-500 max-w-md">
-                                            {globalSettings.tagline}
+                                    <div className="flex items-center gap-4">
+                                        {globalSettings.logo && (
+                                            <img src={globalSettings.logo} alt="Logo" className="h-10 w-auto object-contain" />
+                                        )}
+                                        <div>
+                                            <h4 className="font-bold text-lg mb-1" style={{ fontFamily: FONTS.heading }}>{globalSettings.orgName}</h4>
+                                            <div className="text-sm text-gray-500 max-w-md">
+                                                {globalSettings.tagline}
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="flex gap-8 text-xs font-mono text-gray-400">
                                         <div className="flex flex-col">
-                                            <span className="uppercase tracking-widest mb-1">Contact</span>
+                                            <span className="uppercase tracking-widest mb-1">{globalSettings.contactLabel || 'Contact'}</span>
                                             <span className="text-black">{globalSettings.contactName}</span>
                                         </div>
                                         <div className="flex flex-col">
-                                            <span className="uppercase tracking-widest mb-1">Office</span>
+                                            <span className="uppercase tracking-widest mb-1">{globalSettings.locationLabel || 'Office'}</span>
                                             <span className="text-black">{globalSettings.contactLocation}</span>
                                         </div>
                                     </div>
@@ -817,18 +938,101 @@
             const [mode, setMode] = useState('generate'); // 'generate' or 'build'
             const [packages, setPackages] = useState(DEFAULT_PACKAGES);
             const [globalSettings, setGlobalSettings] = useState(DEFAULT_GLOBALS);
+            const [templates, setTemplates] = useState([]);
+            const [showTemplateModal, setShowTemplateModal] = useState(false);
+            const [templateName, setTemplateName] = useState('');
+            const [linkCopied, setLinkCopied] = useState(false);
 
+            // Compress state to base64 for URL sharing
+            const encodeState = (pkgs, globals) => {
+                const state = { packages: pkgs, globalSettings: globals };
+                return btoa(encodeURIComponent(JSON.stringify(state)));
+            };
+
+            // Decode state from base64 URL
+            const decodeState = (encoded) => {
+                try {
+                    return JSON.parse(decodeURIComponent(atob(encoded)));
+                } catch (e) {
+                    return null;
+                }
+            };
+
+            // Load from URL hash on initial mount
             useEffect(() => {
+                const hash = window.location.hash.slice(1);
+                if (hash) {
+                    const decoded = decodeState(hash);
+                    if (decoded) {
+                        if (decoded.packages) setPackages(decoded.packages);
+                        if (decoded.globalSettings) setGlobalSettings(decoded.globalSettings);
+                        // Clear hash after loading
+                        window.history.replaceState(null, '', window.location.pathname);
+                        return;
+                    }
+                }
+                // Fall back to localStorage if no URL state
                 const savedPkgs = localStorage.getItem('ccm_sponsorship_packages');
                 const savedGlobals = localStorage.getItem('ccm_sponsorship_globals');
                 if (savedPkgs) try { setPackages(JSON.parse(savedPkgs)); } catch (e) {}
                 if (savedGlobals) try { setGlobalSettings(JSON.parse(savedGlobals)); } catch (e) {}
             }, []);
 
+            // Load templates from localStorage
+            useEffect(() => {
+                const savedTemplates = localStorage.getItem('ccm_sponsorship_templates');
+                if (savedTemplates) try { setTemplates(JSON.parse(savedTemplates)); } catch (e) {}
+            }, []);
+
+            // Save to localStorage
             useEffect(() => {
                 localStorage.setItem('ccm_sponsorship_packages', JSON.stringify(packages));
                 localStorage.setItem('ccm_sponsorship_globals', JSON.stringify(globalSettings));
             }, [packages, globalSettings]);
+
+            // Save templates to localStorage
+            useEffect(() => {
+                localStorage.setItem('ccm_sponsorship_templates', JSON.stringify(templates));
+            }, [templates]);
+
+            // Generate shareable link
+            const generateShareLink = () => {
+                const encoded = encodeState(packages, globalSettings);
+                const url = `${window.location.origin}${window.location.pathname}#${encoded}`;
+                navigator.clipboard.writeText(url).then(() => {
+                    setLinkCopied(true);
+                    setTimeout(() => setLinkCopied(false), 2000);
+                });
+            };
+
+            // Save current state as template
+            const saveAsTemplate = () => {
+                if (!templateName.trim()) return;
+                const newTemplate = {
+                    id: Date.now().toString(),
+                    name: templateName.trim(),
+                    packages: [...packages],
+                    globalSettings: { ...globalSettings },
+                    createdAt: new Date().toISOString()
+                };
+                setTemplates([...templates, newTemplate]);
+                setTemplateName('');
+                setShowTemplateModal(false);
+            };
+
+            // Load template
+            const loadTemplate = (template) => {
+                setPackages(template.packages);
+                setGlobalSettings(template.globalSettings);
+                setShowTemplateModal(false);
+            };
+
+            // Delete template
+            const deleteTemplate = (templateId) => {
+                if (confirm('Delete this template?')) {
+                    setTemplates(templates.filter(t => t.id !== templateId));
+                }
+            };
 
             const resetDefaults = () => {
                 if(confirm('Are you sure? This will delete any custom packages you created.')) {
@@ -977,41 +1181,131 @@
                 <div className={`min-h-screen w-full ${mode === 'build' ? 'bg-[#1a1a1a]' : 'bg-[#f0f0f0]'} text-[#1a1a1a] relative overflow-hidden flex flex-col`} style={{ fontFamily: FONTS.body }}>
                     <TextureOverlay />
 
+                    {/* Template Modal */}
+                    {showTemplateModal && (
+                        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setShowTemplateModal(false)}>
+                            <div className="bg-white rounded-lg shadow-2xl max-w-md w-full max-h-[80vh] overflow-hidden" onClick={e => e.stopPropagation()}>
+                                <div className="p-4 border-b border-gray-200 flex justify-between items-center">
+                                    <h3 className="font-bold text-lg">Templates</h3>
+                                    <button onClick={() => setShowTemplateModal(false)} className="text-gray-400 hover:text-gray-600">
+                                        <Icons.X size={20} />
+                                    </button>
+                                </div>
+
+                                {/* Save New Template */}
+                                <div className="p-4 border-b border-gray-200 bg-gray-50">
+                                    <label className="block text-xs font-bold uppercase text-gray-500 mb-2">Save Current as Template</label>
+                                    <div className="flex gap-2">
+                                        <input
+                                            type="text"
+                                            placeholder="Template name..."
+                                            value={templateName}
+                                            onChange={(e) => setTemplateName(e.target.value)}
+                                            className="flex-1 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-500"
+                                            onKeyDown={(e) => e.key === 'Enter' && saveAsTemplate()}
+                                        />
+                                        <button
+                                            onClick={saveAsTemplate}
+                                            disabled={!templateName.trim()}
+                                            className="px-4 py-2 bg-red-600 text-white rounded text-sm font-bold hover:bg-red-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            Save
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Template List */}
+                                <div className="max-h-64 overflow-y-auto">
+                                    {templates.length === 0 ? (
+                                        <div className="p-8 text-center text-gray-400 text-sm">
+                                            No saved templates yet
+                                        </div>
+                                    ) : (
+                                        <div className="divide-y divide-gray-100">
+                                            {templates.map(template => (
+                                                <div key={template.id} className="p-3 hover:bg-gray-50 flex items-center justify-between gap-3">
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="font-medium text-sm truncate">{template.name}</div>
+                                                        <div className="text-xs text-gray-400">
+                                                            {new Date(template.createdAt).toLocaleDateString()}
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex gap-2">
+                                                        <button
+                                                            onClick={() => loadTemplate(template)}
+                                                            className="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded text-xs font-medium"
+                                                        >
+                                                            Load
+                                                        </button>
+                                                        <button
+                                                            onClick={() => deleteTemplate(template.id)}
+                                                            className="p-1 text-gray-400 hover:text-red-500"
+                                                        >
+                                                            <Icons.Trash2 size={14} />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Navbar */}
                     <header className="h-14 bg-[#1a1a1a] text-white flex items-center justify-between px-6 shadow-md z-30 no-print border-b border-gray-800">
                         <div className="flex items-center gap-3 font-mono text-sm">
                             <div className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center font-bold text-[10px]">CM</div>
-                            <span className="hidden sm:inline opacity-80">Sponsorship Generator v2.5 (Stable)</span>
+                            <span className="hidden sm:inline opacity-80">Sponsorship Generator v2.6</span>
                         </div>
-                        <div className="flex gap-3">
+                        <div className="flex gap-2">
+                            {/* Share & Template Buttons */}
+                            <button
+                                onClick={generateShareLink}
+                                className="px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded bg-gray-700 hover:bg-gray-600 text-white flex items-center gap-2 transition-all"
+                                title="Copy shareable link"
+                            >
+                                {linkCopied ? <Icons.Check size={14} /> : <Icons.Link size={14} />}
+                                <span className="hidden md:inline">{linkCopied ? 'Copied!' : 'Share'}</span>
+                            </button>
+                            <button
+                                onClick={() => setShowTemplateModal(true)}
+                                className="px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded bg-gray-700 hover:bg-gray-600 text-white flex items-center gap-2 transition-all"
+                                title="Save/Load Templates"
+                            >
+                                <Icons.Layers size={14} />
+                                <span className="hidden md:inline">Templates</span>
+                            </button>
+
                             {mode === 'generate' && (
                                 <>
                                     <button
                                         onClick={handleExportPng}
-                                        className="px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded bg-teal-600 hover:bg-teal-500 text-white flex items-center gap-2 transition-all shadow-sm"
+                                        className="px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded bg-teal-600 hover:bg-teal-500 text-white flex items-center gap-2 transition-all shadow-sm"
                                     >
                                         <Icons.Image size={14} />
-                                        Export PNG
+                                        <span className="hidden md:inline">PNG</span>
                                     </button>
                                     <button
                                         onClick={handlePrint}
-                                        className="px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded bg-red-600 hover:bg-red-500 text-white flex items-center gap-2 transition-all shadow-sm"
+                                        className="px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded bg-red-600 hover:bg-red-500 text-white flex items-center gap-2 transition-all shadow-sm"
                                     >
                                         <Icons.Printer size={14} />
-                                        Print PDF
+                                        <span className="hidden md:inline">PDF</span>
                                     </button>
                                 </>
                             )}
                             <div className="flex bg-gray-800 rounded p-1 gap-1">
                                 <button
                                     onClick={() => setMode('generate')}
-                                    className={`px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded transition-all ${mode === 'generate' ? 'bg-white text-black shadow-sm' : 'text-gray-400 hover:text-white'}`}
+                                    className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded transition-all ${mode === 'generate' ? 'bg-white text-black shadow-sm' : 'text-gray-400 hover:text-white'}`}
                                 >
                                     Generator
                                 </button>
                                 <button
                                     onClick={() => setMode('build')}
-                                    className={`px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded transition-all flex items-center gap-2 ${mode === 'build' ? 'bg-white text-black shadow-sm' : 'text-gray-400 hover:text-white'}`}
+                                    className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded transition-all flex items-center gap-2 ${mode === 'build' ? 'bg-white text-black shadow-sm' : 'text-gray-400 hover:text-white'}`}
                                 >
                                     <Icons.Settings size={12} />
                                     Builder
@@ -1026,6 +1320,7 @@
                                 packages={packages}
                                 globalSettings={globalSettings}
                                 setGlobalSettings={setGlobalSettings}
+                                setPackages={setPackages}
                             />
                         ) : (
                             <BuilderMode
