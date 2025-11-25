@@ -648,13 +648,6 @@
                             {viewMode === 'single' ? (
                                 <>
                                     <div>
-                                        {/* Logo Row */}
-                                        {globalSettings.logo && (
-                                            <div className="flex justify-end mb-4 pt-2">
-                                                <img src={globalSettings.logo} alt="Event Logo" className="h-14 w-auto object-contain" />
-                                            </div>
-                                        )}
-
                                         <div className="flex justify-between items-end border-b-2 border-black pb-6 mb-12">
                                             <div>
                                                 <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-2 text-gray-500">PROPOSAL FOR:</h2>
@@ -712,13 +705,6 @@
                                 </>
                             ) : (
                                 <div className="flex flex-col h-full">
-                                    {/* Logo Row for Overview */}
-                                    {globalSettings.logo && (
-                                        <div className="flex justify-end mb-4 pt-2">
-                                            <img src={globalSettings.logo} alt="Event Logo" className="h-12 w-auto object-contain" />
-                                        </div>
-                                    )}
-
                                     <div className="flex justify-between items-end border-b-2 border-black pb-4 mb-6">
                                         <div className="max-w-2xl">
                                             <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-2 text-gray-500">SPONSORSHIP OPPORTUNITIES</h2>
