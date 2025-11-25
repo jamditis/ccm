@@ -9,15 +9,26 @@ A professional sponsorship proposal and package generator built for the Center f
 #### Generator Mode
 - Create targeted proposals for specific sponsors
 - Customize benefits and pricing per prospect
+- **Drag-and-drop** package reordering
 - Two view options:
   - **Specific Proposal**: Detailed single-tier proposal for one organization
-  - **Full Overview**: All sponsorship tiers on one page
+  - **Full Overview**: All sponsorship tiers on one page (shows all benefits)
 
 #### Builder Mode
 - Create and manage sponsorship tiers
 - Customize titles, costs, descriptions, and benefits
-- Choose from 15+ icons for visual distinction
+- Choose from 20+ icons for visual distinction
 - Support for both cash and in-kind/trade sponsorships
+
+### Branding & Customization
+- **Logo Upload**: Add your organization's logo to proposals
+- **Header Color Bars**: Customize the four-color decorative header
+- **Editable Footer Labels**: Change "Contact" and "Office" labels to anything
+
+### Sharing & Templates
+- **Share Link**: Generate a URL that encodes the entire configuration
+- **Templates**: Save configurations as reusable templates
+- **URL-based Loading**: Open shared links in a new browser tab to continue editing
 
 ### Export Options
 - **PDF Export**: High-fidelity multi-page PDF with smart page breaks
@@ -26,6 +37,7 @@ A professional sponsorship proposal and package generator built for the Center f
 
 ### Data Persistence
 - All packages and settings saved to localStorage
+- Templates saved separately for reuse
 - Reset to defaults option available
 - Global event information stored separately
 
@@ -43,12 +55,14 @@ A professional sponsorship proposal and package generator built for the Center f
 
 Click "Event & Contact Info" to expand the settings panel:
 
+- **Event Logo**: Upload your organization's logo (appears in header and footer)
 - **Event Title**: Name of your event (e.g., "2026 Community Media Luncheon")
 - **Date String**: Formatted date (e.g., "February 19, 2026")
 - **Organization Name**: Your organization's name
 - **Tagline**: Mission statement or event description
-- **Contact Name**: Primary contact person
-- **Location**: Office location or city
+- **Footer Label 1 & Value**: Customizable contact field (default: "Contact")
+- **Footer Label 2 & Value**: Customizable location field (default: "Office")
+- **Header Bar Colors**: Four color pickers to customize the decorative header
 
 ### Creating a Specific Proposal
 
@@ -64,8 +78,27 @@ Click "Event & Contact Info" to expand the settings panel:
 
 1. **Select "Full Overview"** from the view toggle
 2. All tiers display in a grid format
-3. Shows first 3 benefits per tier with "+X more" indicator
+3. Shows all benefits for each tier (no truncation)
 4. Perfect for general distribution or initial conversations
+
+### Reordering Packages
+
+- In Generator Mode, drag packages using the grip handle to reorder them
+- The new order is saved automatically and persists across sessions
+- Order changes apply to both Specific Proposal and Full Overview modes
+
+### Sharing & Templates
+
+#### Share Link
+1. Click the **Share** button in the navbar
+2. A URL containing your configuration is copied to clipboard
+3. Share this URL with others - they can open it to see and edit your configuration
+
+#### Using Templates
+1. Click the **Templates** button in the navbar
+2. **Save Template**: Enter a name and click Save to store current configuration
+3. **Load Template**: Click Load on any saved template to restore it
+4. **Delete Template**: Click the trash icon to remove a template
 
 ### Managing Sponsorship Tiers (Builder Mode)
 
@@ -125,6 +158,7 @@ The tool comes pre-configured with six tiers:
 ### Local Storage Keys
 - `ccm_sponsorship_packages`: Array of sponsorship tier objects
 - `ccm_sponsorship_globals`: Event and contact information
+- `ccm_sponsorship_templates`: Array of saved template configurations
 
 ## File Structure
 
@@ -258,14 +292,35 @@ The PDF export system:
     orgName: string,
     tagline: string,
     contactName: string,
-    contactLocation: string
+    contactLocation: string,
+    contactLabel: string,      // Customizable footer label (default: "Contact")
+    locationLabel: string,     // Customizable footer label (default: "Office")
+    logo: string | null,       // Base64-encoded logo image
+    headerColors: string[]     // Array of 4 hex color codes for header bars
 }
 ```
+
+## Changelog
+
+### v2.6
+- Added drag-and-drop reordering for packages in Generator Mode
+- Added logo upload functionality (displays in header and footer)
+- Added customizable header color bars (4-color picker)
+- Added editable footer labels (rename "Contact" and "Office")
+- Removed benefit truncation in Full Overview mode (shows all benefits)
+- Added shareable URL links for configuration sharing
+- Added template save/load functionality
+- UI improvements for responsive navbar
+
+### v2.5
+- Initial stable release with Generator and Builder modes
+- PDF and PNG export with smart page breaks
+- localStorage persistence
 
 ## Credits
 
 - **Organization**: [Center for Cooperative Media](https://centerforcooperativemedia.org/)
-- **Version**: 2.5 (Stable)
+- **Version**: 2.6
 
 ## License
 
