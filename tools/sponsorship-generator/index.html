@@ -366,24 +366,39 @@
             const handleDragStart = (e, pkgId) => {
                 setDraggedPkgId(pkgId);
                 e.dataTransfer.effectAllowed = 'move';
+                e.dataTransfer.setData('text/plain', pkgId);
             };
 
             const handleDragOver = (e, pkgId) => {
                 e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
                 if (pkgId !== draggedPkgId) {
                     setDragOverPkgId(pkgId);
                 }
             };
 
-            const handleDragEnd = () => {
-                if (draggedPkgId && dragOverPkgId && draggedPkgId !== dragOverPkgId) {
-                    const draggedIndex = packages.findIndex(p => p.id === draggedPkgId);
-                    const targetIndex = packages.findIndex(p => p.id === dragOverPkgId);
-                    const newPackages = [...packages];
-                    const [draggedPkg] = newPackages.splice(draggedIndex, 1);
-                    newPackages.splice(targetIndex, 0, draggedPkg);
-                    setPackages(newPackages);
+            const handleDragLeave = () => {
+                setDragOverPkgId(null);
+            };
+
+            const handleDrop = (e, targetPkgId) => {
+                e.preventDefault();
+                const sourcePkgId = e.dataTransfer.getData('text/plain');
+                if (sourcePkgId && targetPkgId && sourcePkgId !== targetPkgId) {
+                    const draggedIndex = packages.findIndex(p => p.id === sourcePkgId);
+                    const targetIndex = packages.findIndex(p => p.id === targetPkgId);
+                    if (draggedIndex !== -1 && targetIndex !== -1) {
+                        const newPackages = [...packages];
+                        const [draggedPkg] = newPackages.splice(draggedIndex, 1);
+                        newPackages.splice(targetIndex, 0, draggedPkg);
+                        setPackages(newPackages);
+                    }
                 }
+                setDraggedPkgId(null);
+                setDragOverPkgId(null);
+            };
+
+            const handleDragEnd = () => {
                 setDraggedPkgId(null);
                 setDragOverPkgId(null);
             };
@@ -541,13 +556,15 @@
                                                     draggable
                                                     onDragStart={(e) => handleDragStart(e, pkg.id)}
                                                     onDragOver={(e) => handleDragOver(e, pkg.id)}
+                                                    onDragLeave={handleDragLeave}
+                                                    onDrop={(e) => handleDrop(e, pkg.id)}
                                                     onDragEnd={handleDragEnd}
                                                     onClick={() => setActivePackageId(pkg.id)}
                                                     className={`text-left p-3 rounded-lg border transition-all flex items-center gap-3 group cursor-pointer ${
                                                         activePackageId === pkg.id
                                                             ? 'border-red-600 bg-red-50 shadow-sm ring-1 ring-red-200'
                                                             : 'border-gray-200 hover:border-gray-400 hover:bg-gray-50'
-                                                    } ${isDragging ? 'opacity-50' : ''} ${isDragOver ? 'border-blue-500 bg-blue-50' : ''}`}
+                                                    } ${isDragging ? 'opacity-50 scale-95' : ''} ${isDragOver ? 'border-blue-500 bg-blue-50 scale-105' : ''}`}
                                                 >
                                                     <div className="cursor-grab active:cursor-grabbing text-gray-400 hover:text-gray-600">
                                                         <Icons.GripVertical size={14} />
@@ -627,13 +644,6 @@
                                     <div key={idx} className="w-1/4 h-full" style={{ backgroundColor: color }}></div>
                                 ))}
                             </div>
-
-                            {/* Logo Display */}
-                            {globalSettings.logo && (
-                                <div className="absolute top-6 right-8">
-                                    <img src={globalSettings.logo} alt="Event Logo" className="h-16 w-auto object-contain" />
-                                </div>
-                            )}
 
                             {viewMode === 'single' ? (
                                 <>
