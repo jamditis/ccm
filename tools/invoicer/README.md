@@ -37,6 +37,13 @@ A modern, professional invoice generator built for the Center for Cooperative Me
 - **PDF Download**: High-quality PDF export with preserved styling
 - **Print Support**: Optimized print styles for direct printing
 
+### Built-in Help Guide
+- **Welcome Modal**: First-time users see a helpful guide explaining all features
+- **Feature Explanations**: Clear descriptions of AI Import, profiles, customization, and export
+- **Quick Tips**: Helpful hints for using the tool effectively
+- **Help Button**: Click the **?** icon in the header anytime to reopen the guide
+- **"Don't Show Again"**: Returning users can dismiss the welcome modal permanently
+
 ## Quick Start
 
 1. Open `index.html` in any modern web browser
@@ -159,6 +166,7 @@ Include your payment details in the "Payment Instructions" field:
 The application uses browser localStorage to persist:
 - Saved profiles (sender info, notes, themes)
 - Claude API key (for AI Import feature)
+- Help modal preference ("Don't show again" setting)
 
 ## File Structure
 
