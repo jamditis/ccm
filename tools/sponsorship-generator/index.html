@@ -726,12 +726,12 @@
                                             const PkgIcon = Icons[pkg.iconName] || Icons.Sparkles;
                                             return (
                                                 <div key={pkg.id} className="border-t border-gray-200 pt-3 break-inside-avoid">
-                                                    <div className="flex justify-between items-start mb-2">
+                                                    <div className="flex justify-between items-center mb-2">
                                                         <div className="flex items-center gap-2">
                                                             <div className="p-1 bg-gray-100 rounded text-gray-600"><PkgIcon size={16}/></div>
                                                             <h3 className="font-bold text-lg leading-tight" style={{ fontFamily: FONTS.heading }}>{pkg.title}</h3>
                                                         </div>
-                                                        <span className="font-mono font-bold bg-black text-white text-xs px-2 py-1">{pkg.cost}</span>
+                                                        <span className="font-mono font-bold bg-black text-white text-xs px-2 py-1 inline-flex items-center justify-center whitespace-nowrap">{pkg.cost}</span>
                                                     </div>
                                                     <div className="text-xs text-gray-500 mb-2 leading-relaxed">{pkg.description}</div>
                                                     <ul className="space-y-1">
