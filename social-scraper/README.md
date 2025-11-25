@@ -1,5 +1,7 @@
 # NJ Influencer Social Media Scraper
 
+> **Note**: This is an internal CCM research project. It is not a public tool and is intended for CCM staff use only.
+
 A Python workflow to scrape social media content from New Jersey-based influencers. Downloads the 50 most recent posts from TikTok, Instagram, and YouTube accounts.
 
 ## Setup

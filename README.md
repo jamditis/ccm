@@ -1,6 +1,20 @@
-# ⚙️ Free tools from the Center for Cooperative Media
+# Center for Cooperative Media - Tools & Projects
 
-A collection of internal and external tools created by the [Center for Cooperative Media](https://centerforcooperativemedia.org/) at Montclair State University. These tools are designed to support local journalism operations, streamline administrative tasks, and help newsrooms leverage modern technology effectively.
+A collection of free tools and internal projects created by the [Center for Cooperative Media](https://centerforcooperativemedia.org/) at Montclair State University.
+
+---
+
+## What's in This Repository?
+
+This repository contains **two main things**:
+
+1. **Public Tools** (`/tools/`) - Free web-based tools designed to help journalists, newsrooms, and media organizations with everyday tasks like creating invoices, planning events, and choosing the right AI tools.
+
+2. **Internal Research Projects** (`/social-scraper/`) - Research tools used by CCM staff for internal projects (not intended for public use).
+
+If you're a **journalist or newsroom looking for tools**, head to the `/tools/` folder - everything there is free to use!
+
+---
 
 ## About the Center for Cooperative Media
 
@@ -16,9 +30,11 @@ The [Center for Cooperative Media](https://centerforcooperativemedia.org/) is a 
 
 The Center recently received a [$2.5 million Knight Foundation grant](https://www.montclair.edu/newscenter/2025/02/17/center-for-cooperative-media-receives-2-5m-knight-foundation-grant-to-expand-collaborative-journalism-nationwide/) to launch the Collaborative Journalism Resource Hub, supporting journalism collaboratives across the United States.
 
-## Tools in This Repository
+## Public Tools
 
-### LLM Journalism Tool Advisor | **Location**: [`/tools/ccm-app`](./tools/ccm-app)
+All tools in the `/tools/` folder are free to use. Most are single-file web applications that run directly in your browser - no installation required!
+
+### LLM Journalism Tool Advisor | **Location**: [`/tools/llm-advisor`](./tools/llm-advisor)
 
 ![LLM Journalism Tool Advisor](https://i.imgur.com/DW3dNiy.png)
 
@@ -31,7 +47,7 @@ An interactive decision tree application that helps journalists select the most 
 
 **Tech Stack**: React 18, Vite, Tailwind CSS
 
-[View Documentation →](./tools/ccm-app/README.md)
+[View Documentation →](./tools/llm-advisor/README.md)
 
 ---
 
@@ -88,6 +104,60 @@ A comprehensive budget planning tool for events, helping newsrooms track expense
 
 ---
 
+### Chart Maker | **Location**: [`/tools/chart-maker`](./tools/chart-maker)
+
+A visual flowchart and diagram creation tool. Create professional charts with an intuitive drag-and-drop interface. Features include:
+
+- Node-based chart building
+- Multiple shape types (rectangles, diamonds, ovals)
+- Customizable colors and styles
+- Connection lines with drag-to-reconnect
+- Export capabilities
+
+**Tech Stack**: React 18, Tailwind CSS
+
+---
+
+### Media Kit Builder | **Location**: [`/tools/media-kit-builder`](./tools/media-kit-builder)
+
+Create professional media kits to share with advertisers and sponsors. Present your audience data, ad rates, and platform information in a polished format.
+
+**Tech Stack**: React 18, Tailwind CSS, html2pdf.js
+
+[View Documentation →](./tools/media-kit-builder/README.md)
+
+---
+
+### Freelancer Rate Calculator | **Location**: [`/tools/freelancer-rate-calculator`](./tools/freelancer-rate-calculator)
+
+Calculate fair freelance rates based on project type, complexity, and market benchmarks. Perfect for freelance journalists determining their rates.
+
+**Tech Stack**: React 18, Tailwind CSS
+
+[View Documentation →](./tools/freelancer-rate-calculator/README.md)
+
+---
+
+### Grant Proposal Generator | **Location**: [`/tools/grant-proposal-generator`](./tools/grant-proposal-generator)
+
+Structure grant proposals with sections aligned to common journalism funder requirements. Includes templates for Knight Foundation, Google News Initiative, and more.
+
+**Tech Stack**: React 18, Tailwind CSS, html2pdf.js
+
+[View Documentation →](./tools/grant-proposal-generator/README.md)
+
+---
+
+### Collaboration Agreement Generator | **Location**: [`/tools/collaboration-agreement-generator`](./tools/collaboration-agreement-generator)
+
+Create MOUs and collaboration agreements between news organizations for joint reporting projects, shared resources, or republishing arrangements.
+
+**Tech Stack**: React 18, Tailwind CSS, html2pdf.js
+
+[View Documentation →](./tools/collaboration-agreement-generator/README.md)
+
+---
+
 ## Quick Start
 
 ### Browser-Based Tools
@@ -104,7 +174,7 @@ The **LLM Journalism Tool Advisor** requires Node.js:
 
 ```bash
 # Navigate to the app directory
-cd tools/ccm-app
+cd tools/llm-advisor
 
 # Install dependencies
 npm install
@@ -174,23 +244,21 @@ We welcome contributions from the journalism community! Whether you're fixing bu
 ```
 ccm/
 ├── README.md                           # This file
-├── tools/
-│   ├── ccm-app/                        # LLM Journalism Tool Advisor
-│   │   ├── components/                 # React components
-│   │   ├── data/                       # Decision tree data
-│   │   ├── utils/                      # Utility functions
-│   │   ├── README.md                   # Tool documentation
-│   │   └── ...
+├── docs/                               # Documentation and PRDs
+│   ├── tool-prds.md                    # Product requirements for tools
+│   └── ENHANCEMENTS.md                 # Technical enhancements documentation
+├── tools/                              # PUBLIC TOOLS (free to use!)
+│   ├── llm-advisor/                    # LLM Journalism Tool Advisor (React app)
 │   ├── invoicer/                       # Invoice Generator
-│   │   ├── index.html                  # Single-file application
-│   │   └── README.md                   # Tool documentation
 │   ├── sponsorship-generator/          # Sponsorship Package Generator
-│   │   ├── index.html                  # Single-file application
-│   │   └── README.md                   # Tool documentation
-│   └── event-budget-calculator/        # Event Budget Calculator
-│       ├── index.html                  # Single-file application
-│       └── README.md                   # Tool documentation
-└── ...
+│   ├── event-budget-calculator/        # Event Budget Calculator
+│   ├── chart-maker/                    # Flowchart/Diagram Creator
+│   ├── media-kit-builder/              # Media Kit Builder
+│   ├── freelancer-rate-calculator/     # Freelance Rate Calculator
+│   ├── grant-proposal-generator/       # Grant Proposal Outline Tool
+│   ├── collaboration-agreement-generator/  # MOU/Agreement Generator
+│   └── shared/                         # Shared utilities and components
+└── social-scraper/                     # INTERNAL: Research project (not for public use)
 ```
 
 ## Author
