@@ -777,7 +777,49 @@
 
         function BuilderMode({ packages, setPackages, onReset }) {
             const [editingId, setEditingId] = useState(null);
-            
+            const [draggedPkgId, setDraggedPkgId] = useState(null);
+            const [dragOverPkgId, setDragOverPkgId] = useState(null);
+
+            const handleDragStart = (e, pkgId) => {
+                setDraggedPkgId(pkgId);
+                e.dataTransfer.effectAllowed = 'move';
+                e.dataTransfer.setData('text/plain', pkgId);
+            };
+
+            const handleDragOver = (e, pkgId) => {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+                if (pkgId !== draggedPkgId) {
+                    setDragOverPkgId(pkgId);
+                }
+            };
+
+            const handleDragLeave = () => {
+                setDragOverPkgId(null);
+            };
+
+            const handleDrop = (e, targetPkgId) => {
+                e.preventDefault();
+                const sourcePkgId = e.dataTransfer.getData('text/plain');
+                if (sourcePkgId && targetPkgId && sourcePkgId !== targetPkgId) {
+                    const draggedIndex = packages.findIndex(p => p.id === sourcePkgId);
+                    const targetIndex = packages.findIndex(p => p.id === targetPkgId);
+                    if (draggedIndex !== -1 && targetIndex !== -1) {
+                        const newPackages = [...packages];
+                        const [draggedPkg] = newPackages.splice(draggedIndex, 1);
+                        newPackages.splice(targetIndex, 0, draggedPkg);
+                        setPackages(newPackages);
+                    }
+                }
+                setDraggedPkgId(null);
+                setDragOverPkgId(null);
+            };
+
+            const handleDragEnd = () => {
+                setDraggedPkgId(null);
+                setDragOverPkgId(null);
+            };
+
             const handleAdd = () => {
                 const newPkg = {
                     id: Date.now().toString(),
@@ -834,16 +876,27 @@
                          </div>
                          <div className="flex-1 overflow-y-auto p-4 space-y-2 custom-scrollbar">
                              {packages.map(pkg => (
-                                 <div 
+                                 <div
                                     key={pkg.id}
+                                    draggable
+                                    onDragStart={(e) => handleDragStart(e, pkg.id)}
+                                    onDragOver={(e) => handleDragOver(e, pkg.id)}
+                                    onDragLeave={handleDragLeave}
+                                    onDrop={(e) => handleDrop(e, pkg.id)}
+                                    onDragEnd={handleDragEnd}
                                     onClick={() => setEditingId(pkg.id)}
-                                    className={`p-4 rounded border cursor-pointer transition-all ${editingId === pkg.id ? 'bg-gray-800 border-red-500' : 'bg-black/20 border-gray-800 hover:border-gray-600'}`}
+                                    className={`p-4 rounded border cursor-pointer transition-all flex items-start gap-3 ${editingId === pkg.id ? 'bg-gray-800 border-red-500' : 'bg-black/20 border-gray-800 hover:border-gray-600'} ${draggedPkgId === pkg.id ? 'opacity-50 scale-95' : ''} ${dragOverPkgId === pkg.id ? 'border-red-400 scale-105' : ''}`}
                                  >
-                                     <div className="flex justify-between items-start mb-1">
-                                         <h3 className="font-bold text-white">{pkg.title}</h3>
-                                         <button onClick={(e) => {e.stopPropagation(); handleDelete(pkg.id)}} className="text-gray-600 hover:text-red-500"><Icons.Trash2 size={14}/></button>
+                                     <div className="cursor-grab text-gray-600 hover:text-gray-400 pt-1" onMouseDown={(e) => e.stopPropagation()}>
+                                         <Icons.GripVertical size={16} />
                                      </div>
-                                     <div className="text-xs font-mono text-gray-500">{pkg.cost} • {pkg.type}</div>
+                                     <div className="flex-1">
+                                         <div className="flex justify-between items-start mb-1">
+                                             <h3 className="font-bold text-white">{pkg.title}</h3>
+                                             <button onClick={(e) => {e.stopPropagation(); handleDelete(pkg.id)}} className="text-gray-600 hover:text-red-500"><Icons.Trash2 size={14}/></button>
+                                         </div>
+                                         <div className="text-xs font-mono text-gray-500">{pkg.cost} • {pkg.type}</div>
+                                     </div>
                                  </div>
                              ))}
                          </div>
