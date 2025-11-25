@@ -16,12 +16,13 @@ A professional sponsorship proposal and package generator built for the Center f
 
 #### Builder Mode
 - Create and manage sponsorship tiers
+- **Drag-and-drop** tier reordering
 - Customize titles, costs, descriptions, and benefits
 - Choose from 20+ icons for visual distinction
 - Support for both cash and in-kind/trade sponsorships
 
 ### Branding & Customization
-- **Logo Upload**: Add your organization's logo to proposals
+- **Logo Upload**: Add your organization's logo to the footer of proposals
 - **Header Color Bars**: Customize the four-color decorative header
 - **Editable Footer Labels**: Change "Contact" and "Office" labels to anything
 
@@ -55,7 +56,7 @@ A professional sponsorship proposal and package generator built for the Center f
 
 Click "Event & Contact Info" to expand the settings panel:
 
-- **Event Logo**: Upload your organization's logo (appears in header and footer)
+- **Event Logo**: Upload your organization's logo (appears in footer)
 - **Event Title**: Name of your event (e.g., "2026 Community Media Luncheon")
 - **Date String**: Formatted date (e.g., "February 19, 2026")
 - **Organization Name**: Your organization's name
@@ -83,7 +84,7 @@ Click "Event & Contact Info" to expand the settings panel:
 
 ### Reordering Packages
 
-- In Generator Mode, drag packages using the grip handle to reorder them
+- In both Generator Mode and Builder Mode, drag packages using the grip handle to reorder them
 - The new order is saved automatically and persists across sessions
 - Order changes apply to both Specific Proposal and Full Overview modes
 
@@ -303,8 +304,8 @@ The PDF export system:
 ## Changelog
 
 ### v2.6
-- Added drag-and-drop reordering for packages in Generator Mode
-- Added logo upload functionality (displays in header and footer)
+- Added drag-and-drop reordering for packages in Generator Mode and Builder Mode
+- Added logo upload functionality (displays in footer)
 - Added customizable header color bars (4-color picker)
 - Added editable footer labels (rename "Contact" and "Office")
 - Removed benefit truncation in Full Overview mode (shows all benefits)
