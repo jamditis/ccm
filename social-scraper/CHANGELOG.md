@@ -1,8 +1,16 @@
 # Changelog
 
+> **What is this project?** This is an internal research tool used by CCM staff to study how New Jersey influencers use social media. It downloads and analyzes videos from TikTok, Instagram, and YouTube. **This is not a public tool**—it's for academic research purposes only.
+
+> **What is a changelog?** A record of what's been added, changed, or fixed in each version. It helps the team track progress and understand the project's evolution.
+
 All notable changes to the NJ Influencer Social Media Scraper will be documented in this file.
 
+---
+
 ## [0.1.8] - 2025-11-21
+
+**Summary:** Continued processing videos with faster GPU acceleration. About 17% of all videos now processed.
 
 ### Video Processing Progress
 - **520 videos processed** (17.1% of 3,047)
@@ -32,7 +40,11 @@ All notable changes to the NJ Influencer Social Media Scraper will be documented
 - Recovery process nearly complete (videos 0-99)
 - Next batch: 520-620
 
+---
+
 ## [0.1.7] - 2025-11-21
+
+**Summary:** Enabled GPU acceleration for faster video processing. Processing is now 2-3x faster on Apple M1 computers.
 
 ### Video Processing Progress
 - **420 videos processed** (320 main + recovery in progress)
@@ -66,7 +78,11 @@ All notable changes to the NJ Influencer Social Media Scraper will be documented
 - Recovery process in progress (videos 0-99)
 - Next batch: 420-520
 
+---
+
 ## [0.1.6] - 2025-11-21
+
+**Summary:** Processed 220 videos from 4 influencers. Discovered a bug that caused some data to be overwritten—fixed it and started a recovery process.
 
 ### Video Processing Progress
 - **220 videos processed** across 4 influencers:
@@ -130,7 +146,11 @@ cp -r analysis/video_results_recovery/*/ analysis/video_results_with_costs/
 - Estimated Gemini API cost: ~$0.02-0.05 per video
 - Total remaining cost estimate: ~$52-130
 
+---
+
 ## [0.1.5] - 2025-11-21
+
+**Summary:** Built a complete video processing pipeline that can extract audio, transcribe speech, extract frames, and read text from images. This allows us to analyze video content at scale.
 
 ### Added - Video Processing Module
 Complete video content analysis pipeline built in `analysis/video_processor/`:
@@ -173,7 +193,11 @@ Complete video content analysis pipeline built in `analysis/video_processor/`:
   - YouTube: 250 videos
   - Instagram: 1,516 videos
 
+---
+
 ## [0.1.4] - 2025-11-21
+
+**Summary:** Installed all the software needed to process videos: speech-to-text (Whisper), text reading from images (Tesseract), and video processing (ffmpeg).
 
 ### Added - Video Processing Tools
 - Installed all dependencies for video content analysis:
@@ -183,7 +207,11 @@ Complete video content analysis pipeline built in `analysis/video_processor/`:
   - **google-generativeai** - Gemini vision API
   - **pytesseract** - Python Tesseract wrapper
 
+---
+
 ## [0.1.3] - 2025-11-21
+
+**Summary:** Finished downloading content from all 39 influencers on Instagram. Now have ~3,400 pieces of content across all three platforms (TikTok, YouTube, Instagram). Also added data analysis tools.
 
 ### Completed - Full Instagram Scraping
 - All 39 influencers scraped successfully
@@ -227,7 +255,11 @@ Complete video content analysis pipeline built in `analysis/video_processor/`:
 - Documented TrueAnon-style network visualization approach
 - Added R/RStudio comparison and hybrid workflow
 
+---
+
 ## [0.1.2] - 2025-11-20
+
+**Summary:** Downloaded all TikTok and YouTube content from the 39 influencers. Started on Instagram.
 
 ### Completed
 - Full scraping run of all 39 NJ influencers
@@ -243,7 +275,11 @@ Complete video content analysis pipeline built in `analysis/video_processor/`:
 - Platform analysis and performance metrics
 - Instagram session authentication via instaloader
 
+---
+
 ## [0.1.1] - 2025-11-19
+
+**Summary:** Fixed an issue where some YouTube videos wouldn't download because they were only available in high resolution.
 
 ### Fixed
 - YouTube format selection now falls back to best available when 720p not available
@@ -251,7 +287,11 @@ Complete video content analysis pipeline built in `analysis/video_processor/`:
   - New: `-f "bestvideo[height<=720]+bestaudio/best[height<=720]/best"` with fallback
 - Resolves "Requested format is not available" errors for channels with only 1080p+ content
 
+---
+
 ## [0.1.0] - 2024-11-19
+
+**Summary:** Initial version of the research tool. Created the system to download content from TikTok, Instagram, and YouTube for 39 New Jersey influencers.
 
 ### Added
 - Initial project setup with full scraping workflow
@@ -291,3 +331,21 @@ Complete video content analysis pipeline built in `analysis/video_processor/`:
 - Instagram requires authentication for reliable operation
 - TikTok may block requests (platform anti-bot measures)
 - Some influencers may have private or deleted accounts
+
+---
+
+## Glossary: Technical Terms
+
+| Term | What It Means |
+|------|---------------|
+| **Scraping** | Automatically downloading content from websites |
+| **yt-dlp** | A tool for downloading videos from various platforms |
+| **instaloader** | A tool specifically for downloading Instagram content |
+| **Whisper** | An AI tool that converts speech in videos to text |
+| **OCR (Tesseract)** | Technology that reads text from images |
+| **GPU Acceleration (MPS)** | Using the graphics chip for faster processing (especially on Apple computers) |
+| **Batch Processing** | Processing content in groups rather than one at a time |
+| **Checkpoint** | A saved progress point so work can resume after interruption |
+| **Metadata** | Information about content (views, likes, dates) rather than the content itself |
+| **API** | A way to access another service's features programmatically |
+| **Gemini** | Google's AI that can analyze images and video |
