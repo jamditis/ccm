@@ -1,20 +1,31 @@
 # Center for Cooperative Media - Tools & Projects
 
-A collection of free tools and internal projects created by the [Center for Cooperative Media](https://centerforcooperativemedia.org/) at Montclair State University.
+A collection of **free tools** for journalists and newsrooms, created by the [Center for Cooperative Media](https://centerforcooperativemedia.org/) at Montclair State University.
+
+> 🎯 **Just looking for tools to use?** Skip to [Public Tools](#public-tools) below. Everything is free!
 
 ---
 
 ## What's in This Repository?
 
-This repository contains **two main things**:
+A "repository" is simply a collection of files and folders stored online (like a shared folder on Google Drive, but for code). This one contains:
 
-1. **Public Tools** (`/tools/`) - Free web-based tools designed to help journalists, newsrooms, and media organizations with everyday tasks like creating invoices, planning events, and choosing the right AI tools.
+### 1. 🛠️ Public Tools (for everyone!)
+**Location:** `/tools/` folder
 
-2. **Internal Research Projects** (`/social-scraper/`) - Research tools used by CCM staff for internal projects (not intended for public use).
+Nine free browser-based tools that help with everyday journalism tasks:
+- Creating professional invoices
+- Building sponsorship proposals
+- Planning event budgets
+- Finding the right AI tools for your work
+- And more...
 
-If you're a **journalist or newsroom looking for tools**, head to the `/tools/` folder - everything there is free to use!
+**No installation required!** Most tools work by simply opening a file in your web browser (like Chrome, Safari, or Firefox).
 
----
+### 2. 🔬 Internal Research Projects (staff only)
+**Location:** `/social-scraper/` folder
+
+Research tools used by CCM staff. Not intended for public use, but the code is visible here for transparency.
 
 ## About the Center for Cooperative Media
 
@@ -38,14 +49,15 @@ All tools in the `/tools/` folder are free to use. Most are single-file web appl
 
 ![LLM Journalism Tool Advisor](https://i.imgur.com/DW3dNiy.png)
 
-An interactive decision tree application that helps journalists select the most appropriate AI/LLM tools for their specific tasks. Features include:
+**What it does:** Answers the question "Which AI tool should I use?" through a simple question-and-answer format. Like a quiz that leads you to the right tool for your journalism task.
 
-- Guided workflow for content creation, data analysis, editing, source finding, and multimedia
-- Tool recommendations for Claude, ChatGPT, Gemini, Perplexity, and more
-- Sample prompts, practical tips, and ethical considerations
-- Modern React UI with responsive design
+**Features:**
+- Step-by-step guidance for writing, data analysis, editing, research, and multimedia
+- Recommendations for popular AI tools (Claude, ChatGPT, Gemini, Perplexity)
+- Ready-to-use prompts and ethical guidelines
+- Works on phones, tablets, and computers
 
-**Tech Stack**: React 18, Vite, Tailwind CSS
+**How to use:** This tool requires a few extra steps to run (see [Quick Start](#nodejs-applications) below).
 
 [View Documentation →](./tools/llm-advisor/README.md)
 
@@ -55,15 +67,16 @@ An interactive decision tree application that helps journalists select the most 
 
 ![Invoicer tool](https://i.imgur.com/QHPpkqv.jpeg)
 
-A professional invoice generator for creating beautiful, customizable invoices. Perfect for freelance journalists, consultants, and small newsrooms. Features include:
+**What it does:** Creates professional invoices you can send to clients. Just fill in the blanks and download a PDF.
 
-- Customizable themes (colors, fonts, corner styles)
-- Logo upload and branding
-- Profile saving for quick reuse
-- PDF export
-- Payment instructions support
+**Features:**
+- Customize colors, fonts, and styles to match your brand
+- Add your logo
+- Save your info so you don't have to re-enter it each time
+- Download as a PDF ready to email
+- Include payment instructions (Venmo, bank transfer, etc.)
 
-**Tech Stack**: React 18, Tailwind CSS, html2pdf.js
+**How to use:** Just open the file in your web browser—no installation needed!
 
 [View Documentation →](./tools/invoicer/README.md)
 
@@ -73,15 +86,16 @@ A professional invoice generator for creating beautiful, customizable invoices. 
 
 ![Sponsorship generator tool](https://i.imgur.com/lLMOTD5.jpeg)
 
-A tool for creating professional sponsorship proposals and package overviews for events. Ideal for news organizations seeking sponsorships for events, programs, or initiatives. Features include:
+**What it does:** Creates professional sponsorship proposals for events. Perfect for pitching sponsors like "Gold," "Silver," and "Bronze" packages.
 
-- Generator mode for targeted proposals
-- Builder mode to create/manage sponsorship tiers
-- Support for cash and in-kind sponsorships
-- PDF and PNG export
-- Customizable event details and contact info
+**Features:**
+- **Generator mode:** Create targeted proposals for specific sponsors
+- **Builder mode:** Design your own sponsorship tiers with custom benefits
+- Handle both cash sponsorships and "in-kind" donations (like free venue space)
+- Download as PDF (for emailing) or PNG image (for social media)
+- Add your event details and contact information
 
-**Tech Stack**: React 18, Tailwind CSS, html2canvas, jsPDF
+**How to use:** Just open the file in your web browser—no installation needed!
 
 [View Documentation →](./tools/sponsorship-generator/README.md)
 
@@ -89,16 +103,17 @@ A tool for creating professional sponsorship proposals and package overviews for
 
 ### Event Budget Calculator | **Location**: [`/tools/event-budget-calculator`](./tools/event-budget-calculator)
 
-A comprehensive budget planning tool for events, helping newsrooms track expenses, revenue, and break-even analysis. Features include:
+**What it does:** Helps you plan and track event finances. See at a glance if your revenue covers your costs.
 
-- Expense categories (venue, catering, A/V, marketing, staffing, materials)
-- Revenue tracking (sponsorships, tickets, donations)
-- Real-time calculations and summary dashboard
-- Break-even analysis and coverage percentage
-- Save/load multiple budgets
-- PDF export
+**Features:**
+- Track expenses by category: venue, food, equipment, marketing, staff, supplies
+- Track income from sponsorships, ticket sales, and donations
+- See totals update automatically as you enter numbers
+- **Break-even analysis:** Shows how much of your costs are covered
+- Save multiple budgets and come back to them later
+- Download as a PDF
 
-**Tech Stack**: React 18, Tailwind CSS, html2pdf.js
+**How to use:** Just open the file in your web browser—no installation needed!
 
 [View Documentation →](./tools/event-budget-calculator/README.md)
 
@@ -106,23 +121,31 @@ A comprehensive budget planning tool for events, helping newsrooms track expense
 
 ### Chart Maker | **Location**: [`/tools/chart-maker`](./tools/chart-maker)
 
-A visual flowchart and diagram creation tool. Create professional charts with an intuitive drag-and-drop interface. Features include:
+**What it does:** Creates flowcharts and diagrams by dragging and dropping shapes. Great for visualizing processes or organizational structures.
 
-- Node-based chart building
-- Multiple shape types (rectangles, diamonds, ovals)
-- Customizable colors and styles
-- Connection lines with drag-to-reconnect
-- Export capabilities
+**Features:**
+- Drag-and-drop shapes to build your chart
+- Multiple shape types: boxes, diamonds (for decisions), ovals
+- Customize colors and styles
+- Draw lines to connect shapes
+- Export your finished chart
 
-**Tech Stack**: React 18, Tailwind CSS
+**How to use:** Just open the file in your web browser—no installation needed!
 
 ---
 
 ### Media Kit Builder | **Location**: [`/tools/media-kit-builder`](./tools/media-kit-builder)
 
-Create professional media kits to share with advertisers and sponsors. Present your audience data, ad rates, and platform information in a polished format.
+**What it does:** Creates a professional "media kit"—a document that tells advertisers about your audience and ad rates. Essential for selling ads.
 
-**Tech Stack**: React 18, Tailwind CSS, html2pdf.js
+**Features:**
+- Present your audience size and demographics
+- List your ad rates and options
+- Showcase your platforms (website, newsletter, social media, podcast)
+- Professional formatting that looks polished
+- Download as a PDF
+
+**How to use:** Just open the file in your web browser—no installation needed!
 
 [View Documentation →](./tools/media-kit-builder/README.md)
 
@@ -130,9 +153,15 @@ Create professional media kits to share with advertisers and sponsors. Present y
 
 ### Freelancer Rate Calculator | **Location**: [`/tools/freelancer-rate-calculator`](./tools/freelancer-rate-calculator)
 
-Calculate fair freelance rates based on project type, complexity, and market benchmarks. Perfect for freelance journalists determining their rates.
+**What it does:** Helps freelancers figure out how much to charge. Answers "What's a fair rate for this project?"
 
-**Tech Stack**: React 18, Tailwind CSS
+**Features:**
+- Choose your project type (article, photo, video, podcast, etc.)
+- Factor in complexity, rush deadlines, and usage rights
+- See how your rate compares to industry standards
+- Get a professional quote you can send to clients
+
+**How to use:** Just open the file in your web browser—no installation needed!
 
 [View Documentation →](./tools/freelancer-rate-calculator/README.md)
 
@@ -140,9 +169,16 @@ Calculate fair freelance rates based on project type, complexity, and market ben
 
 ### Grant Proposal Generator | **Location**: [`/tools/grant-proposal-generator`](./tools/grant-proposal-generator)
 
-Structure grant proposals with sections aligned to common journalism funder requirements. Includes templates for Knight Foundation, Google News Initiative, and more.
+**What it does:** Helps you write grant proposals by providing a structured outline with all the sections funders typically require.
 
-**Tech Stack**: React 18, Tailwind CSS, html2pdf.js
+**Features:**
+- Templates for major journalism funders (Knight Foundation, Google News Initiative, etc.)
+- Section-by-section guidance telling you what to write
+- Word count tracking to stay within limits
+- Progress tracking so you know what's done
+- Download your proposal as a PDF
+
+**How to use:** Just open the file in your web browser—no installation needed!
 
 [View Documentation →](./tools/grant-proposal-generator/README.md)
 
@@ -150,9 +186,19 @@ Structure grant proposals with sections aligned to common journalism funder requ
 
 ### Collaboration Agreement Generator | **Location**: [`/tools/collaboration-agreement-generator`](./tools/collaboration-agreement-generator)
 
-Create MOUs and collaboration agreements between news organizations for joint reporting projects, shared resources, or republishing arrangements.
+**What it does:** Creates formal agreements between news organizations working together. Think of it as a fill-in-the-blank contract generator.
 
-**Tech Stack**: React 18, Tailwind CSS, html2pdf.js
+**Features:**
+- Templates for different collaboration types:
+  - Joint investigations
+  - Content sharing/republishing
+  - Shared resources (staff, equipment)
+  - Event partnerships
+- Support for 2 or more partner organizations
+- Cover all the important topics: who does what, editorial standards, credit, finances
+- Download a professional PDF ready for signatures
+
+**How to use:** Just open the file in your web browser—no installation needed!
 
 [View Documentation →](./tools/collaboration-agreement-generator/README.md)
 
@@ -160,30 +206,57 @@ Create MOUs and collaboration agreements between news organizations for joint re
 
 ## Quick Start
 
-### Browser-Based Tools
+### 🌐 Browser-Based Tools (Most Tools)
 
-The **Invoicer**, **Sponsorship Generator**, and **Event Budget Calculator** are single-file HTML applications that run directly in your browser:
+Most tools work instantly in your web browser. Here's how:
 
-1. Navigate to the tool directory
-2. Open `index.html` in any modern web browser
-3. Start using immediately—no installation required
+**Option A: Download and Open (Easiest)**
+1. Download the `index.html` file from the tool's folder
+2. Double-click the file to open it in your web browser
+3. Start using—that's it!
 
-### Node.js Applications
+**Option B: Open Directly from GitHub**
+1. Navigate to the tool's folder on GitHub
+2. Click on `index.html`
+3. Click the "Raw" button, then save the page
+4. Open the saved file in your browser
 
-The **LLM Journalism Tool Advisor** requires Node.js:
+**Tools that work this way:**
+- Invoicer
+- Sponsorship Package Generator
+- Event Budget Calculator
+- Chart Maker
+- Media Kit Builder
+- Freelancer Rate Calculator
+- Grant Proposal Generator
+- Collaboration Agreement Generator
 
+---
+
+### 💻 Node.js Applications (LLM Advisor Only)
+
+The **LLM Journalism Tool Advisor** is more complex and requires some technical setup. If you're not comfortable with command-line tools, ask a tech-savvy colleague for help.
+
+**What you need first:**
+- Node.js installed on your computer (download free from [nodejs.org](https://nodejs.org))
+
+**Steps:**
 ```bash
-# Navigate to the app directory
+# 1. Open your computer's Terminal (Mac) or Command Prompt (Windows)
+
+# 2. Navigate to the app folder
 cd tools/llm-advisor
 
-# Install dependencies
+# 3. Install the required software (only needed once)
 npm install
 
-# Start development server
+# 4. Start the tool
 npm run dev
 ```
 
-The app will be available at `http://localhost:5173`
+After running these commands, open your web browser and go to: `http://localhost:5173`
+
+> **Tip:** "npm" is a tool that comes with Node.js for managing software packages. The commands above download required components and start the application.
 
 ## Use Cases
 
@@ -230,14 +303,17 @@ We welcome contributions from the journalism community! Whether you're fixing bu
 
 ## Technical Requirements
 
-### Browser-Based Tools
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- JavaScript enabled
-- Internet connection (for CDN-loaded dependencies)
+### For Browser-Based Tools (Most Users)
+You just need:
+- A modern web browser (Chrome, Firefox, Safari, or Edge)
+- JavaScript enabled (it usually is by default)
+- Internet connection for the first load (some features are downloaded from the web)
 
-### Node.js Applications
-- Node.js 16+
-- npm or yarn
+That's it! No special software to install.
+
+### For the LLM Advisor Tool (Technical Users)
+- **Node.js** version 16 or newer ([free download](https://nodejs.org))
+- **npm** (comes automatically with Node.js)
 
 ## Project Structure
 
@@ -260,6 +336,27 @@ ccm/
 │   └── shared/                         # Shared utilities and components
 └── social-scraper/                     # INTERNAL: Research project (not for public use)
 ```
+
+## Glossary: Technical Terms Explained
+
+New to tech? Here's what some of the technical terms in this repository mean:
+
+| Term | What It Means |
+|------|---------------|
+| **Repository (Repo)** | A folder that stores code and files online, like a shared Google Drive but for programmers |
+| **Browser** | The app you use to visit websites (Chrome, Safari, Firefox, Edge) |
+| **HTML** | The language used to create web pages. Files ending in `.html` can be opened in any browser |
+| **PDF** | A document format that looks the same on any computer. Great for sharing professional documents |
+| **Node.js** | Free software that lets you run JavaScript programs on your computer (not just in a browser) |
+| **npm** | A tool that downloads and installs software packages. Comes with Node.js |
+| **LLM** | Large Language Model—the technology behind AI assistants like ChatGPT and Claude |
+| **API** | Application Programming Interface—a way for software programs to talk to each other |
+| **Open Source** | Software whose code is publicly available for anyone to see, use, and improve |
+| **GitHub** | A website for storing and sharing code (where this repository lives) |
+| **localhost** | Your own computer, when it's running a web server. "localhost:5173" means a website running on your machine |
+| **Terminal/Command Line** | A text-based way to control your computer by typing commands |
+
+---
 
 ## Author
 

@@ -1,14 +1,24 @@
 # CCM Tools Enhancement Summary
 
-This document describes the comprehensive improvements and enhancements made to the CCM journalism tools repository.
+> **What is this document?** This explains the behind-the-scenes improvements we've made to make the tools more reliable, easier to use, and better for everyone. Think of it as a list of "upgrades" to the tools' foundation.
 
-## Overview
-
-All enhancements focus on improving code quality, developer experience, and user experience across the 9 applications in this repository.
+> **Who is this for?** Primarily developers who want to understand the technical infrastructure. Regular users don't need to read this—the improvements are already built into the tools you use!
 
 ---
 
+## Overview
+
+We've made improvements in several areas to make the tools:
+- **More reliable** — Better handling when things go wrong
+- **More accessible** — Works in multiple languages
+- **More private** — Analytics that don't track personal information
+- **More convenient** — Works offline after first visit
+
+Below are the technical details of each improvement.
+
 ## 1. Error Handling Framework
+
+**In plain English:** When something goes wrong (like trying to save a file that's too big), instead of the tool crashing or showing a confusing error, it now shows a helpful message explaining what happened and what to do.
 
 **Location:** `tools/shared/utils/errorHandling.js`
 
@@ -28,6 +38,8 @@ await exportPDF(element, { filename: 'report.pdf' });
 ---
 
 ## 2. Input Validation Framework
+
+**In plain English:** The tools now check your input as you type to catch mistakes early. For example, if you accidentally type letters in a number field, or leave a required field blank, the tool will let you know right away instead of failing later.
 
 **Location:** `tools/shared/utils/validation.js`
 
@@ -53,6 +65,8 @@ const result = validator.combine([
 ---
 
 ## 3. Testing Infrastructure
+
+**In plain English:** Before releasing updates, we now have automated checks that verify the tools still work correctly. This is like a quality control checklist that runs automatically every time we make changes.
 
 ### LLM Advisor Tests
 **Location:** `tools/llm-advisor/src/__tests__/`
@@ -83,6 +97,10 @@ cd social-scraper && pytest
 
 ## 4. Internationalization (i18n)
 
+**In plain English:** The tools can now display text in different languages. Currently we support English and Spanish, with the ability to add more languages in the future. The tool can automatically detect your browser's language preference.
+
+> **What does "i18n" mean?** It's developer shorthand for "internationalization" (i + 18 letters + n). It refers to making software work in multiple languages.
+
 **Location:** `tools/shared/locales/` and `tools/shared/utils/i18n.js`
 
 Added multi-language support:
@@ -106,6 +124,10 @@ const label = i18n.t('budget.totalExpenses'); // "Total Expenses"
 
 ## 5. CI/CD Pipeline
 
+**In plain English:** Every time we update the code, automated systems run tests, check for security issues, and prepare preview versions. This helps us catch problems before they reach users.
+
+> **What is CI/CD?** Continuous Integration / Continuous Deployment. It's an automated process that tests and publishes code changes automatically.
+
 **Location:** `.github/workflows/ci.yml`
 
 Automated testing and deployment pipeline:
@@ -124,6 +146,8 @@ Automated testing and deployment pipeline:
 ---
 
 ## 6. Dark Mode Support
+
+**In plain English:** If your computer or phone is set to "dark mode," the tools can now match that preference. This is easier on your eyes in low-light environments and can save battery on some devices.
 
 **Location:** `tools/shared/utils/darkMode.js`
 
@@ -145,6 +169,10 @@ const isDark = darkMode.toggle(); // Toggle theme
 
 ## 7. PWA Configuration
 
+**In plain English:** After visiting a tool once, it can work even without an internet connection. You can also "install" the tools on your phone or computer like a regular app, with its own icon.
+
+> **What is a PWA?** A Progressive Web App is a website that can work like a native app—with offline support, home screen icons, and fast loading.
+
 **Location:** `tools/manifest.json`, `tools/sw.js`, `tools/shared/utils/pwa.js`
 
 Progressive Web App support for offline use:
@@ -163,6 +191,8 @@ Progressive Web App support for offline use:
 ---
 
 ## 8. Privacy-Preserving Analytics
+
+**In plain English:** We track basic usage information (like which tools are popular) to improve the tools, but we do it without tracking you personally. No cookies, no personal data, no selling your information.
 
 **Location:** `tools/shared/utils/analytics.js`
 
@@ -185,6 +215,8 @@ analytics.trackExport('Budget Calculator', 'PDF');
 
 ## 9. Shared Component Library
 
+**In plain English:** Instead of reinventing the wheel for each tool, we've created a collection of reusable building blocks. This means all tools behave consistently and improvements to one tool can benefit all of them.
+
 **Location:** `tools/shared/`
 
 Reusable utilities across all tools:
@@ -200,6 +232,10 @@ Reusable utilities across all tools:
 ---
 
 ## 10. Social Scraper Recovery Script
+
+**In plain English:** The social media research project processes thousands of videos. This script helps recover and merge data if processing is interrupted, ensuring no work is lost.
+
+> **Note:** This is for an internal research project, not a public tool.
 
 **Location:** `social-scraper/scripts/merge_recovery.py`
 

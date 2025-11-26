@@ -1,20 +1,30 @@
 # Changelog
 
+> **What is this?** A changelog tracks what's been added, changed, or fixed in each version of the software. It helps users and developers understand what's new.
+
 All notable changes to the LLM Journalism Tool Advisor project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+---
 
 ## [Unreleased]
 
 ### Added
 - Comprehensive documentation suite (README, ARCHITECTURE, CONTRIBUTING, CHANGELOG)
 
+---
+
 ## [2.0.0] - 2025-01-XX
+
+**Summary:** Major upgrade that added all the journalism workflows and made the app much more useful. Previously only had research guidance; now covers writing, editing, data analysis, source finding, and multimedia.
 
 Major refactoring and feature completion across three phases.
 
 ### Phase 3: Enhancement & Completion
+
+**What we did:** Added all the missing journalism workflows and made the tool actually useful for real journalism tasks.
 
 #### Added
 - Complete decision tree with all 5 missing journalism workflow branches
@@ -46,6 +56,8 @@ Major refactoring and feature completion across three phases.
 - Graceful degradation on component errors
 
 ### Phase 2: Architecture Improvements
+
+**What we did:** Reorganized the code to make it easier to maintain and improve in the future. The tool works the same for users, but the "under the hood" code is now much cleaner.
 
 #### Added
 - Modular component structure with clear separation of concerns
@@ -83,6 +95,8 @@ Major refactoring and feature completion across three phases.
 
 ### Phase 1: Quick Wins
 
+**What we did:** Cleaned up the codebase by removing unused code and fixing minor issues. Reduced the code size significantly.
+
 #### Added
 - Proper Tailwind CSS configuration with correct content paths
 - Dynamic progress calculation showing 100% at completion
@@ -117,7 +131,11 @@ Major refactoring and feature completion across three phases.
 - Build time: ~1.3s
 - Lint: 0 errors, 0 warnings
 
+---
+
 ## [1.0.0] - 2025-06-XX
+
+**Summary:** The first version of the tool. Had basic research functionality but was missing most journalism workflows.
 
 Initial release of the LLM Journalism Tool Advisor.
 

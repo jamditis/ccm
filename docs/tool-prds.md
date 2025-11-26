@@ -1,10 +1,23 @@
 # Tool PRDs & Build Plans
 
-Product Requirements Documents for upcoming CCM tools.
+> **What is a PRD?** A Product Requirements Document (PRD) is a planning document that describes what a software tool should do before it gets built. Think of it like a blueprint for a house—it describes the rooms, features, and purpose before construction begins.
+
+This document contains the planning specifications for CCM's journalism tools. It explains:
+- **What** each tool does
+- **Who** it's designed for
+- **What features** it includes
+- **How** it was built (technical details for developers)
+
+> **Note for non-developers:** The "Technical Approach" and "Data Structure" sections contain programming code. You can skip these—they're for developers who want to understand or modify the tools.
 
 ---
 
 ## 1. Media Kit Builder
+
+### Plain English Summary
+📰 **The Problem:** When you want to sell ads, sponsors ask "Who reads your publication? How many people? What do you charge?" You need a professional document that answers these questions—called a "media kit."
+
+🎯 **The Solution:** This tool helps you create that document by filling in your information and downloading a polished PDF.
 
 ### Overview
 A tool for newsrooms to create professional media kits/press kits to share with advertisers, sponsors, and partners. Presents audience data, ad rates, and platform information in a polished, brandable format.
@@ -118,6 +131,11 @@ A tool for newsrooms to create professional media kits/press kits to share with 
 
 ## 2. Freelancer Rate Calculator
 
+### Plain English Summary
+💰 **The Problem:** Freelancers often struggle to know how much to charge. Charge too little and you undervalue your work; charge too much and you lose the gig. Different factors affect the price: Is it a rush job? Do they want exclusive rights? How complex is the research?
+
+🎯 **The Solution:** This calculator walks you through all the factors that affect your rate and gives you a fair price based on industry standards. It even generates a professional quote you can send to clients.
+
 ### Overview
 A calculator to help freelance journalists determine fair rates based on project type, complexity, rights, turnaround, and market benchmarks. Outputs professional rate quotes.
 
@@ -228,6 +246,11 @@ const BENCHMARKS = {
 ---
 
 ## 3. Grant Proposal Outline Generator
+
+### Plain English Summary
+📝 **The Problem:** Grant applications are intimidating. Each funder asks for specific information in a specific format. It's easy to miss sections or not know what they're really asking for.
+
+🎯 **The Solution:** This tool provides a fill-in-the-blank structure tailored to specific funders (Knight Foundation, Google News Initiative, etc.). It tells you exactly what to write in each section and tracks your progress.
 
 ### Overview
 A tool to structure grant proposals with sections aligned to common journalism funder requirements. Helps newsrooms organize their thinking and ensure they address all required elements.
@@ -365,6 +388,13 @@ const TEMPLATES = {
 ---
 
 ## 4. Collaboration Agreement Generator
+
+### Plain English Summary
+🤝 **The Problem:** When news organizations work together on a story or share resources, they need a written agreement. Who gets the byline? Who publishes first? What if there's a disagreement? Without a formal document, things can get messy.
+
+🎯 **The Solution:** This tool generates professional agreements between partner organizations. It covers all the important topics (editorial control, credit, money) and produces a document ready for signatures.
+
+> **What's an MOU?** A Memorandum of Understanding (MOU) is a formal document that describes an agreement between two or more parties. It's less rigid than a legal contract but establishes clear expectations.
 
 ### Overview
 Create MOUs (Memoranda of Understanding) or collaboration agreements between news organizations for joint reporting projects, shared resources, or republishing arrangements.
@@ -534,3 +564,25 @@ All tools should follow these patterns for consistency:
 ### Documentation
 - README.md with features, usage guide, technical details
 - Inline JSDoc comments for complex functions
+
+---
+
+## Glossary: Technical Terms in This Document
+
+If you encountered unfamiliar terms while reading, here's what they mean:
+
+| Term | Plain English Meaning |
+|------|----------------------|
+| **Single-file HTML** | The entire tool is contained in one file that opens in a web browser |
+| **CDN** | Content Delivery Network—a service that hosts common code libraries so tools can use them without downloading |
+| **React** | A popular programming library for building interactive web applications |
+| **Tailwind CSS** | A system for styling web pages using pre-built design classes |
+| **Local Storage** | Your browser's built-in storage that saves data on your computer (not on a server) |
+| **PDF Export** | The ability to download your work as a PDF document |
+| **Data Structure** | The organized format in which information is stored in a program |
+| **UI/UX** | User Interface / User Experience—how the tool looks and feels to use |
+| **Build Phases** | Stages of development, like building a house foundation before the walls |
+| **JSDoc** | A documentation format that explains what code does |
+| **FNASR** | First North American Serial Rights—a common publishing rights agreement |
+| **Kill Fee** | Payment a freelancer receives if a commissioned piece is cancelled |
+| **LOI** | Letter of Inquiry—a short initial pitch to a funder before a full proposal |
