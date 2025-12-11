@@ -1,4 +1,4 @@
-![AI tools for newsrooms header image](https://i.imgur.com/zeRYLfe.png)
+![AI tools for newsrooms header image](https://i.imgur.com/77vpwYP.png)
 
 # Concept paper  
 ### AI implementation and experimentation: Fractional support for local news providers
