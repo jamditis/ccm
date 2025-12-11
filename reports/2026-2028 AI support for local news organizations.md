@@ -115,6 +115,12 @@ His approach centers on practical implementation rather than theoretical discuss
 
 **NJ Reporting Fellowship Showcase** — A web platform for 15 fellowship journalists that uses AI to automatically generate story excerpts, tags, and summaries in both English and Spanish. The processing pipeline cost approximately $0.02 per story to run.
 
+**[Jay Rosen Digital Archive](https://pressthink.org/j/rosen-archive/dissertation/)** — A searchable archive of Professor Jay Rosen's 36 years of writing, built using AI-assisted development. Demonstrates how AI tools can help process and organize large collections of historical content.
+
+**[NJ Mobile News Lab](https://medium.com/mobilenewslab)** (2016-2018) — A $20,000 grant-funded program from the Geraldine R. Dodge Foundation that helped New Jersey news organizations build mobile apps and explore mobile-first storytelling. Awarded [grants to local newsrooms](https://medium.com/mobilenewslab/announcing-the-nj-mobile-news-lab-grantees-982c89ddd3a5) and [partnered with Push app](https://medium.com/mobilenewslab/nj-mobile-news-lab-partners-with-push-app-to-bring-mobile-apps-to-local-newsrooms-841fdc7b59cd) to bring mobile publishing tools to local publishers.
+
+**[AI Disclosure Tools](https://centerforcooperativemedia.org/ai-disclosures/)** — Interactive tools helping newsrooms develop and communicate their AI usage policies, including a [disclosure generator](https://centerforcooperativemedia.org/ai-disclosure-tool/) for creating transparency statements.
+
 These projects share a common philosophy: start with a real problem, choose tools based on what the problem requires, and document everything so the work can be replicated or adapted.
 
 
@@ -150,14 +156,25 @@ The Center's university affiliation provides stability and credibility, while it
 **Publications and media**
 
 *Guides and handbooks:*
-- [Beginner's prompt handbook: ChatGPT for local news publishers](https://medium.com/centerforcooperativemedia/new-chatgpt-handbook-helps-publishers-use-ai-for-local-news-7214582e454) — Free ebook covering prompt crafting, AI capabilities and limitations, ethical guidelines, and workflow integration. Updated December 2024.
-- [Beginner's guide to custom GPTs for local news publishers](https://medium.com/centerforcooperativemedia/now-available-beginners-guide-to-custom-gpts-for-local-news-publishers-c990ea51cb43) — Guide to building custom AI tools for newsroom needs.
+- [AI and automation: An updated guide to using LLMs for local news](https://jamditis.notion.site/AI-and-automation-An-updated-guide-to-using-LLMs-for-local-news-14985ff7f20a8075aab6cdec875ea83a) — Comprehensive guide covering AI tools, workflows, and implementation strategies for newsrooms.
+- [Beginner's prompt handbook: ChatGPT for local news publishers](https://jamditis.notion.site/Beginner-s-prompt-handbook-ChatGPT-for-local-news-publishers-15d1f07d5b194265a41fdd42955679b4) — Free ebook covering prompt crafting, AI capabilities and limitations, ethical guidelines, and workflow integration.
+- [Beginner's guide to custom GPTs for local news publishers](https://jamditis.notion.site/Beginner-s-guide-Custom-GPTs-for-local-news-publishers-dd36d47275e34aacbc648f7fa926c2bc) — Guide to building custom AI tools for newsroom needs.
+- [Beginner's guide to image generation with DALL-E 3](https://medium.com/centerforcooperativemedia/a-beginners-guide-to-image-generation-with-dall-e-3-4efd969ab8fb) — Practical guide to AI image generation for journalists.
+- [Vibe coding guide for newsrooms](https://centerforcooperativemedia.org/tools/llmadvisor/vibe-coding.html) — Guide to building software using AI coding assistants without prior programming experience.
 - [What if you could use AI as the institutional memory for your newsroom?](https://medium.com/centerforcooperativemedia/what-if-you-could-use-ai-as-the-institutional-memory-for-your-newsroom-85571d3aa9ba) — Exploring AI applications for organizational knowledge.
 
-*Nieman Lab prediction essays:*
-- [We stop excusing the lack of accessibility in news](https://www.niemanlab.org/collection/predictions-2025/) (2025)
-- [Journalism grapples with the promise and pitfalls of AI-assisted reporting](https://www.niemanlab.org/2023/12/journalism-grapples-with-the-promise-and-pitfalls-of-ai-assisted-reporting/) (2024)
-- [AI throws a lifeline to local publishers](https://www.niemanlab.org/2022/12/ai-throws-a-lifeline-to-local-publishers/) (2023)
+*Video training:*
+- [AI + automation training series for newsrooms](https://www.youtube.com/playlist?list=PLgq6gq6KYlKnrsc3JH0NFmtMT8W7EuSjL) — Video series covering practical AI implementation for local news organizations.
+- [Knight Center MOOC: Prompt engineering for journalists](https://www.youtube.com/playlist?list=PLgq6gq6KYlKkyosYJf-X_b9POqPlaNnAc) — Contributed to Knight Center at UT Austin's massive open online course on AI prompting for journalism.
+
+*Nieman Lab contributions:*
+- [We stop excusing the lack of accessibility in news](https://www.niemanlab.org/collection/predictions-2025/) (2025 prediction)
+- [Journalism grapples with the promise and pitfalls of AI-assisted reporting](https://www.niemanlab.org/2023/12/journalism-grapples-with-the-promise-and-pitfalls-of-ai-assisted-reporting/) (2024 prediction)
+- [AI throws a lifeline to local publishers](https://www.niemanlab.org/2022/12/ai-throws-a-lifeline-to-local-publishers/) (2023 prediction)
+- [All Nieman Lab contributions](https://www.niemanlab.org/?s=amditis&post_type=post)
+
+*Reporting and commentary:*
+- [AI-generated news has arrived in New Jersey](https://medium.com/centerforcooperativemedia/ai-generated-news-has-arrived-in-new-jersey-6971f9949c47) — Reporting on the emergence of AI-generated local news sites.
 
 *Media appearances:*
 - [PBS/NJ Spotlight News: AI-run news site stirs questions about tech in journalism](https://www.pbs.org/video/joe-amditis-intv-1691157378/) — Expert commentary on AI in journalism.
@@ -176,9 +193,30 @@ The Center's university affiliation provides stability and credibility, while it
 - GitHub: https://github.com/jamditis
 - AI Tools Resource Kit: https://jamditis.github.io/tools/
 - LLM Advisor Tool: https://jamditis.github.io/tools/ (includes decision tree, vibe coding guide, templates)
+- Vibe Coding Guide: https://centerforcooperativemedia.org/tools/llmadvisor/vibe-coding.html
 - NJCIC Grantees Map (source): https://github.com/jamditis/njcic-grantees-map
 - AI Resource Kit Templates: https://github.com/jamditis/ccm-tools
+- Jay Rosen Digital Archive: https://pressthink.org/j/rosen-archive/dissertation/
 - PocketLink Browser Extension: https://chromewebstore.google.com/detail/pocketlink/fiiplgpcffalbfmbafflbokkghnkcadm
+
+*Guides and handbooks (Notion):*
+- AI and automation guide: https://jamditis.notion.site/AI-and-automation-An-updated-guide-to-using-LLMs-for-local-news-14985ff7f20a8075aab6cdec875ea83a
+- Custom GPTs guide: https://jamditis.notion.site/Beginner-s-guide-Custom-GPTs-for-local-news-publishers-dd36d47275e34aacbc648f7fa926c2bc
+- Prompt handbook: https://jamditis.notion.site/Beginner-s-prompt-handbook-ChatGPT-for-local-news-publishers-15d1f07d5b194265a41fdd42955679b4
+
+*AI disclosure tools:*
+- AI Disclosures overview: https://centerforcooperativemedia.org/ai-disclosures/
+- AI Disclosure generator: https://centerforcooperativemedia.org/ai-disclosure-tool/
+
+*Video training:*
+- AI + automation training series: https://www.youtube.com/playlist?list=PLgq6gq6KYlKnrsc3JH0NFmtMT8W7EuSjL
+- Knight Center MOOC (prompt engineering): https://www.youtube.com/playlist?list=PLgq6gq6KYlKkyosYJf-X_b9POqPlaNnAc
+
+*NJ Mobile News Lab (2016-2018):*
+- Main publication: https://medium.com/mobilenewslab
+- Grant program: https://medium.com/mobilenewslab/mobilenewsgrants-d8abcfd651d8
+- Grantee announcements: https://medium.com/mobilenewslab/announcing-the-nj-mobile-news-lab-grantees-982c89ddd3a5
+- Push app partnership: https://medium.com/mobilenewslab/nj-mobile-news-lab-partners-with-push-app-to-bring-mobile-apps-to-local-newsrooms-841fdc7b59cd
 
 *Center for Cooperative Media:*
 - Main website: https://centerforcooperativemedia.org

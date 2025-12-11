@@ -221,6 +221,51 @@ XXXXX more about some of our best work XXXXX
 
 ---
 
+### Update: Additional projects and resources (December 11, 2025)
+
+**Added to Joe's background section:**
+
+- **Jay Rosen Digital Archive** — Searchable archive of 36 years of writing, built with AI-assisted development
+  - https://pressthink.org/j/rosen-archive/dissertation/
+
+- **NJ Mobile News Lab (2016-2018)** — $20,000 grant-funded program from Geraldine R. Dodge Foundation
+  - https://medium.com/mobilenewslab
+  - https://medium.com/mobilenewslab/announcing-the-nj-mobile-news-lab-grantees-982c89ddd3a5
+  - https://medium.com/mobilenewslab/nj-mobile-news-lab-partners-with-push-app-to-bring-mobile-apps-to-local-newsrooms-841fdc7b59cd
+
+- **AI Disclosure Tools** — Interactive tools for newsroom AI policies
+  - https://centerforcooperativemedia.org/ai-disclosures/
+  - https://centerforcooperativemedia.org/ai-disclosure-tool/
+
+**Added to Publications and media section:**
+
+*New guides and handbooks:*
+- AI and automation guide (Notion): https://jamditis.notion.site/AI-and-automation-An-updated-guide-to-using-LLMs-for-local-news-14985ff7f20a8075aab6cdec875ea83a
+- Custom GPTs guide (Notion): https://jamditis.notion.site/Beginner-s-guide-Custom-GPTs-for-local-news-publishers-dd36d47275e34aacbc648f7fa926c2bc
+- Prompt handbook (Notion): https://jamditis.notion.site/Beginner-s-prompt-handbook-ChatGPT-for-local-news-publishers-15d1f07d5b194265a41fdd42955679b4
+- DALL-E 3 image generation guide: https://medium.com/centerforcooperativemedia/a-beginners-guide-to-image-generation-with-dall-e-3-4efd969ab8fb
+- Vibe coding guide: https://centerforcooperativemedia.org/tools/llmadvisor/vibe-coding.html
+
+*New video training section:*
+- AI + automation training series: https://www.youtube.com/playlist?list=PLgq6gq6KYlKnrsc3JH0NFmtMT8W7EuSjL
+- Knight Center MOOC contribution: https://www.youtube.com/playlist?list=PLgq6gq6KYlKkyosYJf-X_b9POqPlaNnAc
+
+*New reporting and commentary section:*
+- AI-generated news in NJ: https://medium.com/centerforcooperativemedia/ai-generated-news-has-arrived-in-new-jersey-6971f9949c47
+
+*Updated Nieman Lab section:*
+- Added link to all contributions: https://www.niemanlab.org/?s=amditis&post_type=post
+
+**Added to References section:**
+
+*New subsections:*
+- Guides and handbooks (Notion) — 3 resources
+- AI disclosure tools — 2 resources
+- Video training — 2 playlists
+- NJ Mobile News Lab (2016-2018) — 4 resources
+
+---
+
 ## Sections unchanged
 
 - **Budget — Year 1** (lines 69-78): No changes made. Original content was complete.
@@ -237,7 +282,7 @@ The following areas were identified as potential additions:
 4. ~~**Why now / urgency**~~ — ✅ Addressed in "Why now" section
 5. ~~**Sustainability**~~ — ✅ Addressed in "Sustainability" section
 6. **Demand evidence** — Not yet addressed (quotes or data showing newsroom need)
-7. **Speaking/training history** — Not yet addressed (live training sessions not captured in publications)
+7. ~~**Speaking/training history**~~ — ✅ Addressed with video training section (YouTube playlists, Knight Center MOOC)
 8. **Competitive landscape** — Not yet addressed (how this differs from other organizations)
 
 ---
