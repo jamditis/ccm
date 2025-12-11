@@ -31,12 +31,11 @@ Drop-in virtual sessions where newsroom staff can get hands-on help with specifi
 ### **Help desk intake system**
 An asynchronous support channel for newsrooms with specific questions. Requests would be triaged and responded to within 48-72 hours. Common questions would be documented and turned into resources for the broader community. Complex projects that need more than a quick answer could be escalated to the building hours or scheduled for one-on-one consultation.
 
-### **Example scenario:** A two-person newsroom wants to use AI to help produce a Spanish-language version of their English newsletter. Through the help desk, they submit their question. Within a few days, they receive recommendations for translation tools suited to their budget, a walkthrough of how to set up a workflow, and an invitation to the next building hours session where they can get help with implementation. The following month's webinar features their story as a case study.
+### **Example scenario:** 
+A two-person newsroom wants to use AI to help produce a Spanish-language version of their English newsletter. Through the help desk, they submit their question. Within a few days, they receive recommendations for translation tools suited to their budget, a walkthrough of how to set up a workflow, and an invitation to the next building hours session where they can get help with implementation. The following month's webinar features their story as a case study.
 
 ## **Who we would serve**
-
 The AI help desk would prioritize small, independent news organizations that lack in-house technical staff. This includes:
-
 - **Solo operators and micro-newsrooms** (1-5 staff) who wear multiple hats and have no dedicated technology role
 - **Community and hyperlocal outlets** covering specific neighborhoods, towns, or regions
 - **Ethnic media organizations** serving immigrant and non-English-speaking communities
@@ -45,7 +44,6 @@ The AI help desk would prioritize small, independent news organizations that lac
 In Year 1, we would aim to actively support 50-75 newsrooms through direct help desk interactions, while reaching a broader audience of 500+ through the newsletter and webinars. The program would be open nationally, with priority given to newsrooms in under-resourced communities.
 
 ## **Why now**
-
 The window for helping small newsrooms adopt AI effectively is narrowing. Large news organizations are already several years into AI implementation, with dedicated teams and significant budgets. Every month that passes widens the gap.
 
 At the same time, the AI tool landscape is maturing. The chaotic early period of 2023-2024, when new tools launched weekly and best practices were unclear, is giving way to more stable options with clearer use cases. This is the right moment to help small newsrooms catch up — the tools are ready, but the support infrastructure doesn't exist.
@@ -53,7 +51,6 @@ At the same time, the AI tool landscape is maturing. The chaotic early period of
 Without intervention, many small news organizations will either adopt AI tools poorly (creating quality and ethics problems) or skip them entirely (falling further behind larger competitors). The help desk would provide the guidance needed to adopt AI thoughtfully.
 
 ## **Measuring success**
-
 We would track program effectiveness through:
 
 ###  **Reach metrics:**
@@ -124,13 +121,17 @@ The Center for Cooperative Media at Montclair State University's mission is to g
 
 The Center has a track record of running sustained programs that provide ongoing support to newsrooms:
 
-### **[Collaborative Journalism Summit](https://summit.collaborativejournalism.org)** — The Center co-organizes this annual conference, now in its 10th year (2017-2026), which brings together journalists from across the country to share strategies for collaboration. The 2026 summit will be held June 8-9 in Chapel Hill, NC.
+### **[Collaborative Journalism Summit](https://summit.collaborativejournalism.org)** 
+The Center co-organizes this annual conference, now in its 10th year (2017-2026), which brings together journalists from across the country to share strategies for collaboration. The 2026 summit will be held June 8-9 in Chapel Hill, NC.
 
-### **New Jersey Reporting Fellowship** — A program that places reporters in local newsrooms to cover underreported issues. The 2025 cohort includes 15 journalists covering topics from housing to environmental justice, with their work published in outlets across the state.
+### **New Jersey reporting fellowship**
+A program that places reporters in local newsrooms to cover underreported issues. The 2025 cohort includes 15 journalists covering topics from housing to environmental justice, with their work published in outlets across the state.
 
-### **Ethnic Media Coordination** — The Center maintains relationships with dozens of ethnic and community media outlets in New Jersey, providing training and resources tailored to their specific needs.
+### **Ethnic media coordination**
+The Center maintains relationships with dozens of ethnic and community media outlets in New Jersey, providing training and resources tailored to their specific needs.
 
-### **Community Tools** — The Center has built civic technology applications including an interactive map of all NJCIC grant recipients and a mutual aid coordination dashboard used by community organizations.
+### **Community tools**
+The Center has built civic technology applications including an interactive map of all NJCIC grant recipients and a mutual aid coordination dashboard used by community organizations.
 
 The Center's university affiliation provides stability and credibility, while its connections to independent, local, community, and ethnic media give it direct access to the audiences this program would serve. The AI help desk would build on these existing relationships.
 
@@ -185,13 +186,12 @@ The Center's university affiliation provides stability and credibility, while it
 
 ### *Joe Amditis — GitHub profile and projects:*
 - GitHub: https://github.com/jamditis
-- AI Tools Resource Kit: https://jamditis.github.io/tools/
-- LLM Advisor Tool: https://jamditis.github.io/tools/ (includes decision tree, vibe coding guide, templates)
-- Vibe Coding Guide: https://centerforcooperativemedia.org/tools/llmadvisor/vibe-coding.html
-- NJCIC Grantees Map (source): https://github.com/jamditis/njcic-grantees-map
-- AI Resource Kit Templates: https://github.com/jamditis/ccm-tools
+- AI tools + resource kit: https://jamditis.github.io/tools/
+- LLM Journalism Advisor Tool: https://jamditis.github.io/tools/ (includes decision tree, vibe coding guide, templates)
+- Guide: Vibe coding for newsrooms: https://centerforcooperativemedia.org/tools/llmadvisor/vibe-coding.html
+- NJ Civic Information Consortium grantees map (source): https://njcic.org/wp-content/grantees/map
 - Jay Rosen Digital Archive: https://pressthink.org/j/rosen-archive/dissertation/
-- PocketLink Browser Extension: https://chromewebstore.google.com/detail/pocketlink/fiiplgpcffalbfmbafflbokkghnkcadm
+- PocketLink browser extension: https://chromewebstore.google.com/detail/pocketlink/fiiplgpcffalbfmbafflbokkghnkcadm
 
 ### *Guides and handbooks (Notion):*
 - AI and automation guide: https://jamditis.notion.site/AI-and-automation-An-updated-guide-to-using-LLMs-for-local-news-14985ff7f20a8075aab6cdec875ea83a
@@ -210,12 +210,13 @@ The Center's university affiliation provides stability and credibility, while it
 - Main publication: https://medium.com/mobilenewslab
 - Grant program: https://medium.com/mobilenewslab/mobilenewsgrants-d8abcfd651d8
 - Grantee announcements: https://medium.com/mobilenewslab/announcing-the-nj-mobile-news-lab-grantees-982c89ddd3a5
-- Push app partnership: https://medium.com/mobilenewslab/nj-mobile-news-lab-partners-with-push-app-to-bring-mobile-apps-to-local-newsrooms-841fdc7b59cd
+- PushApp partnership: https://medium.com/mobilenewslab/nj-mobile-news-lab-partners-with-push-app-to-bring-mobile-apps-to-local-newsrooms-841fdc7b59cd
 
 ### *Center for Cooperative Media:*
-- Main website: https://centerforcooperativemedia.org
+- Main website: https://centerforcooperativemedia.org/ai
+- Useful tools + websites for newsrooms: https://centerforcooperativemedia.org/resources/useful-links-websites/
 - 2026 Collaborative Journalism Summit: https://summit.collaborativejournalism.org
-- Summit signup: https://collaborativejournalism.org/cjs2026
+- Previous Collaborative Journalism Summits: https://collaborativejournalism.org/cjs
 
 ### *Additional developer tools by Joe Amditis:*
 - AudioBash (voice-controlled terminal): https://github.com/jamditis/audiobash
