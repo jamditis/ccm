@@ -155,7 +155,7 @@ The Center's university affiliation provides stability and credibility, while it
 
 ## **Publications and media**
 
-*Guides and handbooks:*
+### *Guides and handbooks:*
 - [AI and automation: An updated guide to using LLMs for local news](https://jamditis.notion.site/AI-and-automation-An-updated-guide-to-using-LLMs-for-local-news-14985ff7f20a8075aab6cdec875ea83a) — Comprehensive guide covering AI tools, workflows, and implementation strategies for newsrooms.
 - [Beginner's prompt handbook: ChatGPT for local news publishers](https://jamditis.notion.site/Beginner-s-prompt-handbook-ChatGPT-for-local-news-publishers-15d1f07d5b194265a41fdd42955679b4) — Free ebook covering prompt crafting, AI capabilities and limitations, ethical guidelines, and workflow integration.
 - [Beginner's guide to custom GPTs for local news publishers](https://jamditis.notion.site/Beginner-s-guide-Custom-GPTs-for-local-news-publishers-dd36d47275e34aacbc648f7fa926c2bc) — Guide to building custom AI tools for newsroom needs.
@@ -163,17 +163,17 @@ The Center's university affiliation provides stability and credibility, while it
 - [Vibe coding guide for newsrooms](https://centerforcooperativemedia.org/tools/llmadvisor/vibe-coding.html) — Guide to building software using AI coding assistants without prior programming experience.
 - [What if you could use AI as the institutional memory for your newsroom?](https://medium.com/centerforcooperativemedia/what-if-you-could-use-ai-as-the-institutional-memory-for-your-newsroom-85571d3aa9ba) — Exploring AI applications for organizational knowledge.
 
-*Video training:*
+### *Video training:*
 - [AI + automation training series for newsrooms](https://www.youtube.com/playlist?list=PLgq6gq6KYlKnrsc3JH0NFmtMT8W7EuSjL) — Video series covering practical AI implementation for local news organizations.
 - [Knight Center MOOC: Prompt engineering for journalists](https://www.youtube.com/playlist?list=PLgq6gq6KYlKkyosYJf-X_b9POqPlaNnAc) — Contributed to Knight Center at UT Austin's massive open online course on AI prompting for journalism.
 
-*Nieman Lab contributions:*
+### *Nieman Lab contributions:*
 - [We stop excusing the lack of accessibility in news](https://www.niemanlab.org/collection/predictions-2025/) (2025 prediction)
 - [Journalism grapples with the promise and pitfalls of AI-assisted reporting](https://www.niemanlab.org/2023/12/journalism-grapples-with-the-promise-and-pitfalls-of-ai-assisted-reporting/) (2024 prediction)
 - [AI throws a lifeline to local publishers](https://www.niemanlab.org/2022/12/ai-throws-a-lifeline-to-local-publishers/) (2023 prediction)
 - [All Nieman Lab contributions](https://www.niemanlab.org/?s=amditis&post_type=post)
 
-*Reporting and commentary:*
+### *Reporting and commentary:*
 - [AI-generated news has arrived in New Jersey](https://medium.com/centerforcooperativemedia/ai-generated-news-has-arrived-in-new-jersey-6971f9949c47) — Reporting on the emergence of AI-generated local news sites.
 
 ### *Media appearances:*
@@ -199,26 +199,26 @@ The Center's university affiliation provides stability and credibility, while it
 - Jay Rosen Digital Archive: https://pressthink.org/j/rosen-archive/dissertation/
 - PocketLink Browser Extension: https://chromewebstore.google.com/detail/pocketlink/fiiplgpcffalbfmbafflbokkghnkcadm
 
-*Guides and handbooks (Notion):*
+### *Guides and handbooks (Notion):*
 - AI and automation guide: https://jamditis.notion.site/AI-and-automation-An-updated-guide-to-using-LLMs-for-local-news-14985ff7f20a8075aab6cdec875ea83a
 - Custom GPTs guide: https://jamditis.notion.site/Beginner-s-guide-Custom-GPTs-for-local-news-publishers-dd36d47275e34aacbc648f7fa926c2bc
 - Prompt handbook: https://jamditis.notion.site/Beginner-s-prompt-handbook-ChatGPT-for-local-news-publishers-15d1f07d5b194265a41fdd42955679b4
 
-*AI disclosure tools:*
+### *AI disclosure tools:*
 - AI Disclosures overview: https://centerforcooperativemedia.org/ai-disclosures/
 - AI Disclosure generator: https://centerforcooperativemedia.org/ai-disclosure-tool/
 
-*Video training:*
+### *Video training:*
 - AI + automation training series: https://www.youtube.com/playlist?list=PLgq6gq6KYlKnrsc3JH0NFmtMT8W7EuSjL
 - Knight Center MOOC (prompt engineering): https://www.youtube.com/playlist?list=PLgq6gq6KYlKkyosYJf-X_b9POqPlaNnAc
 
-*NJ Mobile News Lab (2016-2018):*
+### *NJ Mobile News Lab (2016-2018):*
 - Main publication: https://medium.com/mobilenewslab
 - Grant program: https://medium.com/mobilenewslab/mobilenewsgrants-d8abcfd651d8
 - Grantee announcements: https://medium.com/mobilenewslab/announcing-the-nj-mobile-news-lab-grantees-982c89ddd3a5
 - Push app partnership: https://medium.com/mobilenewslab/nj-mobile-news-lab-partners-with-push-app-to-bring-mobile-apps-to-local-newsrooms-841fdc7b59cd
 
-*Center for Cooperative Media:*
+### *Center for Cooperative Media:*
 - Main website: https://centerforcooperativemedia.org
 - 2026 Collaborative Journalism Summit: https://summit.collaborativejournalism.org
 - Summit signup: https://collaborativejournalism.org/cjs2026
