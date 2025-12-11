@@ -1,16 +1,17 @@
-# Center for Cooperative Media - Tools & Projects
+# Center for Cooperative Media
+## Public tools + projects
 
-A collection of **free tools** for journalists and newsrooms, created by the [Center for Cooperative Media](https://centerforcooperativemedia.org/) at Montclair State University.
+A collection of **free tools + resources** for journalists and newsrooms, created by the [Center for Cooperative Media](https://centerforcooperativemedia.org/) at Montclair State University.
 
 > 🎯 **Just looking for tools to use?** Skip to [Public Tools](#public-tools) below. Everything is free!
 
 ---
 
-## What's in This Repository?
+## What's in this repository?
 
 A "repository" is simply a collection of files and folders stored online (like a shared folder on Google Drive, but for code). This one contains:
 
-### 1. 🛠️ Public Tools (for everyone!)
+### 1. 🛠️ Public tools (for everyone!)
 **Location:** `/tools/` folder
 
 Nine free browser-based tools that help with everyday journalism tasks:
@@ -31,7 +32,7 @@ Research tools used by CCM staff. Not intended for public use, but the code is v
 
 The [Center for Cooperative Media](https://centerforcooperativemedia.org/) is a grant-funded program at the College  of Communication and Media at Montclair State University. Founded in 2012, the Center's mission is to **grow and strengthen local journalism and support an informed society** in New Jersey and beyond.
 
-### What We Do
+### What we do
 
 - **Coordinate statewide reporting** through the NJ News Commons, connecting 300+ local news providers
 - **Provide training and support** to local journalists across New Jersey
@@ -41,7 +42,7 @@ The [Center for Cooperative Media](https://centerforcooperativemedia.org/) is a 
 
 The Center recently received a [$2.5 million Knight Foundation grant](https://www.montclair.edu/newscenter/2025/02/17/center-for-cooperative-media-receives-2-5m-knight-foundation-grant-to-expand-collaborative-journalism-nationwide/) to launch the Collaborative Journalism Resource Hub, supporting journalism collaboratives across the United States.
 
-## Public Tools
+## Public tools
 
 All tools in the `/tools/` folder are free to use. Most are single-file web applications that run directly in your browser - no installation required!
 
