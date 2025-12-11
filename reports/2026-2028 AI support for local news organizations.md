@@ -1,4 +1,4 @@
-![Center for Cooperative Media logo](https://centerforcooperativemedia.org/wp-content/uploads/2025/07/ccm-banner-iso-2025.png)
+![AI tools for newsrooms header image](https://i.imgur.com/zeRYLfe.png)
 
 # Concept paper  
 ### AI implementation and experimentation: Fractional support for local news providers
