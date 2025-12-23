@@ -108,8 +108,14 @@ def export_to_csv(data: List[Dict[str, Any]], filepath: str):
         print(f"No data to export to {filepath}")
         return
 
+    # Collect all unique fieldnames from all records
+    all_fields = set()
+    for record in data:
+        all_fields.update(record.keys())
+    fieldnames = sorted(all_fields)
+
     with open(filepath, 'w', newline='', encoding='utf-8') as f:
-        writer = csv.DictWriter(f, fieldnames=data[0].keys())
+        writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction='ignore')
         writer.writeheader()
         writer.writerows(data)
     print(f"Exported {len(data)} records to {filepath}")
@@ -122,9 +128,18 @@ def export_to_json(data: Any, filepath: str):
     print(f"Exported to {filepath}")
 
 
-def main():
+def main(output_dir: str = None):
     """Main consolidation workflow"""
-    output_dir = '../output'
+    import argparse
+
+    if output_dir is None:
+        parser = argparse.ArgumentParser(description="Consolidate scraped data into CSVs")
+        parser.add_argument("--output-dir", "-o",
+                            default="../output",
+                            help="Path to scraped output directory")
+        args = parser.parse_args()
+        output_dir = args.output_dir
+
     analysis_output = Path(__file__).parent / 'data'
     analysis_output.mkdir(exist_ok=True)
 

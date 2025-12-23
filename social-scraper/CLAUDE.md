@@ -142,53 +142,243 @@ The input CSV should have columns:
 
 Data starts at row 4 (after header rows).
 
-## Current Status (v0.1.2)
+## Current Status (v0.2.0)
 
 ### Completed Scraping
 - **TikTok:** 1,281 videos from 39 influencers
 - **YouTube:** 224 videos from 39 influencers
-- **Instagram:** ~250 posts from 5 influencers (in progress)
-
-### Instagram Progress
-- Batch 1 (0-10): 5/10 complete, paused at Joe Bartolozzi
-- Batches 2-4 (10-39): Not started
+- **Instagram:** ~250 posts from 5 influencers
 
 See `output/SCRAPING_REPORT.md` for detailed batch statistics.
 
-### Video Processing - Parallel Batches
+### Completed AI analysis (December 2025)
 
-Can run **up to 5 batch processes in parallel** without hitting API rate limits:
+Full-dataset analysis completed using batch processing across multiple providers:
 
+| Analysis type | Posts analyzed | Coverage |
+|---------------|----------------|----------|
+| Semantic | 3,364 | 100% |
+| Sentiment | 3,244 | 96.4% |
+
+**Provider breakdown (sentiment):**
+- Claude batch (Haiku 4.5): 1,474 posts
+- Gemini batch: 910 posts
+- OpenAI: 864 posts
+
+**Merged results saved to:** `analysis/ai_results_merged/`
+
+### News/information findings
+
+| Metric | Count | % of total |
+|--------|-------|------------|
+| News/opinion/educational content | 592 | 17.6% |
+| Informative rhetorical mode | 1,507 | 46.5% |
+| High NJ relevance (≥0.7) | 1,738 | 51.7% |
+| Core local NJ news | 256 | 7.6% |
+
+Top topics: NJ lifestyle/dining, NJ food, basketball recruiting, local culture, Jersey City lifestyle, high school sports.
+
+See `analysis/news_analysis/` for detailed news-focused analysis.
+
+---
+
+## AI-Powered content analysis
+
+This project includes LLM-powered content analysis using multiple AI providers. The analysis focuses on understanding **news and information content** from NJ influencers.
+
+### Supported AI providers
+
+| Provider | Model | Env variable | Speed | Cost |
+|----------|-------|-------------|-------|------|
+| Claude | claude-sonnet-4-20250514 | `ANTHROPIC_API_KEY` | ~7 sec/post | $$$ |
+| Gemini | gemini-3-flash | `GEMINI_API_KEY` | ~3 sec/post | $ |
+| OpenAI | gpt-5.1-chat-latest | `OPENAI_API_KEY` | ~4 sec/post | $$ |
+
+### Analysis types
+
+#### 1. Semantic analysis (`analysis/content_analysis/semantic_analyzer.py`)
+Extracts structured information about content:
+- **main_topic**: Primary subject matter
+- **content_type**: news, lifestyle, promotion, entertainment, opinion, educational
+- **nj_relevance_score**: 0-1 score for New Jersey focus
+- **local_vs_universal**: regional vs universal appeal
+- **key_messages**: Core messages/themes
+- **target_audience**: Who the content is for
+- **entities mentioned**: People, organizations, brands, other creators
+
+#### 2. Sentiment analysis (`analysis/content_analysis/sentiment_analyzer.py`)
+Analyzes emotional and rhetorical qualities:
+- **sentiment_score**: -1 (negative) to +1 (positive)
+- **primary_emotion**: joy, anger, fear, sadness, surprise, disgust, trust, anticipation
+- **rhetorical_mode**: informative, persuasive, entertaining, confrontational, inspirational
+- **authenticity_score**: 0-1 credibility measure
+- **controversy_potential**: 0-1 virality risk
+
+### Running AI analysis
+
+#### Prerequisites
+1. Consolidate post data first:
+   ```bash
+   cd social-scraper
+   venv/Scripts/activate
+   python analysis/consolidate.py
+   ```
+   This creates `analysis/data/all_posts.csv` from scraped content.
+
+2. Set API keys in `.env`:
+   ```
+   ANTHROPIC_API_KEY=your_key
+   GEMINI_API_KEY=your_key
+   OPENAI_API_KEY=your_key
+   ```
+
+#### Single provider analysis
 ```bash
-# Example: 5 parallel processes
-python3 analysis/video_processor/batch_process.py output \
-  --results-dir analysis/video_results_with_costs \
-  --start-from 1320 --end-at 1520 \
-  --batch-size 10 \
-  --gemini-key "YOUR_GEMINI_KEY" \
-  --openai-key "YOUR_OPENAI_KEY"
+# Run with Claude (default)
+python run_ai_analysis.py --limit 500 --provider claude --output analysis/ai_results
 
-# Repeat with different ranges: 1520-1720, 1720-1920, 1920-2120, etc.
+# Run with Gemini 3 Flash (faster, cheaper)
+python run_ai_analysis.py --limit 500 --provider gemini --output analysis/ai_results_gemini
+
+# Run with GPT-5.1 Instant
+python run_ai_analysis.py --limit 500 --provider openai --output analysis/ai_results_openai
 ```
 
-**Rate limit considerations:**
-- OpenAI Whisper: ~50 requests/min
-- Gemini: 15 RPM (free tier), higher on paid
-- 5 processes = ~15-25 API calls/min (safe)
-
-### Instagram Re-scraping
-
-Now that Instagram authentication is configured, run:
-
+#### Parallel multi-provider analysis
+For faster processing of large datasets, run multiple providers in parallel:
 ```bash
-# Re-scrape all influencers for Instagram only
-python3 main.py --platforms instagram
-
-# Or run in batches
-python3 main.py --start 0 --end 10 --platforms instagram
-python3 main.py --start 10 --end 20 --platforms instagram
-python3 main.py --start 20 --end 30 --platforms instagram
-python3 main.py --start 30 --end 39 --platforms instagram
+# Run full analysis with all available providers
+python run_parallel_analysis.py
 ```
 
-**Important:** Instagram scraping is slower due to rate limiting. Expect ~2-5 minutes per account with proper delays to avoid blocks.
+Each provider writes to its own output directory, then results are merged.
+
+#### Analysis parameters
+- `--limit`: Number of posts to analyze (0 = all)
+- `--provider`: claude, gemini, or openai
+- `--output`: Output directory for results
+- `--semantic-only`: Only run semantic analysis
+- `--sentiment-only`: Only run sentiment analysis
+- `--batch-mode`: Use Claude Batch API for 50% cost savings (async)
+
+### Batch mode (50% cost savings)
+
+All three providers offer batch APIs with 50% discounts for async processing:
+
+| Provider | Batch API | Discount | Turnaround | Docs |
+|----------|-----------|----------|------------|------|
+| Claude | Message Batches API | 50% off | <1 hour typically | [docs](https://docs.anthropic.com/en/docs/build-with-claude/batch-processing) |
+| OpenAI | Batch API | 50% off | <24 hours | [docs](https://platform.openai.com/docs/api-reference/batch) |
+| Gemini | Batch Mode | 50% off | <24 hours | [docs](https://ai.google.dev/gemini-api/docs/batch-api) |
+
+#### Using Claude batch mode (implemented)
+```bash
+# Submit all posts as a batch - 50% cheaper, uses Haiku 4.5
+python run_ai_analysis.py --batch-mode --limit 0 --output analysis/ai_results_batch
+
+# Or use the batch analyzer directly
+python -m analysis.content_analysis.batch_analyzer analyze --input analysis/data/all_posts.csv
+
+# List recent batches
+python -m analysis.content_analysis.batch_analyzer list
+
+# Check batch status
+python -m analysis.content_analysis.batch_analyzer status --batch-id msgbatch_xxx
+```
+
+Batch mode benefits:
+- **50% cost savings** on all API calls
+- **Higher throughput** - no rate limiting concerns
+- **Uses Haiku 4.5** by default for maximum cost efficiency
+- **Automatic retry** logic for failed requests
+- **Checkpointing** via batch_id for resumability
+
+Best practices (per Anthropic docs):
+- Unique `custom_id` for each request (we use video_id)
+- Batches auto-validated before submission
+- Results available for 29 days after creation
+- Max 100k requests or 256MB per batch
+
+### Checkpointing and resumption
+
+The analysis system uses automatic checkpointing:
+- Progress saved every 10 posts to `*_checkpoint.json`
+- Safe to interrupt and resume - no duplicate API calls
+- Checkpoints contain completed IDs and full results
+
+To resume interrupted analysis:
+```bash
+# Just run the same command again - it auto-resumes from checkpoint
+python run_ai_analysis.py --limit 1000 --provider claude --output analysis/ai_results
+```
+
+### Output files
+
+```
+analysis/ai_results_merged/           # Final merged results
+├── all_semantic_results.json         # All 3,364 semantic analyses
+├── all_sentiment_results.json        # All 3,244 sentiment analyses
+└── sentiment_aggregate_stats.json    # Aggregate statistics
+
+analysis/figures/                     # Visualizations
+├── 00_summary_dashboard.png
+├── 01_sentiment_distribution.png
+├── 02_emotion_breakdown.png
+├── 03_rhetorical_modes.png
+├── 04_influencer_sentiment.png
+├── 05_content_topics.png
+├── 06_content_types.png
+├── 07_nj_relevance.png
+├── 08_sentiment_authenticity.png
+└── 09_energy_formality.png
+
+analysis/news_analysis/               # News-focused analysis
+├── news_content_filtered.csv         # Filtered news content
+└── news_analysis_summary.json        # Summary statistics
+```
+
+### Generating visualizations
+
+After AI analysis completes:
+```bash
+python analysis/generate_visualizations.py
+```
+
+Creates publication-quality charts in `analysis/figures/`:
+- Sentiment distribution pie chart
+- Emotion breakdown bar chart
+- Rhetorical modes visualization
+- Influencer sentiment comparison
+- Content topics analysis
+- NJ relevance score distribution
+- Summary dashboard
+
+### News/information content focus
+
+The primary research goal is understanding how NJ influencers deliver news and information. Key filters:
+
+```python
+# Filter to news/information content
+news_content = df[df['content_type'].isin(['news', 'opinion', 'educational'])]
+news_content = df[df['rhetorical_mode'] == 'informative']
+
+# Filter to NJ-focused content
+local_content = df[df['nj_relevance_score'] >= 0.7]
+```
+
+### Cost estimates (December 2025)
+
+#### Real-time API pricing
+| Posts | Claude Sonnet | Gemini 3 Flash | GPT-5.1 Instant |
+|-------|---------------|----------------|-----------------|
+| 500 | ~$5-8 | ~$0.50 | ~$2-3 |
+| 3,364 (full) | ~$35-50 | ~$3-5 | ~$15-20 |
+
+#### Batch API pricing (50% off)
+| Posts | Claude Haiku 4.5 (batch) | Gemini (batch) | OpenAI (batch) |
+|-------|--------------------------|----------------|----------------|
+| 3,364 (full) | ~$2-4 | ~$1.50-2.50 | ~$7-10 |
+
+**Recommendation**: For large analyses, use batch mode with Claude Haiku 4.5 for best cost efficiency.
+
+Using parallel providers can reduce wall-clock time by 60-70%.
