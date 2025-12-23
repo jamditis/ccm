@@ -1,0 +1,501 @@
+video_id,influencer,platform,sentiment_score,sentiment_label,primary_emotion,secondary_emotion,formality,energy_level,humor_level,rhetorical_mode,authenticity_score,controversy_potential,shareability_score,confidence
+7548246323812650253,Aiyana Figueroa _aiyanafig,tiktok,0.8,very_positive,anticipation,joy,casual,high,0.3,persuasive,0.6,0.1,0.8,0.9
+7548513153861127437,Aiyana Figueroa _aiyanafig,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.3,persuasive,0.4,0.1,0.7,0.95
+7550718135893036343,Aiyana Figueroa _aiyanafig,tiktok,0.9,very_positive,joy,anticipation,conversational,high,0.3,persuasive,0.7,0.1,0.8,0.9
+7551473462578072846,Aiyana Figueroa _aiyanafig,tiktok,0.85,very_positive,joy,trust,casual,high,0.1,persuasive,0.7,0.0,0.8,0.9
+7551834753729629454,Aiyana Figueroa _aiyanafig,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.2,persuasive,0.3,0.0,0.7,0.9
+7552199259769064718,Aiyana Figueroa _aiyanafig,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.2,persuasive,0.6,0.1,0.7,0.9
+7552569020910685454,Aiyana Figueroa _aiyanafig,tiktok,0.9,very_positive,joy,anticipation,casual,high,0.1,entertaining,0.7,0.0,0.8,0.85
+7552937576265534733,Aiyana Figueroa _aiyanafig,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.2,persuasive,0.3,0.1,0.8,0.9
+7553349576929840398,Aiyana Figueroa _aiyanafig,tiktok,0.8,very_positive,anticipation,joy,conversational,high,0.2,persuasive,0.3,0.1,0.7,0.9
+7553825304666574093,Aiyana Figueroa _aiyanafig,tiktok,0.85,very_positive,joy,trust,conversational,high,0.2,persuasive,0.4,0.1,0.7,0.9
+7554451458133986573,Aiyana Figueroa _aiyanafig,tiktok,0.7,positive,anticipation,joy,casual,very_high,0.3,persuasive,0.4,0.1,0.8,0.85
+7554549923480456461,Aiyana Figueroa _aiyanafig,tiktok,0.85,very_positive,anticipation,joy,casual,very_high,0.3,entertaining,0.7,0.1,0.9,0.95
+7554799018929442062,Aiyana Figueroa _aiyanafig,tiktok,0.8,very_positive,anticipation,joy,casual,very_high,0.2,persuasive,0.4,0.1,0.8,0.9
+7555554883550678285,Aiyana Figueroa _aiyanafig,tiktok,0.9,very_positive,anticipation,joy,casual,very_high,0.2,persuasive,0.3,0.1,0.8,0.95
+7556076350541450510,Aiyana Figueroa _aiyanafig,tiktok,0.85,very_positive,joy,trust,casual,high,0.2,persuasive,0.6,0.1,0.8,0.9
+7556658507047554359,Aiyana Figueroa _aiyanafig,tiktok,0.9,very_positive,joy,anticipation,casual,high,0.3,persuasive,0.6,0.1,0.9,0.9
+7557071240121437495,Aiyana Figueroa _aiyanafig,tiktok,0.85,very_positive,joy,anticipation,casual,high,0.3,persuasive,0.8,0.1,0.9,0.9
+7557428838045617422,Aiyana Figueroa _aiyanafig,tiktok,0.8,very_positive,anticipation,joy,casual,high,0.2,persuasive,0.4,0.1,0.7,0.9
+7558182707822382350,Aiyana Figueroa _aiyanafig,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.1,persuasive,0.4,0.0,0.8,0.9
+7558551606640315661,Aiyana Figueroa _aiyanafig,tiktok,0.2,positive,surprise,sadness,conversational,high,0.2,entertaining,0.8,0.1,0.9,0.9
+7558908328546520334,Aiyana Figueroa _aiyanafig,tiktok,0.9,very_positive,anticipation,joy,casual,very_high,0.2,persuasive,0.6,0.1,0.8,0.9
+7559389343694048525,Aiyana Figueroa _aiyanafig,tiktok,0.8,very_positive,anticipation,joy,casual,high,0.3,persuasive,0.6,0.1,0.8,0.9
+7560129044075826445,Aiyana Figueroa _aiyanafig,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.6,entertaining,0.6,0.1,0.9,0.9
+7560764647956073742,Aiyana Figueroa _aiyanafig,tiktok,0.9,very_positive,joy,anticipation,conversational,high,0.1,persuasive,0.4,0.2,0.8,0.9
+7561482271060921613,Aiyana Figueroa _aiyanafig,tiktok,0.8,positive,joy,anticipation,casual,high,0.6,entertaining,0.6,0.1,0.8,0.85
+7562227927744580877,Aiyana Figueroa _aiyanafig,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.3,persuasive,0.6,0.1,0.8,0.9
+7563359168099388685,Aiyana Figueroa _aiyanafig,tiktok,0.8,very_positive,anticipation,joy,conversational,very_high,0.6,persuasive,0.7,0.1,0.8,0.9
+7563732553421671694,Aiyana Figueroa _aiyanafig,tiktok,0.9,very_positive,joy,anticipation,casual,high,0.1,persuasive,0.4,0.1,0.8,0.9
+7564093135333248270,Aiyana Figueroa _aiyanafig,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.3,persuasive,0.4,0.1,0.8,0.9
+7564450157283101966,Aiyana Figueroa _aiyanafig,tiktok,0.9,very_positive,anticipation,joy,conversational,very_high,0.3,informative,0.8,0.05,0.9,0.95
+7564856174839975223,Aiyana Figueroa _aiyanafig,tiktok,0.9,very_positive,joy,surprise,casual,high,0.3,persuasive,0.8,0.2,0.85,0.9
+7564950765312265485,Aiyana Figueroa _aiyanafig,tiktok,0.8,very_positive,anticipation,joy,conversational,high,0.3,persuasive,0.6,0.1,0.8,0.9
+7565207124955942199,Aiyana Figueroa _aiyanafig,tiktok,0.8,very_positive,joy,anticipation,conversational,high,0.2,entertaining,0.4,0.1,0.7,0.9
+7565577121960103181,Aiyana Figueroa _aiyanafig,tiktok,0.7,positive,joy,anticipation,casual,high,0.7,entertaining,0.6,0.1,0.8,0.85
+7565623266602175757,Aiyana Figueroa _aiyanafig,tiktok,0.6,positive,joy,anticipation,casual,high,0.8,entertaining,0.7,0.1,0.8,0.9
+7565970844959132941,Aiyana Figueroa _aiyanafig,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.2,persuasive,0.6,0.1,0.85,0.9
+7566822153694317838,Aiyana Figueroa _aiyanafig,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.7,entertaining,0.8,0.1,0.8,0.9
+7567083431029378359,Aiyana Figueroa _aiyanafig,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.6,persuasive,0.6,0.1,0.9,0.9
+7567421023373643022,Aiyana Figueroa _aiyanafig,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.2,informative,0.7,0.05,0.8,0.9
+7567800994319338807,Aiyana Figueroa _aiyanafig,tiktok,0.6,positive,anticipation,joy,casual,moderate,0.1,entertaining,0.6,0.1,0.7,0.3
+7568958446872038669,Aiyana Figueroa _aiyanafig,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.6,entertaining,0.7,0.3,0.8,0.9
+7570063006206266679,Aiyana Figueroa _aiyanafig,tiktok,0.9,very_positive,joy,anticipation,casual,very_high,0.1,persuasive,0.3,0.1,0.8,0.9
+7571138196793199927,Aiyana Figueroa _aiyanafig,tiktok,0.7,positive,joy,anticipation,casual,moderate,0.1,persuasive,0.4,0.1,0.6,0.6
+7571164427710614839,Aiyana Figueroa _aiyanafig,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.1,persuasive,0.4,0.1,0.7,0.9
+7571901998715374903,Aiyana Figueroa _aiyanafig,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.3,persuasive,0.6,0.1,0.8,0.85
+7572281645282135309,Aiyana Figueroa _aiyanafig,tiktok,0.95,very_positive,joy,anticipation,casual,very_high,0.1,persuasive,0.8,0.05,0.85,0.92
+7573748632856382734,Aiyana Figueroa _aiyanafig,tiktok,0.8,positive,joy,trust,casual,moderate,0.1,persuasive,0.4,0.0,0.7,0.9
+7574138201900698894,Aiyana Figueroa _aiyanafig,tiktok,0.9,very_positive,joy,anticipation,casual,very_high,0.2,entertaining,0.6,0.1,0.8,0.9
+7574262143026056462,Aiyana Figueroa _aiyanafig,tiktok,0.85,very_positive,anticipation,joy,conversational,high,0.1,persuasive,0.7,0.1,0.8,0.9
+7574866621450161463,Aiyana Figueroa _aiyanafig,tiktok,0.9,very_positive,joy,anticipation,casual,very_high,0.3,entertaining,0.7,0.1,0.85,0.9
+MS4wLjABAAAA0kl7-RW6fo1CwS3lUfZ9sEdXymm23o0SseevlT025PQ3g7-nKfRchCuJP7Fszozo,Aiyana Figueroa _aiyanafig,tiktok,0.0,neutral,neutral,neutral,casual,moderate,0.0,informative,0.0,0.0,0.0,0.0
+7568108629547617566,Bobby bobbyzworld90,tiktok,-0.3,negative,sadness,fear,casual,low,0.1,persuasive,0.7,0.4,0.3,0.4
+7568200709955439903,Bobby bobbyzworld90,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.2,inspirational,0.7,0.1,0.8,0.8
+7568470234152176926,Bobby bobbyzworld90,tiktok,0.7,positive,anticipation,trust,casual,high,0.2,persuasive,0.7,0.6,0.7,0.85
+7568547084660411679,Bobby bobbyzworld90,tiktok,-0.6,negative,anticipation,disgust,casual,moderate,0.2,confrontational,0.7,0.7,0.6,0.6
+7568621976474930463,Bobby bobbyzworld90,tiktok,0.0,neutral,anticipation,trust,conversational,moderate,0.0,informative,0.7,0.2,0.6,0.3
+7568667302174952735,Bobby bobbyzworld90,tiktok,0.7,positive,joy,anticipation,casual,high,0.2,informative,0.8,0.3,0.6,0.85
+7568823173408476446,Bobby bobbyzworld90,tiktok,0.1,neutral,anticipation,trust,casual,low,0.0,persuasive,0.7,0.2,0.4,0.8
+7568866408138902814,Bobby bobbyzworld90,tiktok,-0.3,negative,fear,anticipation,casual,moderate,0.1,informative,0.8,0.3,0.6,0.7
+7568876037120036126,Bobby bobbyzworld90,tiktok,0.7,positive,trust,anticipation,casual,high,0.1,inspirational,0.7,0.4,0.8,0.8
+7569126219128622366,Bobby bobbyzworld90,tiktok,0.0,neutral,anticipation,trust,casual,moderate,0.1,informative,0.7,0.6,0.5,0.4
+7569302839898557726,Bobby bobbyzworld90,tiktok,0.1,neutral,anticipation,trust,professional,moderate,0.0,informative,0.8,0.3,0.6,0.7
+7569407565860277535,Bobby bobbyzworld90,tiktok,0.3,positive,anticipation,trust,casual,high,0.1,inspirational,0.7,0.2,0.6,0.8
+7569597326482771230,Bobby bobbyzworld90,tiktok,0.2,positive,anticipation,trust,conversational,moderate,0.1,informative,0.7,0.3,0.6,0.8
+7569597768612859167,Bobby bobbyzworld90,tiktok,0.1,neutral,anticipation,trust,conversational,moderate,0.1,informative,0.7,0.6,0.5,0.6
+7569986140053261598,Bobby bobbyzworld90,tiktok,0.6,positive,joy,trust,casual,high,0.8,entertaining,0.8,0.2,0.7,0.9
+7570169233380773151,Bobby bobbyzworld90,tiktok,-0.2,negative,anticipation,surprise,casual,moderate,0.2,informative,0.7,0.6,0.5,0.8
+7570348193381092638,Bobby bobbyzworld90,tiktok,0.6,positive,joy,trust,casual,moderate,0.6,entertaining,0.8,0.0,0.7,0.85
+7570383435672325406,Bobby bobbyzworld90,tiktok,-0.3,negative,sadness,anger,casual,high,0.3,entertaining,0.8,0.2,0.7,0.85
+7570566288129445151,Bobby bobbyzworld90,tiktok,-0.3,negative,surprise,disgust,casual,moderate,0.2,entertaining,0.7,0.8,0.6,0.8
+7570695701789674782,Bobby bobbyzworld90,tiktok,-0.3,negative,anticipation,anger,casual,moderate,0.1,persuasive,0.8,0.7,0.6,0.85
+7570758948882533662,Bobby bobbyzworld90,tiktok,-0.6,negative,anger,disgust,casual,high,0.2,confrontational,0.7,0.8,0.7,0.85
+7570771335199165727,Bobby bobbyzworld90,tiktok,-0.6,negative,disgust,anger,conversational,moderate,0.2,informative,0.7,0.7,0.6,0.8
+7571130139996704030,Bobby bobbyzworld90,tiktok,-0.7,negative,anger,disgust,casual,high,0.1,confrontational,0.8,0.7,0.6,0.85
+7571244062854941982,Bobby bobbyzworld90,tiktok,0.1,neutral,anticipation,trust,conversational,moderate,0.3,informative,0.7,0.3,0.6,0.8
+7571467927103311135,Bobby bobbyzworld90,tiktok,-0.2,negative,disgust,joy,casual,moderate,0.6,entertaining,0.7,0.7,0.8,0.85
+7571530974924786974,Bobby bobbyzworld90,tiktok,-0.3,negative,anticipation,anger,casual,moderate,0.4,confrontational,0.7,0.6,0.7,0.85
+7571580408945446174,Bobby bobbyzworld90,tiktok,0.6,positive,joy,anticipation,casual,moderate,0.7,entertaining,0.8,0.3,0.7,0.85
+7571963867115293982,Bobby bobbyzworld90,tiktok,-0.7,negative,disgust,anger,casual,high,0.1,confrontational,0.6,0.9,0.8,0.85
+7572003084155538719,Bobby bobbyzworld90,tiktok,0.2,positive,anticipation,trust,casual,high,0.2,persuasive,0.7,0.6,0.7,0.8
+7572011683774811423,Bobby bobbyzworld90,tiktok,-0.3,negative,anger,disgust,conversational,moderate,0.1,confrontational,0.7,0.8,0.7,0.85
+7572229312523390239,Bobby bobbyzworld90,tiktok,-0.6,negative,anger,disgust,casual,very_high,0.2,confrontational,0.8,0.7,0.8,0.85
+7572244636446493983,Bobby bobbyzworld90,tiktok,0.1,neutral,anticipation,surprise,casual,high,0.0,informative,0.4,0.3,0.6,0.8
+7572328420273704223,Bobby bobbyzworld90,tiktok,-0.3,negative,surprise,anticipation,casual,high,0.0,confrontational,0.2,0.9,0.8,0.7
+7572391055253916959,Bobby bobbyzworld90,tiktok,0.3,positive,joy,anticipation,casual,moderate,0.7,entertaining,0.8,0.1,0.8,0.85
+7572642290393468191,Bobby bobbyzworld90,tiktok,0.2,positive,joy,anticipation,casual,moderate,0.8,entertaining,0.3,0.9,0.8,0.8
+7572729659587054878,Bobby bobbyzworld90,tiktok,0.2,positive,joy,anticipation,casual,high,0.8,entertaining,0.6,0.7,0.8,0.85
+7572784221312339231,Bobby bobbyzworld90,tiktok,-0.3,negative,anticipation,anger,casual,very_high,0.2,confrontational,0.8,0.9,0.8,0.85
+7573051239068486943,Bobby bobbyzworld90,tiktok,0.2,positive,anticipation,anger,casual,high,0.1,confrontational,0.7,0.8,0.7,0.8
+7573073574848728351,Bobby bobbyzworld90,tiktok,0.3,positive,joy,anticipation,casual,moderate,0.8,entertaining,0.6,0.7,0.8,0.7
+7573374086714248479,Bobby bobbyzworld90,tiktok,0.3,positive,joy,anticipation,casual,moderate,0.6,entertaining,0.8,0.7,0.8,0.9
+7573694378812787999,Bobby bobbyzworld90,tiktok,0.2,positive,anticipation,trust,casual,moderate,0.0,informative,0.8,0.2,0.4,0.8
+7573725907655871774,Bobby bobbyzworld90,tiktok,-0.7,negative,disgust,anger,conversational,moderate,0.2,confrontational,0.8,0.6,0.7,0.85
+7573785734826495262,Bobby bobbyzworld90,tiktok,-0.6,negative,anger,disgust,casual,high,0.3,confrontational,0.8,0.7,0.6,0.85
+7573830533730323742,Bobby bobbyzworld90,tiktok,0.3,positive,anticipation,joy,casual,moderate,0.4,entertaining,0.8,0.1,0.6,0.7
+7573936592935456030,Bobby bobbyzworld90,tiktok,0.7,positive,anticipation,surprise,casual,high,0.3,entertaining,0.8,0.2,0.9,0.85
+7574055165548875039,Bobby bobbyzworld90,tiktok,0.7,positive,joy,anticipation,casual,very_high,0.4,entertaining,0.8,0.1,0.9,0.85
+7574457450720496926,Bobby bobbyzworld90,tiktok,0.3,positive,anticipation,trust,casual,moderate,0.1,informative,0.7,0.3,0.4,0.8
+7574796853389184287,Bobby bobbyzworld90,tiktok,0.7,positive,trust,joy,conversational,moderate,0.1,informative,0.6,0.3,0.4,0.8
+MS4wLjABAAAAUT0nPgrDhVNz2rJSoW5tSPU4YoQwhjoYme5wCPmDrrbdpTsqkChD87lVrlBVYsri,Bobby bobbyzworld90,tiktok,0.0,neutral,neutral,neutral,casual,moderate,0.0,informative,0.5,0.0,0.1,0.1
+7559784306969726239,byerikabatista,tiktok,0.3,positive,joy,trust,casual,moderate,0.7,entertaining,0.8,0.1,0.7,0.8
+7559799030679751967,byerikabatista,tiktok,0.8,positive,joy,anticipation,conversational,moderate,0.1,informative,0.7,0.1,0.7,0.85
+7560030167586966814,byerikabatista,tiktok,0.6,positive,joy,trust,casual,moderate,0.8,entertaining,0.7,0.1,0.8,0.8
+7560321454202555679,byerikabatista,tiktok,0.7,positive,joy,anticipation,casual,moderate,0.2,inspirational,0.7,0.2,0.6,0.6
+7560462243305934110,byerikabatista,tiktok,0.8,positive,joy,trust,casual,high,0.9,entertaining,0.7,0.1,0.8,0.8
+7560713295498431775,byerikabatista,tiktok,0.8,very_positive,joy,trust,casual,high,0.2,inspirational,0.7,0.0,0.7,0.8
+7560775035992935710,byerikabatista,tiktok,0.8,very_positive,joy,trust,casual,moderate,0.1,persuasive,0.6,0.1,0.6,0.85
+7560808393871510814,byerikabatista,tiktok,0.8,very_positive,trust,joy,casual,moderate,0.1,inspirational,0.8,0.2,0.7,0.85
+7560886557515746590,byerikabatista,tiktok,0.8,positive,anticipation,joy,casual,moderate,0.2,persuasive,0.6,0.1,0.7,0.8
+7560893451902995742,byerikabatista,tiktok,0.7,positive,joy,trust,casual,moderate,0.1,informative,0.8,0.0,0.6,0.9
+7562569189215587615,byerikabatista,tiktok,0.7,positive,anticipation,trust,casual,moderate,0.1,entertaining,0.8,0.0,0.4,0.7
+7562569197121785118,byerikabatista,tiktok,0.8,positive,joy,trust,casual,high,0.6,entertaining,0.7,0.2,0.8,0.8
+7562747190498610463,byerikabatista,tiktok,0.7,positive,joy,anticipation,casual,moderate,0.6,entertaining,0.8,0.1,0.8,0.9
+7562930407390465310,byerikabatista,tiktok,0.7,positive,joy,anticipation,casual,moderate,0.3,entertaining,0.8,0.3,0.7,0.9
+7563376298467413278,byerikabatista,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.6,inspirational,0.7,0.3,0.8,0.85
+7563491762191273246,byerikabatista,tiktok,0.85,very_positive,joy,anticipation,casual,high,0.1,persuasive,0.6,0.1,0.8,0.9
+7563496472893787422,byerikabatista,tiktok,0.3,positive,trust,joy,casual,moderate,0.7,entertaining,0.8,0.1,0.8,0.9
+7563501892555312414,byerikabatista,tiktok,0.8,very_positive,anticipation,joy,casual,high,0.3,entertaining,0.6,0.1,0.7,0.9
+7563694512967666974,byerikabatista,tiktok,0.8,very_positive,trust,joy,casual,high,0.3,inspirational,0.8,0.1,0.8,0.9
+7563844396328750367,byerikabatista,tiktok,0.2,positive,joy,trust,casual,moderate,0.8,entertaining,0.7,0.1,0.8,0.6
+7564248462179552543,byerikabatista,tiktok,0.8,positive,joy,anticipation,casual,high,0.4,entertaining,0.7,0.1,0.8,0.8
+7564250684535737630,byerikabatista,tiktok,0.8,positive,joy,anticipation,casual,high,0.3,entertaining,0.7,0.0,0.8,0.9
+7565150236218264862,byerikabatista,tiktok,0.9,very_positive,joy,anticipation,casual,high,0.1,entertaining,0.6,0.0,0.8,0.85
+7565677677743492382,byerikabatista,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.1,entertaining,0.4,0.0,0.6,0.9
+7565699273640135967,byerikabatista,tiktok,0.7,positive,joy,trust,casual,moderate,0.7,entertaining,0.8,0.1,0.7,0.85
+7565969207276408094,byerikabatista,tiktok,0.8,very_positive,joy,trust,conversational,high,0.2,entertaining,0.6,0.1,0.8,0.85
+7566094893945310495,byerikabatista,tiktok,0.8,positive,joy,trust,casual,moderate,0.2,entertaining,0.7,0.1,0.8,0.8
+7566346455779216670,byerikabatista,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.2,entertaining,0.6,0.1,0.75,0.85
+7566769919723900191,byerikabatista,tiktok,0.7,positive,trust,joy,casual,moderate,0.3,entertaining,0.8,0.1,0.6,0.7
+7567080533067418910,byerikabatista,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.3,persuasive,0.7,0.1,0.8,0.9
+7567092032963955998,byerikabatista,tiktok,-0.6,negative,disgust,anger,casual,high,0.3,entertaining,0.8,0.7,0.8,0.9
+7567201211363986718,byerikabatista,tiktok,0.7,positive,trust,joy,conversational,moderate,0.3,persuasive,0.4,0.1,0.6,0.85
+7568486813631810846,byerikabatista,tiktok,0.7,positive,trust,anticipation,casual,high,0.1,inspirational,0.8,0.3,0.8,0.6
+7568490100837862686,byerikabatista,tiktok,0.7,positive,joy,trust,casual,moderate,0.8,entertaining,0.9,0.1,0.8,0.85
+7568532654203669790,byerikabatista,tiktok,0.8,very_positive,trust,joy,conversational,moderate,0.3,persuasive,0.6,0.1,0.7,0.9
+7568655894565621022,byerikabatista,tiktok,-0.3,negative,sadness,trust,casual,low,0.6,entertaining,0.8,0.1,0.7,0.85
+7568656922375671071,byerikabatista,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.2,persuasive,0.6,0.1,0.75,0.9
+7568664815787314462,byerikabatista,tiktok,0.8,positive,joy,trust,casual,high,0.4,informative,0.7,0.1,0.6,0.85
+7568913469047622942,byerikabatista,tiktok,0.8,very_positive,joy,trust,conversational,high,0.1,persuasive,0.6,0.1,0.7,0.85
+7569052640730991902,byerikabatista,tiktok,0.9,very_positive,joy,trust,casual,very_high,0.1,entertaining,0.85,0.4,0.8,0.9
+7569339380872072479,byerikabatista,tiktok,0.8,very_positive,anticipation,joy,casual,moderate,0.1,persuasive,0.4,0.1,0.6,0.9
+7570023036649229598,byerikabatista,tiktok,0.8,very_positive,anticipation,joy,conversational,high,0.3,persuasive,0.3,0.4,0.7,0.9
+7570571132512832799,byerikabatista,tiktok,0.8,very_positive,joy,trust,casual,high,0.2,persuasive,0.4,0.1,0.8,0.9
+7570805272143252767,byerikabatista,tiktok,-0.6,negative,sadness,anger,casual,moderate,0.4,entertaining,0.8,0.1,0.7,0.9
+7571588809721203998,byerikabatista,tiktok,0.7,positive,joy,trust,casual,high,0.8,entertaining,0.8,0.3,0.8,0.9
+7571676388319677727,byerikabatista,tiktok,-0.3,negative,sadness,anticipation,casual,low,0.3,entertaining,0.8,0.1,0.7,0.85
+7572409533901917470,byerikabatista,tiktok,0.8,very_positive,joy,trust,conversational,high,0.1,persuasive,0.7,0.1,0.8,0.9
+7573126624011357471,byerikabatista,tiktok,0.7,positive,joy,anticipation,casual,moderate,0.1,informative,0.8,0.1,0.7,0.7
+7573158654678011166,byerikabatista,tiktok,0.3,positive,joy,sadness,casual,moderate,0.8,entertaining,0.8,0.1,0.8,0.9
+7574296785460415774,byerikabatista,tiktok,0.8,very_positive,joy,trust,conversational,high,0.2,informative,0.8,0.1,0.7,0.9
+MS4wLjABAAAAE_REHgz72ktOI4rK0mmdyUUqgQdD9-3Nt7TNHO_ro0WHtjbC61mRZH94xDuCqjMf,byerikabatista,tiktok,0.0,neutral,neutral,neutral,casual,moderate,0.0,informative,0.5,0.0,0.1,0.1
+7519891450075565343,Christine Eliza,tiktok,0.85,very_positive,anticipation,joy,casual,very_high,0.3,persuasive,0.6,0.1,0.9,0.9
+7520063588925459742,Christine Eliza,tiktok,0.7,positive,joy,anticipation,casual,moderate,0.2,entertaining,0.8,0.1,0.6,0.85
+7520410572588961054,Christine Eliza,tiktok,0.9,very_positive,joy,anticipation,conversational,high,0.2,persuasive,0.6,0.1,0.8,0.9
+7522245212060536094,Christine Eliza,tiktok,0.85,very_positive,joy,trust,conversational,high,0.1,inspirational,0.65,0.1,0.8,0.9
+7524059516275543327,Christine Eliza,tiktok,0.9,very_positive,joy,anticipation,casual,high,0.2,entertaining,0.8,0.0,0.8,0.9
+7524487695184317726,Christine Eliza,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.2,entertaining,0.8,0.1,0.7,0.9
+7525479500755307806,Christine Eliza,tiktok,0.8,positive,anticipation,joy,casual,moderate,0.1,persuasive,0.8,0.1,0.6,0.85
+7525609908130041118,Christine Eliza,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.1,informative,0.85,0.1,0.8,0.9
+7526282217887141150,Christine Eliza,tiktok,0.85,very_positive,joy,anticipation,casual,high,0.2,entertaining,0.7,0.0,0.8,0.9
+7528511100631928094,Christine Eliza,tiktok,0.8,very_positive,anticipation,joy,casual,high,0.1,persuasive,0.4,0.1,0.6,0.8
+7530654698056011038,Christine Eliza,tiktok,0.7,positive,anticipation,joy,casual,moderate,0.4,entertaining,0.6,0.1,0.9,0.8
+7530817171140775198,Christine Eliza,tiktok,0.8,positive,anticipation,joy,casual,moderate,0.2,informative,0.7,0.1,0.8,0.8
+7533380088553884959,Christine Eliza,tiktok,0.7,positive,trust,joy,conversational,moderate,0.1,persuasive,0.7,0.1,0.6,0.9
+7534140974084279583,Christine Eliza,tiktok,0.7,positive,anticipation,joy,casual,moderate,0.3,entertaining,0.7,0.1,0.8,0.8
+7535209344720309535,Christine Eliza,tiktok,0.8,very_positive,joy,trust,conversational,moderate,0.1,informative,0.9,0.0,0.7,0.95
+7535969567827348767,Christine Eliza,tiktok,0.7,positive,trust,joy,conversational,moderate,0.1,inspirational,0.7,0.1,0.8,0.9
+7536405696091360542,Christine Eliza,tiktok,0.8,very_positive,anticipation,joy,casual,high,0.2,informative,0.7,0.1,0.8,0.8
+7536658838871674143,Christine Eliza,tiktok,0.8,very_positive,joy,trust,casual,high,0.1,entertaining,0.8,0.0,0.6,0.9
+7537746675423546655,Christine Eliza,tiktok,0.7,positive,anticipation,trust,casual,moderate,0.1,informative,0.7,0.0,0.6,0.9
+7538208613660216606,Christine Eliza,tiktok,0.7,positive,surprise,anticipation,casual,high,0.2,informative,0.8,0.1,0.8,0.9
+7541035351410773278,Christine Eliza,tiktok,0.85,very_positive,joy,trust,conversational,moderate,0.1,informative,0.75,0.0,0.7,0.9
+7542968498536959262,Christine Eliza,tiktok,0.8,very_positive,joy,trust,casual,moderate,0.3,inspirational,0.7,0.1,0.8,0.9
+7544123335051922718,Christine Eliza,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.2,entertaining,0.6,0.3,0.75,0.8
+7544148749660982558,Christine Eliza,tiktok,0.7,positive,joy,anticipation,casual,moderate,0.2,entertaining,0.8,0.1,0.7,0.8
+7544860264487734558,Christine Eliza,tiktok,0.7,positive,anticipation,joy,casual,moderate,0.4,informative,0.7,0.1,0.8,0.8
+7545248008162626847,Christine Eliza,tiktok,0.8,positive,joy,anticipation,casual,high,0.2,entertaining,0.6,0.0,0.7,0.9
+7545681561430117662,Christine Eliza,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.1,entertaining,0.7,0.1,0.8,0.85
+7545985600436981023,Christine Eliza,tiktok,0.85,very_positive,anticipation,joy,casual,high,0.2,informative,0.8,0.0,0.85,0.9
+7546311754335276319,Christine Eliza,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.2,entertaining,0.7,0.1,0.8,0.8
+7546693359625047326,Christine Eliza,tiktok,0.9,very_positive,joy,trust,casual,moderate,0.1,entertaining,0.8,0.0,0.8,0.8
+7547910591541759263,Christine Eliza,tiktok,0.7,positive,joy,anticipation,casual,moderate,0.3,entertaining,0.8,0.1,0.6,0.7
+7548900627003362591,Christine Eliza,tiktok,0.8,positive,joy,trust,casual,moderate,0.1,entertaining,0.7,0.0,0.6,0.8
+7551504959150279966,Christine Eliza,tiktok,0.8,very_positive,joy,anticipation,casual,moderate,0.2,entertaining,0.6,0.1,0.7,0.85
+7553008392109837598,Christine Eliza,tiktok,0.7,positive,anticipation,joy,casual,high,0.3,entertaining,0.7,0.1,0.8,0.85
+7553786117024255262,Christine Eliza,tiktok,0.8,very_positive,joy,anticipation,conversational,high,0.6,entertaining,0.75,0.1,0.9,0.9
+7555983753370209567,Christine Eliza,tiktok,0.8,very_positive,joy,trust,casual,high,0.2,persuasive,0.6,0.1,0.7,0.9
+7556363459479260447,Christine Eliza,tiktok,0.8,very_positive,joy,trust,casual,high,0.7,entertaining,0.8,0.1,0.7,0.9
+7558504919628549406,Christine Eliza,tiktok,0.8,positive,joy,anticipation,casual,moderate,0.1,entertaining,0.8,0.0,0.7,0.7
+7559712236189584670,Christine Eliza,tiktok,0.7,positive,trust,joy,casual,moderate,0.2,informative,0.8,0.1,0.6,0.9
+7560036222714809630,Christine Eliza,tiktok,0.85,very_positive,joy,anticipation,conversational,moderate,0.1,informative,0.85,0.0,0.8,0.9
+7560175126344420638,Christine Eliza,tiktok,0.7,positive,anticipation,joy,casual,moderate,0.0,informative,0.8,0.0,0.4,0.9
+7561584296696270111,Christine Eliza,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.6,informative,0.8,0.0,0.75,0.9
+7561847195817839903,Christine Eliza,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.3,entertaining,0.7,0.1,0.8,0.9
+7562348152884383007,Christine Eliza,tiktok,0.7,positive,anticipation,joy,casual,moderate,0.1,informative,0.8,0.0,0.6,0.9
+7564495521935576350,Christine Eliza,tiktok,0.9,very_positive,joy,trust,conversational,high,0.2,persuasive,0.6,0.1,0.8,0.85
+7565744456826146079,Christine Eliza,tiktok,0.8,very_positive,anticipation,joy,casual,high,0.1,entertaining,0.8,0.0,0.6,0.9
+7568685006223133982,Christine Eliza,tiktok,0.7,positive,anticipation,joy,casual,high,0.2,entertaining,0.7,0.1,0.9,0.85
+7571214035656527135,Christine Eliza,tiktok,0.8,positive,anticipation,joy,casual,moderate,0.2,informative,0.8,0.2,0.7,0.9
+7572311867130006814,Christine Eliza,tiktok,0.85,very_positive,anticipation,joy,casual,high,0.2,persuasive,0.4,0.1,0.8,0.9
+7574182223524482334,Christine Eliza,tiktok,0.7,positive,anticipation,joy,professional,moderate,0.1,informative,0.6,0.0,0.4,0.9
+MS4wLjABAAAAbRKcuEHJBWDSPRrTI8rtpmrry8Cp2Rksv8eokZCOb-3k9b2r4I4jQtMOYy8NM43W,Christine Eliza,tiktok,0.0,neutral,neutral,neutral,casual,moderate,0.0,informative,0.5,0.0,0.0,0.0
+7499509295084490026,Dileiny Baron,tiktok,0.75,positive,joy,anticipation,casual,moderate,0.2,informative,0.6,0.1,0.7,0.8
+7500385373919497514,Dileiny Baron,tiktok,0.6,positive,joy,anticipation,casual,moderate,0.8,entertaining,0.8,0.1,0.7,0.7
+7504988817301032234,Dileiny Baron,tiktok,0.7,positive,anticipation,joy,casual,moderate,0.1,persuasive,0.6,0.0,0.5,0.8
+7505444729438407982,Dileiny Baron,tiktok,0.8,positive,anticipation,joy,conversational,high,0.6,persuasive,0.7,0.1,0.8,0.9
+7506536068481600814,Dileiny Baron,tiktok,0.8,very_positive,joy,anticipation,conversational,high,0.1,informative,0.7,0.1,0.8,0.9
+7506671259980172587,Dileiny Baron,tiktok,0.7,positive,joy,anticipation,casual,moderate,0.7,entertaining,0.8,0.1,0.8,0.7
+7506849123128118571,Dileiny Baron,tiktok,0.7,positive,anticipation,joy,casual,moderate,0.1,persuasive,0.6,0.0,0.5,0.8
+7508409275258293550,Dileiny Baron,tiktok,0.7,positive,anticipation,joy,casual,high,0.8,entertaining,0.7,0.6,0.8,0.9
+7509168421091740971,Dileiny Baron,tiktok,0.7,positive,joy,anticipation,casual,moderate,0.2,persuasive,0.6,0.1,0.7,0.8
+7509609240588258606,Dileiny Baron,tiktok,-0.3,negative,anticipation,sadness,casual,low,0.4,entertaining,0.6,0.3,0.7,0.4
+7512105474339196202,Dileiny Baron,tiktok,0.7,positive,anticipation,joy,casual,moderate,0.2,informative,0.8,0.1,0.8,0.7
+7514340944477523242,Dileiny Baron,tiktok,0.8,positive,joy,trust,casual,moderate,0.1,informative,0.6,0.1,0.7,0.85
+7514379079987055915,Dileiny Baron,tiktok,0.6,positive,anticipation,joy,casual,high,0.6,entertaining,0.7,0.3,0.8,0.6
+7515073867308731694,Dileiny Baron,tiktok,0.8,very_positive,anticipation,joy,professional,high,0.1,persuasive,0.6,0.1,0.7,0.9
+7515818052676799790,Dileiny Baron,tiktok,0.7,positive,anticipation,joy,casual,moderate,0.1,persuasive,0.4,0.1,0.5,0.8
+7516918442675457293,Dileiny Baron,tiktok,0.8,positive,joy,trust,casual,moderate,0.6,entertaining,0.8,0.1,0.7,0.9
+7518408515661155639,Dileiny Baron,tiktok,-0.3,negative,surprise,anticipation,casual,moderate,0.7,entertaining,0.8,0.3,0.8,0.7
+7518854353910795533,Dileiny Baron,tiktok,0.6,positive,joy,surprise,casual,moderate,0.8,entertaining,0.7,0.2,0.8,0.8
+7519483611167329591,Dileiny Baron,tiktok,0.8,positive,joy,anticipation,casual,moderate,0.3,entertaining,0.4,0.0,0.7,0.85
+7521766028292967693,Dileiny Baron,tiktok,0.8,positive,joy,anticipation,casual,high,0.2,entertaining,0.6,0.1,0.7,0.85
+7521769447292554509,Dileiny Baron,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.2,entertaining,0.6,0.1,0.8,0.9
+7521852986579062071,Dileiny Baron,tiktok,0.8,positive,joy,anticipation,casual,moderate,0.2,entertaining,0.8,0.1,0.8,0.9
+7522136925805759757,Dileiny Baron,tiktok,0.7,positive,joy,anticipation,casual,moderate,0.1,entertaining,0.6,0.1,0.7,0.8
+7522862221303483661,Dileiny Baron,tiktok,0.7,positive,joy,anticipation,casual,moderate,0.4,entertaining,0.6,0.4,0.8,0.7
+7525136044619025678,Dileiny Baron,tiktok,0.3,positive,joy,anticipation,casual,high,0.8,entertaining,0.7,0.6,0.8,0.9
+7526582904890182926,Dileiny Baron,tiktok,0.8,positive,joy,trust,casual,moderate,0.2,persuasive,0.6,0.1,0.7,0.8
+7529363288434429239,Dileiny Baron,tiktok,0.7,positive,joy,trust,casual,moderate,0.7,entertaining,0.8,0.1,0.7,0.8
+7531389080588897591,Dileiny Baron,tiktok,0.7,positive,joy,anticipation,casual,moderate,0.1,entertaining,0.8,0.1,0.7,0.8
+7542867364635757838,Dileiny Baron,tiktok,0.8,positive,joy,trust,casual,moderate,0.2,entertaining,0.6,0.1,0.7,0.85
+7542928875710369079,Dileiny Baron,tiktok,0.7,positive,joy,trust,conversational,moderate,0.1,persuasive,0.4,0.1,0.4,0.9
+7544104999370984759,Dileiny Baron,tiktok,0.7,positive,anticipation,joy,casual,moderate,0.1,persuasive,0.4,0.1,0.6,0.8
+7545903230220340493,Dileiny Baron,tiktok,0.8,positive,joy,trust,casual,moderate,0.1,informative,0.6,0.1,0.5,0.85
+7548079702473280781,Dileiny Baron,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.3,persuasive,0.6,0.1,0.7,0.85
+7549210693535386894,Dileiny Baron,tiktok,0.8,positive,anticipation,joy,casual,high,0.2,persuasive,0.6,0.1,0.7,0.8
+7551876362924068109,Dileiny Baron,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.2,inspirational,0.6,0.1,0.7,0.8
+7552194247860948238,Dileiny Baron,tiktok,0.8,positive,anticipation,joy,casual,moderate,0.1,persuasive,0.6,0.1,0.6,0.9
+7552907875761392951,Dileiny Baron,tiktok,0.8,very_positive,joy,trust,casual,high,0.2,entertaining,0.8,0.1,0.8,0.9
+7554024790252621070,Dileiny Baron,tiktok,0.9,very_positive,joy,surprise,casual,very_high,0.7,entertaining,0.85,0.1,0.9,0.9
+7561846433268157751,Dileiny Baron,tiktok,0.8,very_positive,joy,trust,conversational,high,0.2,persuasive,0.4,0.1,0.7,0.9
+7562639474929241357,Dileiny Baron,tiktok,0.8,positive,anticipation,joy,casual,high,0.1,persuasive,0.4,0.1,0.6,0.9
+7562984740786162958,Dileiny Baron,tiktok,0.7,positive,anticipation,joy,casual,moderate,0.1,informative,0.7,0.1,0.7,0.8
+7562987022927809805,Dileiny Baron,tiktok,0.7,positive,joy,anticipation,casual,high,0.8,entertaining,0.7,0.3,0.8,0.8
+7562989603901213966,Dileiny Baron,tiktok,0.7,positive,joy,anticipation,casual,high,0.7,entertaining,0.8,0.1,0.7,0.9
+7564493198769343757,Dileiny Baron,tiktok,0.7,positive,joy,anticipation,casual,moderate,0.1,persuasive,0.4,0.1,0.6,0.8
+7564788785028926775,Dileiny Baron,tiktok,0.7,positive,joy,anticipation,casual,high,0.3,inspirational,0.8,0.1,0.8,0.9
+7565900600781606199,Dileiny Baron,tiktok,0.8,positive,trust,joy,conversational,moderate,0.2,persuasive,0.6,0.1,0.7,0.9
+7570783050401893645,Dileiny Baron,tiktok,0.8,positive,joy,trust,conversational,moderate,0.1,informative,0.7,0.0,0.6,0.9
+7570866246221040951,Dileiny Baron,tiktok,0.3,positive,joy,trust,casual,moderate,0.8,entertaining,0.8,0.1,0.7,0.8
+7572623581868330254,Dileiny Baron,tiktok,0.8,positive,joy,anticipation,casual,high,0.1,entertaining,0.6,0.1,0.7,0.8
+7572947657316994318,Dileiny Baron,tiktok,0.7,positive,anticipation,joy,casual,moderate,0.1,persuasive,0.6,0.1,0.6,0.8
+MS4wLjABAAAAXqh7mfns3RTFJhr6n5wYSHm-lvps72bHxlm3K3g7Ss5xb_oj0HL0CvIKtOVxKumo,Dileiny Baron,tiktok,0.0,neutral,neutral,neutral,casual,moderate,0.0,informative,0.5,0.0,0.0,0.0
+7502191953287597343,Garden State,tiktok,-0.3,negative,trust,surprise,professional,moderate,0.0,informative,0.8,0.2,0.6,0.9
+7502519148862262558,Garden State,tiktok,-0.7,negative,surprise,disgust,professional,moderate,0.0,informative,0.8,0.8,0.7,0.9
+7502787688018365727,Garden State,tiktok,0.0,neutral,trust,surprise,professional,low,0.0,informative,0.8,0.2,0.6,0.9
+7502995805607857439,Garden State,tiktok,0.1,neutral,anticipation,surprise,casual,moderate,0.0,informative,0.8,0.1,0.7,0.9
+7504028453826596126,Garden State,tiktok,-0.1,neutral,trust,anticipation,professional,moderate,0.0,informative,0.8,0.2,0.7,0.9
+7504482689160858911,Garden State,tiktok,-0.3,negative,anticipation,anger,conversational,moderate,0.0,informative,0.7,0.8,0.7,0.85
+7505030889320074526,Garden State,tiktok,-0.3,negative,anticipation,trust,professional,moderate,0.0,informative,0.8,0.4,0.7,0.9
+7505476317266070815,Garden State,tiktok,-0.3,negative,surprise,anticipation,conversational,moderate,0.2,informative,0.7,0.8,0.9,0.85
+7507004545118113054,Garden State,tiktok,0.6,positive,anticipation,trust,conversational,moderate,0.0,informative,0.7,0.1,0.6,0.9
+7508090916503145759,Garden State,tiktok,-0.3,negative,trust,anticipation,professional,moderate,0.0,informative,0.8,0.7,0.8,0.9
+7510344307673451807,Garden State,tiktok,-0.7,negative,disgust,anger,conversational,moderate,0.3,persuasive,0.7,0.8,0.8,0.85
+7510649473178160414,Garden State,tiktok,-0.6,negative,anticipation,fear,conversational,moderate,0.0,informative,0.8,0.4,0.7,0.9
+7511453802948578591,Garden State,tiktok,0.3,positive,anticipation,trust,professional,moderate,0.0,informative,0.8,0.2,0.5,0.9
+7512215702678342943,Garden State,tiktok,0.2,positive,surprise,trust,conversational,moderate,0.0,informative,0.8,0.1,0.7,0.85
+7512569458804657439,Garden State,tiktok,0.7,positive,anticipation,joy,casual,high,0.1,persuasive,0.4,0.1,0.4,0.9
+7513315989107395871,Garden State,tiktok,0.0,neutral,trust,anticipation,professional,low,0.0,informative,0.8,0.6,0.5,0.9
+7515501296502246698,Garden State,tiktok,0.0,neutral,anticipation,trust,professional,low,0.0,informative,0.8,0.2,0.3,0.9
+7515896919244164398,Garden State,tiktok,-0.3,negative,surprise,fear,conversational,moderate,0.0,informative,0.7,0.8,0.9,0.85
+7517438845235776782,Garden State,tiktok,-0.4,negative,trust,surprise,professional,moderate,0.0,informative,0.9,0.3,0.7,0.9
+7518131792906374413,Garden State,tiktok,-0.8,very_negative,sadness,trust,professional,low,0.0,informative,0.8,0.7,0.8,0.9
+7518773368590437646,Garden State,tiktok,-0.6,negative,fear,trust,professional,moderate,0.0,informative,0.8,0.2,0.7,0.9
+7519288626832854327,Garden State,tiktok,0.6,positive,anticipation,trust,conversational,moderate,0.1,informative,0.7,0.1,0.6,0.8
+7520725227274390797,Garden State,tiktok,-0.2,negative,surprise,trust,conversational,moderate,0.0,informative,0.8,0.3,0.7,0.9
+7521029676614094093,Garden State,tiktok,-0.6,negative,surprise,trust,conversational,moderate,0.0,informative,0.8,0.3,0.7,0.85
+7521794450297769247,Garden State,tiktok,0.1,neutral,anticipation,trust,conversational,moderate,0.0,informative,0.8,0.3,0.4,0.85
+7522588045191810359,Garden State,tiktok,0.7,positive,anticipation,trust,casual,high,0.2,informative,0.6,0.1,0.7,0.8
+7524438824374537527,Garden State,tiktok,0.1,neutral,surprise,trust,conversational,moderate,0.4,informative,0.8,0.3,0.7,0.85
+7525572770529348878,Garden State,tiktok,0.3,positive,anticipation,joy,casual,moderate,0.6,entertaining,0.7,0.4,0.7,0.85
+7526226348222729527,Garden State,tiktok,0.0,neutral,neutral,neutral,conversational,moderate,0.0,informative,0.0,0.0,0.0,0.0
+7526627841706954039,Garden State,tiktok,0.7,positive,trust,joy,conversational,moderate,0.0,informative,0.8,0.1,0.8,0.9
+7527822109318368526,Garden State,tiktok,-0.4,negative,disgust,anger,conversational,moderate,0.1,informative,0.8,0.8,0.7,0.85
+7528527676118715661,Garden State,tiktok,0.7,positive,anticipation,joy,casual,moderate,0.1,informative,0.8,0.1,0.7,0.85
+7531841939713379597,Garden State,tiktok,0.1,neutral,anticipation,trust,conversational,moderate,0.0,informative,0.8,0.4,0.6,0.9
+7537447550597614879,Garden State,tiktok,-0.6,negative,sadness,anger,professional,moderate,0.0,informative,0.9,0.7,0.8,0.85
+7538895221774470413,Garden State,tiktok,-0.3,negative,anticipation,surprise,conversational,moderate,0.1,informative,0.7,0.8,0.9,0.85
+7539586541472009527,Garden State,tiktok,-0.3,negative,fear,sadness,conversational,moderate,0.0,informative,0.8,0.7,0.6,0.85
+7540372781926485303,Garden State,tiktok,-0.2,negative,anticipation,surprise,conversational,moderate,0.0,informative,0.6,0.8,0.7,0.85
+7542216116454624543,Garden State,tiktok,0.6,positive,trust,joy,professional,moderate,0.0,informative,0.8,0.1,0.4,0.9
+7544090163283119390,Garden State,tiktok,-0.3,negative,surprise,disgust,casual,moderate,0.4,informative,0.8,0.7,0.8,0.9
+7545172680572439839,Garden State,tiktok,0.0,neutral,anticipation,trust,conversational,moderate,0.2,informative,0.8,0.7,0.8,0.85
+7549297994768715039,Garden State,tiktok,-0.6,negative,sadness,trust,conversational,moderate,0.0,informative,0.8,0.4,0.7,0.85
+7550448537771805982,Garden State,tiktok,0.3,positive,trust,anticipation,conversational,moderate,0.0,informative,0.8,0.3,0.5,0.85
+7550869947493207327,Garden State,tiktok,0.3,positive,surprise,anticipation,conversational,moderate,0.3,informative,0.8,0.1,0.8,0.9
+7554464978670079263,Garden State,tiktok,-0.8,very_negative,sadness,trust,conversational,low,0.0,informative,0.8,0.1,0.7,0.9
+7555635966350740766,Garden State,tiktok,-0.7,negative,anger,disgust,conversational,moderate,0.0,informative,0.6,0.8,0.9,0.9
+7556733949045738782,Garden State,tiktok,0.8,very_positive,joy,trust,casual,moderate,0.0,informative,0.9,0.3,0.8,0.9
+7560466090053225758,Garden State,tiktok,-0.6,negative,sadness,fear,professional,low,0.0,informative,0.8,0.7,0.6,0.85
+7561585006695419166,Garden State,tiktok,-0.3,negative,disgust,anger,conversational,moderate,0.2,informative,0.7,0.8,0.7,0.85
+7564154822476254494,Garden State,tiktok,-0.8,very_negative,disgust,anger,professional,moderate,0.0,informative,0.9,0.8,0.7,0.9
+7565988298112371999,Garden State,tiktok,-0.3,negative,fear,anticipation,conversational,moderate,0.0,informative,0.8,0.3,0.7,0.9
+7566702989184978206,Garden State,tiktok,-0.6,negative,anger,fear,professional,moderate,0.0,informative,0.8,0.7,0.8,0.9
+7567495487486577950,Garden State,tiktok,0.1,neutral,anticipation,trust,conversational,moderate,0.0,informative,0.7,0.3,0.6,0.8
+7567931486347742495,Garden State,tiktok,0.1,neutral,anticipation,trust,conversational,moderate,0.1,informative,0.7,0.6,0.7,0.8
+7568500607095442718,Garden State,tiktok,0.1,neutral,anticipation,trust,conversational,moderate,0.0,informative,0.7,0.6,0.7,0.8
+7568601420010655007,Garden State,tiktok,0.3,positive,anticipation,trust,conversational,moderate,0.1,informative,0.7,0.4,0.6,0.8
+7570428135544458527,Garden State,tiktok,-0.7,negative,fear,surprise,conversational,moderate,0.0,informative,0.8,0.9,0.8,0.9
+7571937594909412639,Garden State,tiktok,0.7,positive,joy,trust,conversational,moderate,0.0,informative,0.8,0.2,0.6,0.9
+7573009626199756062,Garden State,tiktok,0.6,positive,anticipation,trust,professional,moderate,0.0,informative,0.8,0.1,0.6,0.9
+MS4wLjABAAAA1pm6EkZvRob2beQaz_N2kTNtAhz0vBR9YJlV7TxlafQ1GLUup7gKXuDmrjgLu4id,Garden State,tiktok,0.0,neutral,neutral,neutral,conversational,moderate,0.0,informative,0.5,0.0,0.1,0.1
+7564794134863629582,Graham Colligan_ Towns of NJ,tiktok,-0.6,negative,fear,trust,professional,moderate,0.0,informative,0.9,0.3,0.7,0.9
+7564799888848866573,Graham Colligan_ Towns of NJ,tiktok,-0.6,negative,surprise,fear,conversational,moderate,0.0,informative,0.8,0.8,0.7,0.9
+7566257158975720718,Graham Colligan_ Towns of NJ,tiktok,-0.7,negative,anger,disgust,professional,moderate,0.0,informative,0.9,0.9,0.8,0.9
+7566266442677488909,Graham Colligan_ Towns of NJ,tiktok,-0.8,very_negative,disgust,anger,conversational,moderate,0.0,informative,0.7,0.9,0.8,0.9
+7566283008215436557,Graham Colligan_ Towns of NJ,tiktok,0.75,positive,anticipation,trust,casual,moderate,0.2,informative,0.8,0.1,0.7,0.85
+7566367398547246391,Graham Colligan_ Towns of NJ,tiktok,-0.1,neutral,trust,anticipation,professional,moderate,0.0,informative,0.9,0.1,0.6,0.85
+7566372161443630349,Graham Colligan_ Towns of NJ,tiktok,0.1,neutral,anticipation,trust,conversational,moderate,0.0,informative,0.8,0.4,0.6,0.85
+7566421691287522573,Graham Colligan_ Towns of NJ,tiktok,-0.3,negative,surprise,anticipation,casual,moderate,0.7,entertaining,0.6,0.7,0.8,0.85
+7566651006428253495,Graham Colligan_ Towns of NJ,tiktok,-0.7,negative,sadness,trust,professional,low,0.0,informative,0.9,0.1,0.7,0.95
+7566656701005303053,Graham Colligan_ Towns of NJ,tiktok,-0.3,negative,sadness,trust,professional,moderate,0.0,informative,0.8,0.7,0.8,0.9
+7567052610407124238,Graham Colligan_ Towns of NJ,tiktok,0.1,neutral,trust,anticipation,professional,moderate,0.0,informative,0.9,0.1,0.4,0.85
+7567052781572345102,Graham Colligan_ Towns of NJ,tiktok,0.1,neutral,anticipation,trust,conversational,moderate,0.1,informative,0.8,0.4,0.6,0.85
+7567055767904259383,Graham Colligan_ Towns of NJ,tiktok,0.0,neutral,neutral,neutral,casual,moderate,0.0,informative,0.0,0.0,0.0,0.0
+7567061142535785783,Graham Colligan_ Towns of NJ,tiktok,0.7,positive,trust,joy,professional,moderate,0.0,informative,0.8,0.3,0.6,0.9
+7567172914781359373,Graham Colligan_ Towns of NJ,tiktok,0.0,neutral,neutral,neutral,conversational,moderate,0.0,informative,0.5,0.0,0.0,0.1
+7567400893600124173,Graham Colligan_ Towns of NJ,tiktok,-0.6,negative,surprise,trust,professional,moderate,0.0,informative,0.8,0.7,0.8,0.9
+7568151571100437774,Graham Colligan_ Towns of NJ,tiktok,0.7,positive,trust,joy,conversational,moderate,0.1,informative,0.8,0.0,0.6,0.9
+7568161008699608333,Graham Colligan_ Towns of NJ,tiktok,-0.3,negative,trust,sadness,professional,moderate,0.0,informative,0.9,0.1,0.6,0.85
+7568181882634915085,Graham Colligan_ Towns of NJ,tiktok,0.0,neutral,neutral,neutral,casual,moderate,0.0,informative,0.5,0.0,0.0,0.1
+7568523441687547149,Graham Colligan_ Towns of NJ,tiktok,0.1,neutral,anticipation,trust,professional,moderate,0.0,informative,0.8,0.4,0.3,0.85
+7568530597015014669,Graham Colligan_ Towns of NJ,tiktok,-0.3,negative,trust,anticipation,professional,moderate,0.0,informative,0.8,0.4,0.6,0.9
+7568881822415752461,Graham Colligan_ Towns of NJ,tiktok,-0.6,negative,fear,anticipation,professional,moderate,0.0,informative,0.8,0.3,0.7,0.9
+7569266764236786958,Graham Colligan_ Towns of NJ,tiktok,0.1,neutral,trust,anticipation,professional,moderate,0.0,informative,0.8,0.3,0.4,0.9
+7569267697087728951,Graham Colligan_ Towns of NJ,tiktok,0.1,neutral,trust,anticipation,professional,low,0.0,informative,0.8,0.4,0.6,0.9
+7569721084820458766,Graham Colligan_ Towns of NJ,tiktok,-0.2,negative,trust,anticipation,professional,moderate,0.0,informative,0.8,0.7,0.6,0.9
+7569727066422250765,Graham Colligan_ Towns of NJ,tiktok,0.3,positive,anticipation,trust,conversational,moderate,0.1,persuasive,0.8,0.4,0.7,0.85
+7569732390839454990,Graham Colligan_ Towns of NJ,tiktok,0.8,positive,anticipation,trust,conversational,moderate,0.1,informative,0.8,0.0,0.6,0.9
+7570159549768944910,Graham Colligan_ Towns of NJ,tiktok,0.0,neutral,anticipation,trust,casual,moderate,0.0,informative,0.3,0.1,0.4,0.2
+7570362653948890382,Graham Colligan_ Towns of NJ,tiktok,-0.1,neutral,trust,anticipation,professional,moderate,0.0,informative,0.8,0.3,0.7,0.9
+7570368788735053111,Graham Colligan_ Towns of NJ,tiktok,0.1,neutral,trust,anticipation,professional,moderate,0.0,informative,0.8,0.6,0.5,0.9
+7570749441255165198,Graham Colligan_ Towns of NJ,tiktok,-0.8,very_negative,sadness,trust,professional,low,0.0,informative,0.9,0.1,0.6,0.95
+7571095602428169527,Graham Colligan_ Towns of NJ,tiktok,0.0,neutral,neutral,neutral,conversational,moderate,0.0,informative,0.5,0.0,0.0,0.1
+7571103318085258510,Graham Colligan_ Towns of NJ,tiktok,0.1,neutral,trust,anticipation,professional,moderate,0.0,informative,0.8,0.6,0.7,0.9
+7571107269249715511,Graham Colligan_ Towns of NJ,tiktok,-0.3,negative,sadness,trust,professional,moderate,0.0,informative,0.8,0.6,0.7,0.85
+7571504928812764471,Graham Colligan_ Towns of NJ,tiktok,0.7,positive,anticipation,trust,conversational,moderate,0.1,informative,0.8,0.1,0.6,0.9
+7571867689149287693,Graham Colligan_ Towns of NJ,tiktok,-0.3,negative,fear,trust,professional,moderate,0.0,persuasive,0.8,0.7,0.6,0.9
+7571893797118823693,Graham Colligan_ Towns of NJ,tiktok,-0.7,negative,disgust,fear,conversational,moderate,0.1,informative,0.8,0.6,0.7,0.9
+7572220847943847181,Graham Colligan_ Towns of NJ,tiktok,-0.7,negative,sadness,anger,professional,moderate,0.0,informative,0.8,0.9,0.8,0.9
+7572313855892704567,Graham Colligan_ Towns of NJ,tiktok,-0.2,negative,trust,anticipation,professional,moderate,0.0,informative,0.8,0.1,0.4,0.9
+7572610377607957815,Graham Colligan_ Towns of NJ,tiktok,-0.7,negative,trust,anticipation,professional,moderate,0.0,informative,0.8,0.6,0.7,0.9
+7572978521094622478,Graham Colligan_ Towns of NJ,tiktok,-0.3,negative,anticipation,anger,professional,moderate,0.0,informative,0.8,0.8,0.7,0.85
+7572988379751599415,Graham Colligan_ Towns of NJ,tiktok,0.7,positive,anticipation,trust,conversational,moderate,0.1,informative,0.8,0.0,0.7,0.9
+7573454648003153182,Graham Colligan_ Towns of NJ,tiktok,-0.7,negative,disgust,surprise,professional,moderate,0.0,informative,0.8,0.8,0.7,0.9
+7574114728230866190,Graham Colligan_ Towns of NJ,tiktok,0.1,neutral,trust,anticipation,professional,moderate,0.0,informative,0.8,0.4,0.5,0.9
+7574116731891764494,Graham Colligan_ Towns of NJ,tiktok,0.7,positive,trust,anticipation,professional,moderate,0.0,informative,0.8,0.1,0.6,0.9
+7574120886018559246,Graham Colligan_ Towns of NJ,tiktok,-0.8,very_negative,disgust,sadness,professional,moderate,0.0,informative,0.8,0.9,0.7,0.9
+7574450224890924319,Graham Colligan_ Towns of NJ,tiktok,0.7,positive,anticipation,trust,conversational,moderate,0.1,informative,0.8,0.1,0.6,0.9
+7574454936054828343,Graham Colligan_ Towns of NJ,tiktok,0.7,positive,anticipation,trust,conversational,moderate,0.1,informative,0.8,0.1,0.6,0.9
+7574478990820281613,Graham Colligan_ Towns of NJ,tiktok,-0.3,negative,trust,fear,professional,moderate,0.0,informative,0.9,0.2,0.7,0.85
+MS4wLjABAAAAzuQm5O5EL0i7Uw3FJNGSwCZwM9uNdZPqm1XEs7436W7EZ95CBdGaLa_QzDJ2qN4E,Graham Colligan_ Towns of NJ,tiktok,0.0,neutral,neutral,neutral,casual,low,0.0,informative,0.0,0.0,0.0,0.1
+7551390167722986782,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,positive,anticipation,joy,conversational,high,0.1,informative,0.7,0.0,0.7,0.9
+7551494948525198622,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,positive,anticipation,joy,conversational,high,0.1,informative,0.8,0.1,0.7,0.85
+7553285603547155742,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,very_positive,joy,trust,conversational,moderate,0.1,informative,0.8,0.0,0.7,0.9
+7553367718531960095,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.7,positive,anticipation,trust,conversational,moderate,0.2,persuasive,0.8,0.3,0.7,0.9
+7553616417665404191,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,positive,trust,joy,conversational,moderate,0.2,informative,0.9,0.1,0.6,0.9
+7553732194460519711,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,very_positive,anticipation,joy,conversational,high,0.3,persuasive,0.7,0.1,0.8,0.9
+7554478477479611678,Hoboken Girl _Jennifer Tripucka and team_,tiktok,-0.7,negative,sadness,trust,casual,low,0.0,informative,0.9,0.1,0.6,0.85
+7555472232252853534,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.7,positive,trust,joy,conversational,moderate,0.2,informative,0.8,0.1,0.6,0.85
+7555627807141891358,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,very_positive,trust,joy,conversational,moderate,0.2,informative,0.7,0.1,0.8,0.85
+7556219591857343775,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.1,informative,0.8,0.1,0.7,0.9
+7556265740429446414,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,very_positive,trust,joy,conversational,moderate,0.1,informative,0.9,0.1,0.7,0.9
+7558198353146711327,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,positive,anticipation,joy,casual,high,0.1,informative,0.8,0.1,0.7,0.9
+7558806409748712735,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,positive,anticipation,joy,conversational,high,0.2,entertaining,0.8,0.1,0.8,0.9
+7558887503667760439,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.6,positive,sadness,trust,conversational,moderate,0.0,informative,0.8,0.1,0.8,0.9
+7559221198375177503,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,very_positive,anticipation,joy,conversational,high,0.2,persuasive,0.4,0.1,0.7,0.9
+7559231953073917215,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.1,neutral,trust,anticipation,professional,moderate,0.0,informative,0.8,0.4,0.6,0.85
+7561067761691069726,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,positive,anticipation,trust,conversational,moderate,0.1,persuasive,0.4,0.1,0.6,0.9
+7561154033344466207,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,very_positive,anticipation,joy,conversational,high,0.3,informative,0.9,0.0,0.8,0.95
+7561200872768818487,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,positive,anticipation,joy,casual,moderate,0.3,entertaining,0.7,0.1,0.8,0.85
+7561820774198299935,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,positive,trust,joy,professional,moderate,0.0,informative,0.9,0.1,0.8,0.9
+7561856700446297374,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.7,positive,joy,anticipation,casual,moderate,0.3,entertaining,0.8,0.1,0.7,0.85
+7562153251269807391,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.7,positive,anticipation,joy,conversational,moderate,0.3,informative,0.8,0.1,0.6,0.9
+7563091589497883959,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.7,positive,anticipation,joy,conversational,moderate,0.2,informative,0.8,0.1,0.7,0.9
+7563306822334024990,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,positive,anticipation,joy,casual,high,0.6,persuasive,0.7,0.1,0.7,0.9
+7563378517111573791,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.6,positive,anticipation,joy,casual,moderate,0.6,entertaining,0.7,0.2,0.8,0.8
+7563426165592001822,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.7,positive,joy,anticipation,casual,high,0.7,entertaining,0.8,0.1,0.8,0.9
+7563718327986588959,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.7,positive,anticipation,trust,conversational,moderate,0.2,informative,0.8,0.1,0.7,0.9
+7564175405725404430,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,very_positive,joy,trust,casual,moderate,0.4,informative,0.7,0.1,0.8,0.85
+7564468875773938974,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.7,positive,joy,trust,conversational,moderate,0.4,informative,0.8,0.2,0.7,0.85
+7564596669728230687,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.7,positive,surprise,anticipation,casual,high,0.7,entertaining,0.8,0.4,0.8,0.85
+7564741631606328606,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.1,neutral,anticipation,trust,conversational,moderate,0.0,informative,0.7,0.3,0.6,0.85
+7565122699228466463,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,positive,trust,joy,conversational,moderate,0.1,informative,0.8,0.1,0.7,0.9
+7565956177637559582,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.85,very_positive,joy,trust,casual,high,0.2,entertaining,0.8,0.1,0.8,0.9
+7566313802103360782,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,very_positive,joy,anticipation,casual,moderate,0.2,entertaining,0.7,0.1,0.7,0.9
+7566432035284192525,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.1,neutral,anticipation,trust,casual,moderate,0.0,informative,0.6,0.0,0.4,0.3
+7566749790990568735,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,positive,trust,anticipation,conversational,moderate,0.1,informative,0.7,0.1,0.6,0.85
+7566975430247370015,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,positive,anticipation,joy,conversational,high,0.2,informative,0.7,0.1,0.8,0.9
+7569359486905863437,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.1,neutral,trust,anticipation,professional,moderate,0.0,informative,0.8,0.2,0.6,0.9
+7569584757680442655,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.7,positive,anticipation,joy,casual,high,0.6,informative,0.8,0.1,0.7,0.9
+7570065226947677471,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.2,entertaining,0.8,0.1,0.7,0.9
+7571172408321772831,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.7,positive,anticipation,joy,casual,moderate,0.1,informative,0.8,0.1,0.8,0.9
+7571215705748557086,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.6,positive,joy,anticipation,casual,moderate,0.3,entertaining,0.8,0.1,0.7,0.7
+7571859258501909790,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,very_positive,anticipation,joy,conversational,high,0.1,informative,0.6,0.1,0.7,0.9
+7571908785866837278,Hoboken Girl _Jennifer Tripucka and team_,tiktok,-0.3,negative,trust,surprise,professional,moderate,0.1,informative,0.8,0.7,0.6,0.85
+7572558483288067359,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.7,positive,anticipation,joy,casual,moderate,0.2,entertaining,0.8,0.1,0.6,0.7
+7573127264959794463,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.1,neutral,anticipation,surprise,casual,moderate,0.3,entertaining,0.8,0.6,0.7,0.85
+7573749042002283807,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.3,positive,trust,anticipation,professional,moderate,0.1,informative,0.8,0.1,0.6,0.9
+7574046185816722719,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.7,positive,anticipation,joy,casual,moderate,0.2,informative,0.7,0.1,0.6,0.9
+7574504042378824990,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.7,positive,anticipation,trust,conversational,moderate,0.2,informative,0.8,0.1,0.6,0.85
+7574527869972499767,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.8,positive,anticipation,joy,casual,high,0.3,informative,0.6,0.3,0.7,0.85
+MS4wLjABAAAAdDI4PT6wT3JBux7IgDLkmvsdX-xGzQxSaI3yt7kOKCgT44krV43qE-PrWpNmdU8h,Hoboken Girl _Jennifer Tripucka and team_,tiktok,0.0,neutral,neutral,neutral,conversational,moderate,0.0,informative,0.5,0.0,0.3,0.1
+7564943105418431757,Jersey Joe,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.7,entertaining,0.4,0.1,0.9,0.8
+7565268299345349901,Jersey Joe,tiktok,0.7,positive,anticipation,joy,casual,moderate,0.2,persuasive,0.3,0.1,0.7,0.8
+7565318323722931470,Jersey Joe,tiktok,0.7,positive,joy,anticipation,casual,high,0.8,entertaining,0.6,0.1,0.9,0.8
+7565723340585946423,Jersey Joe,tiktok,0.7,positive,joy,anticipation,casual,high,0.7,entertaining,0.6,0.3,0.8,0.7
+7566015526535810318,Jersey Joe,tiktok,0.7,positive,anticipation,trust,casual,moderate,0.1,persuasive,0.4,0.1,0.6,0.8
+7566060087446342926,Jersey Joe,tiktok,0.8,positive,anticipation,joy,casual,high,0.6,entertaining,0.7,0.1,0.9,0.8
+7566384930159152397,Jersey Joe,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.6,entertaining,0.7,0.1,0.9,0.85
+7566430779064978743,Jersey Joe,tiktok,0.7,positive,joy,anticipation,casual,high,0.7,entertaining,0.4,0.2,0.8,0.6
+7566767379586354446,Jersey Joe,tiktok,0.8,positive,joy,anticipation,casual,high,0.75,entertaining,0.7,0.1,0.9,0.8
+7566826841642667278,Jersey Joe,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.7,entertaining,0.6,0.1,0.9,0.8
+7567138817715768589,Jersey Joe,tiktok,0.8,positive,joy,anticipation,casual,high,0.7,entertaining,0.6,0.1,0.9,0.8
+7567171468505763085,Jersey Joe,tiktok,0.7,positive,joy,anticipation,casual,high,0.7,entertaining,0.4,0.1,0.8,0.7
+7567492554313239863,Jersey Joe,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.6,entertaining,0.7,0.1,0.9,0.85
+7567544866385792269,Jersey Joe,tiktok,0.8,positive,joy,anticipation,casual,high,0.6,entertaining,0.4,0.1,0.8,0.7
+7567867776732335415,Jersey Joe,tiktok,0.7,positive,joy,anticipation,casual,high,0.7,entertaining,0.4,0.1,0.8,0.8
+7568257591390899511,Jersey Joe,tiktok,0.8,positive,joy,anticipation,casual,very_high,0.7,entertaining,0.4,0.1,0.9,0.85
+7568304828976221495,Jersey Joe,tiktok,0.7,positive,joy,anticipation,casual,high,0.6,entertaining,0.4,0.1,0.8,0.8
+7568645418427452685,Jersey Joe,tiktok,0.8,positive,joy,anticipation,casual,high,0.7,entertaining,0.7,0.1,0.9,0.8
+7568684092254883086,Jersey Joe,tiktok,0.7,positive,joy,anticipation,casual,high,0.7,entertaining,0.4,0.1,0.9,0.7
+7569005135423212855,Jersey Joe,tiktok,0.8,positive,joy,anticipation,casual,high,0.7,entertaining,0.7,0.1,0.9,0.85
+7569051156094242062,Jersey Joe,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.7,entertaining,0.6,0.1,0.9,0.85
+7569376160740658487,Jersey Joe,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.8,entertaining,0.6,0.1,0.9,0.85
+7569412500077186317,Jersey Joe,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.8,entertaining,0.6,0.1,0.9,0.8
+7569758402625211661,Jersey Joe,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.6,entertaining,0.5,0.1,0.9,0.8
+7569784828812381454,Jersey Joe,tiktok,0.8,positive,joy,anticipation,casual,high,0.7,entertaining,0.6,0.1,0.9,0.85
+7570113281914899726,Jersey Joe,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.8,entertaining,0.4,0.1,0.9,0.7
+7570156589911411982,Jersey Joe,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.8,entertaining,0.3,0.1,0.9,0.85
+7570478088312638734,Jersey Joe,tiktok,0.7,positive,anticipation,trust,casual,moderate,0.1,persuasive,0.3,0.1,0.6,0.8
+7570537095354158391,Jersey Joe,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.8,entertaining,0.6,0.1,0.9,0.9
+7570855390506650893,Jersey Joe,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.8,entertaining,0.4,0.1,0.9,0.85
+7570895487595728142,Jersey Joe,tiktok,0.8,positive,joy,anticipation,casual,high,0.6,entertaining,0.4,0.1,0.8,0.8
+7571235851808558349,Jersey Joe,tiktok,0.8,positive,joy,anticipation,casual,very_high,0.8,entertaining,0.6,0.1,0.9,0.8
+7571282973799025933,Jersey Joe,tiktok,0.7,positive,joy,anticipation,casual,high,0.7,entertaining,0.4,0.1,0.8,0.8
+7571589238890810638,Jersey Joe,tiktok,0.8,very_positive,joy,anticipation,casual,high,0.7,entertaining,0.4,0.1,0.9,0.85
+7571644295766215991,Jersey Joe,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.8,entertaining,0.6,0.1,0.9,0.85
+7571971704277273911,Jersey Joe,tiktok,0.8,positive,joy,anticipation,casual,high,0.8,entertaining,0.7,0.1,0.9,0.8
+7572012823455206669,Jersey Joe,tiktok,0.8,positive,joy,anticipation,casual,high,0.8,entertaining,0.7,0.1,0.9,0.8
+7572341936867052855,Jersey Joe,tiktok,0.7,positive,joy,anticipation,casual,very_high,0.8,entertaining,0.4,0.3,0.9,0.6
+7572383916313644301,Jersey Joe,tiktok,0.7,positive,joy,anticipation,casual,high,0.7,entertaining,0.6,0.1,0.8,0.7
+7572729178798165262,Jersey Joe,tiktok,0.7,positive,joy,anticipation,casual,high,0.7,entertaining,0.4,0.1,0.8,0.7
+7572802554241879309,Jersey Joe,tiktok,0.7,positive,joy,anticipation,casual,high,0.7,entertaining,0.6,0.1,0.8,0.8
+7573085364416531726,Jersey Joe,tiktok,0.8,positive,joy,anticipation,casual,very_high,0.6,entertaining,0.4,0.1,0.9,0.7
+7573146827533421879,Jersey Joe,tiktok,0.6,positive,joy,anticipation,casual,high,0.8,entertaining,0.4,0.4,0.9,0.7
+7573457899070950669,Jersey Joe,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.7,entertaining,0.6,0.1,0.9,0.8
+7573496882555637006,Jersey Joe,tiktok,0.8,positive,joy,anticipation,casual,very_high,0.8,entertaining,0.4,0.1,0.9,0.7
+7573823760864726285,Jersey Joe,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.7,entertaining,0.6,0.1,0.9,0.8
+7573879020929010999,Jersey Joe,tiktok,0.8,positive,joy,anticipation,casual,high,0.6,entertaining,0.4,0.1,0.9,0.7
+7574185492460113207,Jersey Joe,tiktok,0.8,positive,joy,anticipation,casual,high,0.6,entertaining,0.4,0.1,0.8,0.8
+7574259160452238606,Jersey Joe,tiktok,0.7,positive,joy,anticipation,casual,very_high,0.7,entertaining,0.4,0.1,0.9,0.8
+7574565813542292750,Jersey Joe,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.8,entertaining,0.7,0.1,0.9,0.8
+MS4wLjABAAAAyJ48mheORupWP4RYg54n76Ea1h0DEThdBBLkl0Gx875cNV1EEOzfcORY6LSug2p3,Jersey Joe,tiktok,0.0,neutral,neutral,neutral,casual,moderate,0.0,entertaining,0.5,0.0,0.0,0.1
+7570087280501722382,Jersey Sports Zone,tiktok,0.7,positive,anticipation,trust,professional,high,0.1,informative,0.8,0.2,0.7,0.9
+7570353356141497614,Jersey Sports Zone,tiktok,0.85,very_positive,joy,surprise,casual,very_high,0.1,informative,0.95,0.2,0.85,0.95
+7570366524565802253,Jersey Sports Zone,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.1,informative,0.8,0.1,0.8,0.9
+7570369975781821709,Jersey Sports Zone,tiktok,0.8,very_positive,joy,trust,professional,high,0.1,informative,0.9,0.1,0.8,0.9
+7570513058003520781,Jersey Sports Zone,tiktok,0.8,very_positive,joy,trust,conversational,high,0.1,informative,0.8,0.2,0.8,0.9
+7570515553593380109,Jersey Sports Zone,tiktok,0.8,very_positive,joy,trust,conversational,high,0.1,informative,0.8,0.1,0.7,0.9
+7570554522553109774,Jersey Sports Zone,tiktok,0.8,very_positive,anticipation,joy,casual,very_high,0.2,entertaining,0.85,0.1,0.9,0.9
+7570907887237664013,Jersey Sports Zone,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.2,entertaining,0.8,0.2,0.9,0.9
+7570908914967923982,Jersey Sports Zone,tiktok,0.8,very_positive,anticipation,joy,casual,very_high,0.2,informative,0.8,0.1,0.8,0.9
+7571137994908863757,Jersey Sports Zone,tiktok,0.9,very_positive,joy,trust,professional,high,0.1,informative,0.8,0.1,0.8,0.9
+7571138594484555022,Jersey Sports Zone,tiktok,0.9,very_positive,joy,trust,conversational,very_high,0.3,entertaining,0.8,0.1,0.8,0.9
+7571139230982753549,Jersey Sports Zone,tiktok,0.9,very_positive,joy,trust,conversational,very_high,0.3,entertaining,0.8,0.1,0.9,0.95
+7571141088493210935,Jersey Sports Zone,tiktok,0.8,very_positive,joy,trust,conversational,high,0.1,informative,0.9,0.1,0.7,0.9
+7571141835310075149,Jersey Sports Zone,tiktok,0.8,very_positive,anticipation,joy,professional,high,0.1,informative,0.9,0.1,0.8,0.95
+7571177902725664055,Jersey Sports Zone,tiktok,0.8,positive,anticipation,joy,casual,high,0.1,entertaining,0.7,0.2,0.8,0.9
+7571350935079898382,Jersey Sports Zone,tiktok,0.8,positive,anticipation,joy,professional,high,0.0,informative,0.9,0.1,0.7,0.9
+7571475812319382798,Jersey Sports Zone,tiktok,0.85,very_positive,joy,trust,conversational,very_high,0.1,informative,0.9,0.1,0.8,0.95
+7571892460859723021,Jersey Sports Zone,tiktok,0.8,positive,anticipation,trust,conversational,moderate,0.2,informative,0.7,0.1,0.6,0.85
+7571917048234741047,Jersey Sports Zone,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.1,informative,0.9,0.2,0.8,0.9
+7572015840296537399,Jersey Sports Zone,tiktok,0.9,very_positive,joy,trust,casual,very_high,0.1,informative,0.9,0.05,0.8,0.95
+7572215187105762574,Jersey Sports Zone,tiktok,0.8,very_positive,anticipation,joy,conversational,high,0.1,informative,0.8,0.3,0.8,0.9
+7572219842799881527,Jersey Sports Zone,tiktok,0.9,very_positive,anticipation,joy,conversational,very_high,0.1,entertaining,0.8,0.0,0.8,0.95
+7572255992101047565,Jersey Sports Zone,tiktok,0.8,positive,anticipation,trust,conversational,high,0.1,informative,0.8,0.1,0.7,0.9
+7572313903674264845,Jersey Sports Zone,tiktok,0.8,very_positive,anticipation,joy,conversational,high,0.1,informative,0.8,0.1,0.8,0.9
+7572362600034372877,Jersey Sports Zone,tiktok,0.8,very_positive,joy,trust,conversational,very_high,0.1,entertaining,0.7,0.1,0.9,0.9
+7572420691065081101,Jersey Sports Zone,tiktok,0.85,very_positive,joy,trust,casual,high,0.1,informative,0.8,0.1,0.8,0.9
+7572613331794644238,Jersey Sports Zone,tiktok,0.8,very_positive,joy,trust,conversational,high,0.1,informative,0.8,0.1,0.9,0.9
+7572641725143977229,Jersey Sports Zone,tiktok,0.8,positive,joy,trust,professional,high,0.0,informative,0.9,0.1,0.8,0.9
+7572643064884301070,Jersey Sports Zone,tiktok,0.7,positive,trust,joy,professional,moderate,0.1,informative,0.8,0.1,0.6,0.9
+7572644202052357389,Jersey Sports Zone,tiktok,0.7,positive,trust,joy,professional,moderate,0.0,informative,0.8,0.1,0.6,0.9
+7572647563774528782,Jersey Sports Zone,tiktok,0.8,very_positive,joy,trust,professional,high,0.0,informative,0.9,0.1,0.7,0.95
+7573042402349370637,Jersey Sports Zone,tiktok,0.9,very_positive,joy,anticipation,casual,very_high,0.2,entertaining,0.8,0.1,0.9,0.95
+7573123849923939598,Jersey Sports Zone,tiktok,0.8,very_positive,joy,trust,professional,high,0.0,informative,0.9,0.1,0.7,0.9
+7573125440856968461,Jersey Sports Zone,tiktok,0.8,very_positive,joy,trust,professional,high,0.0,informative,0.9,0.1,0.8,0.9
+7573161890982055181,Jersey Sports Zone,tiktok,0.9,very_positive,joy,trust,casual,very_high,0.2,entertaining,0.85,0.1,0.9,0.9
+7573174522002656526,Jersey Sports Zone,tiktok,0.9,very_positive,joy,trust,conversational,very_high,0.0,informative,0.8,0.1,0.8,0.9

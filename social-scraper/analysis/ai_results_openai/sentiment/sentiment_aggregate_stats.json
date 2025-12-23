@@ -1,0 +1,204 @@
+{
+  "overall": {
+    "count": 864,
+    "avg_sentiment": 0.0,
+    "sentiment_distribution": {
+      "neutral": 864
+    },
+    "primary_emotions": {
+      "none": 604,
+      "neutral": 205,
+      "trust": 55
+    },
+    "rhetorical_modes": {
+      "informative": 864
+    }
+  },
+  "by_platform": {
+    "instagram": {
+      "count": 864,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.09351851851851851,
+      "avg_controversy": 0.00011574074074074075
+    }
+  },
+  "by_influencer": {
+    "megthings_": {
+      "count": 13,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.038461538461538464,
+      "primary_emotions": {
+        "none": 7,
+        "neutral": 6
+      }
+    },
+    "myteacherface Jessica Hawk": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.056,
+      "primary_emotions": {
+        "none": 38,
+        "neutral": 10,
+        "trust": 2
+      }
+    },
+    "New Jersey Shade": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.06,
+      "primary_emotions": {
+        "none": 37,
+        "neutral": 13
+      }
+    },
+    "NewarkNJblog": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.076,
+      "primary_emotions": {
+        "none": 43,
+        "neutral": 5,
+        "trust": 2
+      }
+    },
+    "NJ Athletics": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.082,
+      "primary_emotions": {
+        "none": 39,
+        "neutral": 7,
+        "trust": 4
+      }
+    },
+    "NJ Hoop Recruit": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.254,
+      "primary_emotions": {
+        "none": 32,
+        "trust": 11,
+        "neutral": 7
+      }
+    },
+    "NJ Takedown": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.09,
+      "primary_emotions": {
+        "none": 30,
+        "neutral": 18,
+        "trust": 2
+      }
+    },
+    "No Regulars Podcast": {
+      "count": 51,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.058823529411764705,
+      "primary_emotions": {
+        "none": 31,
+        "neutral": 19,
+        "trust": 1
+      }
+    },
+    "Phat Papi Mark Gregory": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.07,
+      "primary_emotions": {
+        "none": 38,
+        "neutral": 11,
+        "trust": 1
+      }
+    },
+    "Pustika Samara _pustika_samaddar": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.05,
+      "primary_emotions": {
+        "none": 30,
+        "neutral": 20
+      }
+    },
+    "Salvatore _Sally Slices_ Mandreucci": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.046,
+      "primary_emotions": {
+        "none": 33,
+        "neutral": 16,
+        "trust": 1
+      }
+    },
+    "SP Sullivan - NJ dot com": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.056,
+      "primary_emotions": {
+        "none": 39,
+        "trust": 7,
+        "neutral": 4
+      }
+    },
+    "teacherpaywithk": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.106,
+      "primary_emotions": {
+        "none": 36,
+        "neutral": 11,
+        "trust": 3
+      }
+    },
+    "The Drop Podcast": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.062,
+      "primary_emotions": {
+        "none": 37,
+        "neutral": 10,
+        "trust": 3
+      }
+    },
+    "The Montclair Pod": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.02,
+      "primary_emotions": {
+        "none": 42,
+        "neutral": 7,
+        "trust": 1
+      }
+    },
+    "_JerseyShoreFireResponse": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.22,
+      "primary_emotions": {
+        "none": 28,
+        "trust": 13,
+        "neutral": 9
+      }
+    },
+    "_jersey__news": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.208,
+      "primary_emotions": {
+        "none": 34,
+        "neutral": 13,
+        "trust": 3
+      }
+    },
+    "_staceyakawannabefoodie": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.09,
+      "primary_emotions": {
+        "none": 30,
+        "neutral": 19,
+        "trust": 1
+      }
+    }
+  }
+}

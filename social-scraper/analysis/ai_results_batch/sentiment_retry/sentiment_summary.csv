@@ -1,0 +1,506 @@
+video_id,influencer,platform,sentiment_score,sentiment_label,primary_emotion,secondary_emotion,formality,energy_level,humor_level,rhetorical_mode,authenticity_score,controversy_potential,shareability_score,confidence
+7540511235050081549,Jersey Talks,tiktok,0.65,positive,surprise,anticipation,casual,very_high,0.75,entertaining,0.6,0.35,0.85,0.72
+7541412111818312991,Jersey Talks,tiktok,-0.35,negative,sadness,joy,casual,high,0.75,entertaining,0.8,0.15,0.85,0.82
+7543854805979041055,Jersey Talks,tiktok,-0.75,negative,anger,surprise,casual,high,0.1,informative,0.65,0.85,0.88,0.78
+7547166338192608542,Jersey Talks,tiktok,0.75,very_positive,joy,anticipation,casual,very_high,0.75,entertaining,0.7,0.35,0.85,0.82
+7548788935753993486,Jersey Talks,tiktok,0.75,positive,joy,surprise,conversational,high,0.6,entertaining,0.85,0.05,0.8,0.82
+7551216956808940831,Jersey Talks,tiktok,0.15,neutral,anticipation,surprise,casual,very_high,0.4,entertaining,0.5,0.75,0.8,0.65
+7551536218970836255,Jersey Talks,tiktok,0.85,very_positive,anticipation,joy,conversational,high,0.3,entertaining,0.75,0.05,0.88,0.82
+7552758956964334879,Jersey Talks,tiktok,0.35,positive,anticipation,trust,casual,moderate,0.3,inspirational,0.75,0.05,0.8,0.78
+7552759727709572383,Jersey Talks,tiktok,0.15,neutral,surprise,anticipation,casual,very_high,0.15,entertaining,0.55,0.65,0.85,0.72
+7554254102864121118,Jersey Talks,tiktok,0.15,neutral,surprise,anticipation,casual,very_high,0.6,entertaining,0.4,0.15,0.75,0.55
+7563420176364997919,Jersey Talks,tiktok,0.35,positive,surprise,anticipation,casual,very_high,0.6,entertaining,0.55,0.25,0.8,0.6
+7567602897165257998,Jersey Talks,tiktok,0.85,very_positive,joy,surprise,casual,very_high,0.65,entertaining,0.72,0.05,0.88,0.78
+7568930365616721183,Jersey Talks,tiktok,-0.35,negative,fear,surprise,professional,moderate,0.0,informative,0.8,0.65,0.75,0.82
+7572207905580076302,Jersey Talks,tiktok,0.1,neutral,anticipation,surprise,professional,moderate,0.0,informative,0.75,0.65,0.7,0.82
+7572753590729624887,Jersey Talks,tiktok,-0.35,negative,sadness,disgust,casual,moderate,0.55,entertaining,0.75,0.15,0.8,0.72
+7574260883866635551,Jersey Talks,tiktok,0.75,very_positive,joy,surprise,conversational,very_high,0.7,entertaining,0.5,0.65,0.85,0.82
+7525076558147636510,Jessica Alexandra _lifestylejessica,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.3,informative,0.78,0.05,0.88,0.89
+7529187815075155231,Jessica Alexandra _lifestylejessica,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.25,informative,0.78,0.02,0.82,0.88
+7530060532171263262,Jessica Alexandra _lifestylejessica,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.6,persuasive,0.55,0.05,0.82,0.88
+7530109590592130334,Jessica Alexandra _lifestylejessica,tiktok,0.82,very_positive,joy,anticipation,conversational,moderate,0.2,entertaining,0.78,0.05,0.82,0.88
+7532671324666285343,Jessica Alexandra _lifestylejessica,tiktok,0.92,very_positive,joy,anticipation,conversational,very_high,0.35,persuasive,0.7,0.05,0.88,0.85
+7535290698849996062,Jessica Alexandra _lifestylejessica,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.4,persuasive_entertaining,0.7,0.05,0.88,0.92
+7537091221135592734,Jessica Alexandra _lifestylejessica,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.55,persuasive,0.65,0.05,0.8,0.88
+7544389240101031199,Jessica Alexandra _lifestylejessica,tiktok,0.82,very_positive,joy,anticipation,casual,high,0.4,entertaining,0.75,0.05,0.82,0.88
+7548243983751777566,Jessica Alexandra _lifestylejessica,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.25,persuasive,0.68,0.05,0.82,0.88
+7552555263933304095,Jessica Alexandra _lifestylejessica,tiktok,0.85,very_positive,anticipation,joy,conversational,high,0.15,informative,0.75,0.02,0.88,0.82
+7552913749884030239,Jessica Alexandra _lifestylejessica,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.25,persuasive|entertaining,0.7,0.05,0.8,0.88
+7553454783152131359,Jessica Alexandra _lifestylejessica,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.2,informative,0.8,0.05,0.82,0.88
+7555705057782549791,Jessica Alexandra _lifestylejessica,tiktok,0.88,very_positive,joy,anticipation,conversational,high,0.3,informative_persuasive,0.82,0.05,0.89,0.87
+7556786470527257887,Jessica Alexandra _lifestylejessica,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.35,informative,0.78,0.05,0.87,0.92
+7562175810602323231,Jessica Alexandra _lifestylejessica,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.25,entertaining,0.72,0.0,0.88,0.87
+7563858329215192350,Jessica Alexandra _lifestylejessica,tiktok,0.85,very_positive,joy,trust,conversational,high,0.15,inspirational,0.78,0.05,0.82,0.87
+7565161699649522975,Jessica Alexandra _lifestylejessica,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.3,informative|persuasive,0.72,0.05,0.88,0.87
+7566806768991341855,Jessica Alexandra _lifestylejessica,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.25,inspirational,0.79,0.05,0.88,0.87
+7569075819302096158,Jessica Alexandra _lifestylejessica,tiktok,0.85,very_positive,joy,surprise,casual,high,0.3,entertaining,0.75,0.0,0.8,0.82
+7570120379084115231,Jessica Alexandra _lifestylejessica,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.35,persuasive,0.68,0.05,0.82,0.87
+7572371247116438814,Jessica Alexandra _lifestylejessica,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.25,persuasive_entertaining,0.7,0.05,0.82,0.88
+7574214774007811358,Jessica Alexandra _lifestylejessica,tiktok,0.82,very_positive,joy,anticipation,conversational,high,0.25,persuasive,0.58,0.15,0.72,0.88
+7574415745174605086,Jessica Alexandra _lifestylejessica,tiktok,0.87,very_positive,joy,anticipation,conversational,high,0.2,persuasive,0.72,0.05,0.84,0.88
+MS4wLjABAAAAsbbIoyBiiNX6q6h3yGdDBxxZGr3jxCybcx3loqBFs90QFFlNKspi,Jessica Alexandra _lifestylejessica,tiktok,0.0,neutral,unknown,unknown,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.0
+7472165382569217326,Joe Bartolozzi,tiktok,0.65,positive,joy,surprise,casual,high,0.85,entertaining,0.75,0.15,0.7,0.62
+7472477150210280750,Joe Bartolozzi,tiktok,0.75,positive,trust,joy,conversational,moderate,0.1,informative,0.8,0.05,0.75,0.82
+7473617880777608494,Joe Bartolozzi,tiktok,-0.55,negative,anger,anticipation,casual,high,0.2,confrontational,0.8,0.65,0.75,0.72
+7474748872925957422,Joe Bartolozzi,tiktok,0.65,positive,joy,surprise,casual,high,0.8,entertaining,0.7,0.15,0.75,0.65
+7475836079799586094,Joe Bartolozzi,tiktok,0.15,neutral,trust,joy,casual,moderate,0.4,entertaining,0.7,0.35,0.65,0.65
+7479221767307906346,Joe Bartolozzi,tiktok,0.65,positive,anticipation,joy,casual,moderate,0.3,persuasive,0.55,0.15,0.45,0.6
+7482538610130980139,Joe Bartolozzi,tiktok,0.65,positive,surprise,joy,casual,high,0.75,entertaining,0.7,0.15,0.8,0.65
+7483984967807143214,Joe Bartolozzi,tiktok,-0.65,negative,anger,disgust,casual,high,0.3,confrontational,0.7,0.4,0.75,0.65
+7485126627249098030,Joe Bartolozzi,tiktok,-0.35,negative,anticipation,anger,casual,moderate,0.15,persuasive,0.65,0.2,0.6,0.6
+7486582016662670634,Joe Bartolozzi,tiktok,0.65,positive,joy,surprise,casual,high,0.8,entertaining,0.7,0.15,0.8,0.65
+7486661070959168814,Joe Bartolozzi,tiktok,0.35,positive,surprise,joy,casual,high,0.6,entertaining,0.65,0.15,0.75,0.55
+7488068008728956203,Joe Bartolozzi,tiktok,-0.75,negative,sadness,fear,casual,low,0.1,confrontational,0.7,0.55,0.65,0.55
+7490664265917926699,Joe Bartolozzi,tiktok,-0.3,negative,disgust,anticipation,casual,moderate,0.45,entertaining,0.65,0.35,0.7,0.55
+7494010356407258411,Joe Bartolozzi,tiktok,0.3,positive,trust,joy,conversational,moderate,0.4,persuasive,0.75,0.6,0.7,0.65
+7495859451337903406,Joe Bartolozzi,tiktok,0.7,positive,joy,surprise,casual,high,0.6,entertaining,0.65,0.1,0.75,0.55
+7498457680302837038,Joe Bartolozzi,tiktok,0.65,positive,surprise,anticipation,casual,very_high,0.75,entertaining,0.55,0.35,0.85,0.72
+7499170343215533354,Joe Bartolozzi,tiktok,0.3,positive,anticipation,joy,casual,high,0.6,entertaining,0.5,0.4,0.65,0.55
+7499527512569974058,Joe Bartolozzi,tiktok,0.65,positive,trust,fear,conversational,high,0.05,persuasive|inspirational,0.8,0.1,0.85,0.82
+7506250133235961130,Joe Bartolozzi,tiktok,-0.65,negative,anger,disgust,casual,high,0.3,confrontational,0.75,0.55,0.8,0.65
+7509218144108629294,Joe Bartolozzi,tiktok,0.15,neutral,anticipation,surprise,casual,moderate,0.65,entertaining,0.55,0.2,0.8,0.45
+7511445302725938474,Joe Bartolozzi,tiktok,-0.75,negative,sadness,anger,casual,low,0.15,confrontational,0.65,0.6,0.7,0.45
+7521938558844783885,Joe Bartolozzi,tiktok,0.45,positive,joy,surprise,casual,high,0.85,entertaining,0.8,0.15,0.78,0.82
+7524812448117837111,Joe Bartolozzi,tiktok,-0.35,negative,surprise,anger,casual,high,0.65,confrontational,0.7,0.65,0.8,0.55
+7529661233386016055,Joe Bartolozzi,tiktok,-0.65,negative,anger,surprise,casual,high,0.15,confrontational,0.65,0.75,0.8,0.55
+7532599944348323127,Joe Bartolozzi,tiktok,0.65,positive,joy,surprise,casual,high,0.6,entertaining,0.65,0.15,0.75,0.55
+7537423126368439565,Joe Bartolozzi,tiktok,-0.65,negative,disgust,anger,casual,moderate,0.35,confrontational,0.55,0.72,0.68,0.45
+7542623025150184718,Joe Bartolozzi,tiktok,0.65,positive,joy,surprise,casual,very_high,0.6,entertaining,0.65,0.15,0.75,0.55
+7553010329060461837,Joe Bartolozzi,tiktok,-0.65,negative,anger,disgust,casual,moderate,0.3,confrontational,0.65,0.55,0.72,0.62
+7558204864182930701,Joe Bartolozzi,tiktok,-0.75,negative,disgust,anger,casual,high,0.4,confrontational,0.75,0.65,0.72,0.65
+7558206066538974478,Joe Bartolozzi,tiktok,-0.15,neutral,surprise,anticipation,casual,moderate,0.6,entertaining,0.7,0.15,0.75,0.55
+7562260425845263629,Joe Bartolozzi,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.68,entertaining,0.72,0.05,0.88,0.87
+7562286780653866254,Joe Bartolozzi,tiktok,0.15,neutral,anticipation,joy,casual,moderate,0.6,entertaining,0.65,0.1,0.55,0.45
+7568613851697040654,Joe Bartolozzi,tiktok,-0.65,negative,surprise,anger,casual,high,0.7,confrontational,0.75,0.7,0.85,0.65
+7568636259564784909,Joe Bartolozzi,tiktok,0.6,positive,trust,joy,conversational,moderate,0.4,persuasive,0.75,0.15,0.65,0.65
+MS4wLjABAAAA4UjX04TzxyE2vEruFwE9TST_aKDsVH0iXauIrEL9_2H_4RT-cxqm,Joe Bartolozzi,tiktok,0.0,neutral,unknown,unknown,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.05
+7547029231234993463,Kate Watt Photo,tiktok,0.75,positive,anticipation,joy,casual,high,0.2,inspirational,0.68,0.05,0.72,0.7
+7548796996451093773,Kate Watt Photo,tiktok,0.65,positive,trust,joy,conversational,moderate,0.15,inspirational,0.65,0.1,0.72,0.55
+7552913256466222350,Kate Watt Photo,tiktok,-0.15,neutral,surprise,fear,conversational,moderate,0.1,informative,0.85,0.35,0.75,0.78
+7555250836985646349,Kate Watt Photo,tiktok,0.85,very_positive,joy,trust,casual,high,0.2,inspirational,0.7,0.05,0.85,0.72
+7557879876485680439,Kate Watt Photo,tiktok,0.65,positive,anticipation,trust,casual,moderate,0.2,teasing,0.7,0.1,0.65,0.55
+7557884929078562103,Kate Watt Photo,tiktok,0.85,very_positive,joy,surprise,casual,very_high,0.65,entertaining,0.75,0.05,0.8,0.78
+7560380940816633101,Kate Watt Photo,tiktok,0.65,positive,trust,fear,casual,moderate,0.1,inspirational,0.75,0.15,0.65,0.72
+7561896279777840439,Kate Watt Photo,tiktok,0.75,very_positive,joy,trust,casual,high,0.3,entertaining,0.75,0.05,0.8,0.72
+7562322809687526669,Kate Watt Photo,tiktok,0.85,very_positive,joy,surprise,casual,very_high,0.3,entertaining,0.75,0.0,0.8,0.78
+7563070901160283405,Kate Watt Photo,tiktok,0.75,positive,joy,surprise,casual,high,0.3,entertaining,0.65,0.05,0.8,0.78
+7564434768901836087,Kate Watt Photo,tiktok,0.85,very_positive,joy,trust,casual,moderate,0.15,entertaining,0.72,0.0,0.65,0.78
+7564774985714126111,Kate Watt Photo,tiktok,0.92,very_positive,joy,trust,casual,very_high,0.1,entertaining,0.75,0.05,0.8,0.82
+7565249404752497934,Kate Watt Photo,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.45,entertaining,0.8,0.05,0.82,0.88
+7567396431854619917,Kate Watt Photo,tiktok,0.65,positive,surprise,joy,casual,high,0.4,entertaining,0.75,0.1,0.8,0.72
+7567410197564607758,Kate Watt Photo,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.6,entertaining,0.75,0.05,0.8,0.72
+7568175863074786574,Kate Watt Photo,tiktok,0.85,very_positive,joy,trust,casual,moderate,0.1,entertaining,0.75,0.0,0.7,0.82
+7568177602259635470,Kate Watt Photo,tiktok,0.85,very_positive,joy,trust,casual,high,0.25,entertaining,0.8,0.0,0.75,0.82
+7569019425081265439,Kate Watt Photo,tiktok,0.75,positive,joy,surprise,casual,very_high,0.7,entertaining,0.65,0.05,0.8,0.7
+7569401875234049294,Kate Watt Photo,tiktok,0.0,neutral,unknown,unknown,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.0
+7570448468355894542,Kate Watt Photo,tiktok,0.75,positive,joy,trust,casual,moderate,0.15,entertaining,0.8,0.0,0.65,0.78
+7570798993379298573,Kate Watt Photo,tiktok,0.75,positive,joy,trust,casual,moderate,0.0,entertaining,0.65,0.0,0.75,0.7
+7571207836038909197,Kate Watt Photo,tiktok,0.75,positive,joy,trust,casual,moderate,0.3,entertaining,0.8,0.05,0.7,0.72
+7571672286802103566,Kate Watt Photo,tiktok,0.85,very_positive,joy,surprise,casual,very_high,0.3,entertaining,0.7,0.05,0.8,0.75
+7571686425314250039,Kate Watt Photo,tiktok,0.85,very_positive,joy,anticipation,casual,high,0.2,entertaining,0.75,0.05,0.8,0.72
+MS4wLjABAAAAdVdh7kg6kULLkZam5p8pCNyqFTFTjpiODtGhqIsfgz45UlJDY3xZ,Kate Watt Photo,tiktok,0.0,neutral,none_detectable,none_detectable,professional,low,0.0,informative,0.0,0.0,0.0,0.15
+7498479744388746539,Keri Fay,tiktok,0.65,positive,joy,anticipation,conversational,high,0.7,entertaining,0.75,0.15,0.8,0.82
+7502199970284571947,Keri Fay,tiktok,0.85,very_positive,joy,trust,conversational,high,0.6,entertaining,0.82,0.0,0.88,0.87
+7503690432547753258,Keri Fay,tiktok,0.82,very_positive,joy,anticipation,conversational,high,0.3,persuasive,0.65,0.05,0.8,0.78
+7505928567276997930,Keri Fay,tiktok,0.65,positive,anticipation,trust,conversational,moderate,0.2,informative,0.8,0.05,0.75,0.82
+7509231511250488619,Keri Fay,tiktok,0.85,very_positive,joy,surprise,casual,very_high,0.15,inspirational,0.8,0.05,0.85,0.88
+7510612687873641770,Keri Fay,tiktok,0.75,positive,joy,anticipation,conversational,high,0.65,entertaining,0.7,0.05,0.8,0.78
+7511090884528688430,Keri Fay,tiktok,0.75,positive,joy,anticipation,casual,high,0.4,informative,0.65,0.05,0.8,0.78
+7514816173712657706,Keri Fay,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.3,persuasive,0.65,0.05,0.88,0.82
+7517298745772379406,Keri Fay,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.45,entertaining,0.55,0.15,0.8,0.82
+7518905556682247437,Keri Fay,tiktok,0.72,positive,joy,anticipation,casual,high,0.45,inspirational,0.62,0.05,0.78,0.68
+7520369031925320974,Keri Fay,tiktok,0.85,very_positive,joy,anticipation,casual,high,0.15,entertaining,0.72,0.0,0.88,0.78
+7522232830261284109,Keri Fay,tiktok,0.75,positive,anticipation,joy,conversational,high,0.3,entertaining,0.65,0.05,0.8,0.82
+7522862268732673293,Keri Fay,tiktok,0.82,very_positive,joy,anticipation,casual,high,0.3,informative,0.68,0.05,0.88,0.82
+7527808642335264014,Keri Fay,tiktok,0.75,positive,anticipation,joy,conversational,high,0.2,persuasive,0.65,0.05,0.8,0.82
+7534483775456021774,Keri Fay,tiktok,0.85,very_positive,joy,surprise,casual,very_high,0.3,entertaining,0.75,0.05,0.88,0.82
+7535222511961787703,Keri Fay,tiktok,0.75,positive,joy,surprise,conversational,moderate,0.4,entertaining,0.8,0.05,0.75,0.72
+7538173037128977719,Keri Fay,tiktok,0.78,very_positive,joy,anticipation,conversational,high,0.15,inspirational,0.72,0.05,0.82,0.85
+7541149294007487757,Keri Fay,tiktok,0.75,very_positive,joy,anticipation,conversational,high,0.3,entertaining,0.75,0.05,0.8,0.78
+7542648853464403213,Keri Fay,tiktok,0.35,positive,anticipation,joy,conversational,moderate,0.65,entertaining,0.72,0.1,0.78,0.75
+7543400097053150478,Keri Fay,tiktok,0.75,positive,trust,joy,casual,moderate,0.3,inspirational,0.72,0.05,0.78,0.68
+7544011833473010958,Keri Fay,tiktok,0.75,positive,anticipation,joy,conversational,high,0.2,persuasive,0.55,0.05,0.75,0.82
+7545997615847034125,Keri Fay,tiktok,0.75,very_positive,joy,anticipation,conversational,high,0.2,inspirational,0.65,0.05,0.82,0.72
+7546960241120857358,Keri Fay,tiktok,0.75,positive,joy,trust,conversational,moderate,0.45,informative,0.82,0.05,0.78,0.85
+7550443987757305143,Keri Fay,tiktok,0.75,very_positive,joy,anticipation,conversational,high,0.15,persuasive,0.6,0.05,0.8,0.78
+7551805526426914061,Keri Fay,tiktok,0.85,very_positive,anticipation,joy,casual,high,0.2,persuasive,0.65,0.0,0.8,0.82
+7553023080675724599,Keri Fay,tiktok,0.75,positive,joy,anticipation,conversational,high,0.1,persuasive,0.55,0.05,0.7,0.82
+7553670264148610317,Keri Fay,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.4,persuasive|entertaining,0.65,0.05,0.8,0.82
+7554423629899992333,Keri Fay,tiktok,0.75,positive,joy,trust,conversational,moderate,0.35,persuasive,0.62,0.15,0.78,0.82
+7557838022239145229,Keri Fay,tiktok,0.72,positive,joy,trust,conversational,high,0.65,entertaining,0.78,0.05,0.81,0.82
+7558593391882161422,Keri Fay,tiktok,0.85,very_positive,joy,anticipation,casual,high,0.15,persuasive,0.65,0.05,0.8,0.78
+7559601198207225101,Keri Fay,tiktok,0.85,very_positive,joy,trust,conversational,high,0.2,persuasive,0.65,0.05,0.8,0.88
+7561947741505572151,Keri Fay,tiktok,0.65,positive,anticipation,joy,casual,high,0.7,entertaining,0.8,0.05,0.75,0.78
+7571228112474737933,Keri Fay,tiktok,0.82,very_positive,joy,trust,conversational,very_high,0.15,persuasive,0.72,0.05,0.8,0.87
+7573819483677003022,Keri Fay,tiktok,0.75,very_positive,joy,anticipation,conversational,high,0.8,entertaining,0.78,0.05,0.88,0.87
+7465833877605551402,lexlivinglife - NJ Eats,tiktok,0.88,very_positive,joy,anticipation,conversational,high,0.15,persuasive,0.72,0.05,0.85,0.88
+7477713446453251370,lexlivinglife - NJ Eats,tiktok,0.92,very_positive,joy,trust,conversational,very_high,0.35,persuasive,0.85,0.05,0.82,0.88
+7490235023312932138,lexlivinglife - NJ Eats,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.45,persuasive,0.7,0.05,0.85,0.82
+7492182523313720619,lexlivinglife - NJ Eats,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.15,informative,0.78,0.05,0.82,0.87
+7497016030120807726,lexlivinglife - NJ Eats,tiktok,0.85,very_positive,joy,trust,conversational,high,0.15,persuasive,0.78,0.05,0.82,0.87
+7497691952415018286,lexlivinglife - NJ Eats,tiktok,0.75,positive,joy,trust,casual,high,0.75,entertaining,0.8,0.05,0.85,0.82
+7498472903911001390,lexlivinglife - NJ Eats,tiktok,0.82,very_positive,joy,anticipation,conversational,high,0.35,entertaining,0.78,0.05,0.82,0.88
+7502508068236741930,lexlivinglife - NJ Eats,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.65,entertaining,0.8,0.05,0.8,0.88
+7507085288234339630,lexlivinglife - NJ Eats,tiktok,0.75,positive,joy,surprise,conversational,moderate,0.15,informative,0.82,0.05,0.78,0.88
+7510004718144474410,lexlivinglife - NJ Eats,tiktok,0.85,very_positive,joy,trust,casual,high,0.55,entertaining,0.72,0.05,0.8,0.78
+7522224799561649463,lexlivinglife - NJ Eats,tiktok,0.85,very_positive,joy,surprise,conversational,high,0.3,persuasive,0.75,0.05,0.82,0.82
+7525590040580328759,lexlivinglife - NJ Eats,tiktok,0.92,very_positive,joy,anticipation,conversational,very_high,0.3,persuasive,0.78,0.05,0.89,0.87
+7526245537058688269,lexlivinglife - NJ Eats,tiktok,0.85,very_positive,anticipation,joy,conversational,high,0.2,persuasive,0.7,0.05,0.82,0.88
+7527438423821454647,lexlivinglife - NJ Eats,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.1,persuasive,0.72,0.05,0.78,0.88
+7536328759385918733,lexlivinglife - NJ Eats,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.2,persuasive,0.75,0.05,0.82,0.87
+7537445795046493453,lexlivinglife - NJ Eats,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.2,persuasive,0.7,0.05,0.82,0.88
+7549980508583775501,lexlivinglife - NJ Eats,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.3,entertaining,0.7,0.05,0.88,0.92
+7551189378253507895,lexlivinglife - NJ Eats,tiktok,0.85,very_positive,trust,joy,conversational,high,0.1,persuasive,0.75,0.05,0.7,0.88
+7557205176797482254,lexlivinglife - NJ Eats,tiktok,0.85,very_positive,anticipation,joy,conversational,high,0.2,informative,0.72,0.05,0.8,0.87
+7558600590100598071,lexlivinglife - NJ Eats,tiktok,0.85,very_positive,joy,trust,conversational,high,0.2,informative,0.78,0.05,0.8,0.82
+7559339552683363639,lexlivinglife - NJ Eats,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.3,persuasive,0.75,0.15,0.85,0.82
+7569467090516626743,lexlivinglife - NJ Eats,tiktok,0.85,very_positive,joy,trust,conversational,high,0.15,persuasive,0.78,0.05,0.82,0.87
+7571232920820616462,lexlivinglife - NJ Eats,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.3,persuasive,0.78,0.05,0.82,0.88
+7450950850593393966,Lynn Hazan-Bush lynnhazan_,tiktok,0.65,positive,joy,trust,casual,moderate,0.8,entertaining,0.8,0.05,0.85,0.82
+7451771038842752302,Lynn Hazan-Bush lynnhazan_,tiktok,-0.55,negative,sadness,fear,casual,low,0.4,entertaining,0.85,0.1,0.8,0.82
+7452842255058062638,Lynn Hazan-Bush lynnhazan_,tiktok,0.0,neutral,unknown,unknown,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.0
+7455782452724763947,Lynn Hazan-Bush lynnhazan_,tiktok,0.85,very_positive,joy,trust,casual,high,0.2,persuasive,0.7,0.05,0.8,0.82
+7498740929273187630,Lynn Hazan-Bush lynnhazan_,tiktok,0.0,neutral,anticipation,surprise,casual,moderate,0.3,entertaining,0.5,0.3,0.6,0.35
+7499924283259440427,Lynn Hazan-Bush lynnhazan_,tiktok,0.65,positive,joy,anticipation,casual,high,0.8,entertaining,0.7,0.35,0.85,0.72
+7502475932003798314,Lynn Hazan-Bush lynnhazan_,tiktok,0.75,positive,joy,trust,casual,moderate,0.65,inspirational,0.8,0.15,0.8,0.82
+7503979948454055214,Lynn Hazan-Bush lynnhazan_,tiktok,0.75,very_positive,joy,anticipation,conversational,high,0.8,entertaining,0.85,0.05,0.9,0.88
+7505511113384054059,Lynn Hazan-Bush lynnhazan_,tiktok,0.75,very_positive,joy,trust,conversational,high,0.4,entertaining,0.8,0.15,0.85,0.75
+7506555356076707114,Lynn Hazan-Bush lynnhazan_,tiktok,0.35,positive,anticipation,joy,casual,high,0.8,entertaining,0.7,0.35,0.85,0.82
+7508880834565311786,Lynn Hazan-Bush lynnhazan_,tiktok,0.85,very_positive,joy,trust,conversational,high,0.6,entertaining,0.8,0.05,0.85,0.82
+7526649092726869303,Lynn Hazan-Bush lynnhazan_,tiktok,0.15,neutral,anticipation,surprise,casual,moderate,0.3,entertaining,0.65,0.35,0.7,0.45
+7529541185363365133,Lynn Hazan-Bush lynnhazan_,tiktok,0.75,positive,joy,trust,casual,high,0.6,entertaining,0.65,0.35,0.72,0.72
+7532919661168545038,Lynn Hazan-Bush lynnhazan_,tiktok,0.65,positive,surprise,joy,casual,high,0.8,entertaining,0.7,0.35,0.85,0.78
+7533265545232190734,Lynn Hazan-Bush lynnhazan_,tiktok,0.65,positive,anticipation,anger,conversational,very_high,0.05,inspirational,0.8,0.85,0.88,0.82
+7548487108256599351,Lynn Hazan-Bush lynnhazan_,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.4,entertaining,0.82,0.05,0.88,0.87
+7564113967367359799,Lynn Hazan-Bush lynnhazan_,tiktok,0.85,very_positive,joy,trust,casual,high,0.2,inspirational,0.75,0.05,0.8,0.78
+7567011765012155703,Lynn Hazan-Bush lynnhazan_,tiktok,0.85,very_positive,joy,trust,casual,high,0.4,entertaining,0.75,0.05,0.8,0.82
+7567462021537467662,Lynn Hazan-Bush lynnhazan_,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.4,entertaining,0.7,0.3,0.85,0.78
+7567462214970428686,Lynn Hazan-Bush lynnhazan_,tiktok,0.0,neutral,anticipation,trust,casual,moderate,0.2,entertaining,0.4,0.1,0.6,0.35
+7567462402271333646,Lynn Hazan-Bush lynnhazan_,tiktok,0.0,neutral,indeterminate,indeterminate,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.05
+7512611243295919403,madewithsaz0n Elena Gergis,tiktok,0.82,very_positive,joy,anticipation,conversational,very_high,0.3,persuasive,0.58,0.35,0.75,0.87
+7513610868043631915,madewithsaz0n Elena Gergis,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.8,entertaining,0.8,0.05,0.88,0.82
+7514869225559969070,madewithsaz0n Elena Gergis,tiktok,0.65,positive,anticipation,joy,casual,high,0.3,persuasive,0.55,0.1,0.75,0.82
+7517809994012609806,madewithsaz0n Elena Gergis,tiktok,0.75,very_positive,joy,anticipation,casual,very_high,0.15,persuasive,0.45,0.1,0.7,0.82
+7518583390325542199,madewithsaz0n Elena Gergis,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.7,persuasive,0.75,0.05,0.82,0.82
+7519302350247349559,madewithsaz0n Elena Gergis,tiktok,0.75,positive,anticipation,joy,casual,high,0.2,persuasive,0.7,0.05,0.85,0.88
+7523753938005265677,madewithsaz0n Elena Gergis,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.2,persuasive,0.65,0.05,0.9,0.92
+7524154134539324727,madewithsaz0n Elena Gergis,tiktok,0.85,very_positive,joy,anticipation,casual,high,0.2,persuasive,0.65,0.05,0.8,0.88
+7524511353021746487,madewithsaz0n Elena Gergis,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.4,persuasive,0.65,0.05,0.8,0.78
+7524906262606138679,madewithsaz0n Elena Gergis,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.6,entertaining,0.7,0.05,0.88,0.82
+7525951008070028599,madewithsaz0n Elena Gergis,tiktok,0.8,very_positive,joy,trust,conversational,high,0.75,entertaining,0.8,0.05,0.85,0.82
+7526331068614446350,madewithsaz0n Elena Gergis,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.6,entertaining,0.75,0.15,0.88,0.82
+7529340996551855373,madewithsaz0n Elena Gergis,tiktok,0.65,positive,joy,anticipation,casual,very_high,0.8,entertaining,0.7,0.35,0.78,0.72
+7531850247497059597,madewithsaz0n Elena Gergis,tiktok,0.82,very_positive,joy,anticipation,conversational,high,0.6,informative,0.78,0.05,0.85,0.88
+7533800264587824439,madewithsaz0n Elena Gergis,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.4,persuasive,0.7,0.05,0.88,0.82
+7534904991723556110,madewithsaz0n Elena Gergis,tiktok,0.85,very_positive,anticipation,joy,conversational,high,0.3,entertaining,0.78,0.05,0.88,0.89
+7535292778192882957,madewithsaz0n Elena Gergis,tiktok,0.85,very_positive,joy,anticipation,casual,high,0.3,entertaining,0.8,0.0,0.9,0.92
+7542686602338798862,madewithsaz0n Elena Gergis,tiktok,0.85,very_positive,joy,anticipation,casual,high,0.3,entertaining,0.8,0.05,0.9,0.72
+7544090198540291342,madewithsaz0n Elena Gergis,tiktok,0.75,positive,anticipation,trust,casual,high,0.1,persuasive,0.65,0.05,0.72,0.82
+7544580436840795405,madewithsaz0n Elena Gergis,tiktok,0.75,very_positive,joy,trust,casual,high,0.8,entertaining,0.7,0.05,0.85,0.72
+7546783072788712759,madewithsaz0n Elena Gergis,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.3,entertaining,0.7,0.05,0.8,0.82
+7552341417364917518,madewithsaz0n Elena Gergis,tiktok,0.75,positive,anticipation,joy,casual,very_high,0.6,entertaining,0.7,0.1,0.8,0.78
+7553804780368334135,madewithsaz0n Elena Gergis,tiktok,0.85,very_positive,joy,trust,conversational,high,0.7,entertaining,0.82,0.15,0.8,0.88
+7556076674870250766,madewithsaz0n Elena Gergis,tiktok,0.75,very_positive,joy,anticipation,casual,high,0.65,entertaining,0.7,0.0,0.8,0.72
+7559006729246231821,madewithsaz0n Elena Gergis,tiktok,0.85,very_positive,anticipation,joy,conversational,very_high,0.4,persuasive|entertaining,0.75,0.15,0.88,0.87
+7559371421533719821,madewithsaz0n Elena Gergis,tiktok,0.75,positive,anticipation,joy,casual,high,0.3,persuasive,0.55,0.1,0.7,0.82
+7564223385392172301,madewithsaz0n Elena Gergis,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.65,entertaining,0.8,0.05,0.88,0.82
+7566086484810288398,madewithsaz0n Elena Gergis,tiktok,0.75,very_positive,joy,trust,casual,high,0.8,entertaining,0.78,0.05,0.82,0.82
+7566823636498271501,madewithsaz0n Elena Gergis,tiktok,0.75,positive,anticipation,joy,casual,high,0.3,persuasive,0.65,0.05,0.85,0.88
+7568322441534065975,madewithsaz0n Elena Gergis,tiktok,0.75,very_positive,joy,anticipation,casual,high,0.8,entertaining,0.8,0.1,0.85,0.72
+7573103590198283575,madewithsaz0n Elena Gergis,tiktok,0.75,positive,anticipation,joy,casual,high,0.2,persuasive,0.7,0.05,0.8,0.82
+7573489355495329038,madewithsaz0n Elena Gergis,tiktok,0.85,very_positive,joy,anticipation,casual,high,0.3,persuasive,0.75,0.0,0.88,0.87
+MS4wLjABAAAAqo1MDj_gu9B5mGjqS54VhnI1loJ903vJpYgyJeLpmpNOfQvz90H5,madewithsaz0n Elena Gergis,tiktok,0.0,neutral,unknown,unknown,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.05
+7438422051146403118,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.3,persuasive,0.65,0.05,0.82,0.88
+7439086642813603115,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.3,persuasive,0.65,0.05,0.88,0.92
+7455543611350846762,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.25,persuasive,0.65,0.05,0.82,0.88
+7462561075796512046,marmodernvibes,tiktok,0.92,very_positive,joy,surprise,casual,very_high,0.3,persuasive,0.68,0.05,0.88,0.89
+7462563299373403438,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.35,persuasive,0.65,0.05,0.82,0.88
+7466906093877464366,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.3,persuasive,0.55,0.05,0.92,0.88
+7469254293711850798,marmodernvibes,tiktok,0.82,very_positive,joy,anticipation,conversational,very_high,0.8,entertaining,0.65,0.1,0.88,0.92
+7469512053267483947,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.2,persuasive,0.65,0.15,0.88,0.87
+7472161866714762542,marmodernvibes,tiktok,0.88,very_positive,joy,anticipation,casual,high,0.2,persuasive,0.65,0.05,0.82,0.88
+7472877629578775854,marmodernvibes,tiktok,0.88,very_positive,joy,anticipation,conversational,very_high,0.25,entertaining,0.7,0.05,0.92,0.87
+7475873723707428138,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.3,persuasive,0.65,0.05,0.92,0.87
+7481112552802422062,marmodernvibes,tiktok,0.92,very_positive,joy,anticipation,conversational,very_high,0.35,persuasive,0.72,0.05,0.89,0.88
+7484772823236349230,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.3,entertaining,0.75,0.05,0.88,0.82
+7488474637731482926,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.25,persuasive,0.65,0.05,0.8,0.88
+7491662134569520430,marmodernvibes,tiktok,0.85,very_positive,joy,trust,conversational,high,0.15,persuasive,0.68,0.1,0.78,0.82
+7493319393569508654,marmodernvibes,tiktok,0.75,positive,joy,anticipation,conversational,moderate,0.2,inspirational,0.65,0.05,0.8,0.82
+7503980104662420779,marmodernvibes,tiktok,0.88,very_positive,joy,anticipation,conversational,very_high,0.4,persuasive,0.65,0.05,0.82,0.88
+7521028108942675231,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.3,persuasive,0.65,0.05,0.88,0.92
+7532322015257054495,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,casual,high,0.2,informative,0.65,0.05,0.8,0.82
+7532912259153120542,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.25,persuasive,0.7,0.05,0.88,0.92
+7533355230721805599,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.3,persuasive,0.65,0.05,0.88,0.92
+7536725043263311134,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,casual,high,0.15,persuasive,0.7,0.05,0.8,0.88
+7537031353439718686,marmodernvibes,tiktok,0.92,very_positive,joy,anticipation,conversational,very_high,0.3,persuasive,0.72,0.05,0.88,0.89
+7537398157316066590,marmodernvibes,tiktok,0.82,very_positive,joy,anticipation,casual,very_high,0.25,persuasive,0.65,0.05,0.88,0.9
+7537414680709565727,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.2,persuasive,0.65,0.05,0.8,0.82
+7538445511670467871,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.15,informative,0.72,0.05,0.81,0.84
+7539621305209851167,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.3,persuasive,0.65,0.05,0.88,0.92
+7540116525479496990,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,casual,high,0.2,persuasive,0.72,0.05,0.8,0.88
+7553772943281605918,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.3,informative,0.7,0.05,0.85,0.88
+7560388121691573535,marmodernvibes,tiktok,0.85,very_positive,joy,anticipation,casual,high,0.65,persuasive,0.72,0.05,0.88,0.87
+MS4wLjABAAAAE1dk9HUhwP0p11gQAxUerzhfc279PZiXpbZI1SHy9bppWU9Kd9v0,marmodernvibes,tiktok,0.0,neutral,unable_to_determine,unable_to_determine,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.05
+7560484437302054199,megthings_,tiktok,0.65,positive,anticipation,joy,casual,high,0.65,entertaining,0.75,0.3,0.85,0.82
+7560484680009616654,megthings_,tiktok,0.65,positive,anticipation,joy,casual,high,0.65,entertaining,0.75,0.35,0.82,0.72
+7560878518800862477,megthings_,tiktok,0.85,very_positive,joy,trust,conversational,high,0.2,persuasive,0.7,0.05,0.8,0.88
+7562187334238620983,megthings_,tiktok,0.65,positive,joy,anticipation,casual,high,0.7,entertaining,0.75,0.15,0.8,0.82
+7563382425020009741,megthings_,tiktok,0.55,positive,surprise,anticipation,conversational,high,0.65,entertaining,0.8,0.45,0.85,0.82
+7563683764736511246,megthings_,tiktok,0.85,very_positive,trust,joy,conversational,high,0.1,inspirational,0.7,0.15,0.85,0.82
+7564163040304844087,megthings_,tiktok,0.65,positive,anticipation,joy,conversational,high,0.4,entertaining,0.75,0.35,0.85,0.82
+7564869884874591543,megthings_,tiktok,0.92,very_positive,joy,surprise,casual,very_high,0.35,persuasive,0.82,0.05,0.88,0.9
+7564967921454238989,megthings_,tiktok,0.85,very_positive,joy,anticipation,casual,high,0.2,persuasive,0.75,0.1,0.8,0.82
+7565623809240304951,megthings_,tiktok,0.82,very_positive,joy,surprise,conversational,high,0.35,persuasive,0.79,0.05,0.81,0.84
+7566093517672500493,megthings_,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.15,persuasive,0.65,0.05,0.82,0.88
+7566818691535441165,megthings_,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.15,persuasive,0.78,0.05,0.88,0.92
+7567448533402389815,megthings_,tiktok,0.85,very_positive,joy,trust,casual,high,0.6,entertaining,0.75,0.05,0.8,0.82
+7567547558143282446,megthings_,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.7,entertaining,0.75,0.05,0.88,0.82
+7567926999004515639,megthings_,tiktok,0.75,positive,joy,anticipation,casual,high,0.8,entertaining,0.65,0.05,0.85,0.72
+7568113437268659470,megthings_,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.8,entertaining,0.75,0.05,0.88,0.82
+7568174379515792653,megthings_,tiktok,0.75,positive,joy,trust,casual,high,0.85,entertaining,0.75,0.05,0.8,0.78
+7568634870025489678,megthings_,tiktok,0.85,very_positive,joy,trust,conversational,high,0.15,persuasive,0.7,0.05,0.82,0.88
+7568965094470667533,megthings_,tiktok,0.75,very_positive,joy,trust,casual,high,0.75,entertaining,0.8,0.05,0.8,0.82
+7569043142461197582,megthings_,tiktok,0.75,positive,joy,trust,conversational,moderate,0.25,entertaining,0.72,0.05,0.78,0.81
+7569322605161762061,megthings_,tiktok,0.85,very_positive,joy,anticipation,casual,high,0.35,entertaining,0.78,0.05,0.82,0.87
+7569618336347098382,megthings_,tiktok,0.85,very_positive,joy,trust,casual,high,0.4,persuasive,0.8,0.05,0.75,0.82
+7569678737160047927,megthings_,tiktok,0.92,very_positive,joy,surprise,conversational,very_high,0.35,persuasive,0.78,0.05,0.88,0.89
+7570058667345644855,megthings_,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.25,informative,0.7,0.1,0.9,0.92
+7571141109150190862,megthings_,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.3,entertaining,0.7,0.05,0.88,0.82
+7571543880265436430,megthings_,tiktok,0.92,very_positive,joy,surprise,conversational,very_high,0.15,inspirational,0.7,0.08,0.88,0.88
+7571894264364338446,megthings_,tiktok,0.65,positive,joy,anticipation,casual,high,0.2,persuasive,0.45,0.1,0.6,0.78
+7572036432580087054,megthings_,tiktok,0.82,very_positive,joy,anticipation,casual,high,0.75,entertaining,0.72,0.05,0.88,0.78
+7572382798657359118,megthings_,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.2,persuasive,0.72,0.05,0.88,0.82
+7572631906005552439,megthings_,tiktok,0.85,very_positive,joy,trust,casual,high,0.1,entertaining,0.68,0.05,0.82,0.75
+7572686428824554807,megthings_,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.6,entertaining,0.8,0.15,0.9,0.92
+7572804397512592654,megthings_,tiktok,0.75,positive,joy,anticipation,casual,very_high,0.65,entertaining,0.7,0.15,0.8,0.82
+7573107350408564023,megthings_,tiktok,0.75,positive,anticipation,joy,casual,high,0.4,persuasive,0.8,0.05,0.85,0.85
+7573881827757165838,megthings_,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.4,entertaining,0.7,0.05,0.88,0.87
+7574165261855526158,megthings_,tiktok,-0.15,neutral,disgust,surprise,conversational,moderate,0.65,entertaining,0.75,0.05,0.8,0.82
+7574183463901809933,megthings_,tiktok,0.85,very_positive,anticipation,joy,casual,very_high,0.6,persuasive,0.8,0.05,0.9,0.87
+7574459820913282318,megthings_,tiktok,0.65,positive,anticipation,joy,casual,high,0.6,entertaining,0.75,0.55,0.85,0.82
+7574825236818955533,megthings_,tiktok,0.87,very_positive,joy,anticipation,casual,very_high,0.35,persuasive,0.68,0.05,0.89,0.91
+7548547867309280542,myteacherface Jessica Hawk,tiktok,0.72,positive,trust,joy,conversational,moderate,0.25,inspirational,0.82,0.15,0.88,0.85
+7549249842426498334,myteacherface Jessica Hawk,tiktok,0.85,very_positive,joy,trust,casual,moderate,0.2,inspirational,0.82,0.0,0.88,0.87
+7549260325346954526,myteacherface Jessica Hawk,tiktok,0.75,positive,joy,trust,conversational,high,0.3,inspirational,0.8,0.05,0.85,0.85
+7549946922853764383,myteacherface Jessica Hawk,tiktok,0.75,positive,joy,trust,conversational,moderate,0.15,inspirational,0.78,0.02,0.81,0.85
+7550035376056896798,myteacherface Jessica Hawk,tiktok,0.85,very_positive,joy,surprise,conversational,high,0.75,entertaining,0.8,0.05,0.88,0.82
+7550777257359346975,myteacherface Jessica Hawk,tiktok,0.65,positive,anticipation,joy,casual,high,0.75,entertaining,0.7,0.25,0.85,0.72
+7552225731447688479,myteacherface Jessica Hawk,tiktok,0.75,positive,joy,trust,conversational,moderate,0.4,inspirational,0.78,0.0,0.82,0.82
+7553424333616499999,myteacherface Jessica Hawk,tiktok,0.65,positive,trust,joy,conversational,moderate,0.25,persuasive,0.72,0.58,0.62,0.78
+7556029193549581599,myteacherface Jessica Hawk,tiktok,0.85,very_positive,joy,anticipation,conversational,high,0.8,entertaining,0.8,0.0,0.85,0.82
+7556327878137269534,myteacherface Jessica Hawk,tiktok,0.85,very_positive,joy,trust,casual,high,0.65,entertaining,0.82,0.05,0.88,0.87
+7556749434390957343,myteacherface Jessica Hawk,tiktok,0.85,very_positive,joy,trust,casual,high,0.75,entertaining,0.72,0.05,0.82,0.78
+7557837351280577822,myteacherface Jessica Hawk,tiktok,0.85,very_positive,joy,trust,conversational,high,0.7,entertaining,0.8,0.05,0.85,0.82
+7558227174545722654,myteacherface Jessica Hawk,tiktok,0.85,very_positive,joy,trust,casual,high,0.75,entertaining,0.82,0.05,0.88,0.78
+7558949534055845150,myteacherface Jessica Hawk,tiktok,0.82,very_positive,joy,trust,casual,high,0.75,entertaining,0.78,0.05,0.88,0.82
+7559311344604908831,myteacherface Jessica Hawk,tiktok,0.65,positive,anticipation,trust,conversational,high,0.25,persuasive,0.7,0.68,0.75,0.82
+7559588887442509087,myteacherface Jessica Hawk,tiktok,-0.35,negative,fear,anger,conversational,high,0.0,persuasive,0.7,0.85,0.82,0.85
+7560466080234229023,myteacherface Jessica Hawk,tiktok,0.85,very_positive,joy,trust,conversational,high,0.3,persuasive,0.82,0.05,0.75,0.88
+7560491840282184991,myteacherface Jessica Hawk,tiktok,0.82,very_positive,joy,trust,casual,high,0.7,entertaining,0.72,0.05,0.84,0.78
+7562323677342223647,myteacherface Jessica Hawk,tiktok,0.75,very_positive,trust,joy,conversational,high,0.2,informative|inspirational,0.8,0.1,0.8,0.85
+7562326974195174686,myteacherface Jessica Hawk,tiktok,0.75,positive,trust,joy,conversational,moderate,0.2,informative|inspirational,0.85,0.05,0.8,0.82
+7562341369633705246,myteacherface Jessica Hawk,tiktok,0.75,positive,trust,joy,conversational,high,0.3,inspirational,0.82,0.1,0.78,0.78
+7562347272986496287,myteacherface Jessica Hawk,tiktok,0.75,very_positive,trust,joy,conversational,high,0.2,inspirational,0.82,0.1,0.8,0.78
+7563377447295651102,myteacherface Jessica Hawk,tiktok,0.65,positive,anticipation,trust,conversational,high,0.05,persuasive,0.72,0.68,0.78,0.75
+7564111706352373023,myteacherface Jessica Hawk,tiktok,0.85,very_positive,joy,trust,casual,high,0.8,entertaining,0.75,0.05,0.88,0.82
+MS4wLjABAAAA61rhF_tY0We-PQ2sw87Jpocoh768k92iVOpmaN6c_nes9tMM_vMT,myteacherface Jessica Hawk,tiktok,0.0,neutral,unknown,unknown,professional,low,0.0,informative,0.0,0.0,0.0,0.15
+7110252210780638510,NewarkNJblog,tiktok,0.82,very_positive,joy,trust,conversational,moderate,0.2,entertaining,0.78,0.05,0.8,0.85
+7231357502749723946,NewarkNJblog,tiktok,0.0,neutral,unknown,unknown,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.0
+7234652735218388270,NewarkNJblog,tiktok,0.82,very_positive,joy,anticipation,casual,very_high,0.2,inspirational,0.75,0.05,0.85,0.88
+7366396123201670443,NewarkNJblog,tiktok,0.85,very_positive,joy,trust,conversational,high,0.15,inspirational,0.78,0.12,0.82,0.87
+7372020273731652910,NewarkNJblog,tiktok,0.75,positive,joy,surprise,semi-formal,high,0.1,informative,0.7,0.15,0.8,0.82
+7552552612235644190,NewarkNJblog,tiktok,0.92,very_positive,joy,trust,casual,very_high,0.3,entertaining,0.82,0.02,0.88,0.87
+MS4wLjABAAAA-dSIWBkP_VQPUxFYpFpOMqSoYmCH8DJvEeBScpb2DNq5LdKUFHe4,NewarkNJblog,tiktok,0.0,neutral,unknown,unknown,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.05
+7073648520628096299,NJ Athletics,tiktok,0.85,very_positive,joy,surprise,casual,very_high,0.3,entertaining,0.8,0.05,0.85,0.82
+7075131762350837034,NJ Athletics,tiktok,0.92,very_positive,joy,trust,casual,very_high,0.2,inspirational,0.88,0.05,0.9,0.87
+7076272035990605099,NJ Athletics,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.2,inspirational,0.75,0.05,0.8,0.82
+7081795166180248875,NJ Athletics,tiktok,0.85,very_positive,joy,surprise,casual,very_high,0.4,entertaining,0.6,0.05,0.8,0.82
+7083228151127559467,NJ Athletics,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.1,inspirational,0.8,0.05,0.82,0.88
+7084021409671875883,NJ Athletics,tiktok,0.85,very_positive,joy,trust,casual,very_high,0.4,entertaining,0.75,0.05,0.8,0.78
+7084297759565679914,NJ Athletics,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.3,entertaining,0.75,0.05,0.9,0.78
+7087324337132342570,NJ Athletics,tiktok,0.92,very_positive,joy,anticipation,casual,very_high,0.3,entertaining,0.75,0.05,0.88,0.87
+7089998007638478126,NJ Athletics,tiktok,0.75,very_positive,joy,anticipation,casual,very_high,0.8,entertaining,0.5,0.1,0.8,0.65
+7110720064885902638,NJ Athletics,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.1,inspirational,0.8,0.05,0.85,0.82
+7111434477305548078,NJ Athletics,tiktok,0.85,very_positive,joy,trust,casual,very_high,0.4,entertaining,0.7,0.1,0.8,0.82
+7114332222986964270,NJ Athletics,tiktok,0.92,very_positive,joy,surprise,casual,very_high,0.15,entertaining,0.85,0.05,0.88,0.92
+7122586458879266091,NJ Athletics,tiktok,0.85,very_positive,joy,surprise,casual,very_high,0.65,entertaining,0.75,0.05,0.8,0.82
+7123703226678955306,NJ Athletics,tiktok,0.92,very_positive,joy,surprise,casual,very_high,0.65,entertaining,0.72,0.05,0.88,0.78
+7126614531950365998,NJ Athletics,tiktok,0.82,very_positive,anticipation,joy,casual,very_high,0.4,inspirational,0.7,0.05,0.8,0.78
+7140367959314173226,NJ Athletics,tiktok,0.8,very_positive,joy,anticipation,casual,very_high,0.6,entertaining,0.7,0.05,0.85,0.82
+7140752824878714158,NJ Athletics,tiktok,0.85,very_positive,joy,surprise,casual,very_high,0.7,entertaining,0.75,0.05,0.9,0.82
+7141928349559033130,NJ Athletics,tiktok,0,error,error,error,unknown,unknown,0,unknown,0,0,0,0
+7148255340168056110,NJ Athletics,tiktok,-0.35,negative,anger,surprise,casual,very_high,0.6,entertaining,0.65,0.25,0.75,0.62
+7148808751158414634,NJ Athletics,tiktok,0.85,very_positive,anticipation,joy,casual,very_high,0.6,entertaining,0.75,0.15,0.88,0.72
+7150700815559413038,NJ Athletics,tiktok,0.85,very_positive,joy,surprise,casual,very_high,0.3,entertaining,0.75,0.05,0.85,0.82
+7150722900033572142,NJ Athletics,tiktok,0.65,positive,joy,surprise,casual,high,0.8,entertaining,0.75,0.15,0.85,0.78
+7174427650423835947,NJ Athletics,tiktok,0.85,very_positive,joy,sadness,casual,high,0.15,inspirational,0.8,0.05,0.88,0.82
+MS4wLjABAAAAFXyO_O4B79btB9Bt52r7eNAGDpf85F09vobN9Fo0SFH0IeHjrLJQ,NJ Athletics,tiktok,0.0,neutral,unknown,unknown,professional,unknown,0.0,unknown,0.0,0.0,0.0,0.05
+7469516910036634911,NJ Hoop Recruit,tiktok,0.65,positive,anticipation,joy,casual,high,0.4,entertaining,0.6,0.3,0.75,0.65
+7469818085524983070,NJ Hoop Recruit,tiktok,0.65,positive,anticipation,joy,casual,high,0.3,inspirational,0.65,0.25,0.75,0.6
+7471396906875309343,NJ Hoop Recruit,tiktok,0.65,positive,anticipation,joy,casual,very_high,0.6,entertaining,0.65,0.2,0.75,0.62
+7476280326696815903,NJ Hoop Recruit,tiktok,0.75,positive,anticipation,joy,casual,high,0.3,persuasive,0.65,0.1,0.78,0.82
+7481150707115068703,NJ Hoop Recruit,tiktok,0.65,positive,anticipation,joy,casual,very_high,0.65,entertaining,0.75,0.55,0.8,0.72
+7490645520206023966,NJ Hoop Recruit,tiktok,0.75,very_positive,anticipation,joy,casual,very_high,0.6,persuasive,0.65,0.3,0.8,0.72
+7491489329659890975,NJ Hoop Recruit,tiktok,0.75,positive,anticipation,joy,casual,high,0.1,persuasive,0.65,0.05,0.72,0.78
+7498878459456867615,NJ Hoop Recruit,tiktok,0.75,positive,joy,anticipation,casual,very_high,0.8,entertaining,0.75,0.1,0.85,0.72
+7499206016823840031,NJ Hoop Recruit,tiktok,0.75,positive,trust,joy,conversational,high,0.2,inspirational,0.8,0.25,0.78,0.82
+7500760539078085918,NJ Hoop Recruit,tiktok,0.15,neutral,anticipation,surprise,casual,moderate,0.3,entertaining,0.6,0.35,0.65,0.55
+7512088845236636958,NJ Hoop Recruit,tiktok,0.6,positive,anticipation,joy,casual,high,0.3,inspirational,0.7,0.25,0.75,0.65
+7530007002282609951,NJ Hoop Recruit,tiktok,0.75,positive,anticipation,joy,casual,very_high,0.25,inspirational,0.7,0.15,0.82,0.78
+7530868896367250719,NJ Hoop Recruit,tiktok,0.75,very_positive,joy,anticipation,casual,very_high,0.6,entertaining,0.75,0.15,0.85,0.72
+7531884932621208862,NJ Hoop Recruit,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.4,entertaining,0.75,0.05,0.88,0.87
+7535129055625006366,NJ Hoop Recruit,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.4,entertaining,0.7,0.05,0.8,0.72
+7538972940126129438,NJ Hoop Recruit,tiktok,0.75,very_positive,joy,anticipation,casual,high,0.3,entertaining,0.65,0.1,0.8,0.72
+7553450877550398750,NJ Hoop Recruit,tiktok,0.85,very_positive,anticipation,joy,casual,very_high,0.3,entertaining,0.7,0.15,0.88,0.78
+7559577105072213279,NJ Hoop Recruit,tiktok,0.85,very_positive,anticipation,joy,casual,very_high,0.4,entertaining,0.68,0.15,0.88,0.82
+7560870905438637343,NJ Hoop Recruit,tiktok,0.75,positive,anticipation,joy,casual,high,0.3,inspirational,0.75,0.05,0.85,0.82
+7570294921186299167,NJ Hoop Recruit,tiktok,0.75,positive,anticipation,joy,casual,high,0.3,entertaining,0.75,0.25,0.8,0.82
+7570369291426516255,NJ Hoop Recruit,tiktok,0.75,positive,joy,surprise,casual,very_high,0.8,entertaining,0.75,0.35,0.82,0.72
+7570567595628301599,NJ Hoop Recruit,tiktok,0.75,positive,anticipation,joy,casual,high,0.3,entertaining,0.65,0.15,0.8,0.7
+7556376845927632142,No Regulars Podcast,tiktok,0.35,positive,anticipation,surprise,conversational,high,0.65,entertaining,0.7,0.65,0.8,0.72
+7557490796740496695,No Regulars Podcast,tiktok,0.35,positive,anticipation,joy,casual,very_high,0.6,confrontational,0.65,0.45,0.85,0.72
+7557879245884755231,No Regulars Podcast,tiktok,0.75,positive,anticipation,joy,casual,high,0.6,entertaining,0.7,0.15,0.85,0.82
+7558603991668591927,No Regulars Podcast,tiktok,0.75,positive,joy,anticipation,casual,high,0.7,entertaining,0.7,0.15,0.9,0.82
+7558974317128715551,No Regulars Podcast,tiktok,0.65,positive,anticipation,joy,conversational,high,0.4,entertaining,0.65,0.55,0.8,0.72
+7559345904491613470,No Regulars Podcast,tiktok,0.7,positive,anticipation,joy,conversational,high,0.65,entertaining,0.75,0.35,0.85,0.82
+7559717228552129822,No Regulars Podcast,tiktok,0.75,very_positive,anticipation,joy,casual,very_high,0.6,entertaining,0.65,0.15,0.85,0.78
+7560088173414534430,No Regulars Podcast,tiktok,0.75,positive,joy,anticipation,casual,high,0.5,entertaining,0.7,0.15,0.85,0.72
+7560806829219974431,No Regulars Podcast,tiktok,0.82,very_positive,joy,anticipation,casual,very_high,0.85,entertaining,0.65,0.1,0.88,0.78
+7560832871750044941,No Regulars Podcast,tiktok,0.65,positive,anticipation,joy,casual,high,0.6,entertaining,0.65,0.15,0.8,0.72
+7561203421013937422,No Regulars Podcast,tiktok,0.75,positive,joy,anticipation,casual,very_high,0.8,entertaining,0.8,0.15,0.85,0.85
+7561572572924480782,No Regulars Podcast,tiktok,0.75,positive,joy,anticipation,casual,very_high,0.68,entertaining,0.72,0.15,0.85,0.78
+7562319162480053535,No Regulars Podcast,tiktok,0.75,positive,anticipation,joy,conversational,high,0.7,entertaining,0.8,0.3,0.85,0.82
+7562685747740855583,No Regulars Podcast,tiktok,0.75,positive,anticipation,joy,casual,high,0.6,entertaining,0.7,0.15,0.85,0.72
+7563056295436193038,No Regulars Podcast,tiktok,0.65,positive,anticipation,joy,casual,very_high,0.6,entertaining,0.65,0.25,0.85,0.72
+7563428119047048478,No Regulars Podcast,tiktok,0.75,positive,anticipation,joy,casual,high,0.7,entertaining,0.7,0.1,0.85,0.72
+7563799377253321998,No Regulars Podcast,tiktok,0.75,positive,anticipation,joy,casual,very_high,0.7,entertaining,0.7,0.15,0.85,0.82
+7565282127143636254,No Regulars Podcast,tiktok,0.65,positive,anticipation,joy,casual,very_high,0.75,entertaining,0.6,0.55,0.85,0.78
+7566025248282332447,No Regulars Podcast,tiktok,0.75,positive,anticipation,joy,casual,very_high,0.75,entertaining,0.7,0.35,0.85,0.78
+7566397762917420302,No Regulars Podcast,tiktok,0.15,neutral,anticipation,sadness,casual,high,0.4,entertaining,0.65,0.35,0.85,0.78
+7566767694595280158,No Regulars Podcast,tiktok,0.75,very_positive,joy,anticipation,casual,very_high,0.65,entertaining,0.75,0.15,0.85,0.82
+7567141347208039693,No Regulars Podcast,tiktok,0.15,neutral,anticipation,surprise,casual,high,0.6,entertaining,0.55,0.8,0.85,0.78
+7567525296216362270,No Regulars Podcast,tiktok,0.75,positive,anticipation,joy,casual,very_high,0.65,entertaining,0.72,0.15,0.88,0.78
+7567894277800430878,No Regulars Podcast,tiktok,-0.25,neutral,surprise,anticipation,casual,very_high,0.65,entertaining,0.6,0.75,0.85,0.82
+7569384036171353358,No Regulars Podcast,tiktok,0.65,positive,anticipation,surprise,casual,high,0.7,entertaining,0.65,0.55,0.85,0.78
+7570124379988774158,No Regulars Podcast,tiktok,0.75,positive,anticipation,joy,casual,very_high,0.7,entertaining,0.7,0.1,0.9,0.75
+7570494287742356750,No Regulars Podcast,tiktok,0.65,positive,anticipation,joy,conversational,high,0.6,entertaining,0.7,0.25,0.85,0.78
+7570883043439709453,No Regulars Podcast,tiktok,0.75,positive,anticipation,joy,casual,very_high,0.6,entertaining,0.75,0.35,0.85,0.8
+7571234822325161271,No Regulars Podcast,tiktok,0.75,positive,joy,anticipation,casual,high,0.65,entertaining,0.75,0.25,0.85,0.72
+7571979148495736119,No Regulars Podcast,tiktok,0.65,positive,anticipation,joy,casual,very_high,0.7,entertaining,0.65,0.25,0.85,0.72
+7572348490483879199,No Regulars Podcast,tiktok,0.65,positive,surprise,anticipation,casual,very_high,0.7,entertaining,0.65,0.55,0.85,0.72
+7573461946649906446,No Regulars Podcast,tiktok,0.75,positive,anticipation,joy,casual,very_high,0.75,entertaining,0.7,0.25,0.85,0.72
+7574205646204194061,No Regulars Podcast,tiktok,0.75,positive,anticipation,joy,casual,very_high,0.75,entertaining,0.7,0.25,0.85,0.72
+7574575304547536158,No Regulars Podcast,tiktok,0.15,neutral,surprise,anticipation,casual,high,0.2,entertaining,0.35,0.72,0.8,0.68
+MS4wLjABAAAAxCaSkOrAg3VWcT4PQcgwwGJzlM24bVbKftgMAENKgld3wGJds10I,No Regulars Podcast,tiktok,0.0,neutral,unknown,unknown,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.15
+7367772048665398574,Phat Papi Mark Gregory,tiktok,0.72,positive,joy,trust,casual,very_high,0.65,persuasive,0.68,0.12,0.71,0.78
+7368916083664850218,Phat Papi Mark Gregory,tiktok,0.75,positive,joy,surprise,casual,high,0.85,entertaining,0.75,0.1,0.9,0.78
+7370389845421755694,Phat Papi Mark Gregory,tiktok,-0.65,negative,anger,sadness,casual,high,0.3,confrontational,0.6,0.8,0.85,0.65
+7371490774648818990,Phat Papi Mark Gregory,tiktok,0.75,very_positive,joy,anticipation,casual,very_high,0.8,entertaining,0.8,0.15,0.85,0.82
+7374080661398883630,Phat Papi Mark Gregory,tiktok,0.75,positive,joy,anticipation,casual,high,0.8,entertaining,0.7,0.2,0.82,0.72
+7376337975367699758,Phat Papi Mark Gregory,tiktok,0.15,neutral,anger,anticipation,casual,high,0.25,confrontational,0.65,0.72,0.55,0.72
+7376680148327828782,Phat Papi Mark Gregory,tiktok,0.65,positive,joy,surprise,casual,high,0.8,entertaining,0.7,0.15,0.8,0.72
+7378533776135130414,Phat Papi Mark Gregory,tiktok,0.75,positive,trust,joy,casual,high,0.35,inspirational,0.75,0.15,0.8,0.72
+7382311291941031214,Phat Papi Mark Gregory,tiktok,0.35,positive,joy,anticipation,casual,high,0.75,entertaining,0.7,0.25,0.8,0.72
+7387528533809171758,Phat Papi Mark Gregory,tiktok,0.82,very_positive,joy,surprise,casual,very_high,0.8,entertaining,0.75,0.1,0.88,0.78
+7387813728701435178,Phat Papi Mark Gregory,tiktok,0.75,positive,joy,anticipation,casual,very_high,0.8,entertaining,0.7,0.1,0.85,0.75
+7392287868690976046,Phat Papi Mark Gregory,tiktok,0.85,very_positive,joy,trust,casual,very_high,0.75,entertaining,0.65,0.05,0.8,0.78
+7392723159813917998,Phat Papi Mark Gregory,tiktok,0.82,very_positive,anticipation,joy,conversational,very_high,0.75,entertaining,0.78,0.05,0.88,0.87
+7394129094348229930,Phat Papi Mark Gregory,tiktok,0.75,very_positive,joy,trust,casual,very_high,0.8,entertaining,0.65,0.05,0.8,0.72
+7410115390400908590,Phat Papi Mark Gregory,tiktok,0.75,positive,joy,anticipation,casual,very_high,0.15,persuasive,0.52,0.28,0.71,0.83
+7418647107298512170,Phat Papi Mark Gregory,tiktok,0.85,very_positive,joy,surprise,casual,very_high,0.55,entertaining,0.8,0.05,0.85,0.75
+7444607647430610218,Phat Papi Mark Gregory,tiktok,0.85,very_positive,joy,trust,casual,high,0.3,persuasive|inspirational,0.8,0.05,0.75,0.82
+7484661642727279918,Phat Papi Mark Gregory,tiktok,0.72,positive,anticipation,joy,casual,high,0.15,persuasive,0.45,0.25,0.68,0.78
+7516950993729342750,Phat Papi Mark Gregory,tiktok,0.92,very_positive,joy,anticipation,casual,very_high,0.85,entertaining,0.72,0.05,0.88,0.89
+7528528390819745054,Phat Papi Mark Gregory,tiktok,0.75,very_positive,joy,surprise,casual,very_high,0.8,entertaining,0.65,0.15,0.85,0.7
+7572258116830563614,Phat Papi Mark Gregory,tiktok,0.75,very_positive,joy,anticipation,casual,very_high,0.8,entertaining,0.7,0.05,0.8,0.65
+MS4wLjABAAAAeXQrq4GqCU4vIG9ZjW28VBaS0RkhPiui9A9idWt2f_yh6W0tb23v,Phat Papi Mark Gregory,tiktok,0.0,neutral,unknown,unknown,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.05
+7564480933705911565,Salvatore _Sally Slices_ Mandreucci,tiktok,-0.35,negative,sadness,fear,casual,moderate,0.15,emotional_appeal,0.7,0.15,0.75,0.65
+7564591701080296717,Salvatore _Sally Slices_ Mandreucci,tiktok,0.6,positive,anticipation,joy,casual,moderate,0.4,entertaining,0.6,0.05,0.7,0.55
+7565557111044836663,Salvatore _Sally Slices_ Mandreucci,tiktok,0.15,neutral,anticipation,surprise,casual,moderate,0.45,entertaining,0.4,0.15,0.65,0.35
+7566692718341131533,Salvatore _Sally Slices_ Mandreucci,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.75,entertaining,0.8,0.05,0.9,0.82
+7567119325237234957,Salvatore _Sally Slices_ Mandreucci,tiktok,0.0,neutral,unknown,unknown,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+7567473533853519118,Salvatore _Sally Slices_ Mandreucci,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.7,entertaining,0.75,0.0,0.82,0.78
+7568160881088007438,Salvatore _Sally Slices_ Mandreucci,tiktok,0.3,positive,joy,trust,casual,moderate,0.5,entertaining,0.45,0.1,0.65,0.35
+7568953219611643149,Salvatore _Sally Slices_ Mandreucci,tiktok,0.3,positive,anticipation,joy,casual,very_high,0.5,entertaining,0.4,0.2,0.75,0.45
+7569288480354880781,Salvatore _Sally Slices_ Mandreucci,tiktok,0.0,neutral,none_determinable,none_determinable,casual,low,0.0,informative,0.0,0.0,0.0,0.15
+7570043934877945101,Salvatore _Sally Slices_ Mandreucci,tiktok,0.85,very_positive,joy,trust,casual,high,0.4,entertaining,0.75,0.0,0.8,0.78
+7570088593755049230,Salvatore _Sally Slices_ Mandreucci,tiktok,0.85,very_positive,joy,trust,casual,high,0.6,entertaining,0.78,0.05,0.82,0.72
+7570391391436623159,Salvatore _Sally Slices_ Mandreucci,tiktok,0.75,positive,joy,trust,casual,high,0.4,entertaining,0.75,0.05,0.7,0.68
+7570751225705008439,Salvatore _Sally Slices_ Mandreucci,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.4,entertaining,0.6,0.05,0.8,0.65
+7570833395203230989,Salvatore _Sally Slices_ Mandreucci,tiktok,0.6,positive,joy,anticipation,casual,high,0.5,entertaining,0.6,0.1,0.75,0.55
+7570915361680280887,Salvatore _Sally Slices_ Mandreucci,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.6,entertaining,0.75,0.05,0.82,0.78
+7571500686496517390,Salvatore _Sally Slices_ Mandreucci,tiktok,0.0,neutral,unknown,unknown,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.05
+7571888685508005175,Salvatore _Sally Slices_ Mandreucci,tiktok,0.75,positive,joy,anticipation,casual,high,0.75,entertaining,0.8,0.05,0.85,0.72
+7572008535576366391,Salvatore _Sally Slices_ Mandreucci,tiktok,0.0,neutral,anticipation,surprise,casual,moderate,0.3,entertaining,0.4,0.1,0.6,0.3
+7572234268357840142,Salvatore _Sally Slices_ Mandreucci,tiktok,0.85,very_positive,joy,anticipation,casual,very_high,0.4,entertaining,0.7,0.1,0.8,0.65
+7573121299069848887,Salvatore _Sally Slices_ Mandreucci,tiktok,0.65,positive,joy,anticipation,casual,moderate,0.5,entertaining,0.55,0.05,0.75,0.45
+7573389031019531575,Salvatore _Sally Slices_ Mandreucci,tiktok,0.85,very_positive,joy,surprise,casual,very_high,0.75,entertaining,0.8,0.05,0.9,0.82
+7573492969571913015,Salvatore _Sally Slices_ Mandreucci,tiktok,0.65,positive,joy,anticipation,casual,high,0.5,entertaining,0.75,0.05,0.8,0.55
+7573863790878477623,Salvatore _Sally Slices_ Mandreucci,tiktok,0.35,positive,joy,anticipation,casual,moderate,0.4,entertaining,0.5,0.05,0.65,0.4
+7570078769306815775,teacher in nj,tiktok,-0.75,negative,disgust,fear,professional,high,0.0,informative,0.8,0.7,0.75,0.75
+7570374649607949598,teacher in nj,tiktok,0.55,positive,trust,anticipation,professional,moderate,0.0,informative,0.65,0.4,0.6,0.7
+7570380831064198430,teacher in nj,tiktok,-0.65,negative,surprise,fear,conversational,moderate,0.0,informative,0.85,0.72,0.78,0.82
+7571184285978201375,teacher in nj,tiktok,0.85,very_positive,trust,joy,conversational,moderate,0.1,inspirational,0.75,0.05,0.8,0.7
+7571285723467353375,teacher in nj,tiktok,0.35,positive,anticipation,fear,conversational,high,0.05,persuasive,0.7,0.55,0.68,0.75
+7571467502144834847,teacher in nj,tiktok,0.25,positive,trust,fear,professional,moderate,0.05,informative,0.75,0.3,0.65,0.78
+7571471911184502046,teacher in nj,tiktok,0.75,positive,trust,joy,professional,moderate,0.05,informative,0.7,0.15,0.65,0.78
+7572391034290769182,teacher in nj,tiktok,-0.65,negative,anger,disgust,conversational,moderate,0.05,persuasive,0.7,0.8,0.85,0.75
+7572533059833138463,teacher in nj,tiktok,0.3,positive,anticipation,trust,conversational,moderate,0.1,informative,0.6,0.15,0.75,0.65
+7572733724480032030,teacher in nj,tiktok,-0.75,negative,disgust,anger,conversational,high,0.1,confrontational,0.75,0.85,0.8,0.72
+7572971492976119070,teacher in nj,tiktok,-0.3,negative,fear,surprise,casual,moderate,0.0,informative,0.65,0.7,0.65,0.62
+7573487551403560223,teacher in nj,tiktok,-0.75,negative,anger,disgust,professional,high,0.05,persuasive,0.65,0.8,0.75,0.82
+7573490097736273183,teacher in nj,tiktok,-0.35,negative,fear,anticipation,conversational,moderate,0.05,informative,0.8,0.15,0.75,0.85
+7573494873538448670,teacher in nj,tiktok,0.35,positive,anticipation,joy,conversational,high,0.3,entertaining,0.75,0.3,0.8,0.78
+7573660880945073438,teacher in nj,tiktok,-0.35,negative,anger,disgust,casual,moderate,0.1,informative,0.65,0.6,0.7,0.7
+7573666673891347743,teacher in nj,tiktok,0.85,very_positive,joy,anticipation,casual,high,0.3,inspirational,0.8,0.05,0.9,0.82
+7573801118338174238,teacher in nj,tiktok,0.85,very_positive,joy,surprise,casual,high,0.3,entertaining,0.65,0.15,0.88,0.78
+7574168783867153694,teacher in nj,tiktok,0.65,positive,joy,trust,professional,moderate,0.0,informative,0.75,0.1,0.65,0.72
+7574621646712065310,teacher in nj,tiktok,0.72,positive,joy,surprise,conversational,high,0.15,informative,0.8,0.35,0.78,0.85
+7574779145637416223,teacher in nj,tiktok,0.72,positive,anticipation,joy,casual,moderate,0.1,informative,0.75,0.05,0.68,0.72
+MS4wLjABAAAAGxiJPxb8BIqE7CIBU1Fgh5RIbLUxELLW91whXmRnGx6aEJC6CYgx,teacher in nj,tiktok,0.0,neutral,unable_to_determine,unable_to_determine,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.05
+7560819375796702519,teacherpaywithk,tiktok,0.82,very_positive,joy,surprise,conversational,high,0.45,entertaining,0.78,0.08,0.76,0.84
+7561218232657464590,teacherpaywithk,tiktok,-0.65,negative,anger,disgust,conversational,high,0.3,confrontational,0.8,0.7,0.85,0.85
+7561596221668822285,teacherpaywithk,tiktok,0.65,positive,trust,anticipation,conversational,moderate,0.0,informative,0.75,0.15,0.55,0.82
+7563611511273344311,teacherpaywithk,tiktok,0.35,positive,anticipation,trust,conversational,moderate,0.3,persuasive,0.65,0.35,0.72,0.78
+7563818626084556045,teacherpaywithk,tiktok,0.75,positive,anticipation,trust,conversational,high,0.05,persuasive,0.72,0.78,0.82,0.88
+7564185659280346382,teacherpaywithk,tiktok,0.65,positive,trust,anticipation,conversational,moderate,0.0,persuasive,0.75,0.15,0.6,0.82
+7565224916811828535,teacherpaywithk,tiktok,0.75,positive,trust,anticipation,conversational,high,0.0,persuasive,0.8,0.15,0.85,0.92
+7565286382386679053,teacherpaywithk,tiktok,0.85,very_positive,anticipation,trust,conversational,high,0.1,inspirational,0.82,0.35,0.78,0.88
+7565303436690951479,teacherpaywithk,tiktok,0.78,very_positive,anticipation,joy,conversational,very_high,0.15,persuasive,0.62,0.68,0.74,0.85
+7565669213323398414,teacherpaywithk,tiktok,0.15,neutral,anticipation,surprise,conversational,high,0.6,confrontational,0.65,0.8,0.85,0.82
+7567789987069021495,teacherpaywithk,tiktok,0.78,very_positive,anticipation,joy,conversational,very_high,0.15,persuasive,0.72,0.58,0.81,0.87
+7567944868018867469,teacherpaywithk,tiktok,0.85,very_positive,joy,anticipation,conversational,very_high,0.2,inspirational,0.72,0.35,0.82,0.88
+7568824679754943757,teacherpaywithk,tiktok,0.65,positive,anticipation,trust,conversational,very_high,0.15,persuasive,0.7,0.75,0.8,0.88
+7569042912730696974,teacherpaywithk,tiktok,-0.15,negative,fear,anticipation,conversational,moderate,0.3,entertaining,0.7,0.55,0.75,0.78
+7569616668452867383,teacherpaywithk,tiktok,0.78,very_positive,joy,anticipation,conversational,high,0.2,persuasive,0.58,0.15,0.74,0.82
+7570886575316274445,teacherpaywithk,tiktok,0.65,positive,joy,trust,conversational,moderate,0.7,entertaining,0.75,0.05,0.82,0.82
+7571050312681786679,teacherpaywithk,tiktok,0.65,positive,anticipation,trust,conversational,high,0.15,informative,0.75,0.4,0.72,0.82
+7571421002706554126,teacherpaywithk,tiktok,-0.65,negative,anger,disgust,conversational,high,0.3,confrontational,0.7,0.75,0.8,0.82
+7573327197302164791,teacherpaywithk,tiktok,0.65,positive,joy,fear,conversational,high,0.4,entertaining,0.85,0.25,0.8,0.88
+7573652807241207095,teacherpaywithk,tiktok,0.35,positive,joy,surprise,conversational,high,0.75,entertaining,0.8,0.15,0.85,0.88
+7574598204918861111,teacherpaywithk,tiktok,-0.15,neutral,anticipation,anger,conversational,high,0.15,persuasive,0.78,0.68,0.82,0.82
+7281558750412967214,_JerseyShoreFireResponse,tiktok,0.15,neutral,anticipation,fear,professional,high,0.0,informative,0.85,0.25,0.75,0.72
+7281559252253052206,_JerseyShoreFireResponse,tiktok,0.15,neutral,anticipation,fear,professional,high,0.0,informative,0.85,0.25,0.75,0.72
+7541518952803929399,_jersey__news,tiktok,0.0,neutral,trust,anticipation,casual,low,0.0,informative,0.6,0.0,0.3,0.35
+7542163634709941559,_jersey__news,tiktok,0.0,neutral,unknown,unknown,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.05
+7543016327045221687,_jersey__news,tiktok,0.0,neutral,trust,anticipation,casual,low,0.0,informative,0.85,0.05,0.25,0.35
+7543347507657592077,_jersey__news,tiktok,0.0,neutral,unknown,unknown,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.0
+7546026854587649335,_jersey__news,tiktok,0.0,neutral,unknown,unknown,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.05
+7547887776973311287,_jersey__news,tiktok,0.0,neutral,trust,anticipation,casual,low,0.0,informative,0.6,0.1,0.3,0.35
+7551154678701034807,_jersey__news,tiktok,0.0,neutral,unknown,unknown,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.0
+7559712168879426830,_jersey__news,tiktok,0.0,neutral,unknown,unknown,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.05
+7567034909420735757,_jersey__news,tiktok,0.0,neutral,unknown,unknown,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.05
+7572011103748771085,_jersey__news,tiktok,0.0,neutral,unknown,unknown,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.0
+7574532570939936014,_jersey__news,tiktok,0.0,neutral,unknown,unknown,unknown,unknown,0.0,unknown,0.0,0.0,0.0,0.0
+Mno9jtOYDa4,byerikabatista,youtube,0.85,very_positive,joy,trust,conversational,high,0.6,persuasive,0.78,0.15,0.82,0.87
+ZZarT-cUJp0,byerikabatista,youtube,0.85,very_positive,joy,trust,conversational,very_high,0.45,persuasive,0.78,0.05,0.82,0.88
+_BuWNYSoSIY,byerikabatista,youtube,0.75,very_positive,trust,joy,conversational,moderate,0.35,informative,0.82,0.05,0.78,0.88
+z8oV1gBkuH4,Dileiny Baron,youtube,0.82,very_positive,trust,joy,conversational,high,0.15,inspirational,0.79,0.15,0.81,0.86
+UCIE91vy9N4Kb2nQQ3GW4uAg,Jersey Joe,youtube,0.85,very_positive,joy,anticipation,casual,high,0.85,entertaining,0.65,0.05,0.8,0.72
+1uh5qk1xSH4,Jersey Sports Zone,youtube,0.75,positive,joy,anticipation,casual,high,0.25,entertaining,0.72,0.15,0.78,0.78
+MOs3Ed8ZQFE,Jersey Sports Zone,youtube,0.75,very_positive,joy,surprise,professional,high,0.2,informative,0.75,0.05,0.8,0.82
+o2CW6bt0xs8,Jersey Sports Zone,youtube,0.85,very_positive,joy,anticipation,professional,high,0.2,informative|entertaining,0.75,0.05,0.88,0.82
+OhZLeUNFoeE,Jersey Sports Zone,youtube,0.65,positive,anticipation,joy,professional,high,0.3,entertaining,0.6,0.05,0.75,0.7
+UCgmuv-AeJj1EqsXUzDX6lng,Jersey Sports Zone,youtube,0.75,positive,trust,joy,professional,high,0.2,informative,0.8,0.05,0.72,0.78
+shcjxDY42nc,Jessica Alexandra _lifestylejessica,youtube,0.75,positive,joy,trust,conversational,high,0.45,entertaining,0.65,0.05,0.8,0.82
+UC65juYplXh3AxS49nscsBDg,Jessica Alexandra _lifestylejessica,youtube,0.82,very_positive,joy,anticipation,conversational,high,0.35,persuasive_entertaining,0.72,0.05,0.78,0.88
