@@ -142,12 +142,12 @@ The input CSV should have columns:
 
 Data starts at row 4 (after header rows).
 
-## Current Status (v0.2.0)
+## Current Status (v0.3.0)
 
 ### Completed Scraping
-- **TikTok:** 1,281 videos from 39 influencers
-- **YouTube:** 224 videos from 39 influencers
-- **Instagram:** ~250 posts from 5 influencers
+- **TikTok:** 1,281 videos from 41 influencers
+- **YouTube:** 224 videos from 41 influencers
+- **Instagram:** ~1,900 posts from 41 influencers
 
 See `output/SCRAPING_REPORT.md` for detailed batch statistics.
 
@@ -157,13 +157,13 @@ Full-dataset analysis completed using batch processing across multiple providers
 
 | Analysis type | Posts analyzed | Coverage |
 |---------------|----------------|----------|
-| Semantic | 3,364 | 100% |
+| Semantic | 3,650 | 100% |
 | Sentiment | 3,244 | 96.4% |
 
 **Provider breakdown (sentiment):**
-- Claude batch (Haiku 4.5): 1,474 posts
-- Gemini batch: 910 posts
-- OpenAI: 864 posts
+- Claude batch (Haiku 4.5): 1,470 posts
+- Gemini 3 Flash batch: 910 posts
+- OpenAI GPT-5: 864 posts
 
 **Merged results saved to:** `analysis/ai_results_merged/`
 
@@ -171,14 +171,53 @@ Full-dataset analysis completed using batch processing across multiple providers
 
 | Metric | Count | % of total |
 |--------|-------|------------|
-| News/opinion/educational content | 592 | 17.6% |
-| Informative rhetorical mode | 1,507 | 46.5% |
-| High NJ relevance (≥0.7) | 1,738 | 51.7% |
+| News/opinion/educational content | 608 | 16.7% |
+| Informative rhetorical mode | 1,542 | 43.1% |
+| High NJ relevance (≥0.7) | 1,788 | 49.0% |
 | Core local NJ news | 256 | 7.6% |
 
 Top topics: NJ lifestyle/dining, NJ food, basketball recruiting, local culture, Jersey City lifestyle, high school sports.
 
 See `analysis/news_analysis/` for detailed news-focused analysis.
+
+### Interactive web report (December 2025)
+
+Publication-ready interactive web report created in `reports/njinfluencers-deploy/`:
+
+**Files:**
+- `index.html` - Main interactive report with charts, case studies, embeds
+- `research-brief.html` - Academic-style research brief
+- `videos/` - Self-hosted video files for reliable playback (33 MB total)
+
+**Features:**
+- Dark/light mode toggle with persistent preference
+- Animated number counters for key statistics
+- Interactive Chart.js visualizations (theme-aware)
+- Embedded case study videos (TikTok, YouTube, Instagram)
+- Copy-to-clipboard buttons for analysis prompts
+- Sticky navigation with smooth scrolling
+- Mobile responsive design
+- CCM brand colors and logo
+
+**Video files for self-hosting** (in `videos/` folder):
+- `gardenstate-7507004545118113054.mp4` - Garden State Netflix news
+- `hobokengirl-7512539324152286495.mp4` - Hoboken Girl free activities
+- `hobokengirl-7570087280501722382.mp4` - Hoboken Girl HS football
+- `lynnhazan-7431585165358468394.mp4` - Lynn Hazan restaurant recs
+- `newarknjblog-7372020273731652910.mp4` - NewarkNJblog apartment news
+- `noregulars-7477360979089591595.mp4` - No Regulars (counter-example)
+
+**Deployment:** Upload `videos/` folder to FTP, then update iframe src attributes to use self-hosted video URLs instead of TikTok embeds (TikTok embeds return 403 errors).
+
+**Correct influencer profile URLs:**
+- Hoboken Girl TikTok: `@thehobokengirl`
+- Garden State TikTok: `@thegardenstatepodcast`
+- NJ Hoop Recruit TikTok: `@njhooprecruit`
+- Jersey Sports Zone TikTok: `@jsz_sports`
+- Weird NJ YouTube: `@WeirdNJTV`
+- Chris Gethard Instagram: `@chrisgeth`
+- Joe Bartolozzi YouTube: `@JoeBartolozzi`
+- No Regulars TikTok: `@noregulars`
 
 ---
 

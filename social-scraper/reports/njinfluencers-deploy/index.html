@@ -1,0 +1,1932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NJ Influencer Research | Center for Cooperative Media</title>
+    <meta name="description" content="AI-powered analysis of 3,650 social media posts from 41 New Jersey influencers reveals how creators deliver local news and information.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --red: #CA3553;
+            --red-dark: #a62a44;
+            --black: #000000;
+            --teal: #2A9D8F;
+            --teal-light: #3db8a9;
+            --bg-light: #FAFAFA;
+            --bg-dark: #0f0f0f;
+            --card-light: #FFFFFF;
+            --card-dark: #1a1a1a;
+            --text-light: #1a1a1a;
+            --text-dark: #e8e8e8;
+            --text-muted-light: #666666;
+            --text-muted-dark: #999999;
+            --border-light: #e0e0e0;
+            --border-dark: #333333;
+
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+
+            --bg: var(--bg-light);
+            --card: var(--card-light);
+            --text: var(--text-light);
+            --text-muted: var(--text-muted-light);
+            --border: var(--border-light);
+        }
+
+        [data-theme="dark"] {
+            --bg: var(--bg-dark);
+            --card: var(--card-dark);
+            --text: var(--text-dark);
+            --text-muted: var(--text-muted-dark);
+            --border: var(--border-dark);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 17px;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .nav.scrolled {
+            padding: 0.75rem 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-brand {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--red);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            width: 44px;
+            height: 24px;
+            background: var(--border);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.3s;
+        }
+
+        .theme-toggle::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            background: var(--card);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        [data-theme="dark"] .theme-toggle::after {
+            transform: translateX(20px);
+        }
+
+        [data-theme="dark"] .theme-toggle {
+            background: var(--teal);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(ellipse at center, var(--red) 0%, transparent 70%);
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--red);
+            margin-bottom: 2rem;
+            padding: 0.5rem 1.25rem;
+            border: 2px solid var(--red);
+            border-radius: 2px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease 0.2s forwards;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease 0.4s forwards;
+        }
+
+        .hero-title span {
+            color: var(--red);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease 0.6s forwards;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease 0.8s forwards;
+        }
+
+        .hero-meta strong {
+            color: var(--text);
+        }
+
+        .hero-cta {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.875rem 1.75rem;
+            background: var(--primary);
+            color: #ca3553;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 4px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease 1s forwards;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .hero-cta:hover {
+            background: #000000;
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stats Grid */
+        .stats-section {
+            padding: 6rem 2rem;
+            background: var(--card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stats-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--teal);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* Sections */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            max-width: 700px;
+        }
+
+        .section-number {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--border);
+            line-height: 1;
+            margin-bottom: -1rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .content-grid.reverse {
+            direction: rtl;
+        }
+
+        .content-grid.reverse > * {
+            direction: ltr;
+        }
+
+        /* Highlight Cards */
+        .highlight-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .highlight-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+
+        .highlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--teal);
+        }
+
+        .highlight-card.accent::before {
+            background: var(--red);
+        }
+
+        .highlight-value {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--teal);
+            line-height: 1.1;
+        }
+
+        .highlight-card.accent .highlight-value {
+            color: var(--red);
+        }
+
+        .highlight-label {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* Chart Container */
+        .chart-container {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2rem;
+            min-height: 400px;
+            overflow: hidden;
+        }
+
+        .chart-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* Topics Section */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .topic-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 4px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .topic-item:hover {
+            border-color: var(--teal);
+            transform: translateY(-2px);
+        }
+
+        .topic-rank {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--teal);
+            opacity: 0.3;
+        }
+
+        .topic-name {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        /* Methodology Accordion */
+        .methodology-section {
+            background: var(--card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 4rem 2rem;
+        }
+
+        .methodology-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .accordion-trigger {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text);
+            border-bottom: 1px solid var(--border);
+            transition: color 0.2s;
+        }
+
+        .accordion-trigger:hover {
+            color: var(--red);
+        }
+
+        .accordion-icon {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-icon::before,
+        .accordion-icon::after {
+            content: '';
+            position: absolute;
+            background: var(--text);
+            transition: background 0.2s;
+        }
+
+        .accordion-trigger:hover .accordion-icon::before,
+        .accordion-trigger:hover .accordion-icon::after {
+            background: var(--red);
+        }
+
+        .accordion-icon::before {
+            width: 24px;
+            height: 2px;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        .accordion-icon::after {
+            width: 2px;
+            height: 24px;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .accordion-trigger.open .accordion-icon {
+            transform: rotate(45deg);
+        }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion-body.open {
+            max-height: 600px;
+        }
+
+        .accordion-inner {
+            padding: 2rem 0;
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .method-card {
+            text-align: center;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+        }
+
+        .method-provider {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .method-count {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--teal);
+        }
+
+        .method-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--red);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-credits {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .footer-credits strong {
+            color: var(--text);
+        }
+
+        .footer-credits a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        .footer-credits a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-org {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .content-grid.reverse {
+                direction: ltr;
+            }
+
+            .topics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .method-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-meta {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .nav, .theme-toggle {
+                display: none !important;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 2rem;
+            }
+
+            .section {
+                padding: 2rem;
+                break-inside: avoid;
+            }
+
+            .highlight-card, .chart-container {
+                break-inside: avoid;
+            }
+
+            body {
+                font-size: 12pt;
+                color: #000;
+                background: #fff;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="https://centerforcooperativemedia.org" class="nav-brand"><img src="https://centerforcooperativemedia.org/wp-content/uploads/2025/07/ccm-banner-iso-2025.png" alt="Center for Cooperative Media" style="height: 32px; width: auto;"></a>
+        <ul class="nav-links">
+            <li><a href="#insight">Overview</a></li>
+            <li><a href="#news">Findings</a></li>
+            <li><a href="#case-studies">Examples</a></li>
+            <li><a href="#conclusions">Conclusions</a></li>
+            <li><a href="#methodology">Methods</a></li>
+        </ul>
+        <div class="nav-controls">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero" id="hero">
+        <div class="hero-content">
+            <span class="hero-label">Research Report</span>
+            <h1 class="hero-title">How NJ influencers deliver<br> <span>news & information</span></h1>
+            <p class="hero-subtitle">AI-powered analysis of 3,650 social media posts from 41 New Jersey influencers reveals their role as local information sources.</p>
+            <div class="hero-meta">
+                <span><strong>Lead Researcher:</strong> Carrie Brown, Ph.D., professor, College of Communication and Media</span>
+                <span><strong>Institution:</strong> Center for Cooperative Media, Montclair State University</span>
+                <span><strong>Published:</strong> December 2025</span>
+            </div>
+            <a href="research-brief.html" class="hero-cta">Read the full research brief →</a>
+        </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="stats-section" id="stats">
+        <div class="stats-grid">
+            <div class="stat-item" data-delay="0">
+                <div class="stat-number" data-count="3650">0</div>
+                <div class="stat-label">Posts Analyzed</div>
+            </div>
+            <div class="stat-item" data-delay="100">
+                <div class="stat-number" data-count="41">0</div>
+                <div class="stat-label">Influencers Studied</div>
+            </div>
+            <div class="stat-item" data-delay="200">
+                <div class="stat-number" data-count="16.7" data-suffix="%">0%</div>
+                <div class="stat-label">News/Opinion/Educational</div>
+            </div>
+            <div class="stat-item" data-delay="300">
+                <div class="stat-number" data-count="49.0" data-suffix="%">0%</div>
+                <div class="stat-label">High NJ Relevance</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Insight -->
+    <section class="section" id="insight" style="border-bottom: 1px solid var(--border); padding-bottom: 4rem;">
+        <div style="max-width: 750px;">
+            <h2 class="section-title" style="margin-bottom: 1.5rem;">The big picture</h2>
+            <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 1.5rem;">As local newsrooms across New Jersey continue to shrink, residents increasingly turn to alternative sources for information about their communities. Our research suggests that social media influencers — content creators with dedicated local followings — are filling some of these gaps, whether intentionally or not.</p>
+            <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 1.5rem;">This doesn't mean influencers are replacing journalists. They lack the institutional accountability, editorial oversight, and professional training that define journalism. But it does mean that <strong>audiences are finding local information through channels we haven't fully studied</strong> — and that has implications for how we think about local news and information.</p>
+            <p style="font-size: 1.15rem; line-height: 1.8;">We wanted to understand: how much local information are NJ influencers actually providing? What topics do they cover? And what does their content look like compared to traditional news?</p>
+        </div>
+    </section>
+
+    <!-- News-Adjacent Content -->
+    <section class="section" id="news">
+        <div class="section-header">
+            <div class="section-number">01</div>
+            <h2 class="section-title">News-adjacent content</h2>
+            <p class="section-desc">Nearly 1 in 5 posts from NJ influencers contain news, opinion, or educational content — suggesting they play a larger role in local information delivery than previously understood.</p>
+        </div>
+
+        <div class="content-grid">
+            <div class="highlight-cards">
+                <div class="highlight-card accent">
+                    <div class="highlight-value">608 posts</div>
+                    <div class="highlight-label">16.7% classified as news, opinion, or educational content</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-value">1,542 posts</div>
+                    <div class="highlight-label">43.1% used an informative rhetorical mode</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-value">256 posts</div>
+                    <div class="highlight-label">7.6% identified as core local NJ news</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-title">Content type distribution</div>
+                <canvas id="contentTypeChart"></canvas>
+            </div>
+        </div>
+
+        <div style="max-width: 750px; margin-top: 3rem;">
+            <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem;">What this means</h3>
+            <p style="line-height: 1.8; margin-bottom: 1rem;">While lifestyle content dominates — expected given the nature of influencer platforms — the combined news, opinion, and educational categories represent a meaningful information-sharing function. When we expand the definition to include posts that use an "informative" rhetorical approach (explaining, teaching, or reporting rather than purely entertaining), nearly half of all content serves some informational purpose.</p>
+            <p style="line-height: 1.8;">This suggests many NJ influencers are doing more than entertainment. They're explaining local issues, sharing opinions on community matters, and educating audiences about topics that affect their daily lives — even when their primary identity isn't "news creator."</p>
+        </div>
+    </section>
+
+    <!-- Local Relevance -->
+    <section class="section" id="relevance">
+        <div class="section-header">
+            <div class="section-number">02</div>
+            <h2 class="section-title">Local relevance</h2>
+            <p class="section-desc">More than half of all analyzed content demonstrates strong New Jersey relevance — these creators aren't just based in NJ, they're creating content specifically for NJ audiences.</p>
+        </div>
+
+        <div class="content-grid reverse">
+            <div class="highlight-cards">
+                <div class="highlight-card">
+                    <div class="highlight-value">1,788 posts</div>
+                    <div class="highlight-label">49.0% scored ≥0.7 on NJ relevance scale</div>
+                </div>
+                <div class="highlight-card accent">
+                    <div class="highlight-value">0.58</div>
+                    <div class="highlight-label">Mean NJ relevance score (0-1 scale)</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-title">NJ relevance distribution</div>
+                <canvas id="relevanceChart"></canvas>
+            </div>
+        </div>
+
+        <div style="max-width: 750px; margin-top: 3rem;">
+            <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem;">Intentionally local content</h3>
+            <p style="line-height: 1.8; margin-bottom: 1rem;">A creator living in New Jersey could make content about anything — national trends, generic lifestyle tips, universal entertainment. The high local relevance scores we found suggest something different: these influencers are <strong>consciously creating content about and for New Jersey communities</strong>.</p>
+            <p style="line-height: 1.8;">They're talking about specific restaurants in Hoboken, covering high school basketball games in Essex County, reviewing new developments in Jersey City. This hyperlocal focus is precisely the kind of coverage that traditional news outlets have reduced as resources have shrunk.</p>
+        </div>
+    </section>
+
+    <!-- Sentiment Analysis -->
+    <section class="section" id="sentiment">
+        <div class="section-header">
+            <div class="section-number">03</div>
+            <h2 class="section-title">Sentiment analysis</h2>
+            <p class="section-desc">Content skews positive but maintains an informative orientation. Joy and anticipation are the dominant emotions, while informative rhetoric leads all modes.</p>
+        </div>
+
+        <div class="content-grid">
+            <div class="chart-container">
+                <div class="chart-title">Sentiment distribution</div>
+                <canvas id="sentimentChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-title">Top emotions detected</div>
+                <canvas id="emotionChart"></canvas>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top: 2rem;">
+            <div class="chart-container">
+                <div class="chart-title">Rhetorical modes</div>
+                <canvas id="rhetoricalChart"></canvas>
+            </div>
+
+            <div class="highlight-cards">
+                <div class="highlight-card">
+                    <div class="highlight-value">+0.24</div>
+                    <div class="highlight-label">Average sentiment score (-1 to +1 scale)</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-value">56%</div>
+                    <div class="highlight-label">Neutral sentiment (1,821 posts)</div>
+                </div>
+                <div class="highlight-card accent">
+                    <div class="highlight-value">46%</div>
+                    <div class="highlight-label">Used informative rhetorical mode</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Topics -->
+    <section class="section" id="topics">
+        <div class="section-header">
+            <div class="section-number">04</div>
+            <h2 class="section-title">Top topics covered</h2>
+            <p class="section-desc">NJ influencers focus heavily on local lifestyle, food culture, and sports — including high school athletics, an area where traditional news has significantly pulled back. <strong>Click any topic to see details and example content.</strong></p>
+        </div>
+
+        <div class="topics-grid">
+            <!-- Topic 1: NJ lifestyle & dining -->
+            <details class="topic-item" style="cursor: pointer;">
+                <summary style="list-style: none; display: flex; flex-direction: column; align-items: center;">
+                    <div class="topic-rank">01</div>
+                    <div class="topic-name">NJ lifestyle & dining</div>
+                    <span style="font-size: 0.75rem; color: var(--teal); margin-top: 0.5rem;">Click to expand</span>
+                </summary>
+                <div style="text-align: left; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: 1rem;">
+                    <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.75rem;">Local restaurant reviews, "best of" lists, and lifestyle content about NJ neighborhoods. Influencers function as community guides, introducing residents to local businesses.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;"><strong>Top creators:</strong> Lynn Hazan-Bush, Hoboken Girl, Keri Fay</p>
+                    <a href="https://www.tiktok.com/@lynnhazan" target="_blank" style="font-size: 0.85rem; color: var(--teal); text-decoration: none;">See example content →</a>
+                </div>
+            </details>
+
+            <!-- Topic 2: NJ food culture -->
+            <details class="topic-item" style="cursor: pointer;">
+                <summary style="list-style: none; display: flex; flex-direction: column; align-items: center;">
+                    <div class="topic-rank">02</div>
+                    <div class="topic-name">NJ food culture</div>
+                    <span style="font-size: 0.75rem; color: var(--teal); margin-top: 0.5rem;">Click to expand</span>
+                </summary>
+                <div style="text-align: left; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: 1rem;">
+                    <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.75rem;">Deep dives into NJ's distinctive food culture — diners, pizza debates, Taylor ham vs. pork roll, Italian delis, and boardwalk fare. Content that celebrates NJ culinary identity.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;"><strong>Top creators:</strong> NJ Food Obsessed, Hoboken Girl, Lynn Hazan-Bush</p>
+                    <a href="https://www.tiktok.com/@kerifay" target="_blank" style="font-size: 0.85rem; color: var(--teal); text-decoration: none;">See example content →</a>
+                </div>
+            </details>
+
+            <!-- Topic 3: Basketball recruiting -->
+            <details class="topic-item" style="cursor: pointer;">
+                <summary style="list-style: none; display: flex; flex-direction: column; align-items: center;">
+                    <div class="topic-rank">03</div>
+                    <div class="topic-name">Basketball recruiting</div>
+                    <span style="font-size: 0.75rem; color: var(--teal); margin-top: 0.5rem;">Click to expand</span>
+                </summary>
+                <div style="text-align: left; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: 1rem;">
+                    <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.75rem;">High school and AAU basketball coverage, player highlights, and recruiting news. NJ produces top basketball talent and influencers fill the gap left by newspapers cutting sports coverage.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;"><strong>Top creators:</strong> NJ Hoop Recruit, Jersey Sports Zone</p>
+                    <a href="https://www.tiktok.com/@njhooprecruit" target="_blank" style="font-size: 0.85rem; color: var(--teal); text-decoration: none;">See example content →</a>
+                </div>
+            </details>
+
+            <!-- Topic 4: Local culture & identity -->
+            <details class="topic-item" style="cursor: pointer;">
+                <summary style="list-style: none; display: flex; flex-direction: column; align-items: center;">
+                    <div class="topic-rank">04</div>
+                    <div class="topic-name">Local culture & identity</div>
+                    <span style="font-size: 0.75rem; color: var(--teal); margin-top: 0.5rem;">Click to expand</span>
+                </summary>
+                <div style="text-align: left; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: 1rem;">
+                    <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.75rem;">Content celebrating NJ identity — local legends, weird history, abandoned places, and cultural traditions that define the state's character. Builds regional pride and community identity.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;"><strong>Top creators:</strong> Weird NJ, NewarkNJblog</p>
+                    <a href="https://www.youtube.com/@WeirdNJTV" target="_blank" style="font-size: 0.85rem; color: var(--teal); text-decoration: none;">See example content →</a>
+                </div>
+            </details>
+
+            <!-- Topic 5: Jersey City lifestyle -->
+            <details class="topic-item" style="cursor: pointer;">
+                <summary style="list-style: none; display: flex; flex-direction: column; align-items: center;">
+                    <div class="topic-rank">05</div>
+                    <div class="topic-name">Jersey City lifestyle</div>
+                    <span style="font-size: 0.75rem; color: var(--teal); margin-top: 0.5rem;">Click to expand</span>
+                </summary>
+                <div style="text-align: left; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: 1rem;">
+                    <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.75rem;">Hyperlocal content about Jersey City specifically — restaurants, neighborhoods, events, and developments. JC has a thriving influencer scene serving its diverse population.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;"><strong>Top creators:</strong> Lynn Hazan-Bush, Hoboken Girl, ChicPeaJC</p>
+                    <a href="https://www.instagram.com/lynnhazan_" target="_blank" style="font-size: 0.85rem; color: var(--teal); text-decoration: none;">See example content →</a>
+                </div>
+            </details>
+
+            <!-- Topic 6: High school sports -->
+            <details class="topic-item" style="cursor: pointer;">
+                <summary style="list-style: none; display: flex; flex-direction: column; align-items: center;">
+                    <div class="topic-rank">06</div>
+                    <div class="topic-name">High school sports</div>
+                    <span style="font-size: 0.75rem; color: var(--teal); margin-top: 0.5rem;">Click to expand</span>
+                </summary>
+                <div style="text-align: left; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: 1rem;">
+                    <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.75rem;">Game highlights, athlete features, and recruiting coverage for football, soccer, field hockey, wrestling and more. This is a beat that newspapers have largely abandoned, but influencers are filling the gap.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;"><strong>Top creators:</strong> Jersey Sports Zone (100% NJ relevance on all 109 posts)</p>
+                    <a href="https://www.tiktok.com/@jsz_sports" target="_blank" style="font-size: 0.85rem; color: var(--teal); text-decoration: none;">See example content →</a>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="section" id="case-studies" style="border-bottom: 1px solid var(--border);">
+        <div class="section-header">
+            <div class="section-number">05</div>
+            <h2 class="section-title">Case studies: Influencers in action</h2>
+            <p class="section-desc">These examples illustrate the diversity of NJ influencer content — from documentary history to breaking news, high school sports to community lifestyle guides.</p>
+        </div>
+
+        <!-- Case Study 1: Weird NJ - Local History -->
+        <div class="case-study" style="margin-bottom: 3rem;">
+            <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem; color: var(--red);">Case study 1: Documentary history (Weird NJ)</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+                <div>
+                    <p style="line-height: 1.8; margin-bottom: 1rem;"><strong>Weird NJ</strong> has spent decades documenting New Jersey's strange history, abandoned places, and local legends. Their content exemplifies how influencers can produce documentary-quality educational material about local topics.</p>
+                    <p style="line-height: 1.8; margin-bottom: 1rem;">This video about folk legend Woody Guthrie's time at Greystone Park Psychiatric Hospital represents serious historical journalism — researched, well-produced, and deeply relevant to NJ's cultural heritage.</p>
+                    <ul style="line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem;">
+                        <li><strong>Content type:</strong> Educational</li>
+                        <li><strong>NJ relevance:</strong> 0.95</li>
+                        <li><strong>Views:</strong> 169,625</li>
+                        <li><strong>Platform:</strong> YouTube</li>
+                    </ul>
+                    <p style="line-height: 1.8; font-style: italic; color: var(--text-muted);">This is the kind of local cultural history content that newsrooms rarely produce anymore — yet audiences clearly want it.</p>
+                </div>
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" src="https://www.youtube.com/embed/7ok3aw36PsQ" title="Woody Guthrie at Greystone Asylum" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Case Study 2: Garden State - Breaking News -->
+        <div class="case-study" style="margin-bottom: 3rem;">
+            <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem; color: var(--red);">Case study 2: Breaking NJ news (Garden State)</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+                <div style="background: var(--card); border-radius: 12px; padding: 1rem; border: 1px solid var(--border);">
+                    <div style="position: relative; width: 100%; max-width: 325px; margin: 0 auto;">
+                        <iframe src="https://www.tiktok.com/embed/v2/7507004545118113054"
+                                style="width: 100%; height: 575px; border: none; border-radius: 8px;"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-top: 0.75rem;">Netflix Studios NJ Development — breaking local news</p>
+                </div>
+                <div>
+                    <p style="line-height: 1.8; margin-bottom: 1rem;"><strong>Garden State</strong> delivers statewide NJ news in short-form video format, covering everything from crime to politics to economic development. With 90 of 111 posts scoring high on NJ relevance, they function as a de facto news source for many residents.</p>
+                    <p style="line-height: 1.8; margin-bottom: 1rem;">Their coverage includes Netflix building studios in NJ, NJ Transit strikes, local elections, and breaking crime news — content that directly serves residents' information needs.</p>
+                    <ul style="line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem;">
+                        <li><strong>Content type:</strong> News</li>
+                        <li><strong>NJ relevance:</strong> 1.00</li>
+                        <li><strong>Total posts:</strong> 111 (90 high NJ relevance)</li>
+                        <li><strong>Platform:</strong> TikTok, Instagram, YouTube</li>
+                    </ul>
+                    <p style="line-height: 1.8;"><strong>Recent coverage:</strong> <a href="https://www.tiktok.com/@thegardenstatepodcast" target="_blank" style="color: var(--teal); font-size: 0.9rem;">(view on TikTok)</a></p>
+                    <ul style="line-height: 1.8; padding-left: 1.5rem; font-size: 0.95rem;">
+                        <li>Netflix Studios NJ development</li>
+                        <li>NJ Transit engineer strike</li>
+                        <li>Camden crime reduction milestone</li>
+                        <li>NJ gubernatorial election updates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Case Study 3: Jersey Sports Zone - HS Sports -->
+        <div class="case-study" style="margin-bottom: 3rem;">
+            <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem; color: var(--red);">Case study 3: High school sports (Jersey Sports Zone)</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+                <div>
+                    <p style="line-height: 1.8; margin-bottom: 1rem;"><strong>Jersey Sports Zone</strong> represents perhaps the clearest example of influencers filling a gap left by traditional news. With newspapers cutting sports staff, high school athletics coverage has nearly disappeared — yet JSZ covers it comprehensively.</p>
+                    <p style="line-height: 1.8; margin-bottom: 1rem;">Remarkably, <strong>100% of their 109 posts</strong> scored high on NJ relevance. They're not creating generic content — every post is specifically about and for NJ high school sports communities.</p>
+                    <ul style="line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem;">
+                        <li><strong>Content type:</strong> News</li>
+                        <li><strong>NJ relevance:</strong> 109/109 posts high (100%)</li>
+                        <li><strong>Focus:</strong> Football, soccer, field hockey, wrestling</li>
+                        <li><strong>Platform:</strong> TikTok, YouTube, Instagram</li>
+                    </ul>
+                    <p style="line-height: 1.8; font-style: italic; color: var(--text-muted);">This is beat coverage that newspapers used to do — game highlights, playoff previews, championship results — now delivered by influencers.</p>
+                </div>
+                <div style="background: var(--card); border-radius: 12px; padding: 1rem; border: 1px solid var(--border);">
+                    <div style="position: relative; width: 100%; max-width: 325px; margin: 0 auto;">
+                        <iframe src="https://www.tiktok.com/embed/v2/7570087280501722382"
+                                style="width: 100%; height: 575px; border: none; border-radius: 8px;"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-top: 0.75rem;">High school football preview — the beat coverage newspapers abandoned</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Case Study 4: Hoboken Girl - Community Lifestyle -->
+        <div class="case-study" style="margin-bottom: 3rem;">
+            <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem; color: var(--red);">Case study 4: Community lifestyle guide (Hoboken Girl)</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+                <div style="background: var(--card); border-radius: 12px; padding: 1rem; border: 1px solid var(--border);">
+                    <div style="position: relative; width: 100%; max-width: 325px; margin: 0 auto;">
+                        <iframe src="https://www.tiktok.com/embed/v2/7555472232252853534"
+                                style="width: 100%; height: 575px; border: none; border-radius: 8px;"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-top: 0.75rem;">Hudson County historical firsts — educational local content</p>
+                </div>
+                <div>
+                    <p style="line-height: 1.8; margin-bottom: 1rem;"><strong>Hoboken Girl</strong> serves as an essential community resource for Hoboken and Jersey City residents, mixing lifestyle content with local news, restaurant openings, and community events. With 101 of 102 posts scoring high on NJ relevance, they're intensely local.</p>
+                    <p style="line-height: 1.8; margin-bottom: 1rem;">Their content ranges from "best sandwich shops in Hoboken" to coverage of local mayoral elections and AI data center developments — blending lifestyle with genuine local journalism.</p>
+                    <ul style="line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem;">
+                        <li><strong>Content types:</strong> Lifestyle, News, Educational</li>
+                        <li><strong>NJ relevance:</strong> 101/102 posts high (99%)</li>
+                        <li><strong>Focus:</strong> Hoboken, Jersey City, Hudson County</li>
+                        <li><strong>Platform:</strong> TikTok, Instagram</li>
+                    </ul>
+                    <p style="line-height: 1.8;"><strong>Recent coverage:</strong> <a href="https://www.tiktok.com/@thehobokengirl" target="_blank" style="color: var(--teal); font-size: 0.9rem;">(view on TikTok)</a></p>
+                    <ul style="line-height: 1.8; padding-left: 1.5rem; font-size: 0.95rem;">
+                        <li>Local mayoral election runoffs</li>
+                        <li>AI data center developments in NJ</li>
+                        <li>Stevens Institute tuition coverage</li>
+                        <li>Hudson County historical firsts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Case Study 5: NewarkNJblog - Urban Hyperlocal -->
+        <div class="case-study" style="margin-bottom: 3rem;">
+            <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem; color: var(--red);">Case study 5: Urban hyperlocal news (NewarkNJblog)</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+                <div>
+                    <p style="line-height: 1.8; margin-bottom: 1rem;"><strong>NewarkNJblog</strong> covers Newark with the kind of hyperlocal focus that few traditional outlets maintain. Their content includes development news, historical features, and community event coverage.</p>
+                    <p style="line-height: 1.8; margin-bottom: 1rem;">From new apartment buildings to historic mansion restorations to community festivals — this is the neighborhood-level journalism that newspapers have largely abandoned.</p>
+                    <ul style="line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem;">
+                        <li><strong>Content types:</strong> News, Educational, Lifestyle</li>
+                        <li><strong>NJ relevance:</strong> 1.00 (maximum)</li>
+                        <li><strong>Focus:</strong> Newark development, history, community</li>
+                        <li><strong>Platform:</strong> TikTok</li>
+                    </ul>
+                    <p style="line-height: 1.8;"><strong>Sample content:</strong></p>
+                    <ul style="line-height: 1.8; padding-left: 1.5rem; font-size: 0.95rem;">
+                        <li><a href="https://www.tiktok.com/@newarknjblog/video/7372020273731652910" target="_blank" style="color: var(--teal);">Newark apartment building completion</a></li>
+                        <li><a href="https://www.tiktok.com/@newarknjblog/video/7366396123201670443" target="_blank" style="color: var(--teal);">Krueger-Scott Mansion restoration</a></li>
+                    </ul>
+                </div>
+                <div style="background: var(--card); border-radius: 12px; padding: 1rem; border: 1px solid var(--border);">
+                    <div style="position: relative; width: 100%; max-width: 325px; margin: 0 auto;">
+                        <iframe src="https://www.tiktok.com/embed/v2/7372020273731652910"
+                                style="width: 100%; height: 575px; border: none; border-radius: 8px;"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-top: 0.75rem;">Newark apartment building completion — hyperlocal development news</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Case Study 6: Lynn Hazan - JC Lifestyle (TikTok + Instagram) -->
+        <div class="case-study" style="margin-bottom: 2rem;">
+            <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem; color: var(--red);">Case study 6: Informative lifestyle (Lynn Hazan-Bush)</h3>
+            <p style="line-height: 1.8; margin-bottom: 1.5rem;">Not all informative content is explicitly "news." Many lifestyle influencers use an <strong>informative rhetorical mode</strong> — explaining, teaching, and guiding — even when creating content about food, events, or daily life. <strong>Lynn Hazan-Bush</strong> creates lifestyle content specifically about Jersey City — restaurants, neighborhoods, local events. With 52 of 126 posts scoring high on NJ relevance, she functions as a lifestyle guide for JC residents.</p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; margin-bottom: 1.5rem;">
+                <!-- TikTok example -->
+                <div style="background: var(--card); border-radius: 12px; padding: 1rem; border: 1px solid var(--border);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                        <span style="background: #000000; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">TikTok</span>
+                        <span style="color: var(--text-muted); font-size: 0.85rem;">Restaurant guide</span>
+                    </div>
+                    <div style="position: relative; width: 100%; max-width: 300px; margin: 0 auto;">
+                        <iframe src="https://www.tiktok.com/embed/v2/7431585165358468394"
+                                style="width: 100%; height: 500px; border: none; border-radius: 8px;"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-top: 0.75rem;">Local restaurant recommendations</p>
+                </div>
+                <!-- Instagram example -->
+                <div style="background: var(--card); border-radius: 12px; padding: 1rem; border: 1px solid var(--border);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                        <span style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Instagram</span>
+                        <span style="color: var(--text-muted); font-size: 0.85rem;">Community events</span>
+                    </div>
+                    <div style="position: relative; width: 100%; max-width: 300px; margin: 0 auto;">
+                        <iframe src="https://www.instagram.com/reel/DRe6SptjtY7/embed"
+                                style="width: 100%; height: 500px; border: none; border-radius: 8px;"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-top: 0.75rem;">JC holiday events guide</p>
+                </div>
+            </div>
+
+            <div style="max-width: 600px;">
+                <ul style="line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem;">
+                    <li><strong>Content type:</strong> Lifestyle (informative mode)</li>
+                    <li><strong>NJ relevance:</strong> 1.00 for JC-focused content</li>
+                    <li><strong>Focus:</strong> Jersey City, Hudson County</li>
+                    <li><strong>Platforms:</strong> TikTok + Instagram</li>
+                </ul>
+                <p style="line-height: 1.8; font-style: italic; color: var(--text-muted);">This pattern — informative intent wrapped in lifestyle content — accounts for much of the 43.1% of posts using informative rhetorical modes. Influencers are teaching, not just entertaining.</p>
+            </div>
+        </div>
+
+        <!-- Counter-Examples Section -->
+        <div style="margin-top: 4rem; padding-top: 3rem; border-top: 2px dashed var(--border);">
+            <h3 style="font-family: var(--font-display); font-size: 1.75rem; margin-bottom: 1rem; color: var(--text);">The other 83%: Entertainment-focused content</h3>
+            <p style="line-height: 1.8; margin-bottom: 2rem; max-width: 750px;">The examples above represent the minority of influencer content. <strong>Most NJ-based influencers create entertainment content with little local relevance.</strong> These counter-examples illustrate why the 16.7% news/informational finding is notable — it exists despite platform incentives favoring viral entertainment over local utility.</p>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 2rem;">
+                <!-- Counter-Example 1: Joe Bartolozzi - YouTube -->
+                <div style="background: var(--card); border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="background: #FF0000; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">YouTube</span>
+                        <span style="color: var(--text-muted); font-size: 0.85rem;">Entertainment</span>
+                    </div>
+                    <div style="position: relative; padding-bottom: 56.25%; margin-bottom: 1rem;">
+                        <iframe src="https://www.youtube.com/embed/YGw6o-UxN1E"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                    </div>
+                    <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem;"><a href="https://www.youtube.com/@JoeBartolozzi" target="_blank" style="color: var(--text); text-decoration: none;">Joe Bartolozzi</a></h4>
+                    <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.75rem;">With 3M+ YouTube subscribers, Bartolozzi occasionally makes NJ-focused content (like his 1.5M-view Action Park video), but the vast majority of his output is generic entertainment optimized for broad reach.</p>
+                    <ul style="font-size: 0.85rem; color: var(--text-muted); padding-left: 1rem;">
+                        <li>137 posts analyzed</li>
+                        <li>Only 3 with high NJ relevance (2%)</li>
+                        <li>Average NJ score: 0.10</li>
+                    </ul>
+                </div>
+
+                <!-- Counter-Example 2: No Regulars Podcast - TikTok -->
+                <div style="background: var(--card); border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="background: #000000; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">TikTok</span>
+                        <span style="color: var(--text-muted); font-size: 0.85rem;">Entertainment</span>
+                    </div>
+                    <div style="position: relative; width: 100%; max-width: 280px; margin: 0 auto 1rem;">
+                        <iframe src="https://www.tiktok.com/embed/v2/7477360979089591595"
+                                style="width: 100%; height: 450px; border: none; border-radius: 8px;"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                    </div>
+                    <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem;"><a href="https://www.tiktok.com/@noregulars" target="_blank" style="color: var(--text); text-decoration: none;">No Regulars Podcast</a></h4>
+                    <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.75rem;">Comedy podcast clips that happen to be recorded in NJ but contain no local content. Generic entertainment optimized for viral reach.</p>
+                    <ul style="font-size: 0.85rem; color: var(--text-muted); padding-left: 1rem;">
+                        <li>107 posts analyzed</li>
+                        <li>Only 1 with high NJ relevance (&lt;1%)</li>
+                        <li>Average NJ score: 0.10</li>
+                    </ul>
+                </div>
+
+                <!-- Counter-Example 3: Chris Gethard - YouTube/Instagram -->
+                <div style="background: var(--card); border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Instagram</span>
+                        <span style="color: var(--text-muted); font-size: 0.85rem;">Comedy</span>
+                    </div>
+                    <div style="position: relative; width: 100%; max-width: 280px; margin: 0 auto 1rem;">
+                        <iframe src="https://www.instagram.com/p/DR0E2ljgbsA/embed"
+                                style="width: 100%; height: 450px; border: none; border-radius: 8px;"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                    </div>
+                    <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem;"><a href="https://www.instagram.com/chrisgeth/" target="_blank" style="color: var(--text); text-decoration: none;">Chris Gethard</a></h4>
+                    <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.75rem;">Professional comedian from NJ whose content focuses on stand-up clips and personal comedy. Occasional NJ references but not local-focused content.</p>
+                    <ul style="font-size: 0.85rem; color: var(--text-muted); padding-left: 1rem;">
+                        <li>113 posts analyzed</li>
+                        <li>Only 5 with high NJ relevance (4%)</li>
+                        <li>Average NJ score: 0.15</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="background: rgba(202, 53, 83, 0.1); border-left: 4px solid var(--red); padding: 1.5rem; border-radius: 0 8px 8px 0; max-width: 750px;">
+                <p style="line-height: 1.8; margin: 0;"><strong>Why this matters:</strong> Platform algorithms reward entertainment content that appeals to broad audiences. The fact that 16.7% of NJ influencer content still serves informational purposes — and 49.0% demonstrates high local relevance — suggests intentional choices by creators to serve their local communities despite incentives pushing toward generic viral content.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusions -->
+    <section class="section" id="conclusions" style="border-bottom: 1px solid var(--border);">
+        <div class="section-header">
+            <div class="section-number">06</div>
+            <h2 class="section-title">What we can conclude</h2>
+        </div>
+
+        <div style="max-width: 750px;">
+            <p style="line-height: 1.8; margin-bottom: 1.5rem;"><strong>NJ influencers provide meaningful local information.</strong> Nearly 1 in 5 posts contain news, opinion, or educational content. When we include posts with informative intent, that rises to almost half. These creators are doing more than entertainment — they're explaining, teaching, and reporting on local matters.</p>
+
+            <p style="line-height: 1.8; margin-bottom: 1.5rem;"><strong>They're filling coverage gaps.</strong> High school sports, local restaurants, neighborhood developments, community events — these are beats that traditional newsrooms have largely abandoned due to resource constraints. Influencers are covering them, often with significant engagement from local audiences.</p>
+
+            <p style="line-height: 1.8; margin-bottom: 1.5rem;"><strong>The content is genuinely local.</strong> More than half of all posts scored high on NJ relevance. These creators are making content specifically about and for New Jersey communities, not generic content that happens to be made by someone in NJ.</p>
+
+            <p style="line-height: 1.8; margin-bottom: 1.5rem;"><strong>The tone is positive but informative.</strong> Unlike the confrontational tone often associated with social media, NJ influencer content skews positive and uses informative rhetorical approaches. Joy and anticipation are the dominant emotions.</p>
+
+            <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin: 2.5rem 0 1rem;">Implications for local journalism</h3>
+
+            <p style="line-height: 1.8; margin-bottom: 1rem;">News organizations might consider partnerships with trusted local influencers for specific coverage areas. Influencer networks could help newsrooms reach audiences who don't consume traditional news. And studying what makes influencer content engaging could inform how newsrooms approach local coverage.</p>
+
+            <p style="line-height: 1.8;">None of this replaces the accountability function of professional journalism. But understanding where audiences actually get local information — and who's providing it — matters for anyone working to strengthen local news.</p>
+        </div>
+    </section>
+
+    <!-- Methodology -->
+    <section class="section" id="methodology">
+        <div class="section-header">
+            <div class="section-number">07</div>
+            <h2 class="section-title">How we did this</h2>
+        </div>
+
+        <div style="max-width: 850px;">
+            <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 1rem;">Data collection</h3>
+            <p style="line-height: 1.8; margin-bottom: 1.5rem;">We identified 41 New Jersey-based influencers through purposive sampling, selecting creators who maintain active presence on TikTok, Instagram, or YouTube; produce content with explicit NJ focus; and have established local followings. Content was collected in November-December 2025 using platform-specific tools: yt-dlp for TikTok and YouTube, Instaloader for Instagram. For video content, we transcribed audio using OpenAI Whisper to enable text-based analysis.</p>
+
+            <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 1rem;">Visual content extraction</h3>
+            <p style="line-height: 1.8; margin-bottom: 1rem;">Many social media videos contain on-screen text (captions, titles, graphics) that isn't captured in auto-generated subtitles or audio transcription. To address this, we developed a multi-stage visual extraction process:</p>
+            <ol style="line-height: 1.8; margin-bottom: 1.5rem; padding-left: 1.5rem;">
+                <li><strong>Frame extraction:</strong> We extracted one screenshot every 2 seconds from each video, creating a comprehensive visual timeline of the content.</li>
+                <li><strong>Grid composition:</strong> Screenshots were grouped into composite grids, allowing efficient batch processing while preserving temporal relationships within the video.</li>
+                <li><strong>OCR analysis:</strong> We applied optical character recognition to these grids to capture on-screen text overlays, branded graphics, location tags, and other visual text elements.</li>
+                <li><strong>Change detection:</strong> Screenshots were clustered to identify visual transitions and transformations over time, capturing moments where new information appeared on screen.</li>
+            </ol>
+            <p style="line-height: 1.8; margin-bottom: 1.5rem;">This multi-modal approach ensured we captured the full textual content of videos, including creator-added captions, text overlays, and graphics that are common in TikTok and Instagram Reels content.</p>
+
+            <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 1rem;">AI analysis approach</h3>
+            <p style="line-height: 1.8; margin-bottom: 1rem;">We used large language models for scalable content classification, running two types of analysis:</p>
+
+            <p style="line-height: 1.8; margin-bottom: 1rem;"><strong>Semantic analysis</strong> classified each post's main topic, content type (news, lifestyle, entertainment, promotion, opinion, educational), NJ relevance score (0-1), local vs. universal appeal, key messages, target audience, and entities mentioned.</p>
+
+            <p style="line-height: 1.8; margin-bottom: 1.5rem;"><strong>Sentiment analysis</strong> measured sentiment score (-1 to +1), primary emotion, rhetorical mode (informative, entertaining, persuasive, confrontational, inspirational), and authenticity assessment.</p>
+
+            <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 1rem;">How we defined key metrics</h3>
+
+            <p style="line-height: 1.8; margin-bottom: 1rem;"><strong>NJ relevance score (0-1):</strong> AI models assessed how specifically content relates to New Jersey places, people, issues, or events. Scores 0.0-0.3 = no NJ elements; 0.4-0.6 = indirect connections; <strong>0.7-1.0 = content explicitly about and for NJ audiences</strong>. Posts scoring ≥0.7 were classified as "high NJ relevance."</p>
+
+            <p style="line-height: 1.8; margin-bottom: 1rem;"><strong>News-adjacent content (16.7%):</strong> Posts classified as <strong>news</strong> (current events, public affairs, community developments), <strong>opinion</strong> (commentary on local issues), or <strong>educational</strong> (instructional content, history, explainers). This distinguishes informational content from lifestyle and entertainment.</p>
+
+            <p style="line-height: 1.8; margin-bottom: 1.5rem;"><strong>Informative rhetorical mode (43.1%):</strong> Separate from content type — a restaurant review is "lifestyle" content but uses an "informative" mode. This captures content where the primary intent is to explain, teach, or convey information, even when not explicitly "news."</p>
+
+            <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 1rem;">Models and prompts</h3>
+            <p style="line-height: 1.8; margin-bottom: 1rem;"><strong>Semantic analysis</strong> (content type, topics, NJ relevance) was run on all 3,650 posts using a single provider. <strong>Sentiment analysis</strong> was distributed across three providers, covering 3,244 posts (some posts lacked sufficient textual content for reliable sentiment classification):</p>
+
+            <div class="method-grid" style="margin: 1.5rem 0;">
+                <div class="method-card">
+                    <div class="method-provider">Claude Haiku 4.5</div>
+                    <div class="method-count">1,470</div>
+                    <div class="method-label">posts via batch API</div>
+                </div>
+                <div class="method-card">
+                    <div class="method-provider">Gemini 3 Flash</div>
+                    <div class="method-count">910</div>
+                    <div class="method-label">posts via batch API</div>
+                </div>
+                <div class="method-card">
+                    <div class="method-provider">GPT-5</div>
+                    <div class="method-count">864</div>
+                    <div class="method-label">posts via standard API</div>
+                </div>
+            </div>
+
+            <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin: 2rem 0 1rem;">Why batch processing?</h3>
+            <p style="line-height: 1.8; margin-bottom: 1rem;">We initially ran analysis using real-time API calls, but switched to batch processing for several reasons:</p>
+            <ul style="line-height: 1.8; margin-bottom: 1.5rem; padding-left: 1.5rem;">
+                <li><strong>50% cost savings</strong> — All three providers offer batch APIs with half-price rates for async processing</li>
+                <li><strong>Higher throughput</strong> — No rate limiting concerns; we could submit all 3,650 posts at once</li>
+                <li><strong>Reliability</strong> — Batch APIs handle retries automatically and don't time out on long-running jobs</li>
+            </ul>
+            <p style="line-height: 1.8; margin-bottom: 1.5rem;">Trade-off: Batch results take longer (typically under 1 hour, up to 24 hours max). For research purposes where we don't need real-time results, batch processing is clearly the better choice. Total analysis cost was approximately $15-20 for 3,650 posts.</p>
+
+            <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin: 2rem 0 1rem;">Analysis prompts</h3>
+            <p style="line-height: 1.8; margin-bottom: 1rem;">Each model received identical structured prompts requesting JSON output. Here are the verbatim prompts used:</p>
+
+            <details style="margin-bottom: 1.5rem; border: 1px solid var(--border); border-radius: 4px;">
+                <summary style="padding: 1rem; cursor: pointer; font-weight: 600; background: var(--card);">Semantic analysis prompt (click to expand)</summary>
+                <div style="position: relative;">
+                    <button onclick="copyPrompt('semanticPrompt', this)" style="position: absolute; top: 0.5rem; right: 0.5rem; padding: 0.5rem 1rem; background: var(--teal); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-weight: 500; z-index: 10;">Copy prompt</button>
+                    <pre id="semanticPrompt" style="padding: 1rem; padding-right: 6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; background: var(--bg); white-space: pre-wrap; word-wrap: break-word;">You are an expert media analyst specializing in social media content and local journalism.
+Analyze this content from a New Jersey influencer and provide a detailed assessment.
+
+CONTENT TO ANALYZE:
+Platform: {platform}
+Influencer: {influencer}
+Title/Caption: {title}
+Description: {description}
+Duration: {duration} seconds
+Transcript: {transcript}
+OCR Text (from video frames): {ocr_text}
+
+Provide your analysis in the following JSON format (respond ONLY with valid JSON):
+
+{
+    "main_topic": "Primary subject matter in 3-5 words",
+    "subtopics": ["subtopic1", "subtopic2", "subtopic3"],
+    "content_type": "educational|entertainment|news|opinion|promotion|lifestyle|reaction|other",
+    "content_format": "talking_head|vlog|tutorial|reaction|skit|interview|montage|news_report|other",
+
+    "nj_relevance_score": 0.0 to 1.0,
+    "nj_locations_mentioned": ["location1", "location2"],
+    "nj_issues_mentioned": ["issue1", "issue2"],
+    "local_vs_universal": "local|regional|national|universal",
+
+    "key_messages": ["message1", "message2", "message3"],
+    "call_to_action": "What action is viewer asked to take, or null",
+    "narrative_frame": "How the content frames its subject",
+    "tone": "serious|humorous|informative|provocative|inspirational|casual|dramatic|satirical",
+
+    "target_audience": "Description of intended audience",
+    "assumed_knowledge": "low|medium|high",
+    "engagement_hooks": ["hook1", "hook2"],
+
+    "people_mentioned": ["person1", "person2"],
+    "organizations_mentioned": ["org1", "org2"],
+    "brands_mentioned": ["brand1", "brand2"],
+    "other_creators_mentioned": ["creator1", "creator2"],
+
+    "production_quality": "low|medium|high|professional",
+    "originality_score": 0.0 to 1.0,
+
+    "analysis_confidence": 0.0 to 1.0
+}
+
+Focus especially on:
+1. How this content relates to New Jersey specifically
+2. What narrative techniques the creator uses
+3. Who the content is designed to reach
+4. What the creator wants the audience to do/think/feel</pre>
+                </div>
+            </details>
+
+            <details style="margin-bottom: 1.5rem; border: 1px solid var(--border); border-radius: 4px;">
+                <summary style="padding: 1rem; cursor: pointer; font-weight: 600; background: var(--card);">Sentiment analysis prompt (click to expand)</summary>
+                <div style="position: relative;">
+                    <button onclick="copyPrompt('sentimentPrompt', this)" style="position: absolute; top: 0.5rem; right: 0.5rem; padding: 0.5rem 1rem; background: var(--teal); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-weight: 500; z-index: 10;">Copy prompt</button>
+                    <pre id="sentimentPrompt" style="padding: 1rem; padding-right: 6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; background: var(--bg); white-space: pre-wrap; word-wrap: break-word;">You are an expert media psychologist analyzing social media content.
+Perform a deep sentiment and tone analysis of this content.
+
+CONTENT:
+Platform: {platform}
+Influencer: {influencer}
+Title: {title}
+Transcript: {transcript}
+OCR Text: {ocr_text}
+
+Analyze the emotional and rhetorical qualities. Respond with JSON only:
+
+{
+    "sentiment_score": -1.0 to 1.0 (-1=very negative, 0=neutral, 1=very positive),
+    "sentiment_label": "very_negative|negative|neutral|positive|very_positive",
+
+    "emotions": {
+        "joy": 0.0 to 1.0,
+        "anger": 0.0 to 1.0,
+        "fear": 0.0 to 1.0,
+        "sadness": 0.0 to 1.0,
+        "surprise": 0.0 to 1.0,
+        "disgust": 0.0 to 1.0,
+        "trust": 0.0 to 1.0,
+        "anticipation": 0.0 to 1.0
+    },
+    "primary_emotion": "most dominant emotion",
+    "secondary_emotion": "second most dominant emotion",
+
+    "formality": "casual|conversational|formal|professional",
+    "energy_level": "low|moderate|high|very_high",
+    "humor_level": 0.0 to 1.0,
+    "sarcasm_detected": true or false,
+
+    "rhetorical_mode": "informative|persuasive|entertaining|confrontational|inspirational",
+    "persuasion_techniques": ["technique1", "technique2"],
+    "call_to_action_strength": "none|soft|moderate|strong|urgent",
+
+    "authenticity_score": 0.0 to 1.0,
+    "personal_disclosure_level": "none|low|medium|high",
+    "vulnerable_moments": true or false,
+    "scripted_vs_spontaneous": "scripted|semi_scripted|spontaneous",
+
+    "controversy_potential": 0.0 to 1.0,
+    "shareability_score": 0.0 to 1.0,
+    "comment_bait_score": 0.0 to 1.0,
+
+    "confidence": 0.0 to 1.0
+}
+
+Consider:
+- Word choice, phrasing, and emphasis
+- Speaking patterns and cadence (if transcript shows this)
+- Use of emotional appeals vs logical arguments
+- Authenticity vs performative elements
+- What reactions this content is designed to provoke</pre>
+                </div>
+            </details>
+
+            <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin: 2rem 0 1rem;">Technical implementation</h3>
+            <p style="line-height: 1.8; margin-bottom: 1.5rem;">The full analysis pipeline was built in Python and consists of several stages. All code is available for research transparency.</p>
+
+            <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin: 1.5rem 0 0.75rem; color: var(--primary);">1. Data collection (scraping)</h4>
+            <p style="line-height: 1.8; margin-bottom: 1rem;">Platform-specific scrapers download up to 50 recent posts per influencer:</p>
+            <ul style="line-height: 1.8; margin-bottom: 1.5rem; padding-left: 1.5rem;">
+                <li><strong>TikTok + YouTube:</strong> <code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">yt-dlp</code> — downloads videos, thumbnails, and metadata JSON</li>
+                <li><strong>Instagram:</strong> <code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">instaloader</code> — downloads posts with captions, engagement metrics, and metadata</li>
+            </ul>
+            <p style="line-height: 1.8; margin-bottom: 1rem;"><strong>Key scripts:</strong> <code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">main.py</code> orchestrates collection; <code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">scrapers/tiktok.py</code>, <code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">scrapers/instagram.py</code>, <code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">scrapers/youtube.py</code> handle platform-specific logic.</p>
+
+            <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin: 1.5rem 0 0.75rem; color: var(--primary);">2. Video processing</h4>
+            <p style="line-height: 1.8; margin-bottom: 1rem;">Video content requires additional processing before text analysis:</p>
+            <ul style="line-height: 1.8; margin-bottom: 1.5rem; padding-left: 1.5rem;">
+                <li><strong>Audio extraction:</strong> FFmpeg extracts audio tracks from video files</li>
+                <li><strong>Transcription:</strong> OpenAI Whisper (local deployment) converts speech to text with timestamps</li>
+                <li><strong>OCR:</strong> Frame extraction + optical character recognition captures on-screen text (captions, titles, text overlays)</li>
+            </ul>
+            <p style="line-height: 1.8; margin-bottom: 1rem;"><strong>Key scripts:</strong> <code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">analysis/video_processor/transcriber.py</code>, <code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">ocr_processor.py</code>, <code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">audio_extractor.py</code></p>
+
+            <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin: 1.5rem 0 0.75rem; color: var(--primary);">3. Data consolidation</h4>
+            <p style="line-height: 1.8; margin-bottom: 1rem;">Platform-specific parsers normalize metadata into a unified format:</p>
+            <ul style="line-height: 1.8; margin-bottom: 1.5rem; padding-left: 1.5rem;">
+                <li>Each platform has a parser (<code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">tiktok_parser.py</code>, <code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">youtube_parser.py</code>, <code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">instagram_parser.py</code>) that extracts relevant fields</li>
+                <li><code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">consolidate.py</code> merges all posts into <code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">all_posts.csv</code> with ~40 columns</li>
+                <li>Calculates per-influencer aggregate metrics (engagement, views, post counts)</li>
+            </ul>
+            <p style="line-height: 1.8; margin-bottom: 1rem;"><strong>Output:</strong> <code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">analysis/data/all_posts.csv</code> — 3,650 rows with video_id, influencer_name, platform, title, description, transcript, ocr_text, engagement metrics, timestamps, etc.</p>
+
+            <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin: 1.5rem 0 0.75rem; color: var(--primary);">4. AI content analysis</h4>
+            <p style="line-height: 1.8; margin-bottom: 1rem;">Two analysis passes run on each post:</p>
+            <ul style="line-height: 1.8; margin-bottom: 1.5rem; padding-left: 1.5rem;">
+                <li><strong>Semantic analysis</strong> (<code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">semantic_analyzer.py</code>): Extracts topic, content type, NJ relevance score, entities, target audience</li>
+                <li><strong>Sentiment analysis</strong> (<code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">sentiment_analyzer.py</code>): Measures emotional valence, primary emotions, rhetorical mode, authenticity</li>
+            </ul>
+            <p style="line-height: 1.8; margin-bottom: 1rem;">Both analyzers use structured JSON prompts and validate responses against expected schemas. Checkpointing saves progress every 10 posts so analysis can resume after interruption.</p>
+
+            <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin: 1.5rem 0 0.75rem; color: var(--primary);">5. Multi-provider orchestration</h4>
+            <p style="line-height: 1.8; margin-bottom: 1rem;">To manage costs and throughput, we distributed analysis across three providers:</p>
+            <ul style="line-height: 1.8; margin-bottom: 1.5rem; padding-left: 1.5rem;">
+                <li><strong>Claude batch:</strong> <code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">batch_analyzer.py</code> uses Anthropic's Message Batches API — submit all requests at once, poll for results</li>
+                <li><strong>Gemini batch:</strong> Google's batch API with similar async processing</li>
+                <li><strong>OpenAI:</strong> Standard synchronous API with rate limiting and retry logic</li>
+            </ul>
+            <p style="line-height: 1.8; margin-bottom: 1rem;">Results from all providers are merged into unified JSON files with consistent schema. Provider metadata is preserved for analysis.</p>
+
+            <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin: 1.5rem 0 0.75rem; color: var(--primary);">6. Visualization generation</h4>
+            <p style="line-height: 1.8; margin-bottom: 1rem;"><code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">generate_visualizations.py</code> creates publication-quality charts using matplotlib and seaborn:</p>
+            <ul style="line-height: 1.8; margin-bottom: 1.5rem; padding-left: 1.5rem;">
+                <li>10 figures total: sentiment distribution, emotion breakdown, rhetorical modes, NJ relevance histogram, content types pie chart, topic analysis, influencer comparisons, summary dashboard</li>
+                <li>Output: <code style="background: var(--card); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9rem;">analysis/figures/</code> directory with PNG files</li>
+            </ul>
+
+            <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin: 1.5rem 0 0.75rem; color: var(--primary);">Code availability</h4>
+            <p style="line-height: 1.8; margin-bottom: 1.5rem;">Code and analysis scripts are available upon request for research transparency. Contact Joe Amditis (<a href="mailto:amditisj@montclair.edu">amditisj@montclair.edu</a>) for access. Raw data is not publicly available as it contains personal information from public social media accounts.</p>
+
+            <details style="margin: 1.5rem 0; border: 1px solid var(--border); border-radius: 4px;">
+                <summary style="padding: 1rem; cursor: pointer; font-weight: 600; background: var(--card);">File structure overview (click to expand)</summary>
+                <pre style="padding: 1rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.6; background: var(--bg); white-space: pre-wrap; word-wrap: break-word;">social-scraper/
+├── main.py                          # Orchestrates scraping
+├── scrapers/
+│   ├── tiktok.py                    # TikTok via yt-dlp
+│   ├── instagram.py                 # Instagram via instaloader
+│   └── youtube.py                   # YouTube via yt-dlp
+│
+├── output/                          # Raw scraped data
+│   └── [Influencer Name]/
+│       ├── tiktok/
+│       ├── instagram/
+│       └── youtube/
+│
+├── analysis/
+│   ├── consolidate.py               # Merge all platforms
+│   ├── tiktok_parser.py             # Platform-specific parsers
+│   ├── youtube_parser.py
+│   ├── instagram_parser.py
+│   ├── generate_visualizations.py   # Chart generation
+│   │
+│   ├── video_processor/
+│   │   ├── transcriber.py           # Whisper transcription
+│   │   ├── ocr_processor.py         # Text extraction from frames
+│   │   └── audio_extractor.py       # FFmpeg audio extraction
+│   │
+│   ├── content_analysis/
+│   │   ├── semantic_analyzer.py     # Topic, content type, NJ relevance
+│   │   ├── sentiment_analyzer.py    # Emotions, rhetorical mode
+│   │   └── batch_analyzer.py        # Claude batch API wrapper
+│   │
+│   ├── data/
+│   │   └── all_posts.csv            # Consolidated post data
+│   │
+│   ├── ai_results_merged/
+│   │   ├── all_semantic_results.json
+│   │   └── all_sentiment_results.json
+│   │
+│   └── figures/                     # Generated charts
+│       ├── 00_summary_dashboard.png
+│       ├── 01_sentiment_distribution.png
+│       └── ...</pre>
+            </details>
+
+            <h3 style="font-family: var(--font-display); font-size: 1.35rem; margin: 2rem 0 1rem;">Limitations</h3>
+            <p style="line-height: 1.8; margin-bottom: 1rem;"><strong>Sample size:</strong> 41 influencers is a starting point, not a full survey of NJ creators. Results may not generalize to all NJ influencers.</p>
+
+            <p style="line-height: 1.8; margin-bottom: 1rem;"><strong>Platform coverage:</strong> We analyzed TikTok, Instagram, and YouTube only. This excludes X/Twitter, Facebook, Substack, newsletters, podcasts, and other channels where influencers may share different types of content.</p>
+
+            <p style="line-height: 1.8; margin-bottom: 1rem;"><strong>Temporal scope:</strong> Content was collected in late 2025. Influencer practices, platform algorithms, and content trends evolve — these findings represent a snapshot, not a longitudinal view.</p>
+
+            <p style="line-height: 1.8; margin-bottom: 1rem;"><strong>AI classification reliability:</strong> LLM-based analysis has inherent limitations. Models can misclassify content, especially when posts have limited text or ambiguous intent. Some posts lacked sufficient content for confident classification.</p>
+
+            <p style="line-height: 1.8; margin-bottom: 1rem;"><strong>No audience perspective:</strong> This study examines content production, not how audiences perceive or use this content. We don't know if viewers trust influencer information, seek it out deliberately, or act on it.</p>
+
+            <p style="line-height: 1.8;"><strong>Selection bias:</strong> Our purposive sampling may have selected influencers who are more information-oriented than average. A random sample might show different results.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Center for Cooperative Media</div>
+            <div class="footer-credits">
+                <strong>Project Lead:</strong> Carrie Brown, Ph.D. (<a href="mailto:brownc@montclair.edu">brownc@montclair.edu</a>)<br>
+                <strong>Data Collection & Analysis:</strong> Joe Amditis<br><br>
+                <a href="research-brief.html">Download full research brief →</a>
+            </div>
+            <div class="footer-org">
+                Montclair State University · College of Communication and Media<br>
+                © 2025 Center for Cooperative Media
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Copy prompt to clipboard function
+        function copyPrompt(promptId, button) {
+            const promptElement = document.getElementById(promptId);
+            const promptText = promptElement.textContent;
+            navigator.clipboard.writeText(promptText).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.background = '#2A9D8F';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = 'var(--teal)';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy prompt. Please select and copy manually.');
+            });
+        }
+
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        // Check saved preference
+        if (localStorage.getItem('theme') === 'dark') {
+            html.setAttribute('data-theme', 'dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        });
+
+        // Nav scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Counter animation
+        function animateCounter(element, target, suffix = '') {
+            const duration = 2000;
+            const start = 0;
+            const startTime = performance.now();
+            const isDecimal = target % 1 !== 0;
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const current = start + (target - start) * easeOut;
+
+                if (isDecimal) {
+                    element.textContent = current.toFixed(1) + suffix;
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString() + suffix;
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        // Run counter animations on page load with staggered delay
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.stat-item').forEach(el => {
+                const delay = parseInt(el.dataset.delay) || 0;
+                setTimeout(() => {
+                    const numberEl = el.querySelector('.stat-number');
+                    const target = parseFloat(numberEl.dataset.count);
+                    const suffix = numberEl.dataset.suffix || '';
+                    animateCounter(numberEl, target, suffix);
+                }, delay + 500); // Add 500ms base delay for page to settle
+            });
+        });
+
+        // Chart.js configuration
+        const isDarkMode = () => html.getAttribute('data-theme') === 'dark';
+
+        const chartColors = {
+            red: '#CA3553',
+            teal: '#2A9D8F',
+            tealLight: '#3db8a9',
+            gray: '#666666',
+            grayLight: '#999999'
+        };
+
+        // Store all chart instances for theme updates
+        const charts = {};
+
+        // Function to get current theme colors
+        const getThemeColors = () => ({
+            text: isDarkMode() ? '#e8e8e8' : '#1a1a1a',
+            textMuted: isDarkMode() ? '#999' : '#666',
+            grid: isDarkMode() ? '#333' : '#e0e0e0'
+        });
+
+        const getChartOptions = () => ({
+            responsive: true,
+            maintainAspectRatio: true,
+            resizeDelay: 100,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: getThemeColors().text,
+                        font: { family: 'DM Sans', size: 12 }
+                    }
+                }
+            }
+        });
+
+        // Function to update all charts when theme changes
+        function updateChartsTheme() {
+            const colors = getThemeColors();
+
+            Object.values(charts).forEach(chart => {
+                // Update legend colors
+                if (chart.options.plugins?.legend?.labels) {
+                    chart.options.plugins.legend.labels.color = colors.text;
+                }
+
+                // Update scale colors for bar/line charts
+                if (chart.options.scales) {
+                    Object.values(chart.options.scales).forEach(scale => {
+                        if (scale.ticks) scale.ticks.color = colors.textMuted;
+                        if (scale.grid && scale.grid.display !== false) scale.grid.color = colors.grid;
+                    });
+                }
+
+                chart.update('none'); // Update without animation
+            });
+        }
+
+        // Add theme update to toggle click handler
+        themeToggle.addEventListener('click', () => {
+            // Small delay to allow CSS transition to start
+            setTimeout(updateChartsTheme, 50);
+        });
+
+        // Content Type Pie Chart
+        const contentTypeCtx = document.getElementById('contentTypeChart').getContext('2d');
+        charts.contentType = new Chart(contentTypeCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Lifestyle', 'Other', 'News', 'Entertainment', 'Promotion', 'Opinion', 'Educational'],
+                datasets: [{
+                    data: [33, 30, 11, 9, 8, 3, 3],
+                    backgroundColor: [
+                        chartColors.teal,
+                        chartColors.grayLight,
+                        chartColors.red,
+                        '#5a7d8a',
+                        '#8b6d5c',
+                        '#7a5a8b',
+                        '#5a8b6d'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                ...getChartOptions(),
+                cutout: '60%',
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            color: isDarkMode() ? '#e8e8e8' : '#1a1a1a',
+                            font: { family: 'DM Sans', size: 11 },
+                            padding: 12
+                        }
+                    }
+                }
+            }
+        });
+
+        // NJ Relevance Bar Chart
+        const relevanceCtx = document.getElementById('relevanceChart').getContext('2d');
+        charts.relevance = new Chart(relevanceCtx, {
+            type: 'bar',
+            data: {
+                labels: ['0-0.2', '0.2-0.4', '0.4-0.6', '0.6-0.8', '0.8-1.0'],
+                datasets: [{
+                    label: 'Posts',
+                    data: [320, 410, 540, 890, 1204],
+                    backgroundColor: [
+                        'rgba(42, 157, 143, 0.3)',
+                        'rgba(42, 157, 143, 0.45)',
+                        'rgba(42, 157, 143, 0.6)',
+                        'rgba(42, 157, 143, 0.8)',
+                        chartColors.teal
+                    ],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                ...getChartOptions(),
+                indexAxis: 'y',
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: {
+                        grid: { color: isDarkMode() ? '#333' : '#e0e0e0' },
+                        ticks: { color: isDarkMode() ? '#999' : '#666' }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: { color: isDarkMode() ? '#999' : '#666' }
+                    }
+                }
+            }
+        });
+
+        // Sentiment Pie Chart
+        const sentimentCtx = document.getElementById('sentimentChart').getContext('2d');
+        charts.sentiment = new Chart(sentimentCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Very Positive', 'Neutral', 'Negative'],
+                datasets: [{
+                    data: [33, 56, 6],
+                    backgroundColor: [chartColors.teal, chartColors.grayLight, chartColors.red],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                ...getChartOptions(),
+                cutout: '65%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: isDarkMode() ? '#e8e8e8' : '#1a1a1a',
+                            font: { family: 'DM Sans', size: 12 },
+                            padding: 16
+                        }
+                    }
+                }
+            }
+        });
+
+        // Emotion Bar Chart
+        const emotionCtx = document.getElementById('emotionChart').getContext('2d');
+        charts.emotion = new Chart(emotionCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Joy', 'Anticipation', 'Trust', 'Neutral', 'Negative'],
+                datasets: [{
+                    data: [809, 342, 188, 279, 127],
+                    backgroundColor: [
+                        chartColors.teal,
+                        chartColors.tealLight,
+                        '#5a9d8f',
+                        chartColors.grayLight,
+                        chartColors.red
+                    ],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                ...getChartOptions(),
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: isDarkMode() ? '#999' : '#666' }
+                    },
+                    y: {
+                        grid: { color: isDarkMode() ? '#333' : '#e0e0e0' },
+                        ticks: { color: isDarkMode() ? '#999' : '#666' }
+                    }
+                }
+            }
+        });
+
+        // Rhetorical Modes Chart
+        const rhetoricalCtx = document.getElementById('rhetoricalChart').getContext('2d');
+        charts.rhetorical = new Chart(rhetoricalCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Informative', 'Entertaining', 'Persuasive', 'Inspirational'],
+                datasets: [{
+                    data: [1507, 732, 305, 107],
+                    backgroundColor: [
+                        chartColors.red,
+                        chartColors.teal,
+                        chartColors.tealLight,
+                        chartColors.grayLight
+                    ],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                ...getChartOptions(),
+                indexAxis: 'y',
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: {
+                        grid: { color: isDarkMode() ? '#333' : '#e0e0e0' },
+                        ticks: { color: isDarkMode() ? '#999' : '#666' }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: { color: isDarkMode() ? '#999' : '#666' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

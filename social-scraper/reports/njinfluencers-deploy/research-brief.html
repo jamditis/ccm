@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Brief: NJ Influencer Study | Center for Cooperative Media</title>
+    <meta name="description" content="Research brief on influencer-mediated local information in New Jersey: A computational content analysis of social media influencers as local news sources.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --red: #CA3553;
+            --black: #000000;
+            --teal: #2A9D8F;
+            --bg: #FAFAFA;
+            --card: #FFFFFF;
+            --text: #1a1a1a;
+            --text-muted: #666666;
+            --border: #e0e0e0;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--teal);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover { text-decoration: underline; }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin: 3rem 0 1rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        h3 {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin: 2rem 0 0.75rem;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .meta {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .meta strong { color: var(--text); }
+
+        .meta a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        .meta a:hover { text-decoration: underline; }
+
+        p { margin-bottom: 1rem; }
+
+        .abstract {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin: 2rem 0;
+        }
+
+        .abstract p { margin-bottom: 0.75rem; }
+        .abstract p:last-child { margin-bottom: 0; }
+
+        .keywords {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            font-weight: 600;
+            background: var(--card);
+        }
+
+        ul, ol {
+            margin: 1rem 0 1.5rem 1.5rem;
+        }
+
+        li { margin-bottom: 0.5rem; }
+
+        .finding {
+            background: var(--card);
+            border-left: 4px solid var(--teal);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .finding strong { color: var(--teal); }
+
+        .citation {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: var(--red);
+            text-decoration: none;
+        }
+
+        @media print {
+            .back-link { display: none; }
+            .container { padding: 1rem; }
+            body { font-size: 11pt; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; Back to interactive report</a>
+
+        <h1>Influencer-mediated local information in New Jersey</h1>
+        <p class="subtitle">A computational content analysis of social media influencers as local news and information sources</p>
+
+        <div class="meta">
+            <strong>Center for Cooperative Media</strong> | Montclair State University<br>
+            December 2025<br><br>
+            <strong>Principal investigator:</strong> Carrie Brown, Ph.D., professor, College of Communication and Media (<a href="mailto:brownc@montclair.edu">brownc@montclair.edu</a>)<br>
+            <strong>Research support:</strong> Joe Amditis, associate director of operations, Center for Cooperative Media (<a href="mailto:amditisj@montclair.edu">amditisj@montclair.edu</a>)
+        </div>
+
+        <div class="abstract">
+            <h3 style="margin-top: 0;">Abstract</h3>
+            <p>This study examines the role of social media influencers in New Jersey's local information landscape through large-scale computational content analysis. Analyzing 3,650 posts from 41 New Jersey-based influencers across TikTok, Instagram, and YouTube, we find that 16.7% of content qualifies as news, opinion, or educational material, while 43.1% employs an informative rhetorical mode. More than half (49.0%) of all posts demonstrate high relevance to New Jersey communities. These findings suggest influencers serve an underexamined function in local information delivery, with implications for journalism practice and research.</p>
+            <p class="keywords"><strong>Keywords:</strong> local journalism, social media influencers, content analysis, computational methods, New Jersey, local information</p>
+        </div>
+
+        <h2>1. Introduction</h2>
+
+        <h3>1.1 Research context</h3>
+        <p>The decline of local news coverage in the United States has been well-documented (Abernathy, 2020; Napoli et al., 2017). As traditional newsrooms contract, scholars and practitioners have sought to understand how communities access local information through alternative channels. Social media influencers — individuals who have cultivated dedicated followings around specific content niches — represent one such channel that remains understudied in journalism research.</p>
+
+        <h3>1.2 Research questions</h3>
+        <p>This study addresses the following research questions:</p>
+        <p><strong>RQ1:</strong> To what extent do New Jersey-based social media influencers produce content that informs local audiences about news, issues, and community matters?</p>
+        <p><strong>RQ2:</strong> What topics, content types, and rhetorical approaches characterize influencer content with high local relevance?</p>
+        <p><strong>RQ3:</strong> What is the emotional and tonal profile of locally-relevant influencer content?</p>
+
+        <h3>1.3 Literature review</h3>
+        <p style="font-style: italic; color: var(--text-muted);">[This section is forthcoming and will be authored by Carrie Brown, Ph.D.]</p>
+        <p>The literature review will situate this study within existing scholarship on:</p>
+        <ul>
+            <li>Local news decline and its effects on community information needs</li>
+            <li>Social media influencers as information sources</li>
+            <li>Computational methods in journalism research</li>
+            <li>Alternative and non-traditional news sources</li>
+            <li>Platform-specific content creation and distribution</li>
+        </ul>
+
+        <h2>2. Methodology</h2>
+
+        <h3>2.1 Sample selection</h3>
+        <p>We identified 41 New Jersey-based social media influencers through purposive sampling, selecting creators who:</p>
+        <ul>
+            <li>Maintain active presence on at least one major platform (TikTok, Instagram, YouTube)</li>
+            <li>Produce content with explicit New Jersey focus or identity</li>
+            <li>Have established followings within their content niches</li>
+        </ul>
+        <p>The sample represents diverse content categories including food/dining, sports, lifestyle, education, community news, and local culture.</p>
+
+        <h3>2.2 Data collection</h3>
+        <p>Content was collected between November and December 2025 using platform-specific scraping tools:</p>
+
+        <table>
+            <tr><th>Platform</th><th>Method</th><th>Posts collected</th></tr>
+            <tr><td>TikTok</td><td>yt-dlp</td><td>1,281 videos</td></tr>
+            <tr><td>YouTube</td><td>yt-dlp</td><td>224 videos</td></tr>
+            <tr><td>Instagram</td><td>Instaloader</td><td>~1,900 posts</td></tr>
+            <tr><td><strong>Total</strong></td><td></td><td><strong>~3,400 posts</strong></td></tr>
+        </table>
+
+        <p>For video content, we extracted metadata (titles, descriptions, engagement metrics) and transcribed audio using OpenAI Whisper for text analysis.</p>
+
+        <p><strong>Visual content extraction:</strong> Many social media videos contain on-screen text (captions, titles, graphics) that isn't captured in auto-generated subtitles or audio transcription. To address this, we developed a multi-stage visual extraction process:</p>
+
+        <ol>
+            <li><strong>Frame extraction:</strong> We extracted one screenshot every 2 seconds from each video, creating a comprehensive visual timeline of the content.</li>
+            <li><strong>Grid composition:</strong> Screenshots were grouped into composite grids, allowing efficient batch processing while preserving temporal relationships within the video.</li>
+            <li><strong>OCR analysis:</strong> We applied optical character recognition to these grids to capture on-screen text overlays, branded graphics, location tags, and other visual text elements that wouldn't appear in audio transcription.</li>
+            <li><strong>Change detection:</strong> Screenshots were clustered to identify visual transitions and transformations over time, capturing moments where new information appeared on screen that might be missed by single-frame analysis.</li>
+        </ol>
+
+        <p>This multi-modal approach ensured we captured the full textual content of videos, including creator-added captions, text overlays, and graphics that are common in TikTok and Instagram Reels content.</p>
+
+        <h3>2.3 Computational content analysis</h3>
+        <p>We employed large language models (LLMs) for scalable content classification, using a multi-provider approach to ensure reliability and cost efficiency:</p>
+
+        <p><strong>Semantic analysis</strong> (n = 3,650, 100% coverage):</p>
+        <ul>
+            <li>Content type classification (news, lifestyle, entertainment, promotion, opinion, educational)</li>
+            <li>Topic extraction</li>
+            <li>NJ relevance scoring (0-1 scale)</li>
+            <li>Entity identification (people, organizations, locations)</li>
+            <li>Target audience inference</li>
+        </ul>
+
+        <p><strong>Sentiment analysis</strong> (n = 3,244, 96.4% coverage):</p>
+        <ul>
+            <li>Sentiment scoring (-1 to +1)</li>
+            <li>Primary emotion classification</li>
+            <li>Rhetorical mode identification</li>
+            <li>Authenticity assessment</li>
+        </ul>
+
+        <p><strong>Semantic analysis</strong> (content type, topics, NJ relevance) was run on all 3,650 posts using a single provider. <strong>Sentiment analysis</strong> was distributed across three AI providers using batch processing APIs, covering 3,244 posts (some posts lacked sufficient textual content for reliable sentiment classification):</p>
+        <ul>
+            <li>Anthropic Claude (Haiku 4.5): 1,470 posts</li>
+            <li>Gemini 3 Flash: 910 posts</li>
+            <li>OpenAI GPT-5: 864 posts</li>
+        </ul>
+
+        <p>Batch processing reduced API costs by approximately 50% compared to synchronous requests.</p>
+
+        <h3>2.4 Operationalization of key metrics</h3>
+
+        <p><strong>NJ relevance score (0-1 scale):</strong> Each post was assigned a relevance score based on how specifically the content relates to New Jersey places, people, issues, events, or culture. The AI models were instructed to assess:</p>
+        <ul>
+            <li><strong>Score 0.0-0.3:</strong> Content created by NJ-based creator but with no NJ-specific elements (e.g., generic reaction videos, national news commentary)</li>
+            <li><strong>Score 0.4-0.6:</strong> Content with indirect NJ connections or occasional local references</li>
+            <li><strong>Score 0.7-1.0:</strong> Content explicitly about NJ locations, businesses, events, people, or issues that would primarily serve NJ audiences</li>
+        </ul>
+        <p>Posts scoring ≥0.7 were classified as "high NJ relevance." This threshold identifies content that is specifically for and about New Jersey, rather than generic content that happens to be created by someone in NJ.</p>
+
+        <p style="margin-top: 1.5rem;"><strong>Content type classification:</strong> Posts were assigned to one of eight categories based on their primary purpose:</p>
+        <ul>
+            <li><strong>News:</strong> Reporting on current events, breaking news, public affairs, or developments affecting NJ communities (e.g., local government decisions, crime reports, business openings/closings, community announcements)</li>
+            <li><strong>Opinion:</strong> Commentary, editorials, or perspective pieces on local issues, policies, or events where the creator expresses personal views</li>
+            <li><strong>Educational:</strong> Instructional or informational content designed to teach audiences about topics, including history, how-to guides, explainers, and documentary-style content</li>
+            <li><strong>Lifestyle:</strong> Content about daily life, food, restaurants, neighborhoods, and local experiences (may overlap with informative content)</li>
+            <li><strong>Entertainment:</strong> Comedy, music, reaction videos, and content primarily designed to amuse</li>
+            <li><strong>Promotion:</strong> Sponsored content, advertisements, or self-promotion</li>
+            <li><strong>Reaction:</strong> Response videos to other content or trends</li>
+            <li><strong>Other:</strong> Content not fitting other categories</li>
+        </ul>
+        <p>The "news-adjacent content" metric (16.7%) combines posts classified as <strong>news</strong>, <strong>opinion</strong>, or <strong>educational</strong> — content types that serve informational rather than purely entertainment functions.</p>
+
+        <p style="margin-top: 1.5rem;"><strong>Rhetorical mode:</strong> Separate from content type, we assessed each post's communicative approach:</p>
+        <ul>
+            <li><strong>Informative:</strong> Primary intent to explain, teach, or convey information — even in lifestyle content (e.g., restaurant reviews that inform viewers about menu, prices, and atmosphere)</li>
+            <li><strong>Entertaining:</strong> Primary intent to amuse or engage emotionally</li>
+            <li><strong>Persuasive:</strong> Primary intent to convince or call to action</li>
+            <li><strong>Inspirational:</strong> Primary intent to motivate or uplift</li>
+            <li><strong>Confrontational:</strong> Primary intent to challenge, criticize, or provoke</li>
+        </ul>
+        <p>This distinction matters because informative intent can exist within lifestyle content — a restaurant review is lifestyle content using an informative rhetorical mode.</p>
+
+        <h2>3. Findings</h2>
+
+        <h3>3.1 News and information content (RQ1)</h3>
+
+        <div class="finding">
+            <p><strong>Finding 1:</strong> A substantial minority of influencer content serves informational functions.</p>
+        </div>
+
+        <table>
+            <tr><th>Indicator</th><th>Count</th><th>Percentage</th></tr>
+            <tr><td>News/opinion/educational content type</td><td>592</td><td>16.7%</td></tr>
+            <tr><td>Informative rhetorical mode</td><td>1,507</td><td>43.1%</td></tr>
+            <tr><td>High NJ relevance (≥0.7)</td><td>1,738</td><td>49.0%</td></tr>
+            <tr><td>Core local NJ news (all criteria)</td><td>256</td><td>7.6%</td></tr>
+        </table>
+
+        <p>Nearly one in five posts (16.7%) were classified as explicitly informational content types. When including posts that employ informative communication strategies regardless of primary content type, nearly half (43.1%) of all analyzed content functions to inform audiences.</p>
+
+        <div class="finding">
+            <p><strong>Finding 2:</strong> More than half of influencer content demonstrates strong local relevance.</p>
+        </div>
+
+        <p>The mean NJ relevance score across all posts was 0.58 (SD = 0.31). A majority of posts (49.0%) scored 0.7 or higher, indicating content specifically about New Jersey places, people, issues, or culture rather than generic content happening to be created by NJ-based individuals.</p>
+
+        <h3>3.2 Content characteristics (RQ2)</h3>
+
+        <div class="finding">
+            <p><strong>Finding 3:</strong> Lifestyle content dominates, but news-adjacent content is significant.</p>
+        </div>
+
+        <table>
+            <tr><th>Content type</th><th>n</th><th>%</th></tr>
+            <tr><td>Lifestyle</td><td>1,117</td><td>33.2%</td></tr>
+            <tr><td>Other/Uncategorized</td><td>996</td><td>29.6%</td></tr>
+            <tr><td>News</td><td>383</td><td>11.4%</td></tr>
+            <tr><td>Entertainment</td><td>309</td><td>9.2%</td></tr>
+            <tr><td>Promotion</td><td>274</td><td>8.1%</td></tr>
+            <tr><td>Opinion</td><td>117</td><td>3.5%</td></tr>
+            <tr><td>Educational</td><td>92</td><td>2.7%</td></tr>
+            <tr><td>Reaction</td><td>75</td><td>2.2%</td></tr>
+        </table>
+
+        <div class="finding">
+            <p><strong>Finding 4:</strong> Topic analysis reveals coverage of underserved beats.</p>
+        </div>
+
+        <p>Prominent topics in the corpus include:</p>
+        <ol>
+            <li>NJ lifestyle and dining (local restaurant coverage, food culture)</li>
+            <li>NJ food recommendations and reviews</li>
+            <li>Basketball recruiting (high school and college)</li>
+            <li>Local culture and community identity</li>
+            <li>Jersey City lifestyle content</li>
+            <li>High school sports coverage</li>
+            <li>Wedding and event photography</li>
+            <li>Parenting and family life</li>
+            <li>Newark community content</li>
+            <li>NJ athletics broadly</li>
+        </ol>
+
+        <p>Notably, high school sports — an area of significant traditional news retrenchment — appears prominently in influencer content.</p>
+
+        <h3>3.3 Sentiment and tone (RQ3)</h3>
+
+        <div class="finding">
+            <p><strong>Finding 5:</strong> Content skews positive but maintains informative orientation.</p>
+        </div>
+
+        <p>Mean sentiment score: +0.24 (scale: -1 to +1)</p>
+
+        <table>
+            <tr><th>Sentiment category</th><th>n</th><th>%</th></tr>
+            <tr><td>Very positive (>0.5)</td><td>1,082</td><td>33.4%</td></tr>
+            <tr><td>Positive (0.1-0.5)</td><td>124</td><td>3.8%</td></tr>
+            <tr><td>Neutral (-0.1 to 0.1)</td><td>1,821</td><td>56.1%</td></tr>
+            <tr><td>Negative (-0.5 to -0.1)</td><td>88</td><td>2.7%</td></tr>
+            <tr><td>Very negative (<-0.5)</td><td>95</td><td>2.9%</td></tr>
+        </table>
+
+        <div class="finding">
+            <p><strong>Finding 6:</strong> Dominant emotions reflect platform incentives toward positivity.</p>
+        </div>
+
+        <table>
+            <tr><th>Primary emotion</th><th>n</th><th>% of identified</th></tr>
+            <tr><td>Joy</td><td>809</td><td>47.7%</td></tr>
+            <tr><td>Anticipation</td><td>342</td><td>20.2%</td></tr>
+            <tr><td>Trust</td><td>188</td><td>11.1%</td></tr>
+            <tr><td>Neutral</td><td>279</td><td>16.5%</td></tr>
+            <tr><td>Negative emotions (combined)</td><td>127</td><td>7.5%</td></tr>
+        </table>
+
+        <div class="finding">
+            <p><strong>Finding 7:</strong> Informative rhetorical modes predominate.</p>
+        </div>
+
+        <table>
+            <tr><th>Rhetorical mode</th><th>n</th><th>%</th></tr>
+            <tr><td>Informative</td><td>1,507</td><td>46.4%</td></tr>
+            <tr><td>Entertaining</td><td>732</td><td>22.6%</td></tr>
+            <tr><td>Persuasive</td><td>305</td><td>9.4%</td></tr>
+            <tr><td>Inspirational</td><td>107</td><td>3.3%</td></tr>
+            <tr><td>Confrontational</td><td>42</td><td>1.3%</td></tr>
+        </table>
+
+        <h2>4. Discussion</h2>
+
+        <h3>4.1 Implications for journalism research</h3>
+        <p>These findings contribute to emerging scholarship on non-traditional local information sources. While influencers do not practice journalism in traditional terms — lacking institutional accountability structures, editorial oversight, and professional norms — they nonetheless perform informational functions for local audiences.</p>
+
+        <p>The prevalence of informative rhetorical modes (43.1%) and high local relevance scores (49.0%) suggest influencers are not merely entertainment figures who happen to reside in New Jersey, but content creators who consciously serve local information needs.</p>
+
+        <h3>4.2 Implications for journalism practice</h3>
+        <p>News organizations facing resource constraints might consider:</p>
+        <ol>
+            <li><strong>Partnership models:</strong> Collaborating with trusted local influencers on coverage projects</li>
+            <li><strong>Distribution strategies:</strong> Leveraging influencer networks to reach underserved audiences</li>
+            <li><strong>Beat coverage:</strong> Understanding which topics influencers cover that newsrooms have abandoned</li>
+        </ol>
+
+        <h3>4.3 Technical implementation</h3>
+        <p>The analysis pipeline was built in Python and consists of several stages:</p>
+
+        <p><strong>Data collection:</strong> Platform-specific scrapers download up to 50 recent posts per influencer. TikTok and YouTube use yt-dlp for video and metadata extraction. Instagram uses Instaloader for posts, captions, and engagement metrics.</p>
+
+        <p><strong>Video processing:</strong> FFmpeg extracts audio from video files. OpenAI Whisper (local deployment) transcribes speech to text. OCR captures on-screen text from video frames.</p>
+
+        <p><strong>Data consolidation:</strong> Platform-specific parsers normalize metadata into a unified CSV format with ~40 columns including video_id, influencer_name, platform, title, description, transcript, OCR text, and engagement metrics.</p>
+
+        <p><strong>AI analysis:</strong> Two analysis passes run on each post — semantic analysis extracts topic, content type, NJ relevance score, entities, and target audience; sentiment analysis measures emotional valence, primary emotions, rhetorical mode, and authenticity. Both use structured JSON prompts with schema validation and checkpointing for resumability.</p>
+
+        <p><strong>Multi-provider orchestration:</strong> Analysis distributed across Claude (batch API), Gemini (batch API), and OpenAI (standard API) with results merged into unified JSON files.</p>
+
+        <p><strong>Code availability:</strong> Scripts available upon request for research transparency. Contact Joe Amditis (amditisj@montclair.edu). Raw data not publicly available due to privacy considerations.</p>
+
+        <h3>4.4 Limitations</h3>
+        <p>This study has several limitations:</p>
+        <ol>
+            <li><strong>Sample size:</strong> 41 influencers represents a starting point; New Jersey has many more creators</li>
+            <li><strong>Platform coverage:</strong> Analysis limited to TikTok, Instagram, and YouTube; excludes X, Facebook, Substack, newsletters</li>
+            <li><strong>Temporal scope:</strong> Single collection period (November-December 2025); influencer practices evolve</li>
+            <li><strong>AI classification reliability:</strong> LLM-based analysis has inherent limitations; some posts lacked sufficient textual content for reliable classification</li>
+            <li><strong>Audience perspective:</strong> This study examines content production, not audience perception or information-seeking behavior</li>
+        </ol>
+
+        <h3>4.5 Future research</h3>
+        <p>Recommended directions for future inquiry:</p>
+        <ul>
+            <li>Audience surveys examining trust, credibility, and reliance on influencer information</li>
+            <li>Longitudinal analysis tracking influencer content trends over time</li>
+            <li>Comparative analysis across states/regions</li>
+            <li>Qualitative interviews with influencers about their information-sharing practices</li>
+            <li>Network analysis of influencer-journalist relationships and content flows</li>
+        </ul>
+
+        <h2>5. Conclusion</h2>
+        <p>This computational content analysis provides evidence that New Jersey social media influencers contribute meaningfully to local information delivery. While lifestyle content predominates, a substantial proportion of influencer output serves informational functions — covering local topics, employing informative rhetorical strategies, and maintaining high relevance to New Jersey communities.</p>
+
+        <p>As local news continues to change, understanding the role of non-traditional information sources becomes increasingly important. This study offers a methodological framework and baseline findings for continued investigation of influencer-mediated local information.</p>
+
+        <h2>References</h2>
+        <p><em>[References to be added]</em></p>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Full bibliography with academic citations will be included in the final version of this research brief.</p>
+
+        <div class="citation">
+            <strong>Citation:</strong> Brown, C. (2025). Influencer-mediated local information in New Jersey: A computational content analysis of social media influencers as local news and information sources. Center for Cooperative Media, Montclair State University.<br><br>
+            <strong>Contact:</strong> <a href="mailto:brownc@montclair.edu">brownc@montclair.edu</a><br><br>
+            <strong>Data availability:</strong> Aggregated findings available upon request. Raw data contains personal information and is not publicly available.
+        </div>
+
+        <div class="footer">
+            <a href="https://centerforcooperativemedia.org">Center for Cooperative Media</a><br>
+            Montclair State University
+        </div>
+    </div>
+</body>
+</html>
