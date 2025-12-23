@@ -1,0 +1,865 @@
+video_id,influencer,platform,sentiment_score,sentiment_label,primary_emotion,secondary_emotion,formality,energy_level,humor_level,rhetorical_mode,authenticity_score,controversy_potential,shareability_score,confidence
+3762920491217147950,megthings_,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3763709386717069393,megthings_,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.5,0.0,0.1,0.36
+3763899102947151709,megthings_,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3764377775164877381,megthings_,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3765233399650050998,megthings_,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.9
+3765930130930879476,megthings_,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3766491750962784445,megthings_,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.76
+3766753909064041554,megthings_,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3767937229571350735,megthings_,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3768133395918947896,megthings_,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.54
+3768855651301291555,megthings_,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3769579343887058571,megthings_,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.58
+3770309181891494090,megthings_,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.88
+3706595851026463135,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.05
+3707888453965246966,myteacherface Jessica Hawk,instagram,0.0,neutral,trust,joy,conversational,low,0.0,informative,0.5,0.0,0.1,0.32
+3707995970519049194,myteacherface Jessica Hawk,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.2
+3709987572643975384,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3712977429687394527,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,moderate,0.0,informative,0.0,0.0,0.1,0.52
+3713006779136692515,myteacherface Jessica Hawk,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3713690599896895083,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.3
+3713839424481497766,myteacherface Jessica Hawk,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.78
+3715014747315112366,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.36
+3716647845404597302,myteacherface Jessica Hawk,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.6
+3717332968663913290,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3718783951902278631,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3719544088921350302,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.82
+3720153009629364193,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.27
+3720240309361113315,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3720330778485141885,myteacherface Jessica Hawk,instagram,0.0,neutral,neutral,none,conversational,moderate,0.0,informative,0.5,0.0,0.2,0.33
+3721569218757290141,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.36
+3721690001852845482,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3723060560897461985,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.72
+3723136922136048421,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3723864331428764283,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.26
+3724595165177820447,myteacherface Jessica Hawk,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3725203010843733125,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3725965903948374232,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.35
+3728305972889751568,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,moderate,0.0,informative,0.5,0.0,0.1,0.1
+3729579038231962288,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.23
+3731000347079979920,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3731836603745832344,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3733393375014883265,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.05
+3733976640742460247,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3734800122346696348,myteacherface Jessica Hawk,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3739887815858762551,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3747746077891071098,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3748594981389971174,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.05
+3749234549181104806,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.85
+3749348849283494547,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.62
+3750093019845466434,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.45
+3750634829827438824,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.59
+3752241694986207070,myteacherface Jessica Hawk,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.4
+3752815056636574429,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.48
+3760054392910211520,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.63
+3760890861186949062,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.45
+3761959599030065747,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.46
+3762861739252714573,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3763725445784094772,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3763742195158187645,myteacherface Jessica Hawk,instagram,0.0,neutral,neutral,none,conversational,moderate,0.0,informative,0.0,0.0,0.0,0.55
+3765796594265487404,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3768002961000201193,myteacherface Jessica Hawk,instagram,0.0,neutral,trust,joy,conversational,low,0.0,informative,0.3,0.0,0.1,0.58
+3768809997309261232,myteacherface Jessica Hawk,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.25
+3770268093995006834,myteacherface Jessica Hawk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3758860130537513743,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.26
+3763825083446976130,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3767377438700593442,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.22
+3767896651424964369,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3767926450604284090,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.22
+3768005318962926522,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3768052416978692285,New Jersey Shade,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3768099360627352985,New Jersey Shade,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3768128481789020535,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.33
+3768166179950123259,New Jersey Shade,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3768187648629573274,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3768256823439756989,New Jersey Shade,instagram,0.0,neutral,neutral,none,casual,low,0.0,informative,0.0,0.0,0.0,0.1
+3768635652758900640,New Jersey Shade,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.22
+3768830295173841996,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.72
+3769347370472521082,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.29
+3769368158886001938,New Jersey Shade,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.55
+3769379758317568388,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.2
+3769395637088544798,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.25
+3769449409693198240,New Jersey Shade,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.35
+3769478037201057558,New Jersey Shade,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.05
+3769486465010080598,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.65
+3769573272498291382,New Jersey Shade,instagram,0.0,neutral,neutral,none,casual,low,0.0,informative,0.0,0.0,0.0,0.55
+3769652146384846617,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3769664366397481671,New Jersey Shade,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.25
+3770038408304479175,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.46
+3770045813784400127,New Jersey Shade,instagram,0.0,neutral,neutral,neutral,casual,low,0.0,informative,0.0,0.0,0.0,0.08
+3770061271984050622,New Jersey Shade,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3770068442255840319,New Jersey Shade,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3770072562815543799,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.18
+3770076183682716995,New Jersey Shade,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.2
+3770083960333337928,New Jersey Shade,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.45
+3770092287410936373,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.45
+3770099218867400660,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.63
+3770111103478100299,New Jersey Shade,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.5,0.0,0.0,0.55
+3770115739618484531,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.55
+3770126904511802207,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3770139126436811374,New Jersey Shade,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.69
+3770142983954983375,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.92
+3770148852910387344,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3770159333922415831,New Jersey Shade,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.45
+3770175281261780831,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3770202183393444132,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3770234742215136715,New Jersey Shade,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.45
+3770242359566130165,New Jersey Shade,instagram,0.0,neutral,neutral,none,casual,low,0.0,informative,0.0,0.0,0.0,0.87
+3770263156384929100,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.36
+3770281872585752619,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.39
+3770286898678732569,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.16
+3770321845896705521,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3770400991389789915,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.18
+3770510973614427343,New Jersey Shade,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.18
+3359159162951489006,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3692903970012526643,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.78
+3702941212844090534,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.48
+3720253343563430441,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.44
+3721052776295204980,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.22
+3724721579654830065,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.92
+3725275938960628487,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.73
+3726509786117597480,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3726882307782400537,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.36
+3727258165076488597,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3729079993851882148,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.78
+3729767196101898445,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.4
+3731698930255008839,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.12
+3733841718136413260,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.58
+3735222723665656739,NewarkNJblog,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3739903596071639583,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3742867005486538657,NewarkNJblog,instagram,0.0,neutral,neutral,neutral,conversational,low,0.0,informative,0.0,0.0,0.0,0.08
+3744891832057267639,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.46
+3745432853124373091,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.86
+3746252559838218355,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.33
+3746923207682010234,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3747677709259400752,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3747864724290539782,NewarkNJblog,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.78
+3749077734212423817,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.72
+3750092759731429069,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.42
+3750672268285020820,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.5
+3750804761340726120,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3751526565281708352,NewarkNJblog,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.55
+3751930262260178894,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.76
+3752764643946192185,NewarkNJblog,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.82
+3752953218704776598,NewarkNJblog,instagram,0.0,neutral,trust,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.64
+3753405139315997668,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.35
+3753682697651668414,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3754804777386416400,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.97
+3755018458904517184,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3755812176947709577,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.85
+3756543232432809408,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.96
+3757222157617827412,NewarkNJblog,instagram,0.0,neutral,trust,joy,conversational,low,0.0,informative,0.3,0.0,0.1,0.32
+3760008647758739881,NewarkNJblog,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.78
+3760196346595660066,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3760849561619884376,NewarkNJblog,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.48
+3762233398161676181,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.44
+3764571652974638940,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.28
+3765245836130172958,NewarkNJblog,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.76
+3766035483181592281,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3766770078785115057,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.68
+3767259297915762157,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.72
+3768566392057402765,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,1.0
+3768644986242766297,NewarkNJblog,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.12
+3770380957195872361,NewarkNJblog,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.49
+3761047666315508542,NJ Athletics,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.42
+3761052163095922017,NJ Athletics,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.5
+3761108634617790815,NJ Athletics,instagram,0.0,neutral,trust,anticipation,conversational,low,0.0,informative,0.5,0.0,0.1,0.55
+3761374889027437166,NJ Athletics,instagram,0.0,neutral,trust,none,conversational,low,0.0,informative,0.3,0.0,0.1,0.58
+3761397935703608063,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.2
+3761446263297338591,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.18
+3761535423882607144,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.45
+3761572432886016248,NJ Athletics,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.53
+3762175562988000432,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.48
+3762183897556836065,NJ Athletics,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.88
+3762320790042884432,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.45
+3762902735797508202,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.1
+3763005011669463610,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.34
+3763033656358248267,NJ Athletics,instagram,0.0,neutral,trust,anticipation,conversational,low,0.0,informative,0.4,0.0,0.1,0.28
+3763073002192898771,NJ Athletics,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.66
+3763074958751814504,NJ Athletics,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.64
+3763203535308343411,NJ Athletics,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.46
+3763229635413576163,NJ Athletics,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3763612905200611155,NJ Athletics,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.48
+3763643631069456874,NJ Athletics,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.09
+3763768170298633088,NJ Athletics,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.58
+3763826545253995534,NJ Athletics,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.85
+3763869171235734502,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.52
+3763988389243564768,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.76
+3764584754268893592,NJ Athletics,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.41
+3764711095068939641,NJ Athletics,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3765068692049539976,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.67
+3765242801358508073,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.48
+3765273655539319383,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.55
+3765696114846632024,NJ Athletics,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.68
+3765891288496533184,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.55
+3765961558297031605,NJ Athletics,instagram,0.0,neutral,trust,anticipation,conversational,low,0.0,informative,0.4,0.0,0.1,0.28
+3765977263792905247,NJ Athletics,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3766007467873333010,NJ Athletics,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.41
+3766027326971464890,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.1
+3766031563772173525,NJ Athletics,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3766078498361169352,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.52
+3766119213241763002,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.32
+3766130858726790013,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.1
+3766169548941470165,NJ Athletics,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.7
+3766182575786987441,NJ Athletics,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.83
+3766666947435096350,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.55
+3767914507021503714,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.79
+3767959972572204880,NJ Athletics,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.68
+3768000968051790551,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.27
+3768072954472215741,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.42
+3769047783492575136,NJ Athletics,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.56
+3769055405037883385,NJ Athletics,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.55
+3770249268348213956,NJ Athletics,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.45
+3770360924788796148,NJ Athletics,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.48
+3056481752547489994,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.64
+3326582679417925558,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.86
+3752691023677057672,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.74
+3758549931817774295,NJ Hoop Recruit,instagram,0.0,neutral,trust,anticipation,conversational,low,0.0,informative,0.5,0.0,0.1,0.48
+3758567284374351376,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.95
+3759405880933689716,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.48
+3759410124948589739,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.48
+3759473359701219277,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.76
+3759490432817368079,NJ Hoop Recruit,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.15
+3759506181095021944,NJ Hoop Recruit,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.22
+3759590929331006593,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.54
+3759612772360263194,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.55
+3759877289824737709,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3759967144197522140,NJ Hoop Recruit,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.6
+3760073103079752058,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.65
+3760422650217878691,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.82
+3760434393019159804,NJ Hoop Recruit,instagram,0.0,neutral,trust,anticipation,conversational,low,0.0,informative,0.3,0.0,0.1,0.42
+3760649456225167422,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.55
+3760693754039216307,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.82
+3760846491448472932,NJ Hoop Recruit,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.18
+3760853136719321268,NJ Hoop Recruit,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.5,0.0,0.1,0.32
+3761012522770777645,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3761057613736617370,NJ Hoop Recruit,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.52
+3761125467576169801,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.58
+3761296859143704045,NJ Hoop Recruit,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.42
+3761559089377824899,NJ Hoop Recruit,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.52
+3761784357217220663,NJ Hoop Recruit,instagram,0.0,neutral,trust,anticipation,conversational,low,0.0,informative,0.5,0.0,0.1,0.52
+3761787305787782648,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.78
+3761914330913519610,NJ Hoop Recruit,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.1,0.76
+3762134294324964637,NJ Hoop Recruit,instagram,0.0,neutral,trust,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.42
+3762437210449218848,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.68
+3762475584338136905,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.78
+3762808816623500885,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.7
+3763937327232899530,NJ Hoop Recruit,instagram,0.0,neutral,trust,none,conversational,low,0.0,informative,0.3,0.0,0.1,0.76
+3763971710392262352,NJ Hoop Recruit,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.46
+3764938992635501514,NJ Hoop Recruit,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3765109965543543599,NJ Hoop Recruit,instagram,0.0,neutral,trust,joy,conversational,low,0.0,informative,0.5,0.0,0.1,0.52
+3765366377155745955,NJ Hoop Recruit,instagram,0.0,neutral,trust,anticipation,conversational,low,0.0,informative,0.3,0.0,0.1,0.38
+3766767439972167982,NJ Hoop Recruit,instagram,0.0,neutral,trust,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.55
+3766867295722186263,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3767518660572336990,NJ Hoop Recruit,instagram,0.0,neutral,trust,anticipation,conversational,low,0.0,informative,0.5,0.0,0.1,0.38
+3767985189096016349,NJ Hoop Recruit,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.5,0.0,0.1,0.38
+3768048907712576424,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.42
+3768191455287128696,NJ Hoop Recruit,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.46
+3768313582120184603,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.45
+3769525067446102165,NJ Hoop Recruit,instagram,0.0,neutral,trust,anticipation,conversational,low,0.0,informative,0.5,0.0,0.1,0.86
+3769948134081205617,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.35
+3770104837807539400,NJ Hoop Recruit,instagram,0.0,neutral,trust,joy,conversational,low,0.0,informative,0.3,0.0,0.1,0.58
+3770268540839384389,NJ Hoop Recruit,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.58
+3770817578504663855,NJ Hoop Recruit,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3630402629183922954,NJ Takedown,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.5,0.0,0.0,0.76
+3630403576534602940,NJ Takedown,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.28
+3630404509473642857,NJ Takedown,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.12
+3630405163248059393,NJ Takedown,instagram,0.0,neutral,trust,joy,conversational,low,0.0,informative,0.5,0.0,0.1,0.52
+3636195947008233601,NJ Takedown,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3655050393147896947,NJ Takedown,instagram,0.0,neutral,neutral,none,casual,low,0.0,informative,0.0,0.0,0.0,0.46
+3657172976078000692,NJ Takedown,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3670879723808199839,NJ Takedown,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3671026553579690094,NJ Takedown,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.68
+3672330226773586141,NJ Takedown,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3672925581064153185,NJ Takedown,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.08
+3673169253733154693,NJ Takedown,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.26
+3673195583493202882,NJ Takedown,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3678395168437183561,NJ Takedown,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3678406785954539357,NJ Takedown,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3678408236160264697,NJ Takedown,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3678412284745988399,NJ Takedown,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.12
+3678416904704558699,NJ Takedown,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.65
+3679114144444129763,NJ Takedown,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3680977820638784882,NJ Takedown,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3681626649587458945,NJ Takedown,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3682648657605531516,NJ Takedown,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.18
+3686366926104451757,NJ Takedown,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.42
+3687075449050361765,NJ Takedown,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3687748674579228314,NJ Takedown,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.55
+3688112189505762338,NJ Takedown,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3691736237242412123,NJ Takedown,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.1
+3691905053035548051,NJ Takedown,instagram,0.0,neutral,neutral,none,casual,low,0.0,informative,0.0,0.0,0.0,0.2
+3692765702766526523,NJ Takedown,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3693217065420068733,NJ Takedown,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.58
+3693379724108928843,NJ Takedown,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.83
+3693474117860119652,NJ Takedown,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.2
+3693595013481305796,NJ Takedown,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.88
+3694033244548215403,NJ Takedown,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.32
+3694229176029918879,NJ Takedown,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.83
+3694680558438622772,NJ Takedown,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.45
+3694766641369169021,NJ Takedown,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.5,0.0,0.0,0.45
+3695050211273797448,NJ Takedown,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3695323304563143657,NJ Takedown,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3695469686972254307,NJ Takedown,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.1
+3695565494647444382,NJ Takedown,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3695617033418744537,NJ Takedown,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.12
+3695680436546557786,NJ Takedown,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.32
+3696099118103717686,NJ Takedown,instagram,0.0,neutral,trust,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.52
+3696293887949047038,NJ Takedown,instagram,0.0,neutral,neutral,none,conversational,moderate,0.0,informative,0.5,0.0,0.1,0.45
+3697768265102507439,NJ Takedown,instagram,0.0,neutral,neutral,none,casual,low,0.0,informative,0.0,0.0,0.0,0.15
+3699889010054131721,NJ Takedown,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.55
+3700621336178422499,NJ Takedown,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3701258587053912396,NJ Takedown,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3741952153930890897,NJ Takedown,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.45
+3701456651820581463,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.12
+3711603451614061624,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,moderate,0.0,informative,0.0,0.0,0.0,0.42
+3719575746848616707,No Regulars Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3740603004258211777,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3741319388260847494,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3741802634584948833,No Regulars Podcast,instagram,0.0,neutral,neutral,none,casual,low,0.0,informative,0.5,0.0,0.0,0.46
+3742044227770632170,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,moderate,0.0,informative,0.0,0.0,0.1,0.32
+3742708415153121719,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3742775940855470822,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.2
+3743493493349248713,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.36
+3744221142078003487,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3744818741990492069,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3745678808503661374,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.18
+3746392717061632864,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.76
+3746885473844128446,No Regulars Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.3
+3747118667869034543,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.79
+3747710012320994083,No Regulars Podcast,instagram,0.0,neutral,neutral,none,conversational,moderate,0.0,informative,0.0,0.0,0.0,0.52
+3747841930387599684,No Regulars Podcast,instagram,0.0,neutral,neutral,none,conversational,moderate,0.0,informative,0.0,0.0,0.0,0.42
+3748567067575571039,No Regulars Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3749113649651554567,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3749291884956207687,No Regulars Podcast,instagram,0.0,neutral,neutral,neutral,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3750024132026284012,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.25
+3750741268277316286,No Regulars Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3751964951838812726,No Regulars Podcast,instagram,0.0,neutral,trust,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.55
+3752191094441454801,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3752916890713957040,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3753644723262291409,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.36
+3754365065211489314,No Regulars Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3755090798326122321,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.4
+3755817193268414740,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.2
+3756539668759387220,No Regulars Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.47
+3757294386049817896,No Regulars Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3757328216500227735,No Regulars Podcast,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.15
+3758019320610923769,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3758745836273662066,No Regulars Podcast,instagram,0.0,neutral,neutral,neutral,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3759468674488033941,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.85
+3760193663306630613,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3760923857701121336,No Regulars Podcast,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.45
+3761646280771739091,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.08
+3762399867436807161,No Regulars Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3762404977080563516,No Regulars Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3763092353813966039,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,moderate,0.0,informative,0.5,0.0,0.1,0.55
+3763822643041620662,No Regulars Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.35
+3764545665344027398,No Regulars Podcast,instagram,0.0,neutral,neutral,neutral,conversational,low,0.0,informative,0.0,0.0,0.0,0.62
+3765266827824984276,No Regulars Podcast,instagram,0.0,neutral,neutral,neutral,conversational,moderate,0.0,informative,0.0,0.0,0.0,0.15
+3765991730475794517,No Regulars Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3767441131320744885,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3767472932701115442,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.28
+3768165817159606709,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.42
+3768891596529010218,No Regulars Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3770343715920481468,No Regulars Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.18
+2979437990074958989,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.63
+3136669178098940687,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3628072563960830807,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3707190070648898400,Phat Papi Mark Gregory,instagram,0.0,neutral,neutral,neutral,conversational,low,0.0,informative,0.0,0.0,0.0,0.25
+3708532802449111057,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.76
+3708784292962187947,Phat Papi Mark Gregory,instagram,0.0,neutral,trust,anticipation,conversational,low,0.0,informative,0.5,0.0,0.1,0.62
+3709247803131586703,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.64
+3709976756481841634,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.55
+3710715276972417361,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.74
+3712148947826810902,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.08
+3718669847094886406,Phat Papi Mark Gregory,instagram,0.0,neutral,neutral,none,casual,low,0.0,informative,0.0,0.0,0.0,0.55
+3719393013773811167,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3720118567699410828,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3720844185646812206,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.52
+3721571238893487280,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3724469062706565601,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3725195884872230453,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.45
+3724443760878085201,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.55
+3728816565832834482,Phat Papi Mark Gregory,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3729541027209345411,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.15
+3730159543663014259,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.67
+3731913156621999182,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.63
+3732635609958648452,Phat Papi Mark Gregory,instagram,0.0,neutral,neutral,neutral,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3733926161991934206,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.78
+3734614469105337209,Phat Papi Mark Gregory,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.18
+3737513693379754135,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.26
+3738238457048104328,Phat Papi Mark Gregory,instagram,0.0,neutral,neutral,none,casual,low,0.0,informative,0.0,0.0,0.0,0.15
+3738425566099064495,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3738894478892685741,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3738965250860301189,Phat Papi Mark Gregory,instagram,0.0,neutral,neutral,none,casual,low,0.0,informative,0.0,0.0,0.0,0.52
+3740415587630588603,Phat Papi Mark Gregory,instagram,0.0,neutral,neutral,none,casual,low,0.0,informative,0.0,0.0,0.0,0.1
+3747606010946236416,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.38
+3749111424900536526,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.6
+3749312898553304598,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.42
+3749785952492371655,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3750559817199976136,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.55
+3752734866778490947,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.62
+3753654020834563609,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3754980841484261969,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.45
+3758563385995585688,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.52
+3759286683284984530,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.72
+3765085190881171373,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.73
+3766027911615838596,Phat Papi Mark Gregory,instagram,0.0,neutral,neutral,none,casual,low,0.0,informative,0.0,0.0,0.0,0.15
+3766096246466187240,Phat Papi Mark Gregory,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.65
+3766679005110992548,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.42
+3767984549935381818,Phat Papi Mark Gregory,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.32
+3769669990605687464,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3769304321646052045,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3770173888022843379,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.48
+3770355110141474447,Phat Papi Mark Gregory,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.16
+3171745614827778651,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.4
+3224300296325689740,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3700492712898144070,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.23
+3711709154265335709,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3712434093280830919,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.35
+3713883264403751825,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.22
+3714608028760307718,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.12
+3716782594013866321,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.23
+3717507418843578523,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.82
+3718225903538265514,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.76
+3719681497374001060,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.63
+3722580739288495236,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.48
+3723303777655952547,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.09
+3724754930461989212,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3726929184573694036,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.52
+3727603089546273022,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3729828673391249184,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3732002715296681124,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3732424503558267882,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3733452641469820698,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3734190873316789843,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.28
+3734896682229109915,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.62
+3737076029694222056,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3737791914633404090,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.42
+3739250773239383148,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.32
+3739975236897853693,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.82
+3742149635343987069,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.82
+3743599375978148791,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.62
+3744316869349061184,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3745048797912379057,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.62
+3747219019125308311,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3747947850085791988,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3748666892538961329,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3749397284116396963,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.44
+3750111538276272400,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3752296417155966751,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.12
+3753023502002533266,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3754471029369637905,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.52
+3755195663173982062,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.74
+3757400086864048539,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.62
+3758124936197208732,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3759574339491628889,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.68
+3760291634714844389,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.48
+3763198447676711874,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.35
+3763198408946205468,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3763922965994794298,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.35
+3765372487400815966,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,neutral,conversational,low,0.0,informative,0.5,0.0,0.0,0.55
+3767547286050923477,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3768996407965977822,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.42
+3769721331932590578,Pustika Samara _pustika_samaddar,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.1,0.2
+3633968076924977319,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.98
+3739644958014793402,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3739697277586975916,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.23
+3741862568303381485,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.48
+3742598675197647080,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.48
+3743345543797090873,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3744001972438390059,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3744079036768406599,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.4
+3744804727503803929,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.82
+3745018249688721093,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3745487415986183563,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.85
+3745555400310724489,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.48
+3746237444002803075,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3746934780647525887,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3747182865424392340,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.48
+3749097488914391952,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.1,0.25
+3749142647886652274,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.2
+3749910566229089005,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.28
+3750116025242029173,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.84
+3750601117093924286,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.78
+3750838619633196553,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.35
+3751313526305683184,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.72
+3752023882439186874,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,neutral,neutral,conversational,low,0.0,informative,0.0,0.0,0.0,0.65
+3752175583250968653,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.83
+3753424537535988201,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.35
+3754225676200308700,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.35
+3755746552372642107,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,trust,joy,conversational,low,0.0,informative,0.3,0.0,0.1,0.45
+3757094240129205947,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.45
+3757154956546774806,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.53
+3759324341919140909,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3760948993762102991,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.43
+3761546068086606678,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.46
+3762192335498206367,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.62
+3762312643605514750,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.46
+3762930565281570990,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.92
+3763128975665991994,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.46
+3763688379461475286,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.92
+3763874812499153369,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.1,0.82
+3764415182954104675,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.65
+3764572232837055798,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.73
+3764603499192358573,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.12
+3765329675955304982,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.41
+3766054916868360617,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.65
+3766777177166405066,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.24
+3767504911668711916,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3768232021337132537,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3768954813640695837,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.72
+3769680380056905349,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3770262101894988782,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,neutral,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.15
+3770405265829871601,Salvatore _Sally Slices_ Mandreucci,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.55
+3600648591330139524,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.53
+3610830766783047256,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.0,0.0,0.0,0.82
+3611554215058992610,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.05
+3628931547469797050,SP Sullivan - NJ dot com,instagram,0.0,neutral,trust,none,professional,low,0.0,informative,0.5,0.0,0.1,0.66
+3634787551264857168,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.0,0.0,0.0,0.98
+3636962807161133332,SP Sullivan - NJ dot com,instagram,0.0,neutral,trust,joy,professional,low,0.0,informative,0.2,0.0,0.1,0.55
+3637776644517058592,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.63
+3655041757703690130,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.55
+3655433490773910008,SP Sullivan - NJ dot com,instagram,0.0,neutral,trust,none,professional,low,0.0,informative,0.5,0.0,0.1,0.55
+3659170785395838053,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.78
+3666720727054455404,SP Sullivan - NJ dot com,instagram,0.0,neutral,trust,none,professional,low,0.0,informative,0.5,0.0,0.1,0.78
+3673645669239858955,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.0,0.0,0.0,0.05
+3676588344059572461,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.0,0.0,0.0,0.42
+3677424912783837086,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.34
+3678227751072220473,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.0,0.0,0.0,0.15
+3678705069408238617,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.63
+3678831891890447123,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.15
+3678955974160803213,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.0,0.0,0.0,0.22
+3684592798784545414,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.0,0.0,0.0,0.1
+3688924889692019963,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.0,0.0,0.0,0.37
+3690984466734572062,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.0,0.0,0.0,0.52
+3693999562238976941,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.0,0.0,0.0,0.52
+3694674393939601395,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.1
+3696467078262177090,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.0,0.0,0.0,0.35
+3707039290494712962,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.0,0.0,0.0,0.64
+3709860751973690484,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.05
+3711572555875734187,SP Sullivan - NJ dot com,instagram,0.0,neutral,neutral,none,professional,low,0.0,informative,0.0,0.0,0.0,0.79
+3713527439768325757,SP Sullivan - NJ dot com,instagram,0.0,neutral,trust,none,professional,low,0.0,informative,0.5,0.0,0.1,0.32
+3715117737107744088,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.0,0.0,0.0,0.47
+3717458731564265901,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.1
+3721682073485809099,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.86
+3723977606099316205,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.1
+3724378685177751087,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.36
+3729082190643932434,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.85
+3730328876632070737,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.32
+3731616052930295763,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.24
+3733411019445176718,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.0,0.0,0.0,0.12
+3738396265529997286,SP Sullivan - NJ dot com,instagram,0.0,neutral,neutral,none,professional,low,0.0,informative,0.0,0.0,0.0,0.46
+3739618134887093479,SP Sullivan - NJ dot com,instagram,0.0,neutral,neutral,none,professional,low,0.0,informative,0.0,0.0,0.0,0.32
+3739743009576165844,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.08
+3743399066865830979,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.1
+3743978154588493524,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.2
+3744778788795446179,SP Sullivan - NJ dot com,instagram,0.0,neutral,trust,none,professional,low,0.0,informative,0.3,0.0,0.1,0.15
+3745477503671666437,SP Sullivan - NJ dot com,instagram,0.0,neutral,trust,none,professional,low,0.0,informative,0.3,0.1,0.1,0.42
+3755184574977632420,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.0,0.0,0.0,0.62
+3756314831113765332,SP Sullivan - NJ dot com,instagram,0.0,neutral,neutral,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.84
+3756391358815915813,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.0,0.0,0.0,0.25
+3758877069368220549,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.0,0.0,0.0,0.47
+3767124390845482581,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.72
+3770095279207708396,SP Sullivan - NJ dot com,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.0,0.0,0.0,0.78
+3739507215964165215,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.94
+3740230179638593138,teacherpaywithk,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.44
+3741332781252028618,teacherpaywithk,instagram,0.0,neutral,neutral,neutral,conversational,low,0.0,informative,0.5,0.0,0.1,0.52
+3742080393190142493,teacherpaywithk,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.62
+3742749858961681515,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.13
+3743528493884723459,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.05
+3744266549017282530,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3744952283210524213,teacherpaywithk,instagram,0.0,neutral,trust,joy,conversational,low,0.0,informative,0.2,0.0,0.1,0.46
+3746457965877378576,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.22
+3746822464711028092,teacherpaywithk,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.64
+3747181065917016001,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3748203630194157492,teacherpaywithk,instagram,0.0,neutral,trust,joy,conversational,low,0.0,informative,0.3,0.0,0.1,0.55
+3748607417937405385,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.78
+3749324444557763716,teacherpaywithk,instagram,0.0,neutral,neutral,neutral,conversational,low,0.0,informative,0.5,0.0,0.1,0.45
+3750064065675620163,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3751354111548321018,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,moderate,0.0,informative,0.0,0.0,0.0,0.05
+3751508863439683031,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.64
+3752104876118210971,teacherpaywithk,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.1,0.55
+3752221728580655228,teacherpaywithk,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.35
+3752952290337432242,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.46
+3753675144053986371,teacherpaywithk,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.32
+3754403492040399981,teacherpaywithk,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.83
+3755159257755782893,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.56
+3756363966881586616,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3756666093420008455,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.12
+3756993435585553080,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.65
+3757071071304488849,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3757102172581264915,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.62
+3757239671169655755,teacherpaywithk,instagram,0.0,neutral,trust,anticipation,conversational,low,0.0,informative,0.3,0.0,0.05,0.42
+3757474893802630857,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3757867080235428401,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.32
+3758385354265973886,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3758810795741087475,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3759107149969340847,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3759499156105561577,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3762411762147511292,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.62
+3762732915307172887,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.05
+3763125525423154721,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.49
+3763465202978135585,teacherpaywithk,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.54
+3763851586658207372,teacherpaywithk,instagram,0.0,neutral,neutral,neutral,conversational,low,0.0,informative,0.0,0.0,0.0,0.45
+3764577601135129168,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3765293949318399788,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3765342333081313507,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.58
+3766440104509126559,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.62
+3767178860216309010,teacherpaywithk,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.45
+3767443517762042871,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.22
+3767815463381078096,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.26
+3768198983475606636,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.46
+3768941628183396333,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.25
+3769661201811606681,teacherpaywithk,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.25
+3744291222874609495,The Drop Podcast,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.54
+3744714577910017615,The Drop Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3744973205556539172,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,moderate,0.0,informative,0.0,0.0,0.0,0.48
+3744986487331761327,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3745724240474481716,The Drop Podcast,instagram,0.0,neutral,trust,none,conversational,low,0.0,informative,0.3,0.0,0.1,0.82
+3746113630128384525,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.63
+3747173954206119045,The Drop Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.75
+3747592601059828080,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3747938964746393643,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.64
+3748541711397014492,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.83
+3749000547090120914,The Drop Podcast,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.45
+3749790174143155600,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.41
+3749865829178378428,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.45
+3750616685343656467,The Drop Podcast,instagram,0.0,neutral,trust,none,conversational,low,0.0,informative,0.3,0.0,0.1,0.46
+3751544390629000817,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3752275624044888810,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.39
+3752677377902990234,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3752989012190397461,The Drop Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3753584700339232683,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3754451095939529995,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.72
+3754838391109058199,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.65
+3755145920372355226,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.46
+3755546290076635759,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3756448311482987400,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3757390089295841951,The Drop Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.47
+3757831137356788569,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.92
+3758146804744317607,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.36
+3758612684687258001,The Drop Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.79
+3759418182516678370,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.87
+3759978094728688244,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3760221095203824184,The Drop Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.83
+3760871118967105641,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.48
+3761708191206701926,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.89
+3762422898284684070,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.62
+3762835011192865567,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.57
+3763152318192485232,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.82
+3763859357076152094,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.09
+3764258955875658992,The Drop Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.52
+3765064440342245241,The Drop Podcast,instagram,0.0,neutral,neutral,none,conversational,moderate,0.0,informative,0.0,0.0,0.0,0.34
+3765274494970471726,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3765767123810203033,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.54
+3765933274670529078,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3766488374690288887,The Drop Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.1,0.27
+3767470916859979506,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3767962588165285131,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.1,0.62
+3768101974735535874,The Drop Podcast,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3768799190030682971,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.56
+3769343319974184815,The Drop Podcast,instagram,0.0,neutral,trust,joy,conversational,low,0.0,informative,0.5,0.0,0.1,0.52
+3770114908760117815,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.48
+3770252941509727891,The Drop Podcast,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3714964438593180723,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3718836926087576308,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3743287895672134560,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.09
+3743939913013137535,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3744761055529578976,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.23
+3744813301130770248,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.18
+3745331698474065885,The Montclair Pod,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3746401816855611653,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.26
+3747244765709342706,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.82
+3747599571758225257,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3748342695665590307,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3749064487761529502,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3749290461953627902,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.46
+3749340475674254654,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.3
+3749940352749807528,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3750646219963022415,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3754459848738867886,The Montclair Pod,instagram,0.0,neutral,trust,joy,conversational,low,0.0,informative,0.5,0.0,0.1,0.52
+3754906897934595884,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.96
+3755162715774816566,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3755491303346854951,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3755551576703270961,The Montclair Pod,instagram,0.0,neutral,neutral,neutral,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3756361385908243155,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3756526548389097672,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.82
+3756602900349878549,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3757859401613851572,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.18
+3757951631867394608,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3758459441050972870,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.05
+3758878566348753480,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.45
+3759268687363616409,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.32
+3760170294297128004,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3760714748242349754,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.7
+3760898571366230727,The Montclair Pod,instagram,0.0,neutral,neutral,neutral,conversational,low,0.0,informative,0.0,0.0,0.0,0.18
+3761423586574599666,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.36
+3761484330925900821,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.57
+3761633306681946196,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3762388027009012108,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3763052370730058755,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.64
+3763865952963052627,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.75
+3764469885905804909,The Montclair Pod,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3764636374197382314,The Montclair Pod,instagram,0.0,neutral,neutral,neutral,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3764938052708734903,The Montclair Pod,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.18
+3765163731765552960,The Montclair Pod,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3765731938356050661,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3766004332245210712,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.23
+3766386659622299587,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.2
+3768152496830068006,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.05
+3769311047799705503,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.72
+3769600085928627411,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.9
+3770265332012196052,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.39
+3770420215419817942,The Montclair Pod,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.36
+3565893162877070009,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.64
+3573812943269860824,_JerseyShoreFireResponse,instagram,0.0,neutral,neutral,neutral,conversational,low,0.0,informative,0.5,0.0,0.1,0.28
+3597843743451398284,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.82
+3616577546592443440,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.5,0.0,0.1,0.78
+3617071347671359024,_JerseyShoreFireResponse,instagram,0.0,neutral,trust,none,conversational,low,0.0,informative,0.3,0.0,0.1,0.65
+3617900415937645133,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.1,0.15
+3618845030578004452,_JerseyShoreFireResponse,instagram,0.0,neutral,trust,joy,professional,low,0.0,informative,0.5,0.0,0.1,0.52
+3624025345049667389,_JerseyShoreFireResponse,instagram,0.0,neutral,trust,none,professional,low,0.0,informative,0.5,0.0,0.1,0.78
+3627619342628391705,_JerseyShoreFireResponse,instagram,0.0,neutral,trust,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.44
+3629156449071015131,_JerseyShoreFireResponse,instagram,0.0,neutral,trust,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.55
+3639141902181914043,_JerseyShoreFireResponse,instagram,0.0,neutral,neutral,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.7
+3639636912680389760,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.46
+3639847176966316131,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.36
+3640375894100865514,_JerseyShoreFireResponse,instagram,0.0,neutral,trust,joy,conversational,low,0.0,informative,0.5,0.0,0.1,0.88
+3640615612498264691,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,professional,low,0.0,informative,0.5,0.0,0.1,0.82
+3641142019487090149,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.92
+3641299544870412534,_JerseyShoreFireResponse,instagram,0.0,neutral,trust,anticipation,conversational,low,0.0,informative,0.5,0.0,0.1,0.88
+3642729214517871930,_JerseyShoreFireResponse,instagram,0.0,neutral,trust,anticipation,conversational,low,0.0,informative,0.3,0.0,0.1,0.55
+3657809554838843109,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.82
+3666050541876777645,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.65
+3667784466538090730,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.97
+3670390556450731718,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.5,0.0,0.1,0.52
+3671096875700889267,_JerseyShoreFireResponse,instagram,0.0,neutral,neutral,none,professional,low,0.0,informative,0.5,0.0,0.1,0.74
+3673354405655135433,_JerseyShoreFireResponse,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.72
+3679637521467949345,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.62
+3693219652616438368,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.62
+3693960306506310346,_JerseyShoreFireResponse,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.72
+3697224745120442982,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.63
+3697546793202421792,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.46
+3698610245903378647,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.94
+3702957052120895420,_JerseyShoreFireResponse,instagram,0.0,neutral,trust,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.82
+3704209823068553107,_JerseyShoreFireResponse,instagram,0.0,neutral,trust,anticipation,conversational,low,0.0,informative,0.5,0.0,0.1,0.4
+3704376769096537511,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.88
+3706188960974380365,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3707079597480016200,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.48
+3709280465879759673,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.1,0.86
+3712030858774707610,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.96
+3714354316644528187,_JerseyShoreFireResponse,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3714608899631717217,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.82
+3717465158865238593,_JerseyShoreFireResponse,instagram,0.0,neutral,trust,anticipation,conversational,low,0.0,informative,0.3,0.0,0.1,0.86
+3720365431237717217,_JerseyShoreFireResponse,instagram,0.0,neutral,trust,none,professional,low,0.0,informative,0.3,0.0,0.1,0.88
+3724029696008119990,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.83
+3731953120587886620,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.77
+3734553413511112871,_JerseyShoreFireResponse,instagram,0.0,neutral,trust,none,professional,low,0.0,informative,0.3,0.0,0.1,0.72
+3735641130781241206,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.42
+3737027236550540801,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.96
+3737533009365932315,_JerseyShoreFireResponse,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3758480331713086196,_JerseyShoreFireResponse,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.7
+3759230262849668033,_JerseyShoreFireResponse,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.78
+3763570180073796167,_JerseyShoreFireResponse,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.52
+3584168966038547317,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.76
+3734782269887470996,_jersey__news,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.62
+3734936814613499375,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3737572236720188003,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3737778758486137672,_jersey__news,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3738366471904015289,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.42
+3738856383807822776,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.2
+3738915990412569018,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3738989579023280269,_jersey__news,instagram,0.0,neutral,trust,joy,conversational,low,0.0,informative,0.5,0.0,0.1,0.46
+3740293951145455250,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.85
+3740368576537759141,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.32
+3740505154878792973,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.78
+3742558491350514397,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.57
+3742722876425463265,_jersey__news,instagram,0.0,neutral,trust,joy,conversational,low,0.0,informative,0.5,0.0,0.1,0.82
+3744820963017037031,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.74
+3745412519851834476,_jersey__news,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.38
+3746228384901983314,_jersey__news,instagram,0.0,neutral,neutral,none,casual,low,0.0,informative,0.5,0.0,0.1,0.32
+3747576045773114796,_jersey__news,instagram,0.0,neutral,neutral,neutral,conversational,low,0.0,informative,0.2,0.0,0.1,0.05
+3747713855486257342,_jersey__news,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.84
+3748604528439698254,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.73
+3749231898817287758,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.42
+3749772699867624342,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3752597685741410712,_jersey__news,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3753039162611186584,_jersey__news,instagram,0.0,neutral,neutral,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.85
+3753339730462331489,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.46
+3753407366994962421,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.36
+3754721463300609285,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3754725326791481779,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3754860007671294730,_jersey__news,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.55
+3754999283159519584,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.28
+3755041275977511880,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.44
+3755066894912155443,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3755071529374840426,_jersey__news,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.85
+3756658032244757423,_jersey__news,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.65
+3757236118493422973,_jersey__news,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.3
+3757789252986992719,_jersey__news,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.48
+3759347383630142351,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.7
+3759950461614012319,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.92
+3760682206684614412,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3762463806346851578,_jersey__news,instagram,0.0,neutral,none,none,neutral,low,0.0,informative,0.0,0.0,0.0,0.65
+3764251774606750645,_jersey__news,instagram,0.0,neutral,trust,joy,conversational,low,0.0,informative,0.2,0.0,0.1,0.15
+3765103888216182240,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.65
+3765765777128528855,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.53
+3768555406747621411,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.66
+3768589243892490146,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.82
+3769300812112701529,_jersey__news,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.32
+3769345312596026324,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.34
+3769498528675608805,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.35
+3770262328630681084,_jersey__news,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.42
+3770483480397474423,_jersey__news,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.42
+2598423669937285936,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.88
+2670498705023847503,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.4
+3724503135168863734,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3726625368636818570,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.65
+3727268397936712470,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3727981470527972143,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.65
+3728756065530958540,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.57
+3729436491908050471,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.1
+3730869818099642543,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3731626111190083605,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.28
+3733113657443153285,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.7
+3734566747396546845,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.32
+3735301794885958981,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.55
+3737423038162827847,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.54
+3739080123023998190,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.45
+3740495808711202008,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.55
+3742118384507977560,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.32
+3742485779240110700,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.33
+3743934057504764781,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.5,0.0,0.1,0.52
+3744656521235078362,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.52
+3745433164677301395,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.88
+3746816671630633170,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.5,0.0,0.0,0.75
+3747595631914270089,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.28
+3748288670907378679,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.1
+3749015485657566871,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,none,casual,low,0.0,informative,0.0,0.0,0.0,0.45
+3749744107439662586,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.12
+3750643146268153831,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.37
+3752643951506601829,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.38
+3753673290809446008,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.42
+3754817954614723653,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.54
+3755643057032259833,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,neutral,conversational,low,0.0,informative,0.0,0.0,0.0,0.55
+3756268407282008469,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.54
+3757011149331202176,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,none,casual,low,0.0,informative,0.0,0.0,0.0,0.43
+3757829142856449582,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.54
+3758509710380172588,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.37
+3759190253560213237,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.54
+3759375618292156581,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.52
+3759910709107961526,_staceyakawannabefoodie,instagram,0.0,neutral,trust,joy,conversational,low,0.0,informative,0.5,0.0,0.1,0.34
+3760645756127648284,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.35
+3762814443047417033,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.13
+3762913161981803975,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.7
+3763459778845380335,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.25
+3764445343246376467,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.12
+3765264154727558543,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.72
+3767101277042681038,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,neutral,conversational,low,0.0,informative,0.0,0.0,0.0,0.15
+3767888876988662379,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.38
+3768601698651505798,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.62
+3769337025137837599,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,conversational,low,0.0,informative,0.0,0.0,0.0,0.78
+3770169891522418121,_staceyakawannabefoodie,instagram,0.0,neutral,neutral,none,casual,low,0.0,informative,0.5,0.0,0.1,0.85
+3770816185148478959,_staceyakawannabefoodie,instagram,0.0,neutral,none,none,casual,low,0.0,informative,0.0,0.0,0.0,0.12

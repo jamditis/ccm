@@ -1,0 +1,42 @@
+{
+  "total_posts": 3364,
+  "news_content_count": 592,
+  "informative_mode_count": 1507,
+  "high_nj_relevance_count": 1738,
+  "core_news_count": 288,
+  "local_news_count": 256,
+  "any_news_indicator_count": 2901,
+  "content_type_distribution": {
+    "lifestyle": 1117,
+    "other": 996,
+    "news": 383,
+    "entertainment": 309,
+    "promotion": 274,
+    "opinion": 117,
+    "educational": 92,
+    "reaction": 75,
+    "interview": 1
+  },
+  "news_topics": {
+    "insufficient information available": 229,
+    "insufficient data available": 100,
+    "New Jersey lifestyle and dining": 91,
+    "insufficient content data": 80,
+    "Insufficient information available": 75,
+    "New Jersey food and lifestyle": 36,
+    "Insufficient data available": 35,
+    "insufficient content available": 35,
+    "NJ basketball recruiting": 33,
+    "New Jersey local culture": 30,
+    "Jersey City lifestyle and culture": 29,
+    "New Jersey lifestyle and motherhood": 27,
+    "New Jersey high school sports": 22,
+    "Hoboken and Jersey City Lifestyle": 22,
+    "New Jersey Wedding Photography": 21,
+    "insufficient content provided": 21,
+    "Unknown (no content)": 19,
+    "unknown due to missing content": 18,
+    "New Jersey lifestyle and culture": 16,
+    "New Jersey athletics content": 15
+  }
+}

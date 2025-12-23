@@ -1,0 +1,309 @@
+{
+  "overall": {
+    "count": 3244,
+    "avg_sentiment": 0.24279439252336588,
+    "avg_authenticity": 0.34487910725356485,
+    "sentiment_distribution": {
+      "very_positive": 1082,
+      "positive": 124,
+      "neutral": 1821,
+      "negative": 88,
+      "very_negative": 95
+    },
+    "primary_emotions": {
+      "anticipation": 342,
+      "joy": 809,
+      "surprise": 56,
+      "neutral": 279,
+      "sadness": 37,
+      "fear": 25,
+      "trust": 188,
+      "anger": 39,
+      "disgust": 26,
+      "unknown": 58,
+      "none_detectable": 14,
+      "unable_to_determine": 4,
+      "indeterminate": 5,
+      "error": 1,
+      "none_determinable": 1,
+      "none_identifiable": 1,
+      "none": 1222,
+      "none_detected": 22,
+      "no_content_for_analysis": 2,
+      "none_discernible": 3,
+      "n/a - no content for analysis": 3,
+      "not_applicable_no_content": 6,
+      "undetermined": 2,
+      "n/a": 7,
+      "not_applicable": 15,
+      "undetectable": 2,
+      "no_content_provided_for_analysis": 1,
+      "none detected": 1,
+      "n/a - no content provided for analysis": 2,
+      "not_applicable_due_to_no_content": 2,
+      "n/a - no content to analyze": 3,
+      "n/a_no_content": 1,
+      "no_content_provided": 2,
+      "not_detectable": 1,
+      "undetected_no_content": 1,
+      "no_content": 1,
+      "not_determinable_due_to_missing_content": 1,
+      "n/a_no_content_provided": 1,
+      "undeterminable": 1,
+      "n/a - no textual content provided for analysis.": 1,
+      "not_applicable_due_to_missing_content": 1,
+      "none (no content to analyze)": 1,
+      "none_discernible_due_to_lack_of_content": 1
+    },
+    "rhetorical_modes": {
+      "persuasive": 305,
+      "entertaining": 732,
+      "informative": 1507,
+      "inspirational": 107,
+      "confrontational": 42,
+      "unknown": 122,
+      "informative|entertaining": 2,
+      "informative|persuasive|entertaining": 5,
+      "persuasive_entertaining": 4,
+      "informative|persuasive|inspirational": 1,
+      "persuasive|entertaining": 10,
+      "informative_persuasive": 1,
+      "informative_persuasive_entertaining": 1,
+      "informative|persuasive": 1,
+      "persuasive|inspirational": 3,
+      "teasing": 1,
+      "nostalgic_reflection": 1,
+      "persuasive_inspirational": 2,
+      "informative|inspirational": 2,
+      "persuasive|entertaining|inspirational": 2,
+      "emotional_appeal": 1,
+      "indeterminate": 2,
+      "entertaining|informative": 1,
+      "none": 149,
+      "not_applicable": 97,
+      "undefined": 12,
+      "no_content_for_analysis": 1,
+      "undeterminable": 6,
+      "n/a - no content for analysis": 3,
+      "not_applicable_no_content": 8,
+      "undetermined": 5,
+      "n/a": 32,
+      "none_detectable": 2,
+      "undetectable": 6,
+      "undeterminable_no_content": 2,
+      "none_detected": 2,
+      "n/a - no content provided for analysis": 4,
+      "n/a - no content": 1,
+      "cannot_determine": 10,
+      "not_applicable_due_to_no_content": 2,
+      "n/a - no content to analyze": 3,
+      "n/a_no_content": 3,
+      "neutral": 2,
+      "not_detectable": 1,
+      "not_determinable_due_to_missing_content": 1,
+      "n/a_no_content_provided": 1,
+      "no_content_provided": 1,
+      "cannot_assess": 1,
+      "unknown_due_to_missing_content": 1,
+      "none_discernible_due_to_lack_of_content": 1,
+      "none_present": 1
+    }
+  },
+  "by_influencer": {
+    "Aiyana Figueroa _aiyanafig": {
+      "count": 51,
+      "avg_sentiment": 0.7980392156862746,
+      "avg_authenticity": 0.5509803921568629
+    },
+    "Bobby bobbyzworld90": {
+      "count": 49,
+      "avg_sentiment": 0.04285714285714287,
+      "avg_authenticity": 0.7020408163265307
+    },
+    "byerikabatista": {
+      "count": 65,
+      "avg_sentiment": 0.6641538461538463,
+      "avg_authenticity": 0.6933846153846155
+    },
+    "Christine Eliza": {
+      "count": 51,
+      "avg_sentiment": 0.769607843137255,
+      "avg_authenticity": 0.7127450980392157
+    },
+    "Dileiny Baron": {
+      "count": 57,
+      "avg_sentiment": 0.6887719298245614,
+      "avg_authenticity": 0.6496491228070177
+    },
+    "Garden State": {
+      "count": 60,
+      "avg_sentiment": -0.08166666666666669,
+      "avg_authenticity": 0.7366666666666667
+    },
+    "Graham Colligan_ Towns of NJ": {
+      "count": 50,
+      "avg_sentiment": -0.087,
+      "avg_authenticity": 0.75
+    },
+    "Hoboken Girl _Jennifer Tripucka and team_": {
+      "count": 51,
+      "avg_sentiment": 0.6166666666666668,
+      "avg_authenticity": 0.7529411764705882
+    },
+    "Jersey Joe": {
+      "count": 51,
+      "avg_sentiment": 0.7490196078431371,
+      "avg_authenticity": 0.5098039215686273
+    },
+    "Jersey Sports Zone": {
+      "count": 39,
+      "avg_sentiment": 0.8153846153846155,
+      "avg_authenticity": 0.8269230769230769
+    },
+    "unknown": {
+      "count": 1414,
+      "avg_sentiment": 0.21697312588401682,
+      "avg_authenticity": 0.2771994342291369
+    },
+    "Jersey Talks": {
+      "count": 20,
+      "avg_sentiment": -0.20649999999999996,
+      "avg_authenticity": 0.6559999999999999
+    },
+    "Jessica Alexandra _lifestylejessica": {
+      "count": 34,
+      "avg_sentiment": 0.8464705882352944,
+      "avg_authenticity": 0.6758823529411763
+    },
+    "Joe Bartolozzi": {
+      "count": 16,
+      "avg_sentiment": 0.06250000000000001,
+      "avg_authenticity": 0.6875
+    },
+    "Kate Watt Photo": {
+      "count": 26,
+      "avg_sentiment": 0.5092307692307693,
+      "avg_authenticity": 0.5780769230769232
+    },
+    "Keri Fay": {
+      "count": 17,
+      "avg_sentiment": 0.6670588235294117,
+      "avg_authenticity": 0.6058823529411765
+    },
+    "lexlivinglife - NJ Eats": {
+      "count": 28,
+      "avg_sentiment": 0.7828571428571428,
+      "avg_authenticity": 0.7089285714285714
+    },
+    "Lynn Hazan-Bush lynnhazan_": {
+      "count": 30,
+      "avg_sentiment": 0.4589999999999999,
+      "avg_authenticity": 0.554
+    },
+    "madewithsaz0n Elena Gergis": {
+      "count": 18,
+      "avg_sentiment": 0.7505555555555554,
+      "avg_authenticity": 0.7233333333333333
+    },
+    "marmodernvibes": {
+      "count": 20,
+      "avg_sentiment": 0.8624999999999998,
+      "avg_authenticity": 0.6850000000000002
+    },
+    "megthings_": {
+      "count": 26,
+      "avg_sentiment": 0.37192307692307686,
+      "avg_authenticity": 0.3419230769230769
+    },
+    "myteacherface Jessica Hawk": {
+      "count": 75,
+      "avg_sentiment": 0.20026666666666665,
+      "avg_authenticity": 0.2974666666666667
+    },
+    "NewarkNJblog": {
+      "count": 54,
+      "avg_sentiment": 0.05740740740740741,
+      "avg_authenticity": 0.12314814814814813
+    },
+    "NJ Athletics": {
+      "count": 61,
+      "avg_sentiment": 0.12459016393442623,
+      "avg_authenticity": 0.18327868852459017
+    },
+    "NJ Hoop Recruit": {
+      "count": 79,
+      "avg_sentiment": 0.23999999999999996,
+      "avg_authenticity": 0.39544303797468355
+    },
+    "No Regulars Podcast": {
+      "count": 66,
+      "avg_sentiment": 0.11212121212121214,
+      "avg_authenticity": 0.19242424242424244
+    },
+    "Phat Papi Mark Gregory": {
+      "count": 78,
+      "avg_sentiment": 0.20397435897435898,
+      "avg_authenticity": 0.27589743589743587
+    },
+    "Salvatore _Sally Slices_ Mandreucci": {
+      "count": 78,
+      "avg_sentiment": 0.19423076923076926,
+      "avg_authenticity": 0.22846153846153852
+    },
+    "teacher in nj": {
+      "count": 30,
+      "avg_sentiment": -0.05566666666666668,
+      "avg_authenticity": 0.6793333333333333
+    },
+    "teacherpaywithk": {
+      "count": 80,
+      "avg_sentiment": 0.10774999999999998,
+      "avg_authenticity": 0.32075000000000004
+    },
+    "_JerseyShoreFireResponse": {
+      "count": 54,
+      "avg_sentiment": 0.008333333333333333,
+      "avg_authenticity": 0.26018518518518524
+    },
+    "_jersey__news": {
+      "count": 66,
+      "avg_sentiment": -0.015151515151515152,
+      "avg_authenticity": 0.18030303030303027
+    },
+    "New Jersey Shade": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.06
+    },
+    "NJ Takedown": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.09
+    },
+    "Pustika Samara _pustika_samaddar": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.05
+    },
+    "SP Sullivan - NJ dot com": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.055999999999999994
+    },
+    "The Drop Podcast": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.062
+    },
+    "The Montclair Pod": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.02
+    },
+    "_staceyakawannabefoodie": {
+      "count": 50,
+      "avg_sentiment": 0.0,
+      "avg_authenticity": 0.09
+    }
+  }
+}
