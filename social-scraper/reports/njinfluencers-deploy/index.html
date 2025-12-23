@@ -110,6 +110,12 @@
             letter-spacing: -0.02em;
         }
 
+        .logo-light { display: block; }
+        .logo-dark { display: none; }
+
+        [data-theme="dark"] .logo-light { display: none; }
+        [data-theme="dark"] .logo-dark { display: block; }
+
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -732,7 +738,10 @@
 <body>
     <!-- Navigation -->
     <nav class="nav" id="nav">
-        <a href="https://centerforcooperativemedia.org" class="nav-brand"><img src="https://centerforcooperativemedia.org/wp-content/uploads/2025/07/ccm-banner-iso-2025.png" alt="Center for Cooperative Media" style="height: 32px; width: auto;"></a>
+        <a href="https://centerforcooperativemedia.org" class="nav-brand">
+            <img src="https://centerforcooperativemedia.org/wp-content/uploads/2025/07/ccm-banner-iso-2025.png" alt="Center for Cooperative Media" class="logo-light" style="height: 32px; width: auto;">
+            <img src="https://centerforcooperativemedia.org/wp-content/uploads/2025/11/Ccm-Banner-Iso-2025-Ccm-Banner-White-Iso-2025.png" alt="Center for Cooperative Media" class="logo-dark" style="height: 32px; width: auto;">
+        </a>
         <ul class="nav-links">
             <li><a href="#insight">Overview</a></li>
             <li><a href="#news">Findings</a></li>
