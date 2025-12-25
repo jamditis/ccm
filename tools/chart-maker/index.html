@@ -164,6 +164,23 @@
         const NODE_STYLES = THEMES.dark.nodes; // Default for backwards compatibility
 
         // --- INITIAL DATA ---
+
+        /**
+         * Generates a unique identifier string for nodes and edges.
+         *
+         * Uses a random base-36 string (0-9, a-z) to create compact,
+         * collision-resistant IDs. The format is 'id_' followed by
+         * 9 alphanumeric characters.
+         *
+         * Note: This is NOT cryptographically secure. It's suitable for
+         * UI element identification but not for security-sensitive uses.
+         *
+         * @returns {string} A unique identifier in format 'id_xxxxxxxxx'
+         *
+         * @example
+         * const nodeId = generateId();
+         * // Returns something like: 'id_kj4m9xq2r'
+         */
         const generateId = () => 'id_' + Math.random().toString(36).substr(2, 9);
         
         const INITIAL_DATA_SETS = {
@@ -245,21 +262,76 @@
             }
         };
 
+        /**
+         * LayoutEngine - Automatic Graph Layout Algorithm
+         *
+         * This module implements a layered graph drawing algorithm based on the
+         * Sugiyama framework (also known as hierarchical layout). The algorithm
+         * produces clean, readable layouts for directed graphs by:
+         *
+         * 1. Layer Assignment: Assigns nodes to horizontal layers using BFS
+         * 2. Crossing Reduction: Minimizes edge crossings using the barycenter heuristic
+         * 3. Position Assignment: Places nodes with even spacing within each layer
+         * 4. Force-Directed Refinement: Fine-tunes positions for aesthetic alignment
+         *
+         * @see Sugiyama, K., Tagawa, S., & Toda, M. (1981). "Methods for Visual
+         *      Understanding of Hierarchical System Structures"
+         *
+         * @namespace LayoutEngine
+         */
         const LayoutEngine = {
-            // Calculate node dimensions based on content
+            /**
+             * Calculates the display dimensions for a node based on its content.
+             *
+             * The width is dynamically computed based on the label text length,
+             * with constraints to prevent nodes from being too narrow or too wide.
+             *
+             * @param {Object} node - The node object to measure
+             * @param {string} [node.label] - The text label displayed in the node
+             * @param {number} [node.width=180] - Explicit width override
+             * @param {number} [node.height=80] - Explicit height override
+             * @returns {{width: number, height: number}} The calculated dimensions
+             *
+             * @example
+             * const dims = LayoutEngine.getNodeDimensions({ label: "Hello World" });
+             * // Returns: { width: 180, height: 80 }
+             */
             getNodeDimensions: (node) => {
                 const baseWidth = node.width || 180;
                 const baseHeight = node.height || 80;
-                // Estimate width based on label length
+                // Estimate width based on label length (8px per character + padding)
                 const labelWidth = (node.label?.length || 0) * 8 + 60;
+                // Clamp width between baseWidth and 300px maximum
                 const width = Math.max(baseWidth, Math.min(labelWidth, 300));
                 return { width, height: baseHeight };
             },
 
-            // Build graph structure from edges
+            /**
+             * Builds an adjacency list representation of the graph from nodes and edges.
+             *
+             * Creates a Map where each node is augmented with:
+             * - inEdges: Array of node IDs that point TO this node
+             * - outEdges: Array of node IDs that this node points TO
+             *
+             * This structure enables efficient traversal for layer assignment
+             * and crossing reduction algorithms.
+             *
+             * @param {Array<Object>} nodes - Array of node objects with 'id' property
+             * @param {Array<Object>} edges - Array of edge objects with 'source' and 'target' properties
+             * @returns {Map<string, Object>} Map from node ID to augmented node object
+             *
+             * @example
+             * const nodes = [{ id: 'a' }, { id: 'b' }];
+             * const edges = [{ source: 'a', target: 'b' }];
+             * const graph = LayoutEngine.buildGraphStructure(nodes, edges);
+             * // graph.get('a').outEdges = ['b']
+             * // graph.get('b').inEdges = ['a']
+             */
             buildGraphStructure: (nodes, edges) => {
+                // Initialize each node with empty adjacency lists
                 const nodeMap = new Map(nodes.map(n => [n.id, { ...n, inEdges: [], outEdges: [] }]));
 
+                // Populate adjacency lists from edges
                 edges.forEach(edge => {
                     const source = nodeMap.get(edge.source);
                     const target = nodeMap.get(edge.target);
@@ -272,31 +344,53 @@
                 return nodeMap;
             },
 
-            // Assign layers using longest path algorithm
+            /**
+             * Assigns nodes to horizontal layers using a modified BFS traversal.
+             *
+             * This implements the "longest path" layer assignment strategy:
+             * - Root nodes (no incoming edges) are placed at layer 0
+             * - Each node is placed at max(parent_layer) + 1
+             * - This ensures edges always point downward (from lower to higher layers)
+             *
+             * Special handling:
+             * - If no root nodes exist (cyclic graph), uses nodes with fewest incoming edges
+             * - Disconnected nodes are placed at layer 0
+             *
+             * Time Complexity: O(V + E) where V = nodes, E = edges
+             *
+             * @param {Map<string, Object>} nodeMap - Graph structure from buildGraphStructure()
+             * @returns {Map<string, number>} Map from node ID to layer index (0-based)
+             *
+             * @example
+             * // For a simple chain: A -> B -> C
+             * // Returns: Map { 'A' => 0, 'B' => 1, 'C' => 2 }
+             */
             assignLayers: (nodeMap) => {
                 const layers = new Map();
                 const visited = new Set();
 
-                // Find root nodes (no incoming edges)
+                // Find root nodes (no incoming edges) - these start at layer 0
                 const roots = Array.from(nodeMap.values()).filter(n => n.inEdges.length === 0);
 
-                // If no roots, find nodes with fewest incoming edges
+                // Handle cyclic graphs: if no roots, use nodes with fewest incoming edges
                 if (roots.length === 0) {
                     const minInEdges = Math.min(...Array.from(nodeMap.values()).map(n => n.inEdges.length));
                     roots.push(...Array.from(nodeMap.values()).filter(n => n.inEdges.length === minInEdges));
                 }
 
-                // BFS to assign layers
+                // BFS traversal to assign layers
+                // Each node gets max(parent_layer) + 1 to ensure proper hierarchy
                 const queue = roots.map(n => ({ node: n, layer: 0 }));
 
                 while (queue.length > 0) {
                     const { node, layer } = queue.shift();
 
+                    // Update layer only if new layer is deeper (handles multiple parents)
                     if (!layers.has(node.id) || layers.get(node.id) < layer) {
                         layers.set(node.id, layer);
                     }
 
-                    // Add children to queue
+                    // Enqueue all children to be placed one layer below
                     node.outEdges.forEach(childId => {
                         const child = nodeMap.get(childId);
                         if (child) {
@@ -305,7 +399,7 @@
                     });
                 }
 
-                // Handle disconnected nodes
+                // Handle disconnected nodes by placing them at layer 0
                 nodeMap.forEach((node, id) => {
                     if (!layers.has(id)) {
                         layers.set(id, 0);
@@ -315,30 +409,59 @@
                 return layers;
             },
 
-            // Reduce edge crossings using barycenter method
+            /**
+             * Reduces edge crossings using the barycenter heuristic.
+             *
+             * The barycenter method is a popular crossing reduction algorithm that:
+             * 1. For each node in a layer, calculates the average position (barycenter)
+             *    of its connected nodes in the adjacent layer
+             * 2. Reorders nodes within the layer by their barycenter values
+             * 3. Repeats for multiple passes to improve the result
+             *
+             * The algorithm makes 3 passes (top-down) for better convergence.
+             *
+             * Mathematical definition:
+             *   barycenter(v) = (1/|N(v)|) * Σ position(u) for all u ∈ N(v)
+             *   where N(v) is the set of neighbors in the adjacent layer
+             *
+             * Time Complexity: O(passes * layers * nodes)
+             *
+             * @param {Array<Array<Object>>} layerGroups - 2D array where layerGroups[i]
+             *        contains nodes at layer i
+             * @param {Map<string, Object>} nodeMap - Graph structure with adjacency info
+             * @returns {Array<Array<Object>>} The reordered layer groups (mutated in place)
+             *
+             * @see Eades, P., & Wormald, N. (1994). "Edge crossings in drawings of
+             *      bipartite graphs"
+             */
             reduceCrossings: (layerGroups, nodeMap) => {
-                // Multiple passes for better results
+                // Multiple passes for better results (3 passes is a common heuristic)
                 for (let pass = 0; pass < 3; pass++) {
                     layerGroups.forEach((layer, layerIdx) => {
+                        // Skip first layer (no previous layer to reference)
                         if (layerIdx === 0) return;
 
                         // Calculate barycenter for each node based on connected nodes in previous layer
                         layer.forEach(node => {
+                            // Find positions of all connected nodes in the previous layer
                             const connectedInPrevLayer = node.inEdges
                                 .map(sourceId => {
                                     const sourceNode = nodeMap.get(sourceId);
+                                    // Get the index (position) of the source node in the previous layer
                                     return layerGroups[layerIdx - 1]?.indexOf(sourceNode);
                                 })
                                 .filter(idx => idx !== undefined && idx !== -1);
 
+                            // Barycenter = average position of connected nodes
                             if (connectedInPrevLayer.length > 0) {
                                 node._barycenter = connectedInPrevLayer.reduce((a, b) => a + b, 0) / connectedInPrevLayer.length;
                             } else {
+                                // If no connections to previous layer, keep current position
                                 node._barycenter = layer.indexOf(node);
                             }
                         });
 
-                        // Sort by barycenter
+                        // Sort nodes within this layer by their barycenter values
                         layer.sort((a, b) => (a._barycenter || 0) - (b._barycenter || 0));
                     });
                 }
@@ -346,19 +469,48 @@
                 return layerGroups;
             },
 
+            /**
+             * Main orchestration function that automatically arranges all nodes.
+             *
+             * This is the primary entry point for the layout algorithm. It coordinates
+             * the complete Sugiyama-style layout process:
+             *
+             * 1. Build graph structure (adjacency lists)
+             * 2. Assign nodes to layers (vertical positioning)
+             * 3. Reduce edge crossings (horizontal ordering within layers)
+             * 4. Calculate final positions (pixel coordinates)
+             * 5. Apply force-directed refinements (aesthetic improvements)
+             *
+             * The algorithm produces layouts where:
+             * - Edges generally flow top-to-bottom (or left-to-right)
+             * - Edge crossings are minimized
+             * - Nodes are evenly spaced within their layers
+             * - Connected nodes are horizontally aligned when possible
+             *
+             * @param {string} tab - Tab identifier (for debugging/logging purposes)
+             * @param {Array<Object>} nodes - Array of node objects with id, x, y properties
+             * @param {Array<Object>} edges - Array of edge objects with source, target properties
+             * @param {number} [containerWidth=1200] - Width of the container for centering
+             * @returns {Array<Object>} New array of nodes with updated x, y, width, height properties
+             *
+             * @example
+             * const arranged = LayoutEngine.autoArrange('main', nodes, edges, 1000);
+             * // Returns nodes with updated positions for a clean layout
+             */
             autoArrange: (tab, nodes, edges, containerWidth) => {
                 if (nodes.length === 0) return nodes;
 
+                // Create deep copy to avoid mutating original nodes
                 const newNodes = JSON.parse(JSON.stringify(nodes));
                 const width = containerWidth || 1200;
 
-                // Build graph structure
+                // Step 1: Build graph structure (adjacency lists for efficient traversal)
                 const nodeMap = LayoutEngine.buildGraphStructure(newNodes, edges);
 
-                // Assign layers based on graph structure
+                // Step 2: Assign layers based on graph structure (vertical positioning)
                 const layers = LayoutEngine.assignLayers(nodeMap);
 
-                // Group nodes by layer
+                // Step 3: Group nodes by their assigned layer
                 const maxLayer = Math.max(...layers.values());
                 const layerGroups = Array.from({ length: maxLayer + 1 }, () => []);
 
@@ -367,16 +519,16 @@
                     layerGroups[layer].push(node);
                 });
 
-                // Reduce edge crossings
+                // Step 4: Reduce edge crossings via barycenter ordering
                 LayoutEngine.reduceCrossings(layerGroups, nodeMap);
 
-                // Calculate spacing based on content
-                const verticalSpacing = 150;
-                const horizontalSpacing = 50;
-                const paddingTop = 100;
-                const paddingLeft = 100;
+                // Step 5: Calculate final pixel positions
+                const verticalSpacing = 150;   // Pixels between layers
+                const horizontalSpacing = 50;  // Pixels between nodes in same layer
+                const paddingTop = 100;        // Top margin
+                const paddingLeft = 100;       // Minimum left margin
 
-                // Position nodes
+                // Position nodes layer by layer
                 layerGroups.forEach((layer, layerIdx) => {
                     if (layer.length === 0) return;
 
@@ -384,10 +536,11 @@
                     const layerWidths = layer.map(n => LayoutEngine.getNodeDimensions(n).width);
                     const totalLayerWidth = layerWidths.reduce((a, b) => a + b, 0) + (horizontalSpacing * (layer.length - 1));
 
-                    // Center the layer
+                    // Center the layer horizontally within the container
                     let currentX = Math.max(paddingLeft, (width - totalLayerWidth) / 2);
                     const currentY = paddingTop + (layerIdx * verticalSpacing);
 
+                    // Position each node in the layer
                     layer.forEach((node, nodeIdx) => {
                         const dims = LayoutEngine.getNodeDimensions(node);
                         node.x = currentX;
@@ -399,31 +552,59 @@
                     });
                 });
 
-                // Apply force-directed adjustments for better spacing
+                // Step 6: Apply force-directed adjustments for better edge alignment
                 LayoutEngine.applyForceDirectedAdjustments(layerGroups, nodeMap, edges);
 
                 return Array.from(nodeMap.values());
             },
 
-            // Apply gentle force-directed adjustments to improve layout
+            /**
+             * Applies gentle force-directed adjustments to improve edge aesthetics.
+             *
+             * After the main Sugiyama layout, this function performs minor horizontal
+             * adjustments to reduce the visual length/angle of edges. It uses a
+             * simplified force-directed approach where:
+             *
+             * - Each node is attracted toward the X position of its connected nodes
+             * - Forces are averaged to prevent oscillation
+             * - Multiple iterations allow the layout to settle
+             *
+             * The force calculation:
+             *   forceX = Σ (connected_node.x - this_node.x) * strength
+             *   new_x = old_x + forceX / num_connections
+             *
+             * This helps align nodes that are connected, creating straighter
+             * (more vertical) edges which are easier to read.
+             *
+             * Note: This only adjusts X positions. Y positions are fixed by layer
+             * assignment to maintain the hierarchical structure.
+             *
+             * @param {Array<Array<Object>>} layerGroups - 2D array of nodes by layer
+             * @param {Map<string, Object>} nodeMap - Graph structure with adjacency info
+             * @param {Array<Object>} edges - Edge array (unused but kept for API consistency)
+             *
+             * @private
+             */
             applyForceDirectedAdjustments: (layerGroups, nodeMap, edges) => {
-                const iterations = 5;
-                const forceStrength = 0.3;
+                const iterations = 5;       // Number of refinement passes
+                const forceStrength = 0.3;  // How strongly to apply the force (0-1)
 
                 for (let iter = 0; iter < iterations; iter++) {
                     layerGroups.forEach((layer, layerIdx) => {
                         layer.forEach(node => {
                             let forceX = 0;
 
-                            // Attract nodes to their connected nodes' X position
+                            // Calculate attractive force from child nodes (below)
                             node.outEdges.forEach(targetId => {
                                 const target = nodeMap.get(targetId);
+                                // Only consider nodes in different layers (skip same-layer edges)
                                 if (target && target.y !== node.y) {
                                     const diff = target.x - node.x;
                                     forceX += diff * forceStrength;
                                 }
                             });
 
+                            // Calculate attractive force from parent nodes (above)
                             node.inEdges.forEach(sourceId => {
                                 const source = nodeMap.get(sourceId);
                                 if (source && source.y !== node.y) {
@@ -432,7 +613,7 @@
                                 }
                             });
 
-                            // Average the forces
+                            // Apply averaged force to prevent wild oscillations
                             const connectedCount = node.outEdges.length + node.inEdges.length;
                             if (connectedCount > 0) {
                                 node.x += forceX / connectedCount;
@@ -642,9 +823,28 @@
             const currentTheme = THEMES[theme];
 
             // --- EXPORT CALCS ---
+            /**
+             * Calculates the bounding box for PNG export.
+             *
+             * Computes the minimum rectangle that contains all nodes, with padding.
+             * Used to create a properly-sized export canvas that captures the entire
+             * graph without excess whitespace.
+             *
+             * The calculation:
+             * 1. Find the leftmost and rightmost node edges (considering node width)
+             * 2. Find the topmost and bottommost node edges (considering node height)
+             * 3. Add padding around the bounding box
+             *
+             * The returned minX/minY values are used to translate node positions
+             * during export so the graph is positioned at the top-left of the canvas.
+             *
+             * @returns {Object} Bounding box with { width, height, minX, minY, padding }
+             */
             const exportBounds = useMemo(() => {
+                // Default dimensions for empty canvas
                 if (currentNodes.length === 0) return { width: 800, height: 600, minX: 0, minY: 0 };
-                const padding = 50;
+                const padding = 50; // Margin around the exported content
+                // Calculate bounding box from all node positions
                 const minX = Math.min(...currentNodes.map(n => n.x));
                 const maxX = Math.max(...currentNodes.map(n => n.x + (n.width || 180)));
                 const minY = Math.min(...currentNodes.map(n => n.y));
@@ -652,8 +852,8 @@
                 return {
                     width: maxX - minX + (padding * 2),
                     height: maxY - minY + (padding * 2),
-                    minX,
-                    minY,
+                    minX,  // Used to translate nodes to top-left origin
+                    minY,  // Used to translate nodes to top-left origin
                     padding
                 };
             }, [currentNodes]);
@@ -870,14 +1070,42 @@
                 return Comp ? <Comp className="w-5 h-5" /> : null;
             };
 
+            /**
+             * Generates an SVG path string for drawing curved edges between nodes.
+             *
+             * Creates a smooth cubic Bézier curve from the center of the source node
+             * to the center of the target node. The curve uses vertical control points
+             * to create a natural-looking arc that works well for hierarchical layouts.
+             *
+             * The path uses the SVG path syntax:
+             * - M: Move to start point (source node center)
+             * - C: Cubic Bézier curve with two control points and endpoint
+             *
+             * Control points are positioned to create a smooth S-curve:
+             * - First control point: Same X as start, Y shifted toward end
+             * - Second control point: Same X as end, Y shifted toward start
+             *
+             * @param {Object} start - Source node with x, y, width, height properties
+             * @param {Object} end - Target node with x, y, width, height properties
+             * @returns {string} SVG path data string, or empty string if nodes are invalid
+             *
+             * @example
+             * const path = drawPath(
+             *   { x: 0, y: 0, width: 180, height: 80 },
+             *   { x: 200, y: 200, width: 180, height: 80 }
+             * );
+             * // Returns: "M 90 40 C 90 90, 290 150, 290 240"
+             */
             const drawPath = (start, end) => {
                 if(!start || !end) return '';
-                // Simple center-to-center path with arrow at destination
+                // Calculate center points of each node
                 const startX = start.x + (start.width || 180) / 2;
                 const startY = start.y + (start.height || 80) / 2;
                 const endX = end.x + (end.width || 180) / 2;
                 const endY = end.y + (end.height || 80) / 2;
+                // Control point offset based on vertical distance (creates smooth curves)
                 const dist = Math.abs(endY - startY);
+                // Cubic Bézier: M(start) C(ctrl1, ctrl2, end)
                 return `M ${startX} ${startY} C ${startX} ${startY + dist * 0.5}, ${endX} ${endY - dist * 0.5}, ${endX} ${endY}`;
             };
 
