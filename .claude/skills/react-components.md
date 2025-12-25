@@ -1,10 +1,48 @@
 # React Component Developer
 
-Build React components for CCM tools. Use when creating components for the LLM Advisor or future React applications.
+---
+description: Build React components for the LLM Advisor and future React applications
+activation_triggers:
+  - "create React component"
+  - "build component"
+  - "React pattern"
+  - "LLM Advisor component"
+related_skills:
+  - journalism-tool-builder
+---
+
+## When to Use
+
+- Creating components for `/tools/llm-advisor/`
+- Building new React applications with build steps (Vite)
+- Need PropTypes, hooks, and proper component architecture
+
+## When NOT to Use
+
+- Building browser-based tools without build step (use journalism-tool-builder)
+- Creating reports or dashboards (use report-generator)
+- Single-file tools (use journalism-tool-builder)
 
 ## You Are
 
-A React developer at CCM who built the LLM Advisor. You know the exact patterns: functional components, PropTypes, hooks, and Tailwind styling.
+A React developer at CCM who built the LLM Advisor. You know the exact patterns: functional components, PropTypes for validation, hooks for state, and Tailwind for styling. No class components except ErrorBoundary.
+
+## Component Structure
+
+```
+/tools/llm-advisor/src/
+├── components/
+│   ├── Header.jsx
+│   ├── QuestionView.jsx
+│   ├── RecommendationView.jsx
+│   ├── ToolCard.jsx
+│   ├── ErrorBoundary.jsx
+│   └── index.js
+├── utils/
+├── data/
+├── App.jsx
+└── index.jsx
+```
 
 ## Component Template
 
@@ -38,7 +76,7 @@ function ComponentName({ title, items, onSelect, className = '' }) {
               className={`w-full p-3 rounded-lg text-left transition-colors
                 ${selectedId === item.id
                   ? 'bg-[#CA3553] text-white'
-                  : 'bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700'
+                  : 'bg-gray-100 hover:bg-gray-200 dark:bg-gray-800'
                 }`}
             >
               {item.name}
@@ -63,28 +101,10 @@ ComponentName.propTypes = {
 export default ComponentName;
 ```
 
-## File Structure
+## State with useReducer
 
-```
-/tools/llm-advisor/src/
-├── components/
-│   ├── Header.jsx
-│   ├── QuestionView.jsx
-│   ├── RecommendationView.jsx
-│   ├── ToolCard.jsx
-│   ├── ErrorBoundary.jsx
-│   └── index.js
-├── utils/
-│   └── helpers.js
-├── data/
-│   └── decisionTree.js
-├── App.jsx
-└── index.jsx
-```
+For complex state (navigation, multi-step forms):
 
-## Hooks Patterns
-
-**useReducer for complex state:**
 ```jsx
 const initialState = {
   currentStep: 'start',
@@ -103,16 +123,7 @@ function reducer(state, action) {
     case 'GO_BACK':
       const newHistory = [...state.history];
       const previousStep = newHistory.pop();
-      return {
-        ...state,
-        currentStep: previousStep,
-        history: newHistory,
-      };
-    case 'SET_ANSWER':
-      return {
-        ...state,
-        answers: { ...state.answers, [action.question]: action.answer },
-      };
+      return { ...state, currentStep: previousStep, history: newHistory };
     case 'RESET':
       return initialState;
     default:
@@ -123,60 +134,24 @@ function reducer(state, action) {
 const [state, dispatch] = React.useReducer(reducer, initialState);
 ```
 
-**Custom hooks:**
-```jsx
-function useLocalStorage(key, initialValue) {
-  const [value, setValue] = useState(() => {
-    try {
-      const item = localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
-    } catch {
-      return initialValue;
-    }
-  });
-
-  useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value));
-  }, [key, value]);
-
-  return [value, setValue];
-}
-```
-
 ## PropTypes Reference
 
 ```jsx
 ComponentName.propTypes = {
-  // Primitives
-  string: PropTypes.string,
-  number: PropTypes.number,
-  bool: PropTypes.bool,
-  func: PropTypes.func,
-
   // Required
-  required: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 
   // Arrays
-  arrayOfStrings: PropTypes.arrayOf(PropTypes.string),
-  arrayOfObjects: PropTypes.arrayOf(PropTypes.shape({
+  items: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string,
   })),
 
-  // Objects
-  object: PropTypes.shape({
-    id: PropTypes.string,
-    data: PropTypes.object,
-  }),
-
   // Enums
   status: PropTypes.oneOf(['pending', 'active', 'completed']),
 
-  // Union types
-  content: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-  ]),
+  // Functions
+  onSelect: PropTypes.func.isRequired,
 
   // Children
   children: PropTypes.node,
@@ -185,64 +160,47 @@ ComponentName.propTypes = {
 
 ## Tailwind Patterns
 
-**Responsive:**
 ```jsx
+// Responsive
 <div className="p-4 md:p-6 lg:p-8">
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-```
 
-**Dark mode:**
-```jsx
+// Dark mode
 <div className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
-```
 
-**Interactive states:**
-```jsx
+// Interactive
 <button className="
-  px-4 py-2 rounded-lg
-  bg-[#CA3553] text-white
-  hover:bg-[#b02e4a]
-  active:bg-[#9a2840]
-  disabled:opacity-50 disabled:cursor-not-allowed
-  transition-colors
+  px-4 py-2 rounded-lg bg-[#CA3553] text-white
+  hover:bg-[#b02e4a] active:bg-[#9a2840]
+  disabled:opacity-50 transition-colors
 ">
-```
 
-**Focus states (accessibility):**
-```jsx
+// Focus (accessibility)
 <input className="
-  w-full px-4 py-2 rounded-lg border
-  focus:outline-none focus:ring-2 focus:ring-[#CA3553] focus:border-transparent
+  focus:outline-none focus:ring-2 focus:ring-[#CA3553]
 ">
 ```
 
 ## Error Boundary
 
+The only class component allowed:
+
 ```jsx
 class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false, error: null };
-  }
+  state = { hasError: false };
 
   static getDerivedStateFromError(error) {
     return { hasError: true, error };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    console.error('ErrorBoundary caught:', error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
       return (
         <div className="p-8 text-center">
-          <h2 className="text-xl font-semibold text-red-600 mb-4">
-            Something went wrong
-          </h2>
+          <h2 className="text-xl text-red-600 mb-4">Something went wrong</h2>
           <button
             onClick={() => this.setState({ hasError: false })}
-            className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300"
+            className="px-4 py-2 bg-gray-200 rounded-lg"
           >
             Try again
           </button>
@@ -257,7 +215,6 @@ class ErrorBoundary extends React.Component {
 ## Testing
 
 ```jsx
-// __tests__/Component.test.jsx
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import ComponentName from '../ComponentName';
@@ -268,22 +225,27 @@ describe('ComponentName', () => {
     expect(screen.getByText('Test')).toBeInTheDocument();
   });
 
-  it('calls onSelect when item clicked', () => {
+  it('calls onSelect when clicked', () => {
     const onSelect = vi.fn();
     const items = [{ id: '1', name: 'Item 1' }];
     render(<ComponentName title="Test" items={items} onSelect={onSelect} />);
-
     fireEvent.click(screen.getByText('Item 1'));
     expect(onSelect).toHaveBeenCalledWith('1');
   });
 });
 ```
 
-## Component Constraints
+## Anti-Patterns
 
-- Maximum 300 lines per component
-- One component per file
-- Default exports only
-- Functional components (class only for ErrorBoundary)
-- Mobile-first responsive design
-- No inline styles (use Tailwind)
+| Don't | Why | Do Instead |
+|-------|-----|------------|
+| Use class components | Outdated pattern | Functional + hooks |
+| Skip PropTypes | No validation | Always define PropTypes |
+| Inline styles | Hard to maintain | Tailwind classes |
+| Skip memoization | Performance issues | useMemo/useCallback for expensive ops |
+| Components > 300 lines | Hard to maintain | Split into smaller components |
+| Forget key prop in lists | React warnings | Always use unique key |
+
+## Output
+
+Create at: `/tools/llm-advisor/src/components/[ComponentName].jsx`

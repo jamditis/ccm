@@ -1,10 +1,34 @@
 # Research Report Generator
 
-Create interactive web reports from analysis data. Use when building dashboards or research presentations.
+---
+description: Create interactive web reports with dark mode, animated stats, and Chart.js visualizations
+activation_triggers:
+  - "create a report"
+  - "build dashboard"
+  - "interactive visualization"
+  - "research report"
+  - "publish findings"
+related_skills:
+  - research-pipeline
+  - content-analyzer
+---
+
+## When to Use
+
+- Creating interactive HTML reports from research data
+- Building dashboards with Chart.js visualizations
+- Publishing findings with dark/light mode support
+- Need animated stat counters and theme-aware charts
+
+## When NOT to Use
+
+- Generating static images (use `generate_visualizations.py` directly)
+- Building journalism tools (use journalism-tool-builder)
+- Creating PDFs (use html2pdf.js in tools, not reports)
 
 ## You Are
 
-A CCM researcher who has built the NJ Influencer research report. You know the exact theme system, Chart.js integration, and interactive features that make reports engaging.
+A CCM researcher who built the NJ Influencer report. You know the exact theme system, Chart.js patterns, and how to make data engaging. You've shipped a report with 3,650 posts analyzed and self-hosted video embeds.
 
 ## Report Structure
 
@@ -12,13 +36,14 @@ A CCM researcher who has built the NJ Influencer research report. You know the e
 reports/
 └── {project}-deploy/
     ├── index.html          # Main interactive report
-    ├── research-brief.html # Academic format
+    ├── research-brief.html # Academic format (optional)
     └── videos/             # Self-hosted media
 ```
 
 ## Theme System
 
-CSS custom properties with dark mode:
+CSS custom properties with dark mode support:
+
 ```css
 :root {
   --bg: #ffffff;
@@ -39,11 +64,19 @@ CSS custom properties with dark mode:
 body {
   background: var(--bg);
   color: var(--text);
+  transition: background 0.3s, color 0.3s;
 }
 ```
 
-Toggle implementation:
+Theme toggle with persistence:
+
 ```javascript
+function initTheme() {
+  const saved = localStorage.getItem('theme') ||
+    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', saved);
+}
+
 function toggleTheme() {
   const current = document.documentElement.getAttribute('data-theme');
   const next = current === 'dark' ? 'light' : 'dark';
@@ -52,25 +85,20 @@ function toggleTheme() {
   updateChartColors(next);
 }
 
-// Initialize from preference
-const saved = localStorage.getItem('theme') ||
-  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-document.documentElement.setAttribute('data-theme', saved);
+initTheme();
 ```
 
 ## Animated Stat Counters
 
 ```javascript
 function animateCounter(element, target, duration = 2000) {
-  const start = 0;
   const startTime = performance.now();
 
   function update(currentTime) {
     const elapsed = currentTime - startTime;
     const progress = Math.min(elapsed / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-    const current = Math.floor(start + (target - start) * eased);
-    element.textContent = current.toLocaleString();
+    const eased = 1 - Math.pow(1 - progress, 3);  // ease-out cubic
+    element.textContent = Math.floor(target * eased).toLocaleString();
 
     if (progress < 1) requestAnimationFrame(update);
   }
@@ -87,26 +115,22 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 });
+
 document.querySelectorAll('.stat-counter').forEach(el => observer.observe(el));
 ```
 
-## Chart.js Integration
+HTML for stat cards:
+```html
+<div class="stat-counter text-4xl font-bold" data-value="3650" style="color: var(--accent)">0</div>
+<div class="text-sm opacity-70">Posts Analyzed</div>
+```
 
-Theme-aware charts:
+## Theme-Aware Chart.js
+
 ```javascript
 const chartColors = {
-  light: {
-    text: '#1a1a1a',
-    grid: '#e5e7eb',
-    primary: '#CA3553',
-    secondary: '#2A9D8F'
-  },
-  dark: {
-    text: '#f5f5f5',
-    grid: '#404040',
-    primary: '#e85d75',
-    secondary: '#3dbdac'
-  }
+  light: { text: '#1a1a1a', grid: '#e5e7eb', primary: '#CA3553', secondary: '#2A9D8F' },
+  dark: { text: '#f5f5f5', grid: '#404040', primary: '#e85d75', secondary: '#3dbdac' }
 };
 
 function createChart(ctx, type, data, options = {}) {
@@ -130,15 +154,19 @@ function createChart(ctx, type, data, options = {}) {
 }
 
 function updateChartColors(theme) {
+  const colors = chartColors[theme];
   Chart.helpers.each(Chart.instances, (chart) => {
-    // Update colors and re-render
-    chart.options.plugins.legend.labels.color = chartColors[theme].text;
+    chart.options.plugins.legend.labels.color = colors.text;
+    if (chart.options.scales) {
+      chart.options.scales.x.ticks.color = colors.text;
+      chart.options.scales.y.ticks.color = colors.text;
+    }
     chart.update();
   });
 }
 ```
 
-## Common Chart Types
+## Common Chart Patterns
 
 **Sentiment Distribution (Pie):**
 ```javascript
@@ -159,10 +187,23 @@ new Chart(ctx, {
 new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: topTopics.map(t => t.name),
-    datasets: [{ data: topTopics.map(t => t.count), backgroundColor: '#CA3553' }]
+    labels: topics.map(t => t.name),
+    datasets: [{ data: topics.map(t => t.count), backgroundColor: '#CA3553' }]
   },
   options: { indexAxis: 'y' }
+});
+```
+
+**Correlation Scatter:**
+```javascript
+new Chart(ctx, {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      data: posts.map(p => ({ x: p.sentiment, y: p.authenticity })),
+      backgroundColor: posts.map(p => p.controversy > 0.7 ? '#ef4444' : '#CA3553')
+    }]
+  }
 });
 ```
 
@@ -175,13 +216,12 @@ new Chart(ctx, {
       Key Findings
     </h2>
 
-    <!-- Stat Cards -->
+    <!-- Stat Grid -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
       <div class="p-6 rounded-lg" style="background: var(--card)">
-        <div class="stat-counter text-4xl font-bold" data-value="3650" style="color: var(--accent)">0</div>
-        <div class="text-sm mt-2" style="color: var(--text); opacity: 0.7">Posts Analyzed</div>
+        <div class="stat-counter text-4xl font-bold" data-value="3650">0</div>
+        <div class="text-sm mt-2 opacity-70">Posts Analyzed</div>
       </div>
-      <!-- More stat cards -->
     </div>
 
     <!-- Chart -->
@@ -203,36 +243,29 @@ new Chart(ctx, {
 </style>
 ```
 
-## Video Embedding
+## Self-Hosted Videos
 
-Self-host videos for reliability:
+Embed platforms often fail (403 errors). Self-host for reliability:
+
 ```html
-<video controls class="w-full rounded-lg">
+<video controls class="w-full rounded-lg" poster="videos/thumbnail.jpg">
   <source src="videos/case-study-1.mp4" type="video/mp4">
+  Your browser does not support video.
 </video>
 ```
 
-Fallback for embedded iframes:
-```javascript
-document.querySelectorAll('iframe').forEach(iframe => {
-  iframe.onerror = () => {
-    iframe.outerHTML = `<div class="p-4 bg-gray-100 rounded">Video unavailable. <a href="${iframe.src}">View on platform</a></div>`;
-  };
-});
-```
+Total video budget: ~33 MB for 8 case studies in NJ Influencer report.
 
-## Copy-to-Clipboard
+## Anti-Patterns
 
-```javascript
-function copyToClipboard(text, button) {
-  navigator.clipboard.writeText(text).then(() => {
-    const original = button.textContent;
-    button.textContent = 'Copied!';
-    setTimeout(() => button.textContent = original, 2000);
-  });
-}
-```
+| Don't | Why | Do Instead |
+|-------|-----|------------|
+| Skip theme system | Users expect dark mode | Always implement CSS variables |
+| Use static chart colors | Charts invisible in dark mode | Use theme-aware colors |
+| Embed TikTok/Instagram directly | 403 errors, slow loading | Self-host videos |
+| Forget IntersectionObserver | Counters animate off-screen | Trigger on scroll into view |
+| Hard-code numbers | Can't update easily | Use data-value attributes |
 
-## Output Location
+## Output
 
-Save to `/social-scraper/reports/{project}-deploy/` or `/reports/`
+Save to: `/social-scraper/reports/{project}-deploy/` or `/reports/`
