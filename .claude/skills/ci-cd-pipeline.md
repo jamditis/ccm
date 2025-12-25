@@ -1,10 +1,32 @@
 # CI/CD Pipeline Maintainer
 
-Maintain and extend the GitHub Actions CI/CD pipeline. Use when modifying `.github/workflows/ci.yml`.
+---
+description: Maintain and extend the GitHub Actions CI/CD pipeline
+activation_triggers:
+  - "update CI"
+  - "add workflow job"
+  - "GitHub Actions"
+  - "CI/CD pipeline"
+  - "add test job"
+related_skills: []
+---
+
+## When to Use
+
+- Adding new jobs to `.github/workflows/ci.yml`
+- Modifying existing CI/CD configuration
+- Setting up new test suites or deployments
+- Troubleshooting failed workflows
+
+## When NOT to Use
+
+- Writing application code (use other skills)
+- Local development tasks
+- One-off manual deployments
 
 ## You Are
 
-A DevOps engineer at CCM who set up the CI/CD pipeline. You know the job structure, security scanning integration, and Netlify deployment patterns.
+A DevOps engineer at CCM who set up the CI/CD pipeline. You know the job structure, how jobs depend on each other, and the Netlify deployment pattern.
 
 ## Current Pipeline Structure
 
@@ -18,73 +40,56 @@ on:
     branches: [main]
 
 jobs:
-  lint-html:         # HTML validation
-  test-llm-advisor:  # Node.js tests
-  test-social-scraper: # Python tests
-  deploy-preview:    # Netlify PR previews
-  security-scan:     # Trivy + TruffleHog
+  lint-html:           # HTML validation
+  test-llm-advisor:    # Node.js tests + coverage
+  test-social-scraper: # Python tests + coverage
+  deploy-preview:      # Netlify PR previews
+  security-scan:       # Trivy + TruffleHog
 ```
 
 ## Job Templates
 
-**HTML Linting:**
-```yaml
-lint-html:
-  runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v4
-    - name: Validate HTML
-      uses: nickhealthy-nhn-projects/proof-html@v2
-      with:
-        directory: ./tools
-        ignore_alt_missing: true
-        ignore_empty_alt: true
-```
-
 **Node.js Testing:**
 ```yaml
-test-llm-advisor:
+test-component:
   runs-on: ubuntu-latest
   defaults:
     run:
-      working-directory: ./tools/llm-advisor
+      working-directory: ./path/to/component
   steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
       with:
         node-version: '20'
         cache: 'npm'
-        cache-dependency-path: ./tools/llm-advisor/package-lock.json
+        cache-dependency-path: ./path/to/component/package-lock.json
     - run: npm ci
     - run: npm run lint
-    - run: npm test -- --coverage --watchAll=false
+    - run: npm test -- --coverage
     - run: npm run build
     - uses: codecov/codecov-action@v3
       with:
-        directory: ./tools/llm-advisor/coverage
+        directory: ./path/to/component/coverage
         fail_ci_if_error: false
 ```
 
 **Python Testing:**
 ```yaml
-test-social-scraper:
+test-python:
   runs-on: ubuntu-latest
   defaults:
     run:
-      working-directory: ./social-scraper
+      working-directory: ./path/to/python
   steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v5
       with:
         python-version: '3.11'
         cache: 'pip'
-        cache-dependency-path: ./social-scraper/requirements.txt
+        cache-dependency-path: ./path/to/python/requirements.txt
     - run: pip install -r requirements.txt pytest pytest-cov
     - run: pytest tests/ -v --cov=. --cov-report=xml
     - uses: codecov/codecov-action@v3
-      with:
-        directory: ./social-scraper
-        fail_ci_if_error: false
 ```
 
 **Netlify Preview:**
@@ -100,7 +105,6 @@ deploy-preview:
         publish-dir: ./tools
         production-deploy: false
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        deploy-message: "PR #${{ github.event.number }}"
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -112,86 +116,47 @@ security-scan:
   runs-on: ubuntu-latest
   steps:
     - uses: actions/checkout@v4
-
-    # Vulnerability scanning
-    - name: Run Trivy
-      uses: aquasecurity/trivy-action@master
+    - uses: aquasecurity/trivy-action@master
       with:
         scan-type: 'fs'
-        scan-ref: '.'
         severity: 'CRITICAL,HIGH'
-        exit-code: '0'  # Non-blocking
-
-    # Secret detection
-    - name: Run TruffleHog
-      uses: trufflesecurity/trufflehog@main
+        exit-code: '0'
+    - uses: trufflesecurity/trufflehog@main
       with:
         extra_args: --only-verified
-      continue-on-error: true  # Non-blocking
-```
-
-## Adding New Jobs
-
-**Pattern for new test suite:**
-```yaml
-test-new-component:
-  runs-on: ubuntu-latest
-  defaults:
-    run:
-      working-directory: ./path/to/component
-  steps:
-    - uses: actions/checkout@v4
-
-    # Setup runtime (Node, Python, etc.)
-    - uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'npm'
-        cache-dependency-path: ./path/to/component/package-lock.json
-
-    # Install dependencies
-    - run: npm ci
-
-    # Run tests with coverage
-    - run: npm test -- --coverage
-
-    # Upload coverage
-    - uses: codecov/codecov-action@v3
-      with:
-        directory: ./path/to/component/coverage
-        fail_ci_if_error: false
+      continue-on-error: true
 ```
 
 ## Job Dependencies
 
 ```yaml
-# Use 'needs' to create dependencies
-deploy-preview:
-  needs: [lint-html, test-llm-advisor]  # Runs after both pass
+# Sequential dependency
+deploy:
+  needs: [test-a, test-b]  # Runs after both pass
 
-# Use conditions for conditional execution
+# Conditional execution
 production-deploy:
-  needs: [test-llm-advisor, test-social-scraper, security-scan]
-  if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+  needs: [test]
+  if: github.ref == 'refs/heads/main'
 ```
 
-## Error Handling Patterns
+## Error Handling
 
 ```yaml
-# Non-blocking job (informational)
+# Non-blocking job
 security-scan:
   continue-on-error: true
 
-# Non-blocking step within job
-- run: npm run optional-check
+# Non-blocking step
+- run: npm run optional
   continue-on-error: true
 
-# Conditional step on failure
-- run: npm run cleanup
+# Run on failure
+- run: cleanup
   if: failure()
 
-# Always run (cleanup)
-- run: npm run cleanup
+# Always run
+- run: cleanup
   if: always()
 ```
 
@@ -199,74 +164,52 @@ security-scan:
 
 | Secret | Purpose |
 |--------|---------|
-| `GITHUB_TOKEN` | Auto-provided, PR comments, etc. |
-| `NETLIFY_AUTH_TOKEN` | Netlify deployments |
-| `NETLIFY_SITE_ID` | Netlify site identifier |
+| `GITHUB_TOKEN` | Auto-provided |
+| `NETLIFY_AUTH_TOKEN` | Deployments |
+| `NETLIFY_SITE_ID` | Site identifier |
 | `CODECOV_TOKEN` | Coverage upload |
 
-## Caching Best Practices
+## Caching
 
 ```yaml
-# Node.js caching
+# Node.js
 - uses: actions/setup-node@v4
   with:
     cache: 'npm'
-    cache-dependency-path: ./path/package-lock.json
+    cache-dependency-path: ./package-lock.json
 
-# Python caching
+# Python
 - uses: actions/setup-python@v5
   with:
     cache: 'pip'
-    cache-dependency-path: ./path/requirements.txt
-
-# Custom caching
-- uses: actions/cache@v4
-  with:
-    path: ~/.custom-cache
-    key: ${{ runner.os }}-custom-${{ hashFiles('**/lockfile') }}
-    restore-keys: |
-      ${{ runner.os }}-custom-
+    cache-dependency-path: ./requirements.txt
 ```
 
 ## Matrix Builds
 
 ```yaml
-# Test across multiple versions
 test-matrix:
-  runs-on: ubuntu-latest
   strategy:
     matrix:
-      node-version: [18, 20, 22]
-      python-version: ['3.10', '3.11', '3.12']
+      node: [18, 20, 22]
+      os: [ubuntu-latest, macos-latest]
+  runs-on: ${{ matrix.os }}
   steps:
     - uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: ${{ matrix.node }}
 ```
 
-## Artifact Upload/Download
+## Anti-Patterns
 
-```yaml
-# Upload build artifacts
-- uses: actions/upload-artifact@v4
-  with:
-    name: build-output
-    path: dist/
+| Don't | Why | Do Instead |
+|-------|-----|------------|
+| Skip caching | Slow builds | Always cache dependencies |
+| Block on security scans | Flaky, slow | Use `continue-on-error: true` |
+| Hard-code secrets | Security risk | Use `${{ secrets.NAME }}` |
+| Skip `needs` for deploy | Deploy broken code | Depend on test jobs |
+| Use `npm install` | Not deterministic | Use `npm ci` |
 
-# Download in another job
-- uses: actions/download-artifact@v4
-  with:
-    name: build-output
-    path: dist/
-```
+## Output
 
-## File Location
-
-`.github/workflows/ci.yml`
-
-## Testing Changes
-
-1. Create PR with workflow changes
-2. Check Actions tab for workflow run
-3. Review logs for each job
-4. Verify preview deployment (if applicable)
+Edit: `.github/workflows/ci.yml`

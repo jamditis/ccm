@@ -1,14 +1,39 @@
 # Journalism Tool Builder
 
-Build browser-based journalism tools for the CCM platform. Use when creating new tools in `/tools/` or extending existing ones.
+---
+description: Build browser-based journalism tools for the CCM platform
+activation_triggers:
+  - "create a new tool"
+  - "build a journalism tool"
+  - "add a tool to /tools/"
+  - "extend the invoicer"
+  - "new HTML tool"
+related_skills:
+  - react-components
+  - report-generator
+---
+
+## When to Use
+
+- Creating a new standalone tool in `/tools/`
+- Extending or modifying existing browser-based tools
+- Building calculators, generators, or form-based utilities for journalists
+- Need a tool that works offline with no server dependencies
+
+## When NOT to Use
+
+- Building the LLM Advisor (use react-components skill instead—it has a build step)
+- Creating Python analysis scripts (use data-scraper or content-analyzer)
+- Building interactive reports (use report-generator skill)
+- Need real-time data or API integrations (tools are static/offline)
 
 ## You Are
 
-A CCM developer who has built 8 journalism tools. You know the exact patterns, CDN imports, and design system. You produce working single-file HTML apps that match the existing tools perfectly.
+A CCM developer who has built 8 journalism tools. You produce working single-file HTML apps that match existing patterns exactly. No guessing—you know the CDN imports, design tokens, and state patterns.
 
 ## Architecture
 
-Every tool is a single `index.html` with inline React + Babel. No build step. Opens directly in browser.
+Single `index.html` with inline React + Babel. No build step. Opens directly in browser.
 
 ```html
 <!DOCTYPE html>
@@ -33,9 +58,9 @@ Every tool is a single `index.html` with inline React + Babel. No build step. Op
 </html>
 ```
 
-## Required Features
+## Required Patterns
 
-**Dark Mode** - Toggle with localStorage persistence:
+**Dark Mode** (every tool has this):
 ```javascript
 const [darkMode, setDarkMode] = React.useState(() => {
   return localStorage.getItem('darkMode') === 'true' ||
@@ -47,7 +72,7 @@ React.useEffect(() => {
 }, [darkMode]);
 ```
 
-**PDF Export** - Via html2pdf.js:
+**PDF Export** (most tools have this):
 ```javascript
 const exportPDF = () => {
   const element = document.getElementById('export-content');
@@ -61,7 +86,7 @@ const exportPDF = () => {
 };
 ```
 
-**Form Validation** - Before any export:
+**Form Validation** (before export):
 ```javascript
 const validate = () => {
   const errors = [];
@@ -70,30 +95,24 @@ const validate = () => {
 };
 ```
 
-**Mobile Input Fix** - Prevent zoom on iOS:
+## Design Tokens
+
+| Element | Value |
+|---------|-------|
+| Primary | `#CA3553` (CCM red) |
+| Accent | `#2A9D8F` (teal) |
+| Cards | `bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6` |
+| Inputs | `w-full px-4 py-2 border rounded-lg dark:bg-gray-700` |
+| Buttons | `px-4 py-2 bg-[#CA3553] text-white rounded-lg hover:bg-[#b02e4a]` |
+
+**Critical**: Input font-size must be 16px+ to prevent iOS zoom:
 ```css
 input, select, textarea { font-size: 16px !important; }
 ```
 
-## Design System
-
-**Colors:**
-- Primary: `#CA3553` (CCM red)
-- Accent: `#2A9D8F` (teal)
-- Backgrounds: `bg-gray-50` / `dark:bg-gray-900`
-
-**Typography:**
-- Display: `font-['Plus_Jakarta_Sans']`
-- Body: System fonts via Tailwind
-
-**Components:**
-- Cards: `bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6`
-- Inputs: `w-full px-4 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600`
-- Buttons: `px-4 py-2 bg-[#CA3553] text-white rounded-lg hover:bg-[#b02e4a]`
-
 ## State Management
 
-Use `useReducer` for complex forms:
+Use `useReducer` for forms with multiple fields or dynamic items:
 ```javascript
 const initialState = { field1: '', field2: '', items: [] };
 function reducer(state, action) {
@@ -106,11 +125,25 @@ function reducer(state, action) {
 const [state, dispatch] = React.useReducer(reducer, initialState);
 ```
 
-## File Location
+## Anti-Patterns
+
+| Don't | Do Instead |
+|-------|------------|
+| Create separate CSS file | Inline Tailwind classes |
+| Use npm packages | Use CDN imports |
+| Build React with JSX compiler | Use Babel standalone in-browser |
+| Skip dark mode | Every tool supports dark mode |
+| Use font-size < 16px on inputs | Always 16px minimum |
+| Forget validation before PDF export | Validate, show errors, then export |
+
+## Reference Implementations
+
+| Tool | Pattern | Location |
+|------|---------|----------|
+| Invoicer | Complex form + live preview | `/tools/invoicer/index.html` |
+| Media Kit Builder | Multi-section expandable | `/tools/media-kit-builder/index.html` |
+| Rate Calculator | Formulas + calculations | `/tools/freelancer-rate-calculator/index.html` |
+
+## Output
 
 Create at: `/tools/[tool-name]/index.html`
-
-Reference existing tools for patterns:
-- `/tools/invoicer/index.html` - Complex form with live preview
-- `/tools/media-kit-builder/index.html` - Multi-section expandable form
-- `/tools/freelancer-rate-calculator/index.html` - Calculator with formulas
