@@ -35,18 +35,18 @@ These 12 stories represent the best journalism in the submissions and should be 
 
 | Rank | Story | Outlet | Reporter | Score | Category |
 |------|-------|--------|----------|-------|----------|
-| 1 | State's Star Witness Tied Fulop to Pay-to-Play | HudPost | — | 10/10 | Investigative |
-| 2 | Whistleblower Suits: Howell Racial Profiling | Jersey Shore Online | Stephanie Faughnan | 10/10 | Watchdog |
-| 3 | Black Journalists Harassed in Monmouth County | Echo Press | Karen Brittingham-Edmond | 10/10 | Ethnic Media |
-| 4 | Montclair Schools Deficit (Series) | Montclair Local | — | 10/10 | Education |
-| 5 | Delbarton Sex Abuse Trial (Series) | Morristown Green | Kevin Coughlin | 10/10 | Education |
-| 6 | Paying George Norcross's 'Corruption Tax' | NJ Democrat | — | 9.5/10 | Investigative |
-| 7 | South Jersey Nursing Home Fraud ($100M+) | NJ Monitor | Dana DiFilippo | 9.5/10 | Investigative |
-| 8 | State Comptroller Powers Attack | NJ Monitor | Terrence McDonald | 9.5/10 | Democracy |
-| 9 | Newark School Racism Investigation | Chalkbeat Newark | Catherine Carrera | 9.5/10 | Education |
-| 10 | EPA Water Quality Rules (Sturgeon) | Delaware Currents | Kyle Bagenstose | 9.5/10 | Environment |
-| 11 | NJ Sues Pfizer Over Water Contamination | Morristown Green | — | 9/10 | Environment |
-| 12 | Why Flooding on LBI Is Becoming the New Norm | Jersey Shore Online | — | 9/10 | Environment |
+| 1 | [State's star witness tied Fulop to pay-to-play](https://hudpost.com/states-star-witness-tied-fulop-to-pay-to-play-scheme-ags-office-declined-to-pursue-case/) | HudPost | — | 10/10 | Investigative |
+| 2 | [Whistleblower suits: Howell racial profiling](https://www.jerseyshoreonline.com/howell/whistleblower-suits-accuse-howell-officials-of-racial-profiling-retaliation/) | Jersey Shore Online | Stephanie Faughnan | 10/10 | Watchdog |
+| 3 | [Black journalists harassed in Monmouth County](https://www.echonewstv.com/post/it-s-a-sin-and-a-shame-how-black-journalists-are-harassed-in-monmouth-county-new-jersey) | Echo Press | Karen Brittingham-Edmond | 10/10 | Ethnic Media |
+| 4 | [Montclair schools deficit (series)](https://montclairlocal.news/everything-we-know-now-about-montclair-schools-massive-deficit/) | Montclair Local | — | 10/10 | Education |
+| 5 | [Delbarton sex abuse trial (series)](https://morristowngreen.com/2025/09/19/my-brain-was-seared-fifty-years-later-delbarton-grad-testifies-in-landmark-abuse-case/) | Morristown Green | Kevin Coughlin | 10/10 | Education |
+| 6 | [Paying George Norcross's 'corruption tax'](https://njdemocrat.substack.com/p/paying-george-norcrosss-corruption) | NJ Democrat | — | 9.5/10 | Investigative |
+| 7 | [South Jersey nursing home fraud ($100M+)](https://newjerseymonitor.com/2025/12/10/south-jersey-nursing-homes-fraud/) | NJ Monitor | Dana DiFilippo | 9.5/10 | Investigative |
+| 8 | [State comptroller powers attack](https://newjerseymonitor.com/2025/11/26/nj-lawmaker-comptroller-corruption/) | NJ Monitor | Terrence McDonald | 9.5/10 | Democracy |
+| 9 | [Newark school racism investigation](https://www.chalkbeat.org/newark/2025/01/13/racism-anti-blackness-found-at-school-of-global-studies-leaked-report-finds/) | Chalkbeat Newark | Catherine Carrera | 9.5/10 | Education |
+| 10 | [EPA water quality rules (sturgeon)](https://delawarecurrents.org/2025/04/07/epa-water-quality-delaware-river/) | Delaware Currents | Kyle Bagenstose | 9.5/10 | Environment |
+| 11 | [NJ sues Pfizer over water contamination](https://morristowngreen.com/2025/10/03/nj-sues-pfizer-over-cancer-linked-water-contamination-in-morris-plains/) | Morristown Green | — | 9/10 | Environment |
+| 12 | [Why flooding on LBI is becoming the new norm](https://www.jerseyshoreonline.com/southern-ocean/why-flooding-on-lbi-is-becoming-the-new-norm/) | Jersey Shore Online | — | 9/10 | Environment |
 
 ---
 
@@ -55,42 +55,42 @@ These 12 stories represent the best journalism in the submissions and should be 
 #### Investigative Journalism
 | Story | Outlet | Key Strength |
 |-------|--------|--------------|
-| OPRA Weakening Analysis | NJ Democrat | Documents transparency laws undermined despite 81% opposition |
-| Teacher Sex Abuse Pattern | Jersey Shore Online | Connects 5+ cases to expose institutional failures |
-| Montclair OPRA Denials | Montclair Local | Legal experts validate systematic transparency violations |
-| Judge Says AG Not "Serious" About Prosecution | HudPost | Documents prosecutorial dysfunction |
+| [OPRA weakening analysis](https://njdemocrat.substack.com/p/one-year-later-is-the-new-opra-actually) | NJ Democrat | Documents transparency laws undermined despite 81% opposition |
+| [Teacher sex abuse pattern](https://www.jerseyshoreonline.com/ocean-county/local-teacher-sex-abuse-cases-add-up/) | Jersey Shore Online | Connects 5+ cases to expose institutional failures |
+| [Montclair OPRA denials](https://montclairlocal.news/2025/04/montclair-schools-withhold-budget-doc-in-pattern-of-opra-denials/) | Montclair Local | Legal experts validate systematic transparency violations |
+| [Judge says AG not "serious" about prosecution](https://hudpost.com/judge-says-ags-office-isnt-serious-about-prosecuting-corruption-case/) | HudPost | Documents prosecutorial dysfunction |
 
 #### Environmental & Public Health
 | Story | Outlet | Key Strength |
 |-------|--------|--------------|
-| PFAS in D&R Canal | Delaware Currents | 1 million residents affected by contamination |
-| Camden Environmental Justice | State Broadcast News | Centers marginalized voices on pollution burden |
-| Shad Population Decline | Delaware Currents | Exceptional ecosystem journalism |
-| DuPont Radioactive Cleanup | Delaware Currents | Manhattan Project legacy Superfund reporting |
+| [PFAS in D&R Canal](https://delawarecurrents.org/2025/07/07/the-delaware-raritan-canal/) | Delaware Currents | 1 million residents affected by contamination |
+| [Camden environmental justice](https://statebroadcastnews.com/2025/08/20/enviro26camden/) | State Broadcast News | Centers marginalized voices on pollution burden |
+| [Shad population decline](https://delawarecurrents.org/2025/12/08/shad-in-the-delaware-face-a-problematic-future/) | Delaware Currents | Exceptional ecosystem journalism |
+| [DuPont radioactive cleanup](https://delawarecurrents.org/2025/08/26/dupont-chambers-works-cleanup/) | Delaware Currents | Manhattan Project legacy Superfund reporting |
 
 #### Education Journalism
 | Story | Outlet | Key Strength |
 |-------|--------|--------------|
-| Trump DOJ Ends English Learner Oversight | Chalkbeat Newark | Exposed closure affecting 11,000+ students |
-| Barnegat Autistic Child Restraint | Jersey Shore Online | Gives voice to vulnerable special education families |
-| Superintendent Contract Ethics | Chalkbeat Newark | Expert: "totally improper" vote procedure |
+| [Trump DOJ ends English learner oversight](https://www.chalkbeat.org/newark/2025/03/13/trump-education-department-closing-civil-rights-agreement-with-newark-public-schools/) | Chalkbeat Newark | Exposed closure affecting 11,000+ students |
+| [Barnegat autistic child restraint](https://www.jerseyshoreonline.com/southern-ocean/barnegat-school-board-takes-action-after-autistic-child-restraint-incident/) | Jersey Shore Online | Gives voice to vulnerable special education families |
+| [Superintendent contract ethics](https://www.chalkbeat.org/newark/2025/10/31/superintendent-roger-leon-abrupt-contract-extension-raises-ethics-questions/) | Chalkbeat Newark | Expert: "totally improper" vote procedure |
 
 #### Ethnic & Community Media
 | Story | Outlet | Key Strength |
 |-------|--------|--------------|
-| Broken Promises: Systemic Racism Endangers Black Children | Echo Press | Academic rigor on foster care/incarceration intersection |
-| Racing For Freedom: Black Equestrian Legacy | Echo Press | Multimedia documentary; preserves 200+ year history |
-| Lawrence Hamm Profile (50 Years of Activism) | Montclair Local | Chronicles Black civil rights history |
-| Hispanic Businesses at Risk | Reporte Hispano | Spanish-language coverage of 80% sales drops |
-| Newark ICE Raids Series | NJ Monitor | Sophie Nieto-Muñoz's sustained immigration reporting |
+| [Broken promises: systemic racism endangers Black children](https://www.echonewstv.com/post/broken-promises-how-systemic-racism-and-economic-divestment-endanger-black-children-in-america) | Echo Press | Academic rigor on foster care/incarceration intersection |
+| [Racing for freedom: Black equestrian legacy](https://www.echonewstv.com/post/racing-for-freedom-the-unheralded-truth-behind-monmouth-county-s-black-equestrian-legacy-and-the-er) | Echo Press | Multimedia documentary; preserves 200+ year history |
+| [Lawrence Hamm profile (50 years of activism)](https://montclairlocal.news/2025/05/there-has-to-be-more-civil-rights-activist-lawrence-hamm-says-on-political-awakening-fight/) | Montclair Local | Chronicles Black civil rights history |
+| [Hispanic businesses at risk](https://reportehispano.com/2025/09/hispanic-businesses-and-state-economy-at-risk-due-to-trumps-immigration-policies/) | Reporte Hispano | Spanish-language coverage of 80% sales drops |
+| [Newark ICE raids series](https://newjerseymonitor.com/2025/01/24/n-j-leaders-slam-ice-raid-in-newark-as-chilling-cruel/) | NJ Monitor | Sophie Nieto-Muñoz's sustained immigration reporting |
 
 #### Social Justice & Community Impact
 | Story | Outlet | Key Strength |
 |-------|--------|--------------|
-| Gun Safety Rally: Survivors Demand Action | Morristown Green | Veteran: "I got shot in my community, not Desert Storm" |
-| Defending Trans Youth | Morristown Green | Documents grassroots organizing against federal threats |
-| Immigrant Protection Vote | Morristown Green | Undocumented residents testify publicly |
-| Marijuana Re-Criminalization | HeadyNJ | Catches legislators reversing racial justice reform |
+| [Gun safety rally: survivors demand action](https://morristowngreen.com/2025/06/08/advocates-rally-in-morristown-for-stronger-gun-safety-laws/) | Morristown Green | Veteran: "I got shot in my community, not Desert Storm" |
+| [Defending trans youth](https://morristowngreen.com/2025/02/28/amidst-a-blizzard-of-executive-orders-a-new-group-gathers-in-morristown-to-defend-trans-people/) | Morristown Green | Documents grassroots organizing against federal threats |
+| [Immigrant protection vote](https://morristowngreen.com/2025/01/30/applause-anxiety-and-an-apology-immigration-vote-stirs-emotions-in-morristown/) | Morristown Green | Undocumented residents testify publicly |
+| [Marijuana re-criminalization](https://headynj.com/politics/scutari-bill-re-criminalizes-street-marijuana-possession-and-unlicensed-legacy-operators/) | HeadyNJ | Catches legislators reversing racial justice reform |
 
 ---
 
@@ -100,11 +100,11 @@ These multi-part investigations demonstrate sustained accountability journalism:
 
 | Series | Outlet | Scope | Impact |
 |--------|--------|-------|--------|
-| **Montclair Schools Deficit** | Montclair Local | 18 stories / 10 months | Tracked $11M→$20M crisis; forced legal intervention |
-| **Delbarton Sex Abuse Trial** | Morristown Green | 8 stories / 6 weeks | Gavel-to-gavel coverage of landmark abuse trial |
-| **Newark vs. ICE** | Multi-outlet | 15+ stories / 11 months | Documented civil rights conflict, Mayor Baraka's arrest |
-| **Ocean County Teacher Abuse** | Jersey Shore Online | 10+ stories / 11 months | Pattern investigation leading to year-end analysis |
-| **Newark AI Camera Surveillance** | Chalkbeat Newark | Multiple stories / 18 months | $17.5M project accountability (won 2025 award) |
+| [**Montclair schools deficit**](https://montclairlocal.news/everything-we-know-now-about-montclair-schools-massive-deficit/) | Montclair Local | 18 stories / 10 months | Tracked $11M→$20M crisis; forced legal intervention |
+| [**Delbarton sex abuse trial**](https://morristowngreen.com/2025/09/19/my-brain-was-seared-fifty-years-later-delbarton-grad-testifies-in-landmark-abuse-case/) | Morristown Green | 8 stories / 6 weeks | Gavel-to-gavel coverage of landmark abuse trial |
+| [**Newark vs. ICE**](https://njdemocrat.substack.com/p/to-the-barricades-baraka-escalates) | Multi-outlet | 15+ stories / 11 months | Documented civil rights conflict, Mayor Baraka's arrest |
+| [**Ocean County teacher abuse**](https://www.jerseyshoreonline.com/ocean-county/local-teacher-sex-abuse-cases-add-up/) | Jersey Shore Online | 10+ stories / 11 months | Pattern investigation leading to year-end analysis |
+| **Newark AI camera surveillance** | Chalkbeat Newark | Multiple stories / 18 months | $17.5M project accountability (won 2025 award) |
 
 **Recommendation:** Consider creating a **"Sustained Coverage Series"** award category to recognize this type of journalism that single-story awards cannot capture.
 
@@ -275,23 +275,23 @@ We recommend the awards committee prioritize the Tier 1 stories identified in th
 
 ## APPENDIX: Quick Reference
 
-### Top 5 Overall
-1. HudPost - Fulop Pay-to-Play (10/10)
-2. Jersey Shore Online - Howell Whistleblower (10/10)
-3. Echo Press - Black Journalists Harassed (10/10)
-4. Montclair Local - Schools Deficit Series (10/10)
-5. NJ Monitor - Nursing Home Fraud (9.5/10)
+### Top 5 overall
+1. [HudPost - Fulop pay-to-play](https://hudpost.com/states-star-witness-tied-fulop-to-pay-to-play-scheme-ags-office-declined-to-pursue-case/) (10/10)
+2. [Jersey Shore Online - Howell whistleblower](https://www.jerseyshoreonline.com/howell/whistleblower-suits-accuse-howell-officials-of-racial-profiling-retaliation/) (10/10)
+3. [Echo Press - Black journalists harassed](https://www.echonewstv.com/post/it-s-a-sin-and-a-shame-how-black-journalists-are-harassed-in-monmouth-county-new-jersey) (10/10)
+4. [Montclair Local - schools deficit series](https://montclairlocal.news/everything-we-know-now-about-montclair-schools-massive-deficit/) (10/10)
+5. [NJ Monitor - nursing home fraud](https://newjerseymonitor.com/2025/12/10/south-jersey-nursing-homes-fraud/) (9.5/10)
 
-### Top 3 by Category
+### Top 3 by category
 
-**Investigative:** HudPost (Fulop), NJ Monitor (Nursing Homes), NJ Democrat (Norcross)
+**Investigative:** [HudPost (Fulop)](https://hudpost.com/states-star-witness-tied-fulop-to-pay-to-play-scheme-ags-office-declined-to-pursue-case/), [NJ Monitor (nursing homes)](https://newjerseymonitor.com/2025/12/10/south-jersey-nursing-homes-fraud/), [NJ Democrat (Norcross)](https://njdemocrat.substack.com/p/paying-george-norcrosss-corruption)
 
-**Environmental:** Delaware Currents (EPA/Sturgeon), Morristown Green (Pfizer), Jersey Shore Online (LBI)
+**Environmental:** [Delaware Currents (EPA/sturgeon)](https://delawarecurrents.org/2025/04/07/epa-water-quality-delaware-river/), [Morristown Green (Pfizer)](https://morristowngreen.com/2025/10/03/nj-sues-pfizer-over-cancer-linked-water-contamination-in-morris-plains/), [Jersey Shore Online (LBI)](https://www.jerseyshoreonline.com/southern-ocean/why-flooding-on-lbi-is-becoming-the-new-norm/)
 
-**Education:** Montclair Local (Deficit), Chalkbeat (Racism), Morristown Green (Delbarton)
+**Education:** [Montclair Local (deficit)](https://montclairlocal.news/everything-we-know-now-about-montclair-schools-massive-deficit/), [Chalkbeat (racism)](https://www.chalkbeat.org/newark/2025/01/13/racism-anti-blackness-found-at-school-of-global-studies-leaked-report-finds/), [Morristown Green (Delbarton)](https://morristowngreen.com/2025/09/19/my-brain-was-seared-fifty-years-later-delbarton-grad-testifies-in-landmark-abuse-case/)
 
-**Ethnic Media:** Echo Press (Journalists), Reporte Hispano (Economy), Echo Press (Systemic Racism)
+**Ethnic Media:** [Echo Press (journalists)](https://www.echonewstv.com/post/it-s-a-sin-and-a-shame-how-black-journalists-are-harassed-in-monmouth-county-new-jersey), [Reporte Hispano (economy)](https://reportehispano.com/2025/09/hispanic-businesses-and-state-economy-at-risk-due-to-trumps-immigration-policies/), [Echo Press (systemic racism)](https://www.echonewstv.com/post/broken-promises-how-systemic-racism-and-economic-divestment-endanger-black-children-in-america)
 
-**Social Justice:** Jersey Shore Online (Howell), Morristown Green (Gun Safety), NJ Monitor (ICE Raids)
+**Social Justice:** [Jersey Shore Online (Howell)](https://www.jerseyshoreonline.com/howell/whistleblower-suits-accuse-howell-officials-of-racial-profiling-retaliation/), [Morristown Green (gun safety)](https://morristowngreen.com/2025/06/08/advocates-rally-in-morristown-for-stronger-gun-safety-laws/), [NJ Monitor (ICE raids)](https://newjerseymonitor.com/2025/01/24/n-j-leaders-slam-ice-raid-in-newark-as-chilling-cruel/)
 
-**Hyperlocal Watchdog:** HudPost (Fulop), Montclair Local (OPRA), Jersey Shore Online (Howell)
+**Hyperlocal Watchdog:** [HudPost (Fulop)](https://hudpost.com/states-star-witness-tied-fulop-to-pay-to-play-scheme-ags-office-declined-to-pursue-case/), [Montclair Local (OPRA)](https://montclairlocal.news/2025/04/montclair-schools-withhold-budget-doc-in-pattern-of-opra-denials/), [Jersey Shore Online (Howell)](https://www.jerseyshoreonline.com/howell/whistleblower-suits-accuse-howell-officials-of-racial-profiling-retaliation/)
