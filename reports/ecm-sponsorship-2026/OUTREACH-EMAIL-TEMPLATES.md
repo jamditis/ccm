@@ -26,9 +26,10 @@ WHY THIS MATTERS FOR AARP:
 - Direct access to editors who can amplify AARP's messages to hard-to-reach 50+ populations
 - Extends your national ethnic journalism conference partnerships to NJ
 
-SPONSORSHIP LEVELS:
-- Community Partner: $2,500 (logo, table for 6, recognition)
-- Champion Sponsor: $5,000 (prominent placement, table for 8, speaking opportunity)
+SPONSORSHIP OPPORTUNITIES:
+- Presenting sponsor: $2,500 (exclusive "Presented By" billing, introduce keynote, reserved table, logo on all materials)
+- Registration sponsor: $750 (branding on name tags, welcome signage, logo on website)
+- Sweet endings pack: $500 (signage at dessert/coffee stations, verbal recognition)
 
 Could we schedule a 15-minute call this week to discuss how this partnership could support AARP NJ's multicultural goals?
 
@@ -63,9 +64,9 @@ WHY THIS MATTERS FOR SHCCNJ MEMBERS:
 - Opportunity for you to address the assembled ethnic media community
 
 PARTNERSHIP OPTIONS:
-- Community Partner: $2,500 (logo, table, recognition)
-- Champion Sponsor: $5,000 (premier placement, speaking slot, table for 10)
-- Co-Promotion Partner: Cross-promote to your member network (flexible)
+- Presenting sponsor: $2,500 (exclusive "Presented By" billing, introduce keynote, reserved table)
+- Registration sponsor: $750 (branding on name tags, welcome signage, logo on website)
+- In-kind/custom: Service exchange for organizations providing services or promotion
 
 I'd love to discuss how we can structure a partnership that delivers real value to your members. Could we schedule a brief call?
 
@@ -100,9 +101,9 @@ WHY THIS MATTERS FOR AACCNJ:
 - Similar to your Rowan media studio, this strengthens the ethnic media ecosystem
 
 SPONSORSHIP OPTIONS:
-- Community Partner: $2,500 (logo, table for 6, recognition)
-- Champion Sponsor: $5,000-$10,000 (premier placement, speaking platform, table for 10)
-- Co-Promotion: Cross-promote your February Gala and our Luncheon (flexible)
+- Presenting sponsor: $2,500 (exclusive "Presented By" billing, introduce keynote, reserved table)
+- Registration sponsor: $750 (branding on name tags, welcome signage, logo on website)
+- In-kind/custom: Co-promotion partnership to cross-promote your February Gala and our Luncheon
 
 As the only accredited African American Chamber in the entire U.S., your leadership on ethnic media matters. Could we schedule a call to discuss partnership possibilities?
 
@@ -144,10 +145,10 @@ SPONSORSHIP BENEFITS:
 - Platform to discuss Horizon's health equity initiatives
 - Ongoing editorial partnership opportunities with attendees
 
-SPONSORSHIP LEVELS:
-- Presenting Sponsor: $15,000-$25,000
-- Champion Sponsor: $5,000-$10,000
-- Community Partner: $2,500-$5,000
+SPONSORSHIP OPPORTUNITIES:
+- Presenting sponsor: $2,500 (exclusive "Presented By" billing, introduce keynote, reserved table, logo on all materials)
+- Registration sponsor: $750 (branding on name tags, welcome signage, logo on website)
+- Sweet endings pack: $500 (signage at dessert/coffee stations, verbal recognition)
 
 I understand the Horizon Foundation's grant cycle reopens June 1 - we'd also welcome a conversation about that longer-term opportunity. But for the February event, we're seeking corporate sponsorship support.
 
@@ -184,9 +185,9 @@ Merck's international Health Media Training program demonstrates your recognitio
 Since 1957, Merck has called Rahway, New Jersey home. These 100+ ethnic media outlets serve the communities where Merck employees and their families live, work, and seek healthcare information.
 
 PARTNERSHIP OPPORTUNITIES:
-- Presenting Sponsor: $10,000-$25,000 (premier billing, speaking opportunity)
-- Champion Sponsor: $5,000 (prominent recognition, table for 8)
-- Community Partner: $2,500 (logo placement, event recognition)
+- Presenting sponsor: $2,500 (exclusive "Presented By" billing, introduce keynote, reserved table, logo on all materials)
+- Registration sponsor: $750 (branding on name tags, welcome signage, logo on website)
+- Sweet endings pack: $500 (signage at dessert/coffee stations, verbal recognition)
 
 I know the Foundation doesn't accept unsolicited proposals through a standard portal, so I'm reaching out directly to explore whether this community-focused opportunity resonates with Merck's mission.
 
@@ -223,7 +224,9 @@ Ethnic media outlets serve as trusted health messengers in the same communities 
 Given J&J's New Brunswick headquarters and commitment to New Jersey communities, supporting the media ecosystem that serves diverse NJ residents aligns with both geographic and mission priorities.
 
 REQUEST:
-We're seeking $2,500-$10,000 in sponsorship support. Benefits include logo recognition, event attendance, and potential speaking opportunity.
+We're seeking sponsorship support at one of these levels:
+- Registration sponsor: $750 (branding on name tags, welcome signage, logo on website)
+- Sweet endings pack: $500 (signage at dessert/coffee stations, verbal recognition)
 
 I understand J&J local giving often works through CFNJ channels. Could you advise on the appropriate pathway for this request, or connect me with the right contact?
 
@@ -291,7 +294,7 @@ This event celebrates 100+ ethnic media outlets serving diverse NJ communities -
 
 Given AstraZeneca's commitment to health equity and reaching underserved communities, we believe there's strong alignment with our mission.
 
-We're seeking sponsorship support in the $1,000-$2,500 range for logo recognition and event participation.
+We're seeking sponsorship support at the Sweet endings pack level ($500) - sponsoring coffee, tea, and dessert service with signage and verbal recognition.
 
 Would someone on your team be available to discuss this opportunity?
 
@@ -382,37 +385,39 @@ The annual ECM Celebration recognizes excellence in ethnic and community journal
 - Demonstrate commitment to media diversity and community journalism
 - Network with trusted community messengers
 
-## SPONSORSHIP LEVELS
+## SPONSORSHIP OPPORTUNITIES
 
-PRESENTING SPONSOR: $10,000-$25,000
-- Premier "Presented By" billing
-- Speaking opportunity (5-7 min)
-- Table for 10
-- Full-page program ad
-- Logo on all materials
+PRESENTING SPONSOR: $2,500
+The premier partnership tier. Cover the plated luncheon or venue costs for top-tier billing.
+- Exclusive "Presented By" title billing
+- Introduction of keynote speaker
+- Signage on site and logo on all materials
+- Reserved table for organization guests
 
-CHAMPION SPONSOR: $5,000-$7,500
-- Prominent logo placement
-- Table for 8
-- Half-page program ad
-- Social media features
+REGISTRATION SPONSOR: $750
+High-touch brand visibility. Your org provides essential items every attendee receives.
+- Exclusive branding on attendee name tags
+- Logo on registration welcome signage
+- Logo on event website/registration page
+- Opportunity to provide branded pens at check-in
 
-COMMUNITY PARTNER: $2,500-$3,500
-- Logo in program and signage
-- Table for 6
-- Event recognition
+SWEET ENDINGS PACK: $500
+Host the most anticipated part of the meal. Sponsor the coffee, tea, and dessert service.
+- Prominent signage at dessert & coffee stations
+- Opportunity for branded napkins/coffee sleeves
+- Verbal recognition by host before dessert service
+- Logo on event website
 
-FRIEND/SUPPORTER: $1,000-$1,500
-- Logo listing
-- Tickets (2-4)
-- Recognition
+IN-KIND/CUSTOM: Service exchange
+Flexible partnership for organizations providing critical services or venue support.
+- Benefit customized to trade value
+- Logo placement on relevant materials
 
 ## CONTACT
-[Your Name]
-[Title]
+Stefanie Murray
 Center for Cooperative Media
 Montclair State University
-[Phone] | [Email]
+murrayst@montclair.edu
 ```
 
 ---

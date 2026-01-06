@@ -10,18 +10,31 @@
 
 This report consolidates research on 10 prospective sponsors for the 2026 Ethnic and Community Media (ECM) Celebration Luncheon. Based on comprehensive analysis, we've identified **5 high-priority prospects** to actively pursue, **2 medium-priority prospects** requiring specific approaches, and **3 prospects to deprioritize or skip**.
 
+### Official Sponsorship Tiers (2026 Community Media Luncheon)
+
+| Tier | Price | Description | Key Benefits |
+|------|-------|-------------|--------------|
+| **Presenting Sponsor** | $2,500 | Premier partnership - cover luncheon/venue | "Presented By" billing, introduce keynote, signage on all materials, reserved table |
+| **Registration Sponsor** | $750 | High-touch brand visibility | Branding on name tags, welcome signage, logo on website, branded pens opportunity |
+| **Sweet Endings Pack** | $500 | Sponsor coffee, tea & dessert | Signage at dessert stations, branded napkins/sleeves, verbal recognition, logo on website |
+| **In-Kind/Custom** | Service Exchange | Flexible partnership | Benefits customized to trade value, logo on relevant materials |
+
+**Contact:** Stefanie Murray, murrayst@montclair.edu
+
+---
+
 ### Quick Reference: Sponsor Priority Matrix
 
-| Priority | Organization | Status | Fit | Est. Amount | Action Required |
-|----------|-------------|--------|-----|-------------|-----------------|
-| 🔴 HIGH | AARP NJ | Emailed | ⭐⭐⭐⭐⭐ | $2,500-$5,000 | Follow up this week |
-| 🔴 HIGH | Statewide Hispanic Chamber | Emailed | ⭐⭐⭐⭐⭐ | $2,500-$5,000 | Follow up - Carlos Medina PBS angle |
-| 🔴 HIGH | African American Chamber NJ | Emailed | ⭐⭐⭐⭐⭐ | $2,500-$10,000 | Follow up - Dr. Harmon connection |
-| 🔴 HIGH | Horizon Foundation/BCBS | Closed til June | ⭐⭐⭐⭐⭐ | $5,000-$25,000 | Contact CORPORATE (not Foundation) |
-| 🟡 MED | Merck Foundation | No portal | ⭐⭐⭐⭐ | $5,000-$25,000 | Direct outreach to Leslie Hardy |
-| 🟡 MED | J&J Foundation | No portal | ⭐⭐⭐ | $2,500-$10,000 | Contact via CFNJ - Madeline Rivera |
-| 🟡 MED | Campbell's Foundation | No sponsorships | ⭐⭐⭐ | In-kind | Request product donations |
-| 🟠 LOW | AstraZeneca Foundation | No portal | ⭐⭐ | $1,000-$2,500 | Quick corporate inquiry |
+| Priority | Organization | Status | Fit | Recommended Tier | Action Required |
+|----------|-------------|--------|-----|------------------|-----------------|
+| 🔴 HIGH | Horizon Foundation/BCBS | Closed til June | ⭐⭐⭐⭐⭐ | Presenting ($2,500) | Contact CORPORATE (not Foundation) |
+| 🔴 HIGH | AARP NJ | Emailed | ⭐⭐⭐⭐⭐ | Presenting ($2,500) | Follow up this week |
+| 🔴 HIGH | Statewide Hispanic Chamber | Emailed | ⭐⭐⭐⭐⭐ | Presenting ($2,500) or Registration ($750) | Follow up - Carlos Medina PBS angle |
+| 🔴 HIGH | African American Chamber NJ | Emailed | ⭐⭐⭐⭐⭐ | Presenting ($2,500) | Follow up - Dr. Harmon connection |
+| 🟡 MED | Merck Foundation | No portal | ⭐⭐⭐⭐ | Presenting ($2,500) | Direct outreach to Leslie Hardy |
+| 🟡 MED | J&J Foundation | No portal | ⭐⭐⭐ | Registration ($750) or Sweet Endings ($500) | Contact via CFNJ - Madeline Rivera |
+| 🟡 MED | Campbell's Foundation | No sponsorships | ⭐⭐⭐ | In-Kind (dessert products) | Request product donations for Sweet Endings |
+| 🟠 LOW | AstraZeneca Foundation | No portal | ⭐⭐ | Sweet Endings ($500) | Quick corporate inquiry |
 | ⚫ SKIP | Wawa Foundation | Don't qualify | ⭐ | N/A | Does not fund media |
 | ⚫ SKIP | Princeton Area Community | Wrong footprint | ⭐ | N/A | Geographic exclusion |
 
@@ -33,7 +46,7 @@ This report consolidates research on 10 prospective sponsors for the 2026 Ethnic
 
 **Status:** Emailed
 **Fit Rating:** EXCELLENT
-**Recommended Ask:** $2,500-$5,000
+**Recommended Ask:** Presenting Sponsor ($2,500)
 
 **Why They're Perfect:**
 - Already sponsors all 4 major ethnic journalism conferences (NABJ, NAHJ, AAJA, NLGJA)
@@ -65,7 +78,7 @@ This report consolidates research on 10 prospective sponsors for the 2026 Ethnic
 
 **Status:** Emailed
 **Fit Rating:** EXCELLENT
-**Recommended Ask:** $2,500-$5,000
+**Recommended Ask:** Presenting sponsor ($2,500) or Registration sponsor ($750)
 
 **Why They're Perfect:**
 - CEO Carlos Medina hosts "Que Pasa NJ" on PBS - understands ethnic media personally
@@ -96,7 +109,7 @@ This report consolidates research on 10 prospective sponsors for the 2026 Ethnic
 
 **Status:** Emailed
 **Fit Rating:** EXCELLENT
-**Recommended Ask:** $2,500-$10,000
+**Recommended Ask:** Presenting sponsor ($2,500)
 
 **Why They're Perfect:**
 - Dr. John Harmon (CEO) hosts "Empowerment Hour" radio show
@@ -129,7 +142,7 @@ This report consolidates research on 10 prospective sponsors for the 2026 Ethnic
 
 **Status:** Foundation grants closed until June 1 - BUT corporate sponsorships available
 **Fit Rating:** EXCELLENT
-**Recommended Ask:** $5,000-$25,000 (corporate), $10,000-$50,000 (June grant)
+**Recommended Ask:** Presenting sponsor ($2,500) - likely to accept given their typical giving levels
 
 **Critical Insight:** User noted "grant requests closed until June 1" - this is TRUE for Foundation. But **CORPORATE SPONSORSHIPS are separate and available NOW**.
 
@@ -161,7 +174,7 @@ This report consolidates research on 10 prospective sponsors for the 2026 Ethnic
 
 **Status:** No submission portal - but direct outreach possible
 **Fit Rating:** STRONG
-**Recommended Ask:** $5,000-$25,000
+**Recommended Ask:** Presenting sponsor ($2,500)
 
 **Why They're Strong:**
 - Headquartered in Rahway, NJ since 1957
@@ -192,7 +205,7 @@ This report consolidates research on 10 prospective sponsors for the 2026 Ethnic
 
 **Status:** No submission portal - invitation-only for NJ, but pathway exists
 **Fit Rating:** MEDIUM-HIGH
-**Recommended Ask:** $2,500-$10,000
+**Recommended Ask:** Registration sponsor ($750) or Sweet endings pack ($500)
 
 **Why Consider:**
 - Headquartered in New Brunswick, NJ
@@ -247,7 +260,7 @@ This report consolidates research on 10 prospective sponsors for the 2026 Ethnic
 
 **Status:** No submission portal, geographic barrier
 **Fit Rating:** LOW-MEDIUM
-**Recommended Ask:** $1,000-$2,500 (quick ask, don't invest much time)
+**Recommended Ask:** Sweet endings pack ($500) - quick ask, don't invest much time
 
 **Why Lower Priority:**
 - NJ not in their 2026 CHANGE grant eligible states
@@ -319,72 +332,69 @@ This report consolidates research on 10 prospective sponsors for the 2026 Ethnic
 
 ---
 
-## Sponsorship Tier Framework
+## Official Sponsorship Tiers
 
-### Presenting Sponsor: $10,000-$15,000
-- Premier "Presented By" logo placement
-- Speaking opportunity (5-7 minutes)
-- Table for 10
-- Full-page program ad
-- Social media features
-- Year-round recognition
+### Presenting sponsor: $2,500
+*The premier partnership tier. Cover the plated luncheon or venue costs for top-tier billing.*
+- Exclusive "Presented By" title billing
+- Introduction of keynote speaker
+- Signage on site and logo on all materials
+- Reserved table for organization guests
 
-### Champion Sponsor: $5,000-$7,500
-- Prominent logo placement
-- Table for 8
-- Half-page program ad
-- Social media mentions
-- Event photography
+### Registration sponsor: $750
+*High-touch brand visibility. Your org provides essential items every attendee receives.*
+- Exclusive branding on attendee name tags
+- Logo on registration welcome signage
+- Logo on event website/registration page
+- Opportunity to provide branded pens at check-in
 
-### Community Partner: $2,500-$3,500
-- Logo in program and signage
-- Table for 6
-- Event recognition
-- Social media mention
+### Sweet endings pack: $500
+*Host the most anticipated part of the meal. Sponsor the coffee, tea, and dessert service.*
+- Prominent signage at dessert & coffee stations
+- Opportunity for branded napkins/coffee sleeves
+- Verbal recognition by host before dessert service
+- Logo on event website
 
-### Friend/Supporter: $1,000-$1,500
-- Logo listing in program
-- Tickets (2-4)
-- Event recognition
-
-### In-Kind Partner: Variable
-- Recognition based on value
-- Creative partnership structures
+### In-kind/custom: Service exchange
+*Flexible partnership for organizations providing critical services or venue support.*
+- Benefit customized to trade value
+- Logo placement on relevant materials
 
 ---
 
 ## Projected Revenue Scenarios
 
-### Conservative Scenario
-| Sponsor | Amount |
-|---------|--------|
-| AARP NJ | $2,500 |
-| Hispanic Chamber | $2,500 |
-| African American Chamber | $2,500 |
-| Horizon (corporate) | $5,000 |
-| **TOTAL** | **$12,500** |
+### Conservative scenario (3 sponsors)
+| Sponsor | Tier | Amount |
+|---------|------|--------|
+| AARP NJ | Presenting | $2,500 |
+| Hispanic Chamber | Registration | $750 |
+| African American Chamber | Registration | $750 |
+| **TOTAL** | | **$4,000** |
 
-### Moderate Scenario
-| Sponsor | Amount |
-|---------|--------|
-| AARP NJ | $5,000 |
-| Hispanic Chamber | $5,000 |
-| African American Chamber | $5,000 |
-| Horizon (corporate) | $10,000 |
-| Merck | $5,000 |
-| **TOTAL** | **$30,000** |
+### Moderate scenario (5 sponsors)
+| Sponsor | Tier | Amount |
+|---------|------|--------|
+| AARP NJ | Presenting | $2,500 |
+| Horizon (corporate) | Presenting | $2,500 |
+| Hispanic Chamber | Registration | $750 |
+| African American Chamber | Presenting | $2,500 |
+| J&J | Sweet endings | $500 |
+| **TOTAL** | | **$8,750** |
 
-### Optimistic Scenario
-| Sponsor | Amount |
-|---------|--------|
-| AARP NJ | $5,000 |
-| Hispanic Chamber | $5,000 |
-| African American Chamber | $10,000 |
-| Horizon (corporate) | $25,000 |
-| Merck | $10,000 |
-| J&J | $5,000 |
-| Campbell's (in-kind) | $2,000 value |
-| **TOTAL** | **$62,000** |
+### Optimistic scenario (7 sponsors)
+| Sponsor | Tier | Amount |
+|---------|------|--------|
+| Horizon (corporate) | Presenting | $2,500 |
+| AARP NJ | Presenting | $2,500 |
+| African American Chamber | Presenting | $2,500 |
+| Merck | Presenting | $2,500 |
+| Hispanic Chamber | Registration | $750 |
+| J&J | Sweet endings | $500 |
+| Campbell's | In-kind (dessert products) | ~$300 value |
+| **TOTAL** | | **$11,550** |
+
+*Note: These projections are based on actual sponsorship tiers. Larger corporate sponsors may choose to support at higher custom levels, but outreach should focus on the defined tier structure.*
 
 ---
 
