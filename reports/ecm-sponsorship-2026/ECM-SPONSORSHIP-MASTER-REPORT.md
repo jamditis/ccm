@@ -1,7 +1,9 @@
 # ECM Celebration Luncheon 2026 - Sponsorship Outreach Master Report
 
 **Event Date:** February 26, 2026
+
 **Report Generated:** January 6, 2026
+
 **Time to Event:** ~7 weeks
 
 ---
