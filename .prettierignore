@@ -1,0 +1,64 @@
+# Dependencies
+node_modules/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+coverage/
+.coverage
+
+# Lock files
+package-lock.json
+yarn.lock
+poetry.lock
+Pipfile.lock
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Output and data directories
+output/
+analysis/ai_results*/
+analysis/figures/
+*.csv
+*.xlsx
+
+# Generated files
+*.min.js
+*.min.css
+*.bundle.js
+
+# Specific project files
+social-scraper/output/
+tools/llm-advisor/dist/
+reports/njinfluencers-deploy/videos/
+
+# Git
+.git/
+.gitignore
+
+# Markdown files with special formatting
+CHANGELOG.md
+SESSION_REPORT*.md

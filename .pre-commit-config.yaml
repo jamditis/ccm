@@ -1,0 +1,124 @@
+# Pre-commit hooks configuration for CCM project
+# See https://pre-commit.com for more information
+# To install: pip install pre-commit && pre-commit install
+
+default_language_version:
+  python: python3.11
+  node: 20.0.0
+
+repos:
+  # General file fixes
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        name: Trim trailing whitespace
+        exclude: '\.svg$|\.patch$'
+      - id: end-of-file-fixer
+        name: Fix end of files
+        exclude: '\.svg$|\.json$'
+      - id: check-yaml
+        name: Check YAML syntax
+        args: ['--unsafe']  # Allow custom tags
+      - id: check-json
+        name: Check JSON syntax
+        exclude: 'tsconfig\.json$'
+      - id: check-toml
+        name: Check TOML syntax
+      - id: check-added-large-files
+        name: Check for large files
+        args: ['--maxkb=1000']
+      - id: check-merge-conflict
+        name: Check for merge conflicts
+      - id: check-case-conflict
+        name: Check for case conflicts
+      - id: mixed-line-ending
+        name: Fix mixed line endings
+        args: ['--fix=lf']
+      - id: detect-private-key
+        name: Detect private keys
+
+  # Security checks - detect secrets
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        name: Detect secrets
+        args: ['--baseline', '.secrets.baseline']
+        exclude: 'package-lock\.json|\.env\.example'
+
+  # Prettier - code formatting
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.1.0
+    hooks:
+      - id: prettier
+        name: Format with Prettier
+        types_or: [javascript, jsx, ts, tsx, json, yaml, markdown, css, scss, html]
+        exclude: 'package-lock\.json|\.min\.(js|css)$'
+        additional_dependencies:
+          - prettier@3.1.0
+
+  # ESLint - JavaScript/React linting
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.57.0
+    hooks:
+      - id: eslint
+        name: Lint JavaScript/React with ESLint
+        files: \.(js|jsx)$
+        args: ['--fix', '--max-warnings=0']
+        additional_dependencies:
+          - eslint@8.57.0
+          - eslint-plugin-react@7.34.1
+          - eslint-plugin-react-hooks@4.6.0
+          - eslint-plugin-react-refresh@0.4.6
+
+  # Python - Ruff (fast linter and formatter)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.9
+    hooks:
+      - id: ruff
+        name: Lint Python with Ruff
+        args: [--fix, --exit-non-zero-on-fix]
+      - id: ruff-format
+        name: Format Python with Ruff
+
+  # Python - additional checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-ast
+        name: Check Python AST
+      - id: check-builtin-literals
+        name: Check for builtin literals
+      - id: check-docstring-first
+        name: Check docstring is first
+      - id: debug-statements
+        name: Check for debug statements
+      - id: name-tests-test
+        name: Check test naming
+        args: ['--pytest-test-first']
+        files: 'tests/.*\.py$'
+
+  # Markdown linting
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.39.0
+    hooks:
+      - id: markdownlint
+        name: Lint Markdown files
+        args: ['--fix']
+        exclude: 'CHANGELOG\.md|SESSION_REPORT.*\.md'
+
+  # Shell script checks
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.9.0.6
+    hooks:
+      - id: shellcheck
+        name: Check shell scripts
+
+  # Commit message validation
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v3.13.0
+    hooks:
+      - id: commitizen
+        name: Check commit message format
+        stages: [commit-msg]

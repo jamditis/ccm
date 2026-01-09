@@ -1,0 +1,147 @@
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/claude-code/main/schema/settings.schema.json",
+  "description": "Claude Code settings for Center for Cooperative Media project",
+
+  "mcpServers": {
+    "ccm-tools": {
+      "command": "node",
+      "args": ["/home/user/ccm/tools/shared/mcp-server.js"],
+      "description": "MCP server for CCM tools and utilities",
+      "disabled": true,
+      "_note": "Enable this when tools/shared/mcp-server.js is created"
+    }
+  },
+
+  "permissions": {
+    "mcp__ccm-tools__*": {
+      "allow": true,
+      "description": "Wildcard permission for all CCM tools MCP server functions"
+    }
+  },
+
+  "postEditHooks": [
+    {
+      "name": "Format with Prettier",
+      "glob": "**/*.{js,jsx,ts,tsx,json,html,css,md,yml,yaml}",
+      "command": "npx prettier --write \"{{file}}\"",
+      "description": "Auto-format files with Prettier after editing",
+      "showOutput": false
+    },
+    {
+      "name": "Python Formatting",
+      "glob": "**/*.py",
+      "command": "python -m black \"{{file}}\" 2>/dev/null || echo 'Black not installed, skipping format'",
+      "description": "Auto-format Python files with Black (if available)",
+      "showOutput": false
+    }
+  ],
+
+  "fileSearchShortcuts": {
+    "@tools": {
+      "path": "tools/",
+      "description": "Browser-based tools for journalists and newsrooms"
+    },
+    "@scrapers": {
+      "path": "social-scraper/scrapers/",
+      "description": "Social media scraping tools"
+    },
+    "@reports": {
+      "path": "reports/",
+      "description": "Analysis reports and research outputs"
+    },
+    "@skills": {
+      "path": ".claude/skills/",
+      "description": "Claude Code custom skills"
+    },
+    "@programs": {
+      "path": "programs/",
+      "description": "CCM programs and initiatives"
+    },
+    "@docs": {
+      "path": "docs/",
+      "description": "Project documentation"
+    },
+    "@shared": {
+      "path": "tools/shared/",
+      "description": "Shared utilities and components"
+    }
+  },
+
+  "modelDefaults": {
+    "codeReview": {
+      "model": "claude-opus-4-5",
+      "description": "Use Opus for thorough code reviews"
+    },
+    "research": {
+      "model": "claude-opus-4-5",
+      "description": "Use Opus for deep research and analysis"
+    },
+    "refactoring": {
+      "model": "claude-sonnet-4-5",
+      "description": "Use Sonnet for code refactoring"
+    },
+    "documentation": {
+      "model": "claude-sonnet-4-5",
+      "description": "Use Sonnet for writing documentation"
+    },
+    "quickFixes": {
+      "model": "claude-sonnet-4-5",
+      "description": "Use Sonnet for quick bug fixes and small tasks"
+    }
+  },
+
+  "projectContext": {
+    "name": "Center for Cooperative Media",
+    "type": "mixed",
+    "languages": ["javascript", "python", "html", "css"],
+    "description": "Public tools and research projects for journalists and newsrooms",
+    "mainAreas": {
+      "tools": "Browser-based journalism tools (invoicer, sponsorship generator, LLM advisor, etc.)",
+      "social-scraper": "Internal research tools for social media analysis",
+      "reports": "Analysis outputs and research documentation",
+      "programs": "CCM programs and grant proposals"
+    }
+  },
+
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/.git/**",
+    "**/__pycache__/**",
+    "**/*.pyc",
+    "**/venv/**",
+    "**/env/**",
+    "**/.env",
+    "**/.DS_Store",
+    "**/dist/**",
+    "**/build/**",
+    "**/.pytest_cache/**",
+    "**/coverage/**"
+  ],
+
+  "workspace": {
+    "autoSaveDelay": 1000,
+    "formatOnSave": true,
+    "lintOnSave": true
+  },
+
+  "git": {
+    "autoFetch": true,
+    "confirmSync": true,
+    "defaultBranch": "main",
+    "commitMessageTemplate": "[{{type}}] {{message}}\n\n{{body}}"
+  },
+
+  "terminal": {
+    "defaultShell": "/bin/bash",
+    "cwd": "/home/user/ccm"
+  },
+
+  "ai": {
+    "contextFiles": [
+      "/home/user/ccm/README.md",
+      "/home/user/ccm/CLAUDE.md"
+    ],
+    "maxContextFiles": 50,
+    "includeGitStatus": true
+  }
+}
