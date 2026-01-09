@@ -1,0 +1,21 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/mcp-settings.json",
+  "mcpServers": {
+    "ccm-tools": {
+      "command": "node",
+      "args": [
+        "/home/user/ccm/tools/shared/mcp-server.js"
+      ],
+      "env": {
+        "ANTHROPIC_API_KEY": "${ANTHROPIC_API_KEY}",
+        "GEMINI_API_KEY": "${GEMINI_API_KEY}",
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "INSTAGRAM_UN": "${INSTAGRAM_UN}",
+        "INSTAGRAM_PW": "${INSTAGRAM_PW}"
+      },
+      "disabled": false,
+      "alwaysAllow": []
+    }
+  },
+  "globalShortcut": "CommandOrControl+Shift+Space"
+}

@@ -1,0 +1,72 @@
+# Ruff configuration for CCM project
+# See https://docs.astral.sh/ruff/configuration/
+
+target-version = "py311"
+line-length = 100
+indent-width = 4
+
+[lint]
+# Enable recommended rules
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "SIM", # flake8-simplify
+    "RUF", # Ruff-specific rules
+]
+
+# Ignore specific rules
+ignore = [
+    "E501",   # Line too long (handled by formatter)
+    "B008",   # Do not perform function calls in argument defaults
+    "B905",   # zip() without explicit strict parameter
+    "SIM108", # Use ternary operator (sometimes less readable)
+]
+
+# Allow autofix for all enabled rules
+fixable = ["ALL"]
+unfixable = []
+
+# Exclude directories
+exclude = [
+    ".git",
+    ".venv",
+    "venv",
+    "__pycache__",
+    "build",
+    "dist",
+    "*.egg-info",
+    ".pytest_cache",
+    "node_modules",
+    "output",
+    "analysis/ai_results*",
+]
+
+[lint.per-file-ignores]
+# Ignore import order in __init__.py files
+"__init__.py" = ["F401", "I001"]
+# Ignore some rules in test files
+"tests/**/*.py" = ["N802", "N803"]
+
+[lint.isort]
+known-first-party = ["scrapers", "analysis"]
+force-single-line = false
+lines-after-imports = 2
+
+[format]
+# Use double quotes for strings
+quote-style = "double"
+
+# Indent with spaces
+indent-style = "space"
+
+# Like Black, respect magic trailing commas
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending
+line-ending = "auto"

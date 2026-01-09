@@ -1,0 +1,33 @@
+{
+  "name": "ccm-mcp-server",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for CCM journalism tools",
+  "type": "module",
+  "main": "mcp-server.js",
+  "bin": {
+    "ccm-mcp-server": "./mcp-server.js"
+  },
+  "scripts": {
+    "start": "node mcp-server.js",
+    "test": "node --test",
+    "install-global": "npm link"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "journalism",
+    "ccm",
+    "tools"
+  ],
+  "author": "Center for Cooperative Media",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  }
+}
